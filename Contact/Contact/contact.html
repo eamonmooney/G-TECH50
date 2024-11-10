@@ -128,7 +128,7 @@
 
                 <div class="col-lg-8 mt-5 mt-lg-0">
 
-                    <form>
+                    <form action="contactForm.php">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="firstName">First Name:</label><br>
@@ -164,6 +164,7 @@
                         <textarea id="description" rows="5" required></textarea>
                     </div>   
                         <input type="button" value="Submit" onclick="validateForm()">
+                        <input type="hidden" name="submitted" value="true"/> <!--This has been implemented in order to call the php function. - Eamon -->
                     </form>
 
                 </div>
