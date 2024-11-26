@@ -1,13 +1,8 @@
 <?php
-$db_host = 'localhost';
-$db_name = 'cs2team50_db';
-$username = 'cs2team50';
-
-$password = '0uL3mrV0yknvScd';
 
 try {
-	$db = new PDO("mysql:dbname=$db_name;host=$db_host", $username, $password); 
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	// Database connection
+    require_once('connectdb.php');
     // Create Database
     $conn->exec("CREATE DATABASE IF NOT EXISTS $dbname");
     $conn->exec("USE $dbname");
