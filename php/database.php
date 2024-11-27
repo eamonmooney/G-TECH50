@@ -46,7 +46,7 @@ try {
             OrderID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             UserID INT NOT NULL,
             OrderTypeID CHAR(10) NOT NULL,
-            OrderDate DATE NOT NULL,
+            OrderDate STRING NOT NULL,
             OrderCost FLOAT NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderID)
