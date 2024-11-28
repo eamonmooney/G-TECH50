@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us - G-TECH50</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/aboutus.css">
+    <link rel="stylesheet" href="/css/footer.css">
+
+    <style>
+        .navbar {
+          display: flex;
+          justify-content: space-between; 
+          align-items: center;
+          background-color: #000000;
+          width: 100%;
+          position: fixed;
+          top: 0; 
+          left: 0;
+          z-index: 1000;
+          padding: 0 20px;
+        }
+    
+        .logo {
+          flex: 1;
+        }
+    
+        .nav-links {
+          display: flex;
+          gap: 10px;
+        }
+    
+        .navbar a {  
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+    
+        .navbar a:hover {
+          background-color: #201c1c;
+        }
+    
+        .material-icons {
+          color: white; 
+          font-size: 24px;
+        }
+    
+        .icon-container {
+          flex: 1; 
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 5px; 
+          margin-right: 20px;
+        }
+    
+        
+        .search-bar {
+          display: flex;
+          align-items: center;
+          background-color: #201c1c;
+          border-radius: 5px;
+          padding: 5px 10px;
+        }
+    
+        .search-bar input[type="text"] {
+          background-color: transparent;
+          border: none;
+          color: white;
+          outline: none;
+          padding: 5px;
+          font-size: 16px;
+          width: 120px; 
+        }
+    
+        .search-bar .material-icons {
+          color: white;
+          cursor: pointer;
+          font-size: 24px;
+        }
+    
+        .search-bar input[type="text"]::placeholder {
+          color: #aaa; 
+        }
+    
+        
+        .dropdown {
+          position: relative;
+          margin-top: 15px; 
+        }
+    
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          top: 115%;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #201c1c;
+          padding: 10px;
+          width: 600px;
+          border-radius: 5px;
+          box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    
+        .dropdown:hover .dropdown-content {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+        }
+    
+        .dropdown-content a {
+          color: white;
+          width: 100px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          text-align: center;
+          background-color: #201c1c;
+          border-radius: 5px;
+        }
+    
+        .dropdown-content a:hover {
+          background-color: #333333;
+        }
+        @media (min-width: 991px) {
+        #main {
+            margin-left: 100px;
+        }
+        }
+        /*--------------------------------------------------------------
+        # Contact
+        --------------------------------------------------------------*/
+
+
+        .contact .info i {
+            font-size: 20px;
+            color: #0563bb;
+            float: left;
+            width: 44px;
+            height: 44px;
+            background: #eef7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%; /* Ensure it's circular */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contact .info h4 {
+            padding: 0 0 0 60px;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #45505b;
+        }
+
+        .contact .info p {
+            padding: 0 0 0 60px;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #728394;
+        }
+
+        .contact .info .email,
+        .contact .info .phone {
+            margin-top: 40px;
+        }
+
+        .contact .info .email:hover i,
+        .contact .info .address:hover i,
+        .contact .info .phone:hover i {
+            background: #0563bb;
+            color: #fff;
+        }
+
+        .contact .php-email-form {
+            width: 100%;
+            background: #fff;
+            padding: 20px; /* Added padding for spacing */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for focus */
+        }
+
+        .contact .php-email-form .form-group {
+            margin-bottom: 15px; /* Consistent spacing between fields */
+            padding-bottom: 8px;
+        }
+
+        .contact .php-email-form .error-message {
+            display: none;
+            color: #fff;
+            background: #ed3c0d;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            border-radius: 4px; /* Rounded corners for consistency */
+        }
+
+        .contact .php-email-form .error-message br+br {
+            margin-top: 25px;
+        }
+
+        .contact .php-email-form .sent-message {
+            display: none;
+            color: #fff;
+            background: #18d26e;
+            text-align: center;
+            padding: 15px;
+            font-weight: 600;
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        .contact .php-email-form .loading {
+            display: none;
+            background: #fff;
+            text-align: center;
+            padding: 15px;
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        .contact .php-email-form .loading:before {
+            content: "";
+            display: inline-block;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin: 0 10px -6px 0;
+            border: 3px solid #18d26e;
+            border-top-color: #eee;
+            animation: animate-loading 1s linear infinite;
+        }
+
+        .contact .php-email-form input,
+        .contact .php-email-form textarea {
+            border-radius: 4px;
+            box-shadow: none;
+            font-size: 14px;
+            border: 1px solid #ddd; /* Add a light border for clarity */
+            padding: 10px 12px; /* Ensure comfortable input spacing */
+            transition: border-color 0.3s ease-in-out; /* Smooth focus effect */
+        }
+
+        .contact .php-email-form input:focus,
+        .contact .php-email-form textarea:focus {
+            border-color: #0563bb; /* Highlight the input field on focus */
+            outline: none;
+        }
+
+        .contact .php-email-form input[type=text],
+        .contact .php-email-form input[type=email],
+        .contact .php-email-form input[type=tel],
+        .contact .php-email-form input[type=date] {
+            height: 44px;
+        }
+
+        .contact .php-email-form textarea {
+            padding: 10px 12px;
+            resize: none; /* Disable resizing for consistent design */
+        }
+
+        .contact .php-email-form button[type=submit] {
+            background: #0563bb;
+            border: 0;
+            padding: 10px 35px;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.4s;
+            border-radius: 50px;
+            cursor: pointer; /* Add a pointer cursor */
+        }
+
+        .contact .php-email-form button[type=submit]:hover {
+            background: #0678e3;
+        }
+
+
+        @keyframes animate-loading {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+        }
+        .contact .row {
+        display: flex; /* Side-by-side alignment */
+        flex-wrap: wrap; /* Wrap rows on smaller screens */
+        gap: 20px; /* Space between columns */
+        }
+
+        .contact .col-lg-4,
+        .contact .col-lg-8 {
+            flex: 1; /* Each column takes up equal space */
+            max-width: 40%; /* Restrict width to 50% for side-by-side layout */
+        }
+
+        .contact .col-lg-8 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact .row {
+                flex-direction: column; /* Stack vertically on smaller screens */
+            }
+
+            .contact .col-lg-4,
+            .contact .col-lg-8 {
+                max-width: 100%; /* Full-width columns for small screens */
+            }
+        }
+
+
+        /*--------------------------------------------------------------
+        # Sections General
+        --------------------------------------------------------------*/
+        section {
+        padding: 60px 0;
+        overflow: hidden;
+        }
+
+        .section-title {
+        text-align: center;
+        padding-bottom: 30px;
+        }
+
+        .section-title h2 {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+        color: #45505b;
+        }
+
+        .section-title h2::before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 120px;
+        height: 1px;
+        background: #ddd;
+        bottom: 1px;
+        left: calc(50% - 60px);
+        }
+
+        .section-title h2::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 40px;
+        height: 3px;
+        background: #0563bb;
+        bottom: 0;
+        left: calc(50% - 20px);
+        }
+
+        .section-title p {
+        margin-bottom: 0;
+        }
+    </style>
+    <script>
+        function validateForm() {
+          var firstName = document.getElementById("firstName").value;
+          var description = document.getElementById("description").value;
+          var email = document.getElementById("email").value;
+          var confirmEmail = document.getElementById("confirmEmail").value;
+          var phoneNumber = document.getElementById("phoneNumber").value;
+          var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+          var date = new Date(document.getElementById("date").value);
+          var currentDate = new Date();
+          
+          // Check if date is at least 1 day in the future
+          if (!checkDate(date, currentDate)) {
+            return false;
+          }
+          
+          // Check if email matches confirmation email
+          if (!checkEmails(email, confirmEmail)) {
+            return false;
+          }
+          
+          // Display summary
+          var summary = "First Name: " + firstName + "\n" +
+                        "Description: " + description + "\n" +
+                        "Email: " + email + "\n" +
+                        "Phone Number: " + phoneNumber + "\n" +
+                        "Preferred Contact Method: " + contactMethod + "\n" +
+                        "Project Date: " + date.toDateString();
+          alert(summary);
+          return true;
+        }
+        
+        function checkDate(date, currentDate) {
+          if (date <= currentDate) {
+            alert("Please select a date at least 1 day in the future.");
+            return false;
+          }
+          return true;
+        }
+        
+        function checkEmails(email, confirmEmail) {
+          if (email !== confirmEmail) {
+            alert("Emails do not match.");
+            return false;
+          }
+          return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <a href="Home">Logo</a>
+        </div>
+    
+        <div class="nav-links">
+          <a href="Home.html">Home</a>
+    
+          <div class="dropdown">
+            <a href="Categories">Categories</a>
+    
+            <div class="dropdown-content">
+              <a href="Mice.html">Mice</a>
+              <a href="Monitors.html">Monitors</a>
+              <a href="Headphones.html">Headphones</a>
+              <a href="Keyboards.html">Keyboards</a>
+              <a href="Mousepads.html">Mousepads</a>
+            </div>
+    
+          </div>
+          <a href="Deals.html">Deals</a>
+          <a href="Support.html">Support</a>
+        </div>
+    
+        <div class="icon-container">
+            
+            <div class="search-bar">
+              <input type="text" placeholder="Search...">
+              <i class="material-icons">search</i>
+            </div>
+    
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+      </div>
+    <main id="main">
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Contact</h2>
+                </div>
+        
+                <div class="row mt-1">
+                    <!-- Info Section -->
+                    <div class="col-lg-4">
+                        <div class="info">
+                            <div class="address">
+                                <i class="bi bi-geo-alt"></i>
+                                <h4>Location:</h4>
+                                <p>Birmingham B5 7NX</p>
+                            </div>
+        
+                            <div class="email">
+                                <i class="bi bi-envelope"></i>
+                                <h4>Email:</h4>
+                                <p>random@aston.ac.uk</p>
+                            </div>
+        
+                            <div class="phone">
+                                <i class="bi bi-phone"></i>
+                                <h4>Call:</h4>
+                                <p>+447442252100</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Form Section -->
+                    <div class="col-lg-8 mt-5 mt-lg-0">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="firstName">First Name:</label><br>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="email">Email:</label><br>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="confirmEmail">Confirm Email:</label><br>
+                                    <input type="email" class="form-control" id="confirmEmail" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="phoneNumber">Phone Number:</label><br>
+                                    <input type="tel" class="form-control" id="phoneNumber" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="contactMethod">Preferred Contact Method:</label><br>
+                                    <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>Email<br>
+                                    <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">Phone
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="date">Date:</label><br>
+                                    <input type="date" class="form-control" id="date" required>
+                                </div>
+                            </div>
+        
+                            <div class="form-group mt-3">
+                                <label for="description">Description:</label><br>
+                                <textarea id="description" rows="5" required></textarea>
+                            </div>
+                            <input type="button" value="Submit" onclick="validateForm()">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>        
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
