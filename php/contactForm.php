@@ -1,5 +1,9 @@
 <?php
-
+###############################################################
+# Collects Variables from the contact form for SQL query
+###############################################################
+# - Eamon Mooney - 230075926
+###############################################################
 session_start();
 
 //Register button pressed
@@ -7,12 +11,6 @@ if (isset($_POST['submitted'])){
 
     //Database connection
     require_once('connectdb.php');
-
-    ###############################################################
-    # Will collect variables from the form submission for SQL Query.
-    ###############################################################
-    # - Eamon Mooney - 230075926
-    ###############################################################
 
     //Assigns the submitted data, if they do not exist, they are assigned to false instead
     $email=isset($_POST['email'])?$_POST['email']:false;
