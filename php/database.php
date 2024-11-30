@@ -4,8 +4,8 @@ try {
 	// Database connection
     require_once('connectdb.php');
     // Create Database
-    $conn->exec("CREATE DATABASE IF NOT EXISTS $dbname");
-    $conn->exec("USE $dbname");
+    $db->exec("CREATE DATABASE IF NOT EXISTS $db_name");
+    $db->exec("USE $db_name");
 
     // Create tables
     $sql = "
@@ -90,7 +90,7 @@ try {
         );
     ";
     
-    $conn->exec($sql);
+    $db->exec($sql);
     echo "Tables created successfully!";
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
