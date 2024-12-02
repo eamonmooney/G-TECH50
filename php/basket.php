@@ -3,6 +3,7 @@
  Adding items to a basket should be performed on the product pages themselves and it's product ID added to a local session 2D array, $basketItems with productID and quantity
  If the user isn't loaded in, redirect to the login page.
  If the user has no items in the basket, they should not have anything displayed on screen and are told of this
+ User should be able to increase/decrease the quantity of products from basket
 Created by Safa Riasat
   -->
 <?php

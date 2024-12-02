@@ -27,7 +27,7 @@ try {
         );
 
         CREATE TABLE IF NOT EXISTS OrderTypes (
-            OrderID CHAR(10) NOT NULL PRIMARY KEY,
+            OrderTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             OrderType CHAR(50) NOT NULL
         );
 
@@ -49,11 +49,11 @@ try {
         CREATE TABLE IF NOT EXISTS Orders (
             OrderID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             UserID INT NOT NULL,
-            OrderTypeID CHAR(10) NOT NULL,
+            OrderTypeID INT NOT NULL,
             OrderDate CHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
-            FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderID)
+            FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
         );
 
         CREATE TABLE IF NOT EXISTS OrderItem (
@@ -65,7 +65,7 @@ try {
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
 
-        CREATE TABLE IF NOT EXISTS TicketType (
+        CREATE TABLE IF NOT EXISTS TicketTypes (
             TicketTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             TicketType VARCHAR(50) NOT NULL
         );
@@ -75,9 +75,9 @@ try {
             TicketTypeID INT NOT NULL,
             UserID INT NOT NULL,
             TicketDate DATE NOT NULL,
-            Closed BOOLEAN NOT NULL,
+            Closed BOOLEAN NOT NULL DEFAULT FALSE,
             TicketContent VARCHAR(100) NOT NULL,
-            FOREIGN KEY (TicketTypeID) REFERENCES TicketType(TicketTypeID),
+            FOREIGN KEY (TicketTypeID) REFERENCES TicketTypes(TicketTypeID),
             FOREIGN KEY (UserID) REFERENCES Users(UserID)
         );
 
