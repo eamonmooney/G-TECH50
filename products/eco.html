@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>G-Tech 50</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  
+
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;
+      background-color: #000000;
+      width: 100%;
+      position: fixed;
+      top: 0; 
+      left: 0;
+      z-index: 1000;
+      padding: 0 20px;
+    }
+
+    .logo {
+      flex: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .navbar a {  
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #201c1c;
+    }
+
+    .material-icons {
+      color: white; 
+      font-size: 24px;
+    }
+
+    .icon-container {
+      flex: 1; 
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px; 
+      margin-right: 20px;
+    }
+
+    
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #201c1c;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .search-bar input[type="text"] {
+      background-color: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      padding: 5px;
+      font-size: 16px;
+      width: 120px; 
+    }
+
+    .search-bar .material-icons {
+      color: white;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .search-bar input[type="text"]::placeholder {
+      color: #aaa; 
+    }
+
+    
+    .dropdown {
+      position: relative;
+      margin-top: 15px; 
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 115%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #201c1c;
+      padding: 10px;
+      width: 600px;
+      border-radius: 5px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      width: 100px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      text-align: center;
+      background-color: #201c1c;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333333;
+    }
+  </style>
+
+</head>
+
+<body>
+  
+  <div class="navbar">
+    <div class="logo">
+      <a href="Home">Logo</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="Home.html">Home</a>
+
+      <div class="dropdown">
+        <a href="Categories">Categories</a>
+
+        <div class="dropdown-content">
+          <a href="Mice.html">Mice</a>
+          <a href="Monitors.html">Monitors</a>
+          <a href="Headphones.html">Headphones</a>
+          <a href="Keyboards.html">Keyboards</a>
+          <a href="Mousepads.html">Mousepads</a>
+        </div>
+
+      </div>
+      <a href="Deals.html">Deals</a>
+      <a href="Support.html">Support</a>
+    </div>
+
+    <div class="icon-container">
+        
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <i class="material-icons">search</i>
+        </div>
+
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
+  </div>
+    
+  <div class="single-item">
+    <div class="Picture">
+        <img class="main-image" src="images/Ai/eco0001.png" alt="Mouse">
+    </div>
+    <div class="item-spec">
+        <h2>ECO VIEW MONITOR</h2>
+        <h3>"Nature-inspired design with peak performance." </h3>
+        <h4>Colour: Leaf Green with a Wood Grain Base</h4>
+        <h4>Functionality: Full HD display, eco-mode with energy-efficient settings, flicker-free technology, <br> adjustable angle</h4>
+        <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
+        <h4> Size: 24"</h4>
+        <h4>The EcoView Monitor combines earthy elegance with advanced display technology. <br> This Full HD monitor features a wood-textured base and green framing, providing both stunning visuals and environmental  mindfulness with its energy-efficient display. Perfect for nature lovers who want a grounded <br> yet powerful monitor</h4>
+        <h3>£189.99</h3>
+        <input type="number" value="1" valuemin="1" valuemax="10">
+        <button class="button">Add To Basket</button>
+        
+    </div>
+</div>
+
+    
+  
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+        <div class="contact-details">
+            <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+            <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+            <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+        </div>
+    </div>
+</footer>
+
+
+   </body> 
+
+
+    </html>
