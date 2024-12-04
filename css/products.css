@@ -1,7 +1,7 @@
 
 body {
     background-color:black;
-    color: white
+    color: white;
 
 }
 
@@ -56,4 +56,49 @@ h1 {
     text-decoration: none;
     color: white;
     text-align: center;
+}
+
+.single-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    margin-left: 60px;
+    gap: 10%;
+}
+
+.Picture {
+    
+    flex-basis: 20%;
+    
+}
+
+.Picture img {
+    margin-top: 20px;
+    width: 450px;
+    height: auto;
+
+}
+
+.item-spec {
+    
+    flex-basis: 70%;
+    text-align: left;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 12px 15px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(45deg, rgb(0, 0, 0), gray); 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.button:hover {
+    background: linear-gradient(45deg, rgb(7, 22, 35), rgb(117, 84, 187));
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
 }
