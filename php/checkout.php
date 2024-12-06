@@ -21,13 +21,13 @@
 
 
     // Requirement 1.
-    function stockCheck($cart, $conn) {
+    function stockCheck($cart, $db) {
         foreach ($cart as $item) {
             $productID = $item['ProductID'];
             $quantity = $item['Quantity'];
             $query = "SELECT Stock FROM Products WHERE id = $productID";
         } // Getting the quantity of the stock available of the product that the user would like to order.
-        $result = $conn->exec($query); // Puts the result of the query into a variable called result.
+        $result = $db->exec($query); // Puts the result of the query into a variable called result.
         $product = $result->fetch_assoc(); // Fetches the next product in the basket as an associative array.
 
         if ($product['Stock'] < $quantity) {
