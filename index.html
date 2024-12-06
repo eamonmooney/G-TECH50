@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -55,7 +55,6 @@
       margin-right: 20px;
     }
 
-    
     .search-bar {
       display: flex;
       align-items: center;
@@ -84,7 +83,34 @@
       color: #aaa; 
     }
 
-    
+    .search-results {
+      margin-top: 70px;
+      padding: 10px;
+      background-color: #201c1c;
+      color: white;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-results a {
+      display: block;
+      margin-bottom: 5px;
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      border-bottom: 1px solid #333;
+    }
+
+    .search-results a:hover {
+      background-color: #333333;
+    }
+
+    .search-results a:last-child {
+      border-bottom: none;
+    }
     .dropdown {
       position: relative;
       margin-top: 15px; 
@@ -126,7 +152,6 @@
       background-color: #333333;
     }
   </style>
-
 </head>
 
 <body>
@@ -139,27 +164,30 @@
     <div class="nav-links">
       <a href="Home.html">Home</a>
 
+      
+
       <div class="dropdown">
-        <a href="Categories">Categories</a>
+        <a href=#>Categories</a>
 
         <div class="dropdown-content">
-          <a href="Mice.html">Mice</a>
-          <a href="Monitors.html">Monitors</a>
-          <a href="Headphones.html">Headphones</a>
-          <a href="Keyboards.html">Keyboards</a>
-          <a href="Mousepads.html">Mousepads</a>
+          <a href="Mice">Mice</a>
+          <a href="Monitors">Monitors</a>
+          <a href="Headphones">Headphones</a>
+          <a href="Keyboards">Keyboards</a>
+          <a href="Mousepads">Mousepads</a>
+          
         </div>
 
       </div>
-      <a href="Deals.html">Deals</a>
+      <a href="AboutUs.html">About Us</a>
       <a href="Support.html">Support</a>
     </div>
 
     <div class="icon-container">
         
         <div class="search-bar">
-          <input type="text" placeholder="Search...">
-          <i class="material-icons">search</i>
+          <input type="text" id="searchBar" placeholder="Search...">
+          <i class="material-icons" id="searchButton">search</i>
         </div>
 
         <a href="profile.html"><i class="material-icons">account_circle</i></a>
@@ -167,5 +195,43 @@
     </div>
   </div>
 
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <script>
+    
+    const data = [
+      { name: "Mice", url: "Mice.html" },
+      { name: "Monitors", url: "Monitors.html" },
+      { name: "Headphones", url: "Headphones.html" },
+      { name: "Keyboards", url: "Keyboards.html" },
+      { name: "Mousepads", url: "Mousepads.html" },
+      
+    ];
+
+    
+    const searchBar = document.getElementById("searchBar");
+    const searchButton = document.getElementById("searchButton");
+    const searchResults = document.getElementById("searchResults");
+
+    function searchItems(query) {
+      
+      const lowerQuery = query.toLowerCase();
+      
+      
+      const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
+
+      
+      searchResults.innerHTML = results.length
+        ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
+        : '<div>No results found</div>';
+
+      searchResults.style.display = query ? 'block' : 'none';
+    }
+
+    
+    searchBar.addEventListener("input", () => searchItems(searchBar.value));
+    searchButton.addEventListener("click", () => searchItems(searchBar.value));
+  </script>
 </body>
 </html>
+
