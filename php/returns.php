@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Checks to see if the return form
 
     try {
         // Validate that the order belongs to the user.
-        $orderQuery = $conn->prepare("SELECT * FROM Orders WHERE OrderID = ? AND UserID = ?");
+        $orderQuery = $db->prepare("SELECT * FROM Orders WHERE OrderID = ? AND UserID = ?");
         $orderQuery->execute([$orderID, $userID]);
         $order = $orderQuery->fetch(PDO::FETCH_ASSOC); // Fetches the order that the user would like to return.
 
@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Checks to see if the return form
             exit();
         }
 
-        $returnQuery = $conn->prepare("INSERT INTO Returns (OrderID, ProductID, Quantity, Status) VALUES (?, ?, ?, 'Pending')");
+        $returnQuery = $db->prepare("INSERT INTO Returns (OrderID, ProductID, Quantity, Status) VALUES (?, ?, ?, 'Pending')");
         $returnQuery->execute([$orderID, $productID, $quantity]); // Creating a return record in the returns table and setting the status of the return as 'pending'.
 
-        $stockQuery = $conn->prepare("UPDATE Products SET Stock = Stock + ? WHERE id = ?"); // This will update the inventory of that product and increase it if the return has been accepted.
+        $stockQuery = $db->prepare("UPDATE Products SET Stock = Stock + ? WHERE id = ?"); // This will update the inventory of that product and increase it if the return has been accepted.
         $stockQuery->execute([$quantity, $productID]); // Not sure if a return request will require the inventory to be updated but can be discussed. 
 
         echo "Return request submitted successfully."; // Provides confirmation to the user that their request has been sent successfully. 
