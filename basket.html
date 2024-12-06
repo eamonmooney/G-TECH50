@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basket Page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center;
+      background-color: #000000;
+      width: 100%;
+      position: fixed;
+      top: 0; 
+      left: 0;
+      z-index: 1000;
+      padding: 0 20px;
+    }
+
+    .logo {
+      flex: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .navbar a {  
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      
+    }
+
+    .navbar a:hover {
+      background-color: #201c1c;
+    }
+
+    .material-icons {
+      color: white; 
+      font-size: 24px;
+    }
+
+    .icon-container {
+      flex: 1; 
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px; 
+      margin-right: 20px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #201c1c;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .search-bar input[type="text"] {
+      background-color: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      padding: 5px;
+      font-size: 16px;
+      width: 120px; 
+    }
+
+    .search-bar .material-icons {
+      color: white;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .search-bar input[type="text"]::placeholder {
+      color: #aaa; 
+    }
+
+    .search-results {
+      position: absolute;
+      top: 60px; 
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #201c1c;
+      color: white;
+      border-radius: 5px;
+      padding: 10px;
+      width: 90%;
+      max-width: 600px;
+      display: none;
+      z-index: 2000; 
+    }
+
+    .search-results a {
+      display: block;
+      margin-bottom: 5px;
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      border-bottom: 1px solid #333;
+    }
+
+    .search-results a:hover {
+      background-color: #333333;
+    }
+
+    .search-results a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown {
+      position: relative;
+      margin-top: 15px; 
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 115%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #201c1c;
+      padding: 10px;
+      width: 600px;
+      border-radius: 5px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .dropdown-content a {
+      color: white;
+      width: 100px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      text-align: center;
+      background-color: #201c1c;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333333;
+    }
+
+    /* Basket stuff */
+   
+
+    body {
+      
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      margin-top: 50px; 
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: calc(100% - 50px);
+    }
+
+    .left-container {
+      flex: 3;
+      background-color: #ffffff;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .right-container {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .summary-box {
+      width: 100%;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      background-color: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-info {
+      flex: 2;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .summary-title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .total-price {
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
+
+    .checkout-button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #28a745;
+    }
+
+    .checkout-button:hover {
+      background-color: #218838;
+    }
+
+    .empty-basket {
+      text-align: center;
+      color: #999;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <a href="Home">Logo</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="/Home.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="Mice">Mice</a>
+          <a href="Monitors">Monitors</a>
+          <a href="Headphones">Headphones</a>
+          <a href="Keyboards">Keyboards</a>
+          <a href="Mousepads">Mousepads</a>
+        </div>
+      </div>
+      <a href="AboutUs.html">About Us</a>
+      <a href="Support.html">Support</a>
+    </div>
+
+    <div class="icon-container">
+        <div class="search-bar">
+          <input type="text" id="searchBar" placeholder="Search...">
+          <i class="material-icons" id="searchButton">search</i>
+        </div>
+
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
+  </div>
+
+  <div id="searchResults" class="search-results"></div>
+
+  <div class="container">
+    <div class="left-container">
+      <h2>Basket</h2>
+      <ul id="product-list">
+        
+        <p class="empty-basket" id="empty-message">Your basket is empty.</p>
+      </ul>
+    </div>
+    <div class="right-container">
+      <div class="summary-box">
+        <div class="summary-title">Summary</div>
+        <div>Total Price: <span class="total-price" id="total-price">£0.00</span></div>
+        <button class="checkout-button" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data = [
+      { name: "Mice", url: "/categories/Mice.html" },
+      { name: "Monitors", url: "/categories/Monitors.html" },
+      { name: "Headphones", url: "/categories/Headphones.html" },
+      { name: "Keyboards", url: "/categories/Keyboards.html" },
+      { name: "Mousepads", url: "/categories/Mousepads.html" },
+    ];
+
+    const searchBar = document.getElementById("searchBar");
+    const searchButton = document.getElementById("searchButton");
+    const searchResults = document.getElementById("searchResults");
+
+    function searchItems(query) {
+      const lowerQuery = query.toLowerCase();
+      const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
+
+      searchResults.innerHTML = results.length
+        ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
+        : '<div>No results found</div>';
+
+      searchResults.style.display = query ? 'block' : 'none';
+    }
+
+    searchBar.addEventListener("input", () => searchItems(searchBar.value));
+    searchButton.addEventListener("click", () => searchItems(searchBar.value));
+    
+    const productList = document.getElementById('product-list');
+    const totalPriceElement = document.getElementById('total-price');
+    const emptyMessage = document.getElementById('empty-message');
+
+    function addProductToBasket(name, price) {
+      if (emptyMessage) {
+        emptyMessage.style.display = 'none';
+      }
+
+      const li = document.createElement('li');
+      const productInfo = document.createElement('div');
+      productInfo.className = 'product-info';
+      productInfo.textContent = `${name} - $${price.toFixed(2)}`;
+
+      const quantityControls = document.createElement('div');
+      quantityControls.className = 'quantity-controls';
+
+      const minusButton = document.createElement('button');
+      minusButton.textContent = '-';
+      minusButton.onclick = () => updateQuantity(li, price, -1);
+
+      const quantitySpan = document.createElement('span');
+      quantitySpan.textContent = '1';
+      quantitySpan.style.margin = '0 5px';
+
+      const plusButton = document.createElement('button');
+      plusButton.textContent = '+';
+      plusButton.onclick = () => updateQuantity(li, price, 1);
+
+      quantityControls.appendChild(minusButton);
+      quantityControls.appendChild(quantitySpan);
+      quantityControls.appendChild(plusButton);
+
+      li.appendChild(productInfo);
+      li.appendChild(quantityControls);
+      li.setAttribute('data-price', price);
+      li.setAttribute('data-quantity', 1);
+      productList.appendChild(li);
+
+      updateTotalPrice();
+    }
+
+    function updateQuantity(item, price, change) {
+      const quantitySpan = item.querySelector('.quantity-controls span');
+      let currentQuantity = parseInt(item.getAttribute('data-quantity'));
+      currentQuantity += change;
+
+      if (currentQuantity < 1) {
+        item.remove();
+        if (productList.children.length === 0) {
+          emptyMessage.style.display = 'block';
+        }
+      } else {
+        item.setAttribute('data-quantity', currentQuantity);
+        quantitySpan.textContent = currentQuantity;
+      }
+
+      updateTotalPrice();
+    }
+
+    function updateTotalPrice() {
+      const items = document.querySelectorAll('#product-list li');
+      let total = 0;
+
+      items.forEach(item => {
+        const quantity = parseInt(item.getAttribute('data-quantity'));
+        const price = parseFloat(item.getAttribute('data-price'));
+        total += quantity * price;
+      });
+
+      totalPriceElement.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function checkout() {
+      if (productList.children.length === 0) {
+       alert("Your basket is empty. Add some products before checking out.");
+    } else {
+      window.location.href = 'checkout.html'; 
+    }
+  }
+  </script>
+</body>
+</html>
+    
