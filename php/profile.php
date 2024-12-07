@@ -10,7 +10,7 @@ session_start();
 require_once('connectdb.php');
 
 if (!isset($_SESSION['userId'])) {	
-    header("Location: index.html");
+    header("Location: signin.html");
     exit(); // This checks to see if the user is in a valid session.
     // If they are not in a valid session, they will be redirected to the login page.
 }
@@ -32,6 +32,12 @@ $totalOrders = $stmt->fetchColumn();
 $stmt = $db->prepare("SELECT COUNT(*) FROM userReturns WHERE UserID = ?");
 $stmt->execute([$userId]);
 $totalReturns = $stmt->fetchColumn();
+
+// Read the HTML file
+$html = file_get_contents('profile.html');
+
+//Replace the total orders placeholder
+$html = str_replace('{{ORDERTOTAL}}', $totalOrders, $html);
 
 
 /*
