@@ -145,7 +145,7 @@
     
     <div class="sidebar">
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
-      <button class="tab-button" onclick="showContent('orders')">Orders</button>
+      <button class="tab-button" onclick="showContent('orders')">Orders ({{ORDERTOTAL}})</button>
       <button class="tab-button" onclick="showContent('support')">Support</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
@@ -158,17 +158,14 @@
         
         
         <form action="#" method="POST">
-          <label for="first-name">Name:</label>
+          <label for="first-name">Name: {{USERNAME}}</label>
           <input type="text" id="first-name" name="first-name" placeholder="Enter your name">
           
-          <label for="last-name">Surname:</label>
-          <input type="text" id="last-name" name="last-name" placeholder="Enter your surname">
+          <label for="account-type">Account type: {{ACCOUNTTYPE}}</label>
+          <input type="text" id="account-type" name="account-type" placeholder="Enter your account type">
           
-          <label for="address">Delivery Address:</label>
-          <input type="text" id="address" name="address" placeholder="Enter your delivery address">
-          
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+          <label for="email">Email: {{USEREMAIL}}</label>
+          <input type="email" id="email" name="email" placeholder="Enter your Email">
           
           <button type="submit">Update Information</button>
         </form>
@@ -180,10 +177,15 @@
 
         
         <ul id="orders-list"></ul>
-
-        <div class="no-orders" id="no-orders-message">
-          You haven't placed any orders yet.
-        </div>
+        <script>
+          // Use JavaScript to fetch updated content from a PHP script
+          fetch('/php/previousOrders.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('orders-list').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+        </script>
       </div>
 
       <div id="support" class="content">
