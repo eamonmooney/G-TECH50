@@ -154,7 +154,7 @@
     <div class="content-box">
       <div id="account" class="content active">
         <h2>Account Information</h2>
-        <p>View and update your personal information here.</p>
+        <p>View your personal information here.</p>
         
         
         <form action="#" method="POST">
@@ -186,6 +186,12 @@
               })
               .catch(error => console.error('Error:', error));
         </script>
+        <!--
+        
+          IMPORTANT: If you see a large wall of text displaying php this should only appear if youre viewing the website the incorrect way,
+          in order to view the fully functional website import everything into XAMPP htdocs on your local device. - Eamon
+
+        -->
       </div>
 
       <div id="support" class="content">
@@ -196,6 +202,19 @@
       <div id="settings" class="content">
         <h2>Settings</h2>
         <p>Change your preferences and account settings here.</p>
+
+        <form action="#" method="POST">
+          <label for="first-name">Name: {{USERNAME}}</label>
+          <input type="text" id="first-name" name="first-name" placeholder="Enter your name">
+          
+          <label for="account-type">Account type: {{ACCOUNTTYPE}}</label>
+          <input type="text" id="account-type" name="account-type" placeholder="Enter your account type">
+          
+          <label for="email">Email: {{USEREMAIL}}</label>
+          <input type="email" id="email" name="email" placeholder="Enter your Email">
+          
+          <button type="submit">Update Information</button>
+        </form>
       </div>
 
       <div id="logout" class="content">
