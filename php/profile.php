@@ -9,6 +9,12 @@ session_start();
 //Database connection
 require_once('connectdb.php');
 
+if (!isset($_SESSION['userId'])) {	
+    header("Location: index.html");
+    exit(); // This checks to see if the user is in a valid session.
+    // If they are not in a valid session, they will be redirected to the login page.
+}
+
 //Collecting information about the currently logged in user
 $userId = $_SESSION['userId'];
 
