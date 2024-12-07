@@ -1,5 +1,5 @@
 # TO DO BY MVP
-## NED
+## Ned
 Sign in and Sign up functionality
 
 ## Elisha
