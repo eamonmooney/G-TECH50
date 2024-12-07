@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,6 +6,9 @@
   
   <title>G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  
 
   <style>
     .navbar {
@@ -55,6 +58,7 @@
       margin-right: 20px;
     }
 
+    
     .search-bar {
       display: flex;
       align-items: center;
@@ -83,34 +87,7 @@
       color: #aaa; 
     }
 
-    .search-results {
-      margin-top: 70px;
-      padding: 10px;
-      background-color: #201c1c;
-      color: white;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .search-results a {
-      display: block;
-      margin-bottom: 5px;
-      padding: 10px;
-      text-decoration: none;
-      color: white;
-      border-bottom: 1px solid #333;
-    }
-
-    .search-results a:hover {
-      background-color: #333333;
-    }
-
-    .search-results a:last-child {
-      border-bottom: none;
-    }
+    
     .dropdown {
       position: relative;
       margin-top: 15px; 
@@ -152,6 +129,7 @@
       background-color: #333333;
     }
   </style>
+
 </head>
 
 <body>
@@ -162,76 +140,71 @@
     </div>
 
     <div class="nav-links">
-      <a href="Home.html">Home</a>
-
-      
+      <a href="/Home.html">Home</a>
 
       <div class="dropdown">
-        <a href=#>Categories</a>
+        <a href="Categories">Categories</a>
 
         <div class="dropdown-content">
-          <a href="Mice">Mice</a>
-          <a href="Monitors">Monitors</a>
-          <a href="Headphones">Headphones</a>
-          <a href="Keyboards">Keyboards</a>
-          <a href="Mousepads">Mousepads</a>
-          
+          <a href="/categories/Mice.html">Mice</a>
+          <a href="/categories/Monitors.html">Monitors</a>
+          <a href="/categories/Headphones.html">Headphones</a>
+          <a href="/categories/Keyboards.html">Keyboards</a>
+          <a href="/categories/Mousepads.html">Mousepads</a>
         </div>
 
       </div>
-      <a href="AboutUs.html">About Us</a>
+      <a href="Deals.html">Deals</a>
       <a href="Support.html">Support</a>
     </div>
 
     <div class="icon-container">
         
         <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
+          <input type="text" placeholder="Search...">
+          <i class="material-icons">search</i>
         </div>
 
         <a href="profile.html"><i class="material-icons">account_circle</i></a>
         <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
     </div>
   </div>
-
-  <div id="searchResults" class="search-results" style="display: none;"></div>
-
-  <script>
     
-    const data = [
-      { name: "Mice", url: "Mice.html" },
-      { name: "Monitors", url: "Monitors.html" },
-      { name: "Headphones", url: "Headphones.html" },
-      { name: "Keyboards", url: "Keyboards.html" },
-      { name: "Mousepads", url: "Mousepads.html" },
-      
-    ];
-
-    
-    const searchBar = document.getElementById("searchBar");
-    const searchButton = document.getElementById("searchButton");
-    const searchResults = document.getElementById("searchResults");
-
-    function searchItems(query) {
-      
-      const lowerQuery = query.toLowerCase();
-      
-      
-      const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-      
-      searchResults.innerHTML = results.length
-        ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-        : '<div>No results found</div>';
-
-      searchResults.style.display = query ? 'block' : 'none';
-    }
+  <div class="single-item">
+    <div class="Picture">
+        <img class="main-image" src="/images/Ai/cosmo0001.png" alt="Mouse">
+    </div>
+    <div class="item-spec">
+        <h2>COSMO VIEW CURVED MONITOR</h2>
+        <h3>"Beyond the horizon, into the stars." </h3>
+        <h4>Colour: Cosmic Black with Purple LED Accent</h4>
+        <h4>Functionality: Curved ultra-HD display, fast 1ms response rate, built-in blue light filter, <br> adjustable tilt and height</h4>
+        <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
+        <h4> Size: 32"</h4>
+        <h4>The CosmoView Monitor offers a stunning curved display with galaxy-inspired design and ultra-HD <br> resolution. Its deep blacks and LED purple accents give a starry backdrop to your gaming setup, <br> while the immersive curve puts you right in the middle of the action. Perfect for stargazing or <br> serious gaming with a 1ms response rate and enhanced color depth.</h4>
+        <h3>£299.99</h3>
+        <input type="number" value="1" valuemin="1" valuemax="10">
+        <button class="button">Add To Basket</button>
+        
+    </div>
+</div>
 
     
-    searchBar.addEventListener("input", () => searchItems(searchBar.value));
-    searchButton.addEventListener("click", () => searchItems(searchBar.value));
-  </script>
-</body>
-</html>
+  
 
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+        <div class="contact-details">
+            <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+            <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+            <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+        </div>
+    </div>
+</footer>
+
+
+   </body> 
+
+
+    </html>
