@@ -39,6 +39,12 @@ $html = file_get_contents('profile.html');
 //Replace the total orders placeholder
 $html = str_replace('{{ORDERTOTAL}}', $totalOrders, $html);
 
+//Display username
+$html = str_replace('{{USERNAME}}', $totalOrders, $html);
+
+//Display email
+$html = str_replace('{{USEREMAIL}}', $_SESSION['userEmail'], $html);
+
 
 /*
 
