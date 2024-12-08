@@ -1,4 +1,4 @@
-
+<!-- Basket HTML page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -321,6 +321,8 @@
   </div>
 
   <script>
+
+    //List with links for the search bar
     const data = [
       { name: "Mice", url: "Mice.html" },
       { name: "Monitors", url: "Monitors.html" },
@@ -329,10 +331,12 @@
       { name: "Mousepads", url: "Mousepads.html" },
     ];
 
+    //Constants for the search bar
     const searchBar = document.getElementById("searchBar");
     const searchButton = document.getElementById("searchButton");
     const searchResults = document.getElementById("searchResults");
 
+    //Search bar functionality
     function searchItems(query) {
       const lowerQuery = query.toLowerCase();
       const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
@@ -344,85 +348,131 @@
       searchResults.style.display = query ? 'block' : 'none';
     }
 
+    //Listeners incase the search bar is clicked
     searchBar.addEventListener("input", () => searchItems(searchBar.value));
     searchButton.addEventListener("click", () => searchItems(searchBar.value));
     
+    //Constants for the Basket functionality
     const productList = document.getElementById('product-list');
     const totalPriceElement = document.getElementById('total-price');
     const emptyMessage = document.getElementById('empty-message');
+    
 
+    //Function to add product to basket
     function addProductToBasket(name, price) {
       if (emptyMessage) {
         emptyMessage.style.display = 'none';
       }
 
+      //Create generics
+      //Create list
       const li = document.createElement('li');
+      //Create a div
       const productInfo = document.createElement('div');
+      //Populate div with product info and price
       productInfo.className = 'product-info';
       productInfo.textContent = `${name} - $${price.toFixed(2)}`;
 
+      //Creating a div to control the quanity
       const quantityControls = document.createElement('div');
       quantityControls.className = 'quantity-controls';
 
+      //Creating the minus button 
       const minusButton = document.createElement('button');
       minusButton.textContent = '-';
+      //When clicked, the quanity is updated with these parameters
       minusButton.onclick = () => updateQuantity(li, price, -1);
 
+      //Creating a quantity button that the quantity will be changed by 
       const quantitySpan = document.createElement('span');
+      //!!Should this not be dependent on quantity, not auto 1
       quantitySpan.textContent = '1';
       quantitySpan.style.margin = '0 5px';
 
+      //Creating the plus button
       const plusButton = document.createElement('button');
       plusButton.textContent = '+';
+      //When clicked, the quanity is updated with these parameters
       plusButton.onclick = () => updateQuantity(li, price, 1);
 
+      //Add these quantity control buttons to the quantity controls
       quantityControls.appendChild(minusButton);
       quantityControls.appendChild(quantitySpan);
       quantityControls.appendChild(plusButton);
 
+      //Add these to the product list 
+      //Product info
       li.appendChild(productInfo);
+      //Quantity controls
       li.appendChild(quantityControls);
+      //Price
       li.setAttribute('data-price', price);
+      //Quantity
       li.setAttribute('data-quantity', 1);
+      //Add this to the Product list
       productList.appendChild(li);
 
+      //Method to update price
       updateTotalPrice();
     }
 
+    //Method to update quantity
     function updateQuantity(item, price, change) {
       const quantitySpan = item.querySelector('.quantity-controls span');
+      //Temporatily make current quantity this
       let currentQuantity = parseInt(item.getAttribute('data-quantity'));
+      //Update current quantity by the parameter (which is 1 / -1)
       currentQuantity += change;
 
+      //If current Quantity is negative
       if (currentQuantity < 1) {
+        //Remove this item from the list of products to be added to the product list
         item.remove();
+        //If there aren't any products in the product list
         if (productList.children.length === 0) {
+          //Make the empty message visible
           emptyMessage.style.display = 'block';
         }
+        //Otherwise update the list
       } else {
+        //Set the current quantity of the product being added to the product list
         item.setAttribute('data-quantity', currentQuantity);
+        //Update the displayed quantity of the product to the user
         quantitySpan.textContent = currentQuantity;
       }
 
+      //Update total cost
       updateTotalPrice();
     }
 
+    //Update total cost
     function updateTotalPrice() {
+      //Constant of all items in product list
       const items = document.querySelectorAll('#product-list li');
+      //Temporarily let total be 0
       let total = 0;
 
+      //For every item
       items.forEach(item => {
+        //Get the quantity
         const quantity = parseInt(item.getAttribute('data-quantity'));
+        //Get the price
         const price = parseFloat(item.getAttribute('data-price'));
+        //Add these to the total
         total += quantity * price;
       });
 
+      //Update the total price
       totalPriceElement.textContent = `$${total.toFixed(2)}`;
     }
 
+    //Checkout button
     function checkout() {
-      if (productList.children.length === 0) {
+      //If product list is empty 
+      if (!productList ||productList.children.length === 0) {
+        //Alert the user the basket is empty
        alert("Your basket is empty. Add some products before checking out.");
+      //Otherwise, take to checkout page
     } else {
       window.location.href = 'checkout.html'; 
     }
@@ -430,4 +480,3 @@
   </script>
 </body>
 </html>
-    

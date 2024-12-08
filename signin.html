@@ -1,75 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-  	<title>Login</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <title>Login - G-TECH50</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/signin.css">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-    <link rel="stylesheet" href="/css/signin.css">
-
-	</head>
-	<body>
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Login</h2>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-12 col-lg-10">
-					<div class="wrap d-md-flex">
-							<div class="img" style="background-image: url(images/Externalmade/bg-1.jpg);">
-							</div>
-						<div class="login-wrap p-4 p-md-5">
-							<div class="d-flex">
-								<div class="w-100">
-									<h3 class="mb-4">Sign In</h3>
-								</div>
-								<div class="w-100">
-									<p class="social-media d-flex justify-content-end">
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
-										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
-									</p>
-								</div>
-							</div>
-								<form method="post" class="signin-form">
-                  <div class="form-group mb-3">
-                    <label class="label" for="email">Username</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Username" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label class="label" for="password">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-                  </div>
-                  <div class="form-group d-md-flex">
-                    <div class="w-50 text-left">
-                      <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                      <input type="checkbox" checked>
-                      <span class="checkmark"></span>
-                        </label>
+    
+</head>
+<body>    
+    <div class="navbar">
+        <div class="logo">
+          <a href="Home">Logo</a>
+        </div>
+    
+        <div class="nav-links">
+          <a href="Home.html">Home</a>
+    
+          <div class="dropdown">
+            <a href="Categories">Categories</a>
+    
+            <div class="dropdown-content">
+              <a href="Mice.html">Mice</a>
+              <a href="Monitors.html">Monitors</a>
+              <a href="Headphones.html">Headphones</a>
+              <a href="Keyboards.html">Keyboards</a>
+              <a href="Mousepads.html">Mousepads</a>
+            </div>
+    
+          </div>
+          <a href="Deals.html">Deals</a>
+          <a href="Support.html">Support</a>
+        </div>
+    
+        <div class="icon-container">
+            
+            <div class="search-bar">
+              <input type="text" placeholder="Search...">
+              <i class="material-icons">search</i>
+            </div>
+    
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+    </div>
+    <main id="main">
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <h2 class="heading-section">Login</h2>
                     </div>
-                  </div>
-							  </form>
-							<p class="text-center">Not a member? <a href="signup.html">Sign Up</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<script src="../js/jquery.min.js"></script>
-  <script src="../js/popper.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/main.js"></script>
-
-	</body>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-10">
+                        <div class="wrap d-md-flex">
+                                <div class="img" style="background-image: url(images/Externalmade/bg-1.jpg);">
+                                </div>
+                            <div class="login-wrap p-4 p-md-5">
+                                <div class="d-flex">
+                                    <div class="w-100">
+                                        <h3 class="mb-4">Sign In</h3>
+                                    </div>
+                                </div>
+                                    <form method="post" class="signin-form">
+                      <div class="form-group mb-3">
+                        <label class="label" for="email">Username</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Username" required>
+                      </div>
+                      <div class="form-group mb-3">
+                        <label class="label" for="password">Password</label>
+                      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                      </div>
+                      <div class="form-group d-md-flex">
+                        <div class="w-50 text-left">
+                          <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                          <input type="checkbox" checked>
+                          <span class="checkmark"></span>
+                            </label>
+                        </div>
+                      </div>
+                                  </form>
+                                <p class="text-center">Not a member? <a href="signup.html">Sign Up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
+    </main>
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>

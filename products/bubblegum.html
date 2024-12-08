@@ -1,3 +1,8 @@
+<!-- Bubblegum product page
+ Frontend worked on by:
+ Form for adding to basket added by Safa Riasat
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -182,8 +187,14 @@
         <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
         <h4>Superior studio sound with high mic sensitivity and high bass resonation giving you a vivid listening experience </h4>
         <h3>£49.99</h3>
-        <input type="number" value="1" valuemin="1" valuemax="10">
-        <button class="button">Add To Basket</button>
+
+         <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
+         <form action="../php/products.php" method="POST">
+          <input type="hidden" name="prodName" value="BUBBLEGUM BLASTER">
+          <input type="hidden" name="prodPrice" value="49.99">
+          <input type="number" name="prodQuant" value="1" min="1" max="10" >
+          <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+      </form>
         
     </div>
 </div>
