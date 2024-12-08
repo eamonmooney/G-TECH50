@@ -1,5 +1,6 @@
 <!-- Creating initial database and tables within -->
-<!-- Completed by Sahil, edited by Safa -->
+<!-- Completed by Sahil (230073302), edited by Safa -->
+<!-- I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil. -->
 
 <?php
 
