@@ -24,36 +24,36 @@ $stmt->execute([$userId]);
 // Fetch all the results
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-/*
-    Any output is temporary and will be changed once the needed frontend exists.
-*/
+$newHtml = "";
 
 // Check if there are any orders
 if (count($orders) > 0) {
     // Iterate through each order
     foreach ($orders as $order) {
         // Output each order's details
-        echo "Order ID: " . $order['OrderID'] . "<br>";
-        echo "Order Date: " . $order['OrderDate'] . "<br>";
-        echo "Order Cost: $" . number_format($order['OrderCost'], 2) . "<br>";
+        $newHtml .= "Order ID: " . $order['OrderID'] . "<br>";
+        $newHtml .= "Order Date: " . $order['OrderDate'] . "<br>";
+        $newHtml .= "Order Cost: $" . number_format($order['OrderCost'], 2) . "<br>";
 
         $stmt = $db->prepare("SELECT ProductID, Quantity FROM OrderItem WHERE OrderID = ?");
         $stmt->execute([$order['OrderID']]);
 
         // Output details for each OrderItem
-        echo "Order Items:<br>";
+        $newHtml .= "Order Items:<br>";
 
         // Fetch and loop through each order item for the current order
         while ($orderItem = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "Product ID: " . $orderItem['ProductID'] . "<br>";
-            echo "Quantity: " . $orderItem['Quantity'] . "<br><br>";
+            $newHtml .= "Product ID: " . $orderItem['ProductID'] . "<br>";
+            $newHtml .= "Quantity: " . $orderItem['Quantity'] . "<br><br>";
         }
 
-        echo "<hr>"; // Separator between orders for readability
+        $newHtml .= "<hr>"; // Separator between orders for readability
     }
 } else {
-    echo "No orders found.<br>";
+    $newHtml .= "No orders found.<br>";
 }
+
+echo $newHtml;
 
 /*
     CREATE TABLE Orders (
