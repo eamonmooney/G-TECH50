@@ -28,12 +28,27 @@
     }
 
     .logo {
-      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      align-items: center;
+      padding: 0;
+    }
+
+    .logo-image {
+      width: 100px;
+      height: auto;
+      object-fit: contain;
+      margin-left: 10px;
     }
 
     .nav-links {
       display: flex;
       gap: 10px;
+      justify-content: center;
+      flex: 1;
+      margin-left: 300px; 
+      margin-right: 50px; 
     }
 
     .navbar a {  
@@ -271,6 +286,7 @@
   </style>
 </head>
 <body>
+
   <!-- Putting this div here to perform the div checks at the start so the page doesn't get loaded before we have to change to sign-in page if user isnt logged in -->
   <div id="basketStart"></div>
 
@@ -301,9 +317,10 @@
   </script>
 
 <div class="navbar">
-  <div class="logo">
-    <a href="index.html">Logo</a>
-  </div>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
+    </div>
 
   <div class="nav-links">
     <a href="index.html">Home</a>
