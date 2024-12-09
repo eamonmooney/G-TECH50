@@ -74,7 +74,7 @@ try {
         CREATE TABLE IF NOT EXISTS SupportTickets (
             TicketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             TicketTypeID INT NOT NULL,
-            UserID INT NOT NULL,
+            UserID INT,
             TicketDate DATE NOT NULL,
             Closed BOOLEAN NOT NULL DEFAULT FALSE,
             TicketContent VARCHAR(100) NOT NULL,

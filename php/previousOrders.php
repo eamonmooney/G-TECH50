@@ -9,51 +9,58 @@ session_start();
 //Database connection
 require_once('connectdb.php');
 
-//Collecting information about the currently logged in user
-$userId = $_SESSION['userId'];
 
-// Prepare the query to count the orders for the specific user
-$stmt = $db->prepare("SELECT COUNT(*) FROM Orders WHERE UserID = ?");
-$stmt->execute([$userId]);
-$totalOrders = $stmt->fetchColumn();
+try {
+    //Collecting information about the currently logged in user
+    //$userId = $_SESSION['userId'];
+    $userId = 1;
 
-// Prepare a query to get all orders made by the specific user
-$stmt = $db->prepare("SELECT OrderID, OrderDate, OrderCost FROM Orders WHERE UserID = ?");
-$stmt->execute([$userId]);
+    // Prepare the query to count the orders for the specific user
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Orders WHERE UserID = ?");
+    $stmt->execute([$userId]);
+    $totalOrders = $stmt->fetchColumn();
 
-// Fetch all the results
-$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Prepare a query to get all orders made by the specific user
+    $stmt = $db->prepare("SELECT OrderID, OrderDate, OrderCost FROM Orders WHERE UserID = ?");
+    $stmt->execute([$userId]);
 
-$newHtml = "";
+    // Fetch all the results
+    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Check if there are any orders
-if (count($orders) > 0) {
-    // Iterate through each order
-    foreach ($orders as $order) {
-        // Output each order's details
-        $newHtml .= "Order ID: " . $order['OrderID'] . "<br>";
-        $newHtml .= "Order Date: " . $order['OrderDate'] . "<br>";
-        $newHtml .= "Order Cost: $" . number_format($order['OrderCost'], 2) . "<br>";
+    $newHtml = "";
 
-        $stmt = $db->prepare("SELECT ProductID, Quantity FROM OrderItem WHERE OrderID = ?");
-        $stmt->execute([$order['OrderID']]);
+    // Check if there are any orders
+    if (count($orders) > 0) {
+        // Iterate through each order
+        foreach ($orders as $order) {
+            // Output each order's details
+            $newHtml .= "Order ID: " . $order['OrderID'] . "<br>";
+            $newHtml .= "Order Date: " . $order['OrderDate'] . "<br>";
+            $newHtml .= "Order Cost: $" . number_format($order['OrderCost'], 2) . "<br>";
 
-        // Output details for each OrderItem
-        $newHtml .= "Order Items:<br>";
+            $stmt = $db->prepare("SELECT ProductID, Quantity FROM OrderItem WHERE OrderID = ?");
+            $stmt->execute([$order['OrderID']]);
 
-        // Fetch and loop through each order item for the current order
-        while ($orderItem = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $newHtml .= "Product ID: " . $orderItem['ProductID'] . "<br>";
-            $newHtml .= "Quantity: " . $orderItem['Quantity'] . "<br><br>";
+            // Output details for each OrderItem
+            $newHtml .= "Order Items:<br>";
+
+            // Fetch and loop through each order item for the current order
+            while ($orderItem = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $newHtml .= "Product ID: " . $orderItem['ProductID'] . "<br>";
+                $newHtml .= "Quantity: " . $orderItem['Quantity'] . "<br><br>";
+            }
+
+            $newHtml .= "<hr>"; // Separator between orders for readability
         }
-
-        $newHtml .= "<hr>"; // Separator between orders for readability
+    } else {
+        $newHtml .= "No orders found.<br>";
     }
-} else {
-    $newHtml .= "No orders found.<br>";
-}
 
-echo $newHtml;
+    echo $newHtml;
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 
 /*
     CREATE TABLE Orders (

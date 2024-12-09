@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
+  <a href="/php/profile.php"></a>
+  <a href="/php/previousOrders.php"></a>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -141,12 +143,47 @@
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html">Logo</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
+        </div>
+
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="icon-container">
+        
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <i class="material-icons">search</i>
+        </div>
+
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
+  </div>
+    
   <div class="profile-container">
     
     <div class="sidebar">
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
-      <button class="tab-button" onclick="showContent('orders')">Orders ({{ORDERTOTAL}})</button>
-      <button class="tab-button" onclick="showContent('support')">Support</button>
+      <button class="tab-button" onclick="showContent('orders')">Orders</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
@@ -154,63 +191,49 @@
     <div class="content-box">
       <div id="account" class="content active">
         <h2>Account Information</h2>
-        <p>View your personal information here.</p>
-        
-        
+        <p><strong>Name:</strong> <span id="user-name"></span></p>
+        <p><strong>Surname:</strong> <span id="user-surname"></span></p>
+
+        <h3>Change Password</h3>
         <form action="#" method="POST">
-          <label for="first-name">Name: {{USERNAME}}</label>
-          <input type="text" id="first-name" name="first-name" placeholder="Enter your name">
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
           
-          <label for="account-type">Account type: {{ACCOUNTTYPE}}</label>
-          <input type="text" id="account-type" name="account-type" placeholder="Enter your account type">
+          <label for="confirm-password">Confirm New Password:</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
           
-          <label for="email">Email: {{USEREMAIL}}</label>
-          <input type="email" id="email" name="email" placeholder="Enter your Email">
-          
-          <button type="submit">Update Information</button>
+          <button type="submit">Change Password</button>
         </form>
       </div>
 
       <div id="orders" class="content">
         <h2>Past Orders</h2>
-        <p>View your past orders below. The list will populate once you make purchases.</p>
-
-        
+        <p>View your past orders below. </p>
         <ul id="orders-list"></ul>
         <script>
           // Use JavaScript to fetch updated content from a PHP script
-          fetch('/php/previousOrders.php')
+          fetch('php/eamontest.php')
               .then(response => response.text())
               .then(data => {
                   document.getElementById('orders-list').innerHTML = data;
               })
               .catch(error => console.error('Error:', error));
         </script>
-        <!--
-        
-          IMPORTANT: If you see a large wall of text displaying php this should only appear if youre viewing the website the incorrect way,
-          in order to view the fully functional website import everything into XAMPP htdocs on your local device. - Eamon
-
-        -->
-      </div>
-
-      <div id="support" class="content">
-        <h2>Support</h2>
-        <p>GCONTACT US FORM WILL GO HERE</p>
       </div>
 
       <div id="settings" class="content">
         <h2>Settings</h2>
-        <p>Change your preferences and account settings here.</p>
+        
+        <p>Change your personal details here </p>
 
         <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
-          <label for="username">Name: {{USERNAME}}</label>
+          <label for="username">Name: </label>
           <input type="text" id="username" name="username" placeholder="Enter your new username">
           
-          <label for="email">Email: {{USEREMAIL}}</label>
+          <label for="email">Email: </label>
           <input type="email" id="email" name="email" placeholder="Enter your new Email">
 
-          <label for="password">Password: {{USERPASSWORD}}</label>
+          <label for="password">Password: </label>
           <input type="password" id="password" name="password" placeholder="Enter your new Password">
           
           <button type="submit">Update Information</button>
@@ -219,10 +242,11 @@
 
       <div id="logout" class="content">
         <h2>Logout</h2>
-        <p>You have been successfully logged out. See you again soon!</p>
+        
+        <form action="/logout" method="POST"> 
+          <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
+        </form>
       </div>
-    </div>
-  </div>
 
   <script>
     function showContent(contentId) {
@@ -242,3 +266,4 @@
   </script>
 </body>
 </html>
+

@@ -7,15 +7,17 @@
 session_start();
 
 //Register button pressed
-if (isset($_POST['submitted'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Database connection
     require_once('connectdb.php');
 
     //Assigns the submitted data, if they do not exist, they are assigned to false instead
     $email=isset($_POST['email'])?$_POST['email']:false;
-    $TicketContent=isset($_POST['ticketContent'])?$_POST['ticketContent']:false;
-    $ticketType=isset($_POST['ticketType'])?$_POST['ticketType']:false;
+    $TicketContent=isset($_POST['description'])?$_POST['description']:false;
+    //$ticketType=isset($_POST['ticketType'])?$_POST['ticketType']:false;
+
+    $ticketType = "Subject";
 
     //Inform the user if they have missed any crucial part of the form
     if (!($email)){
@@ -34,10 +36,10 @@ if (isset($_POST['submitted'])){
             exit("Invalid description!");
         } 
     }
+
     if (!($ticketType)){
         exit("No subject has been given!");
     }
-
     // Check if the user is logged in and the userId is set in the session
     if (isset($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
@@ -50,11 +52,11 @@ if (isset($_POST['submitted'])){
         $ticketDate = date("Y-m-d H:i:s");
 
         //Insert ticket type to form ticketTypeId
-        $stmt=$db->prepare("insert into ticketType values(default,?)");
+        $stmt=$db->prepare("insert into ticketTypes values(default,?)");
         $stmt->execute(array($ticketType));
 
         //Query database to get the ticketTypeId by checking the most recent value
-        $stmt = $db->query("SELECT MAX(TicketTypeID) FROM TicketType");
+        $stmt = $db->query("SELECT MAX(TicketTypeID) FROM TicketTypes");
         $TicketTypeId = $stmt->fetchColumn();
 
         //Insert ticket info into the database
