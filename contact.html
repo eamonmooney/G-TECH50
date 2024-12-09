@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/G-TECH50/css/contact.css">
 
     <script>
         function validateForm() {
@@ -28,6 +28,7 @@
             return false;
           }
           
+          /*
           // Display summary
           var summary = "First Name: " + firstName + "\n" +
                         "Description: " + description + "\n" +
@@ -36,6 +37,7 @@
                         "Preferred Contact Method: " + contactMethod + "\n" +
                         "Project Date: " + date.toDateString();
           alert(summary);
+          */
           return true;
         }
         
@@ -126,23 +128,23 @@
         
                     <!-- Form Section -->
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form>
+                        <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="firstName">First Name:</label><br>
-                                    <input type="text" class="form-control" id="firstName" required>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="email">Email:</label><br>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="confirmEmail">Confirm Email:</label><br>
-                                    <input type="email" class="form-control" id="confirmEmail" required>
+                                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="phoneNumber">Phone Number:</label><br>
-                                    <input type="tel" class="form-control" id="phoneNumber" required>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="contactMethod">Preferred Contact Method:</label><br>
@@ -151,16 +153,17 @@
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="date">Date:</label><br>
-                                    <input type="date" class="form-control" id="date" required>
+                                    <input type="date" class="form-control" id="date" name="date" required>
                                 </div>
                             </div>
-        
+                        
                             <div class="form-group mt-3">
                                 <label for="description">Description:</label><br>
-                                <textarea id="description" rows="5" required></textarea>
+                                <textarea id="description" name="description" rows="5" required></textarea>
                             </div>
-                            <input type="button" value="Submit" onclick="validateForm()">
+                            <input type="submit" value="Submit">
                         </form>
+                        
                     </div>
                 </div>
             </div>

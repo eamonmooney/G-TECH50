@@ -7,10 +7,18 @@
 session_start();
 
 //Register button pressed
-if (isset($_POST['submitted'])){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Database connection
     require_once('connectdb.php');
+
+    $firstName = $_POST['firstName'];
+    $email = $_POST['email'];
+    $confirmEmail = $_POST['confirmEmail'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $contactMethod = $_POST['contactMethod'];
+    $date = $_POST['date'];
+    $description = $_POST['description'];
 
     //Assigns the submitted data, if they do not exist, they are assigned to false instead
     $email=isset($_POST['email'])?$_POST['email']:false;
@@ -34,16 +42,20 @@ if (isset($_POST['submitted'])){
             exit("Invalid description!");
         } 
     }
+
     if (!($ticketType)){
         exit("No subject has been given!");
     }
 
+    /*
     // Check if the user is logged in and the userId is set in the session
     if (isset($_SESSION['userId'])) {
         $userId = $_SESSION['userId'];
     } else {
         $userId = null;
     }
+    */
+    $userId = null;
 
     try {
         //Date and time of the ticket submission
