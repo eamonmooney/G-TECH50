@@ -184,26 +184,15 @@
     <div class="sidebar">
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
-      <button class="tab-button" onclick="showContent('settings')">Settings</button>
+      <button class="tab-button" onclick="showContent('details')">Details</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
 
     <div class="content-box">
       <div id="account" class="content active">
         <h2>Account Information</h2>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Surname:</strong> <span id="user-surname"></span></p>
-
-        <h3>Change Password</h3>
-        <form action="#" method="POST">
-          <label for="new-password">New Password:</label>
-          <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
-          
-          <label for="confirm-password">Confirm New Password:</label>
-          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
-          
-          <button type="submit">Change Password</button>
-        </form>
+        <p><strong>Username:</strong> <span id="user-name"></span></p>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
       </div>
 
       <div id="orders" class="content">
