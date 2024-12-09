@@ -22,12 +22,27 @@
     }
 
     .logo {
-      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      align-items: center;
+      padding: 0;  
+    }
+
+   .logo-image {
+      width: 50px;
+      height: auto;
+      object-fit: contain;
+      margin-left: 10px;
     }
 
     .nav-links {
       display: flex;
       gap: 10px;
+      justify-content: center;
+      flex: 1;
+      margin-left: 300px; 
+      margin-right: 50px;
     }
 
     .navbar a {  
@@ -158,7 +173,7 @@
   
   <div class="navbar">
     <div class="logo">
-      <a href="Home"></a>
+      
       <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
     </div>
 
