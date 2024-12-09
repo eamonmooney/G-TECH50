@@ -11,11 +11,7 @@
 <?php
 	// Start the session
 	session_start();
-			 $_SESSION['basket'] = null;
-
-	//!!! FOR TESTING - REMOVE!!!!
-	$_SESSION['userId'] = 1;
-
+	
 
 	/*If the form was submitted using POST (ensures the following is accessed upon
 	form being submitted) and if the specified field is present */
