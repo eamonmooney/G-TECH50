@@ -5,6 +5,7 @@
 - Sign out functionality
 
 ## Eamon 
+- Contact form test
 - Displaying orders
 - Adding a return button for incomplete orders
 - Profile information
