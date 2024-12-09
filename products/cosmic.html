@@ -1,13 +1,13 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="css/homepage.css">
-  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  
 
   <style>
     .navbar {
@@ -128,98 +128,86 @@
       background-color: #333333;
     }
   </style>
+
 </head>
 
 <body>
   
   <div class="navbar">
     <div class="logo">
-      <a href="index.html">
-        <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image" style="width:3em; height:4em;">
-      </a>
+      <a href="../">Logo</a>
     </div>
 
     <div class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="../">Home</a>
 
       <div class="dropdown">
         <a href=#>Categories</a>
 
         <div class="dropdown-content">
-          <a href="categories/Mice.html">Mice</a>
-          <a href="categories/Monitors.html">Monitors</a>
-          <a href="categories/Headphones.html">Headphones</a>
-          <a href="categories/Keyboards.html">Keyboards</a>
-          <a href="categories/Mousepads.html">Mousepads</a>
+          <a href="../categories/Mice.html">Mice</a>
+          <a href="../categories/Monitors.html">Monitors</a>
+          <a href="../categories/Headphones.html">Headphones</a>
+          <a href="../categories/Keyboards.html">Keyboards</a>
+          <a href="../categories/Mousepads.html">Mousepads</a>
         </div>
 
       </div>
-      <a href="aboutus.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
     </div>
 
 
     <div class="icon-container">
         
         <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
+          <input type="text" placeholder="Search...">
+          <i class="material-icons">search</i>
         </div>
 
         <a href="profile.html"><i class="material-icons">account_circle</i></a>
         <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
     </div>
   </div>
-
-  <div id="searchResults" class="search-results" style="display: none;"></div>
-
-  <script>
     
-    const data = [
-      { name: "Mice", url: "Mice.html" },
-      { name: "Monitors", url: "Monitors.html" },
-      { name: "Headphones", url: "Headphones.html" },
-      { name: "Keyboards", url: "Keyboards.html" },
-      { name: "Mousepads", url: "Mousepads.html" },
-      
-    ];
-
-    
-    const searchBar = document.getElementById("searchBar");
-    const searchButton = document.getElementById("searchButton");
-    const searchResults = document.getElementById("searchResults");
-
-    function searchItems(query) {
-      
-      const lowerQuery = query.toLowerCase();
-      
-      
-      const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-      
-      searchResults.innerHTML = results.length
-        ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-        : '<div>No results found</div>';
-
-      searchResults.style.display = query ? 'block' : 'none';
-    }
-
-    
-    searchBar.addEventListener("input", () => searchItems(searchBar.value));
-    searchButton.addEventListener("click", () => searchItems(searchBar.value));
-  </script>
-
-<img src="images/Externalmade/7.png" alt="mouse with headphone image" class="img1">
-<button class="button">SHOP NOW</button>
-
- <div class="pictures:hover">
-  <div class = "pictures">
-<img src="images/Externalmade/6.png" alt="monitor">
-<img src="images/Externalmade/5.png" alt="headphone">
-<img src="images/Externalmade/4.png" alt="internal of desktop">
-<img src="images/Externalmade/3.png" alt="computer set">
+  <div class="single-item">
+    <div class="Picture">
+        <img class="main-image" src="/images/Ai/cosmic0001.png" alt="Mouse">
+    </div>
+    <div class="item-spec">
+        <h2>COSMIC CURSOR</h2>
+        <h3>"Navigate the stars with precision!"</h3>
+        <h4>Colour: Black, purple, and blue with galaxy-inspired patterns</h4>
+        <h4>Functionality: Dual-mode (Wired & Wireless), ergonomic design, customizable side buttons, <br> adjustable DPI for gaming precision</h4>
+        <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
+        <h4>Explore stellar performance in a galaxy-inspired design. The Cosmic Cursor adds a celestial <br> touch to any setup, with swirling patterns, subtle LED glow, and sleek, customizable features.</h4>
+        <h3>£49.99</h3>
+         <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
+         <form action="../php/products.php" method="POST">
+          <input type="hidden" name="prodName" value="COSMIC CURSOR">
+          <input type="hidden" name="prodPrice" value="49.99">
+          <input type="number" name="prodQuant" value="1" min="1" max="10" >
+          <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+        </form>
+    </div>
 </div>
- </div>
-</body>
-</html>
 
+    
+  
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+        <div class="contact-details">
+            <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+            <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+            <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+        </div>
+    </div>
+</footer>
+
+
+   </body> 
+
+
+    </html>
