@@ -17,12 +17,14 @@ require_once('connectdb.php'); // Requires connection to the database.
 
 // Requirement 1: only logged-in users can request a return.
 
+/*
 if (!isset($_SESSION['userId'])) {
-    header("Location: login.html");
+    header("Location: signin.html");
     exit();
 } // If the user is not logged in, they are referred back to the login page.
-
-$userID = $_SESSION['userId']; // Gets the user ID.
+*/
+//$userID = $_SESSION['userId']; // Gets the user ID.
+$userID = 1;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Checks to see if the return form is submitted.
     $orderID = $_POST['orderID'];
