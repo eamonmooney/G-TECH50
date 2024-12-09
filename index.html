@@ -6,6 +6,8 @@
   
   <title>G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/homepage.css">
+  <link rel="stylesheet" href="css/footer.css">
 
   <style>
     .navbar {
@@ -55,6 +57,7 @@
       margin-right: 20px;
     }
 
+    
     .search-bar {
       display: flex;
       align-items: center;
@@ -83,34 +86,7 @@
       color: #aaa; 
     }
 
-    .search-results {
-      margin-top: 70px;
-      padding: 10px;
-      background-color: #201c1c;
-      color: white;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .search-results a {
-      display: block;
-      margin-bottom: 5px;
-      padding: 10px;
-      text-decoration: none;
-      color: white;
-      border-bottom: 1px solid #333;
-    }
-
-    .search-results a:hover {
-      background-color: #333333;
-    }
-
-    .search-results a:last-child {
-      border-bottom: none;
-    }
+    
     .dropdown {
       position: relative;
       margin-top: 15px; 
@@ -119,7 +95,7 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 100%;
+      top: 115%;
       left: 50%;
       transform: translateX(-50%);
       background-color: #201c1c;
@@ -159,7 +135,7 @@
   <div class="navbar">
     <div class="logo">
       <a href="index.html">
-        <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
+        <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image" style="width:3em; height:4em;">
       </a>
     </div>
 
@@ -232,6 +208,18 @@
     searchBar.addEventListener("input", () => searchItems(searchBar.value));
     searchButton.addEventListener("click", () => searchItems(searchBar.value));
   </script>
+
+<img src="images/Externalmade/7.png" alt="mouse with headphone image" class="img1">
+<button class="button">SHOP NOW</button>
+
+ <div class="pictures:hover">
+  <div class = "pictures">
+<img src="images/Externalmade/6.png" alt="monitor">
+<img src="images/Externalmade/5.png" alt="headphone">
+<img src="images/Externalmade/4.png" alt="internal of desktop">
+<img src="images/Externalmade/3.png" alt="computer set">
+</div>
+ </div>
 </body>
 </html>
 
