@@ -6,7 +6,7 @@ require_once('connectdb.php');
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     //Defines user input as variables
-    $RoleID = 1;
+    $RoleID = 2;
     $Name = $_POST['name'];
     $Password = $_POST['password'];
     $Email = $_POST['email'];
@@ -16,11 +16,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $stmt0->execute([':email' => $Email]);
     $res0 = $stmt0->fetchColumn();
     // checks if email is in use, outputting error message if it is
-    if ($res0 > 0)
+    if ($res0 > 0 && !empty($Email))
     {
-        echo "This email is already in use. Please wait a moment, and you will be returned to the sign up page";
-        sleep(5);
-        header("Location: signup.html");
+        echo "This email is already in use";
     // checks if the user has left empty boxes
     }else
     {
@@ -32,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			':Email' => $Email, 
 			':Password' => password_hash($Password, PASSWORD_BCRYPT)
         ]);
-        header("Location: signin.html");
+        header("Location: /G-TECH50/signin.html");
         die;
     }
 }
