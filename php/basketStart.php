@@ -7,7 +7,7 @@
 	session_start();
 
 		//!!! FOR TESTING - REMOVE!!!!
-		$_SESSION['userId'] = 1;
+		// $_SESSION['userId'] = 1;
 
 		// $_SESSION['basket'] = null;
 
