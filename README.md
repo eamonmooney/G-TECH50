@@ -21,5 +21,8 @@
 - Updating nav bar on all pages
 - Including logo on nav bar
 
+## Rayyan
+- Mobile support for product pages
+
 # WE NEED A FRONTEND DEV TO DO THIS
 Extra UI features (desired): Consider incorporating features such as light mode/dark mode or a zoom feature (maybe zoom feature if one has time)
