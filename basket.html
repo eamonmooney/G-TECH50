@@ -7,6 +7,7 @@
   
   <title>Basket Page</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
 
   <style>
     
@@ -267,6 +268,35 @@
   </style>
 </head>
 <body>
+  <!-- Putting this div here to perform the div checks at the start so the page doesn't get loaded before we have to change to sign-in page if user isnt logged in -->
+  <div id="basketStart"></div>
+
+  <!-- THE FIRST JAVASCRIPT -->
+  <script>
+
+    //Javascript for calling the basketStart.php page
+
+    // Using AJAX Requests - Asynchronous JavaScript and XML: helps send and recieve from PHP without reloading page
+    //Use fetch() API to open basketStart.php page - makes an HTTP GET request 
+    fetch('php/basketStart.php')
+      // Parse response from PHP into JSON
+      .then(response => response.json())  
+      //With this data
+      .then(data => {
+        //If we need to redirect (user not logged in)
+        if (data.redirect) {
+          // Redirect to signin.html
+          window.location.href = 'signin.html';
+        //Otherwise if the user is logged in,
+        } else {
+          //Get and display their user ID
+          document.getElementById('basketStart').innerHTML = `<h1>Welcome, user ${data.userID}!</h1>`;
+        }
+    })
+    // Handle errors
+    .catch(error => console.error('Error:', error));  
+  </script>
+
   <div class="navbar">
     <div class="logo">
       <a href="Home">Logo</a>
@@ -306,8 +336,9 @@
   <div class="container">
     <div class="left-container">
       <h2>Basket</h2>
+      
       <ul id="product-list">
-        
+        <div id="TEST">THE PRODUCTS":</div>
         <p class="empty-basket" id="empty-message">Your basket is empty.</p>
       </ul>
     </div>
@@ -320,8 +351,12 @@
     </div>
   </div>
 
+  
+ 
+  <!-- REST OF THE JAVASCRIPT -->
   <script>
 
+    //SEARCH BAR JAVASCRIPT
     //List with links for the search bar
     const data = [
       { name: "Mice", url: "Mice.html" },
@@ -352,20 +387,78 @@
     searchBar.addEventListener("input", () => searchItems(searchBar.value));
     searchButton.addEventListener("click", () => searchItems(searchBar.value));
     
-    //Constants for the Basket functionality
-    const productList = document.getElementById('product-list');
-    const totalPriceElement = document.getElementById('total-price');
+    //BASKET JAVASCRIPT
+    //JAVASCRIPT FOR RUNNING BASKET.PHP
+
+    //EMPTY MESSAGE CONSTANT
     const emptyMessage = document.getElementById('empty-message');
-    
+
+    // When the page loads, do this function
+    document.addEventListener('DOMContentLoaded', function () {
+      // Use fetch() on the PHP
+      fetch("php/displayBasket.php", {
+        //Using POST
+        method: "POST"
+      })
+        //Get the response as a JSON
+        .then(response => response.json()) 
+        //Then with this data
+        .then(data => {
+          // Store the basket items in suitable variable 
+          const basket = data.basket;
+          //Store total price
+          const totalPrice = data.totalPrice;
+          
+          // If the basket is empty
+          if (basket.length === 0) {
+            //Make the empty message visible
+            emptyMessage.style.display = 'block';
+            // Show a message
+            document.getElementById("TEST").innerHTML = "Your basket is empty.";
+          //Or if there's things in the basket
+          //TEMP, PROLLY WILL REMOVE
+          } else {
+            // Otherwise, display the items in the basket
+            // Start an unordered list
+            let basketHTML = "<ul>"; 
+            basket.forEach(item => {
+              // For each item in the basket, display its name, quantity, and price
+              basketHTML += `<li>${item.name} - ${item.quantity} - $${item.price}</li>`;
+            });
+             // Close the unordered list
+            basketHTML += "</ul>";
+
+            // Insert the basket HTML into the div with ID 'TEST'
+            document.getElementById("TEST").innerHTML = basketHTML;
+
+            //Product List constant
+            const productList = basket;
+
+            //Total price constant
+            const totalPriceElement = document.getElementById('total-price');
+
+
+          }
+        })
+        //Incase of errors, display to console
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("TEST").innerHTML = "There was an error retrieving your basket.";
+      });
+
+    });
+
+
+    //JAVASCRIPT FOR BASKET
 
     //Function to add product to basket
-    function addProductToBasket(name, price) {
+    function addProductToBasket(name, price, quantity) {
       if (emptyMessage) {
         emptyMessage.style.display = 'none';
       }
 
       //Create generics
-      //Create list
+      //Create list item
       const li = document.createElement('li');
       //Create a div
       const productInfo = document.createElement('div');

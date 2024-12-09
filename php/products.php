@@ -11,11 +11,14 @@
 <?php
 	// Start the session
 	session_start();
-	
-	
+
+	//!!! FOR TESTING - REMOVE!!!!
+	$_SESSION['userId'] = 1;
+
+
 	/*If the form was submitted using POST (ensures the following is accessed upon
 	form being submitted) and if the specified field is present */
-	if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['basketAdd'])) {
+	if (isset($_POST['basketAdd'])) {
 		// If the user isn't logged in
 		if (!isset($_SESSION['userId'])) {	
 			//Redirect to the login page 
@@ -69,4 +72,5 @@
 		header("Location: ../basket.html");
 		exit();
 	}
+
 ?>
