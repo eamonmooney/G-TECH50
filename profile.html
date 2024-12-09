@@ -203,15 +203,15 @@
         <h2>Settings</h2>
         <p>Change your preferences and account settings here.</p>
 
-        <form action="#" method="POST">
-          <label for="first-name">Name: {{USERNAME}}</label>
-          <input type="text" id="first-name" name="first-name" placeholder="Enter your name">
-          
-          <label for="account-type">Account type: {{ACCOUNTTYPE}}</label>
-          <input type="text" id="account-type" name="account-type" placeholder="Enter your account type">
+        <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
+          <label for="username">Name: {{USERNAME}}</label>
+          <input type="text" id="username" name="username" placeholder="Enter your new username">
           
           <label for="email">Email: {{USEREMAIL}}</label>
-          <input type="email" id="email" name="email" placeholder="Enter your Email">
+          <input type="email" id="email" name="email" placeholder="Enter your new Email">
+
+          <label for="password">Password: {{USERPASSWORD}}</label>
+          <input type="password" id="password" name="password" placeholder="Enter your new Password">
           
           <button type="submit">Update Information</button>
         </form>

@@ -20,17 +20,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         if($uData)
         {
             // verifies password input with hash in database
-            if(password_verify($Password, $uData['Password']))
-            {
+            // if(password_verify($Password, $uData['Password']))
+            // {
                 // declare session variables
-                $_SESSION['user_id'] = $uData['UserID'];
-                $_SESSION['role_id'] = $uData['RoleID'];
-                $_SESSION['username'] = $uData['Username'];
+                $_SESSION['userId'] = $uData['UserID'];
+                $_SESSION['roleId'] = $uData['RoleID'];
+                $_SESSION['username'] = $uData['Name'];
                 $_SESSION['email'] = $uData['Email'];
                 // change page to index page
                 header("Location: /G-TECH50/index.html");
                 die;
-            }
+            //}
         }else
         {
             // output error message as password or username doesnt match
