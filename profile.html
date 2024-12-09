@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
+  <a href="/php/profile.php"></a>
+  <a href="/php/previousOrders.php"></a>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -141,6 +143,42 @@
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html">Logo</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
+        </div>
+
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="icon-container">
+        
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <i class="material-icons">search</i>
+        </div>
+
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
+  </div>
+    
   <div class="profile-container">
     
     <div class="sidebar">
@@ -172,26 +210,31 @@
         <h2>Past Orders</h2>
         <p>View your past orders below. </p>
         <ul id="orders-list"></ul>
-        <div class="no-orders" id="no-orders-message">
-          You haven't placed any orders yet.
-        </div>
+        <script>
+          // Use JavaScript to fetch updated content from a PHP script
+          fetch('php/eamontest.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('orders-list').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+        </script>
       </div>
 
       <div id="settings" class="content">
         <h2>Settings</h2>
-        <p>Change your persnoal details here </p>
-        <form action="#" method="POST">
-          <label for="first-name">Name:</label>
-          <input type="text" id="first-name" name="first-name" placeholder="Enter your name">
+        
+        <p>Change your personal details here </p>
+
+        <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
+          <label for="username">Name: </label>
+          <input type="text" id="username" name="username" placeholder="Enter your new username">
           
-          <label for="last-name">Surname:</label>
-          <input type="text" id="last-name" name="last-name" placeholder="Enter your surname">
-          
-          <label for="address">Delivery Address:</label>
-          <input type="text" id="address" name="address" placeholder="Enter your delivery address">
-          
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+          <label for="email">Email: </label>
+          <input type="email" id="email" name="email" placeholder="Enter your new Email">
+
+          <label for="password">Password: </label>
+          <input type="password" id="password" name="password" placeholder="Enter your new Password">
           
           <button type="submit">Update Information</button>
         </form>

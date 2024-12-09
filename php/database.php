@@ -22,7 +22,7 @@ try {
             UserID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             RoleID INT NOT NULL,
             Name VARCHAR(50) NOT NULL,
-            Email VARCHAR(50) UNIQUE NOT NULL,
+            Email VARCHAR(73) UNIQUE NOT NULL,
             Password VARCHAR(50) NOT NULL,
             FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
         );
@@ -74,7 +74,7 @@ try {
         CREATE TABLE IF NOT EXISTS SupportTickets (
             TicketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             TicketTypeID INT NOT NULL,
-            UserID INT NOT NULL,
+            UserID INT,
             TicketDate DATE NOT NULL,
             Closed BOOLEAN NOT NULL DEFAULT FALSE,
             TicketContent VARCHAR(100) NOT NULL,
