@@ -16,11 +16,10 @@ $password = '';
 try {
 	$db = new PDO("mysql:dbname=$db_name;host=$db_host", $username, $password); 
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	// If the connection is successful, send a success message in JSON format
-	echo json_encode(['message' => 'Database connected successfully.']);
+	echo("Successfully connected to the database. <br>");
 } catch(PDOException $ex) {
- 	// If there’s an error, send the error message in JSON format
- 	echo json_encode(['error' => 'Database connection failed:' . $ex->getMessage()]);
+	echo("Failed to connect to the database. <br>");
+	echo($ex->getMessage());
 	exit;
 }
 ?>

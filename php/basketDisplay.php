@@ -1,11 +1,14 @@
-  <?php
+<?php
 // This page should handle the backend for the basket. 
 // This should include displaying/ removing items from the basket list based on a basket table.
-// Adding items to a basket should be performed on the product pages themselves and it's product ID added to a local session 2D array, $basketItems with productID and quantity
+// Adding items to a basket should be performed on the product pages themselves and it's product ID added to a local session array, $basketItems with productID and quantity
 // If the user isn't loaded in, they should have been redirected to the login page from basketStart.php
 // If the user has no items in the basket, they should not have anything displayed on screen and are told of this
 // User should be able to increase/decrease the quantity of products from basket
 // Created by Safa Riasat
+
+	// Start output buffering - using this to clean any outputs and remove uneeded outputs from irrelevant areas affecting JSON
+	ob_start();
 
 	//Resume the session to allow us to use the session variables
 	session_start();
@@ -16,18 +19,19 @@
 	// Set the response content type to JSON
 	header('Content-Type: application/json');
 	
-	$_SESSION['basket'] = [
-		[
-			'name' => 'Keyboard',
-			'price' => 50,   // Fixed price for keyboard
-			'quantity' => 1   // Fixed quantity for keyboard
-		],
-		[
-			'name' => 'Mouse',
-			'price' => 25,   // Fixed price for mouse
-			'quantity' => 2   // Fixed quantity for mouse
-		]
-	];
+	//TESTING
+	// $_SESSION['basket'] = [
+	// 	[
+	// 		'name' => 'Keyboard',
+	// 		'price' => 50,   // Fixed price for keyboard
+	// 		'quantity' => 1   // Fixed quantity for keyboard
+	// 	],
+	// 	[
+	// 		'name' => 'Mouse',
+	// 		'price' => 25,   // Fixed price for mouse
+	// 		'quantity' => 2   // Fixed quantity for mouse
+	// 	]
+	// ];
 
 
 	//If the user has nothing in their basket, tell them they have nothing in their basket and end
@@ -38,6 +42,8 @@
 			'basket' => [],  // Empty basket
 			'totalPrice' => 0];  // Nothing for total price
 		echo json_encode($data); 
+		// Clean any previous output
+		ob_end_clean(); 
 		//Leaving the php file to ensure nothing else is performed
 		exit();
 	} 
@@ -47,6 +53,7 @@
 	try{
 		//Connect to the database if it hasn't been done already
 		require_once('connectdb.php');
+		
 
 
 
@@ -71,6 +78,9 @@
 			'basket' => $_SESSION['basket'],  // Empty basket
 			'totalPrice' => $totalPrice  // Nothing for total price
 		];
+
+		// Clean output buffer
+		ob_end_clean();
 
 		// Return session data as JSON
 		echo json_encode($data);

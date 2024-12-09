@@ -11,6 +11,7 @@
 <?php
 	// Start the session
 	session_start();
+			 $_SESSION['basket'] = null;
 
 	//!!! FOR TESTING - REMOVE!!!!
 	$_SESSION['userId'] = 1;
@@ -56,7 +57,6 @@
 				break;
 			}
 		}
-
 		// If prodFound is false (hasn't been found in basket), then we add this product to the basket
 		if (!$prodFound) {
 			//Append the new product to the end of the basket session variable
@@ -72,5 +72,4 @@
 		header("Location: ../basket.html");
 		exit();
 	}
-
 ?>
