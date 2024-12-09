@@ -23,6 +23,16 @@
 		exit();
 	} 
 
-	// Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID
-	echo json_encode(["redirect" => false, "userID" => $_SESSION['userId']]);
+	// // Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID and basket
+
+	$response = [
+		"redirect" => false,
+		"userID" => $_SESSION['userId'],
+		"basket" => isset($_SESSION['basket']) ? $_SESSION['basket'] : [] // Include basket or empty if not set
+	];
+
+	// Output the JSON response
+	echo json_encode($response);
+
+	
 ?>
