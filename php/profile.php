@@ -9,30 +9,28 @@ session_start();
 //Database connection
 require_once('connectdb.php');
 
-/*
 if (!isset($_SESSION['userId'])) {	
     header("Location: signin.html");
     exit(); // This checks to see if the user is in a valid session.
     // If they are not in a valid session, they will be redirected to the login page.
 }
-*/
 try {
     //Collecting information about the currently logged in user
     //$userId = $_SESSION['userId'];
     $userId = 1;
 
     // Query database to get the username through the userId
-    $stmt = $db->prepare("SELECT `name` FROM users WHERE UserID = ?");
+    $stmt = $db->prepare("SELECT `name` FROM users WHERE UserID = ? limit 1");
     $stmt->execute([$userId]);
     $username = $stmt->fetchColumn();
 
     // Prepare the query to count the orders for the specific user
-    $stmt = $db->prepare("SELECT COUNT(*) FROM Orders WHERE UserID = ?");
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Orders WHERE UserID = ? limit 1");
     $stmt->execute([$userId]);
     $totalOrders = $stmt->fetchColumn();
 
     // Prepare the query to count the returns for the specific user
-    $stmt = $db->prepare("SELECT COUNT(*) FROM `returns` WHERE UserID = ?");
+    $stmt = $db->prepare("SELECT COUNT(*) FROM `returns` WHERE UserID = ? limit 1");
     $stmt->execute([$userId]);
     $totalReturns = $stmt->fetchColumn();
 
