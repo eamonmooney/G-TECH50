@@ -153,8 +153,8 @@
     <div class="content-box">
       <div id="account" class="content active">
         <h2>Account Information</h2>
-        <p><strong>Username:</strong> <span id="user-name"></span></p>
-        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>Username:</strong></p>
+        <p><strong>Email:</strong></p>
       </div>
 
       <div id="orders" class="content">
@@ -162,19 +162,28 @@
         <p>View your past orders below. </p>
         <ul id="orders-list"></ul>
         <script>
-          // Use JavaScript to fetch updated content from a PHP script
+          //Script for chaging html attributes of the profile page. Eamon - 230075926
+          // Use JavaScript to fetch user details from a PHP script
           fetch('php/profile.php')
-              .then(response => response.text())
-              .then(data => {
-                if (data == "redirect") {
-                  // Redirect to signin.html
-                  window.location.href = 'signin.html';
-                  //Otherwise if the user is logged in,
-                } else {
-                  document.getElementById('orders-list').innerHTML = data;
-                }
-              })
-              .catch(error => console.error('Error:', error));
+          .then(response => response.text())
+          .then(data => {
+          if (data == "redirect") {
+            // Redirect to signin.html
+            window.location.href = 'signin.html';
+            //Otherwise if the user is logged in, display the user details
+          } else {
+            document.getElementById('account').innerHTML = data;
+          }
+          })
+          .catch(error => console.error('Error:', error));
+
+          // Updating orders list upon page load
+          fetch('php/previousOrders.php')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('orders-list').innerHTML = data;
+          })
+          .catch(error => console.error('Error:', error)); 
         </script>
       </div>
 
