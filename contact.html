@@ -13,14 +13,7 @@
           var email = document.getElementById("email").value;
           var confirmEmail = document.getElementById("confirmEmail").value;
           var phoneNumber = document.getElementById("phoneNumber").value;
-          var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
-          var date = new Date(document.getElementById("date").value);
-          var currentDate = new Date();
           
-          // Check if date is at least 1 day in the future
-          if (!checkDate(date, currentDate)) {
-            return false;
-          }
           
           // Check if email matches confirmation email
           if (!checkEmails(email, confirmEmail)) {
@@ -31,18 +24,8 @@
           var summary = "First Name: " + firstName + "\n" +
                         "Description: " + description + "\n" +
                         "Email: " + email + "\n" +
-                        "Phone Number: " + phoneNumber + "\n" +
-                        "Preferred Contact Method: " + contactMethod + "\n" +
-                        "Project Date: " + date.toDateString();
+                        "Phone Number: " + phoneNumber;
           alert(summary);
-          return true;
-        }
-        
-        function checkDate(date, currentDate) {
-          if (date <= currentDate) {
-            alert("Please select a date at least 1 day in the future.");
-            return false;
-          }
           return true;
         }
         
@@ -141,15 +124,6 @@
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="phoneNumber">Phone Number:</label><br>
                                     <input type="tel" class="form-control" id="phoneNumber" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="contactMethod">Preferred Contact Method:</label><br>
-                                    <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>Email<br>
-                                    <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">Phone
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="date">Date:</label><br>
-                                    <input type="date" class="form-control" id="date" required>
                                 </div>
                             </div>
         
