@@ -20,7 +20,7 @@ if (isset($_POST['basketAdd'])) {
 	// If the user isn't logged in
 	if (!isset($_SESSION['userId'])) {
 		//Redirect to the login page 
-		header("Location: ../index.html"); //!!! CHANGE TO LOGIN PAGE
+		header("Location: ../signin.html");
 		//Leaving the php file to ensure nothing else is performed
 		exit();
 	}
