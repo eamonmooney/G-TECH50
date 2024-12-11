@@ -5,11 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
-  <a href="/php/profile.php"></a>
-  <a href="/php/previousOrders.php"></a>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       display: flex;
@@ -143,45 +140,10 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html">Logo</a>
-    </div>
-
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-
-      <div class="dropdown">
-        <a href=#>Categories</a>
-
-        <div class="dropdown-content">
-          <a href="categories/Mice.html">Mice</a>
-          <a href="categories/Monitors.html">Monitors</a>
-          <a href="categories/Headphones.html">Headphones</a>
-          <a href="categories/Keyboards.html">Keyboards</a>
-          <a href="categories/Mousepads.html">Mousepads</a>
-        </div>
-
-      </div>
-      <a href="aboutus.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
-    </div>
-
-    <div class="icon-container">
-        
-        <div class="search-bar">
-          <input type="text" placeholder="Search...">
-          <i class="material-icons">search</i>
-        </div>
-
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
-    </div>
-  </div>
-    
   <div class="profile-container">
     
     <div class="sidebar">
+      <button class="tab-button" onclick="window.location.href = 'index.html';">Home</button>
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
@@ -191,19 +153,8 @@
     <div class="content-box">
       <div id="account" class="content active">
         <h2>Account Information</h2>
-        <p><strong>Name:</strong> <span id="user-name"></span></p>
-        <p><strong>Surname:</strong> <span id="user-surname"></span></p>
-
-        <h3>Change Password</h3>
-        <form action="#" method="POST">
-          <label for="new-password">New Password:</label>
-          <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
-          
-          <label for="confirm-password">Confirm New Password:</label>
-          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
-          
-          <button type="submit">Change Password</button>
-        </form>
+        <p><strong>Username:</strong></p>
+        <p><strong>Email:</strong></p>
       </div>
 
       <div id="orders" class="content">
@@ -211,13 +162,28 @@
         <p>View your past orders below. </p>
         <ul id="orders-list"></ul>
         <script>
-          // Use JavaScript to fetch updated content from a PHP script
-          fetch('php/eamontest.php')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('orders-list').innerHTML = data;
-              })
-              .catch(error => console.error('Error:', error));
+          //Script for chaging html attributes of the profile page. Eamon - 230075926
+          // Use JavaScript to fetch user details from a PHP script
+          fetch('php/profile.php')
+          .then(response => response.text())
+          .then(data => {
+          if (data == "redirect") {
+            // Redirect to signin.html
+            window.location.href = 'signin.html';
+            //Otherwise if the user is logged in, display the user details
+          } else {
+            document.getElementById('account').innerHTML = data;
+          }
+          })
+          .catch(error => console.error('Error:', error));
+
+          // Updating orders list upon page load
+          fetch('php/previousOrders.php')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('orders-list').innerHTML = data;
+          })
+          .catch(error => console.error('Error:', error)); 
         </script>
       </div>
 
@@ -243,7 +209,7 @@
       <div id="logout" class="content">
         <h2>Logout</h2>
         
-        <form action="/logout" method="POST"> 
+        <form action="/G-TECH50/php/signOutFunction.php" method="POST"> 
           <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
         </form>
       </div>
