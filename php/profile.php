@@ -10,14 +10,13 @@ session_start();
 require_once('connectdb.php');
 
 if (!isset($_SESSION['userId'])) {	
-    header("Location: signin.html");
+    header("Location: /G-TECH50/signin.html");
     exit(); // This checks to see if the user is in a valid session.
     // If they are not in a valid session, they will be redirected to the login page.
 }
 try {
     //Collecting information about the currently logged in user
-    //$userId = $_SESSION['userId'];
-    $userId = 1;
+    $userId = $_SESSION['userId'];
 
     // Query database to get the username through the userId
     $stmt = $db->prepare("SELECT `name` FROM users WHERE UserID = ? limit 1");

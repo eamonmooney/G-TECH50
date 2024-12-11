@@ -6,57 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/contact.css">
-
-    <script>
-        function validateForm() {
-          var firstName = document.getElementById("firstName").value;
-          var description = document.getElementById("description").value;
-          var email = document.getElementById("email").value;
-          var confirmEmail = document.getElementById("confirmEmail").value;
-          var phoneNumber = document.getElementById("phoneNumber").value;
-          var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
-          var date = new Date(document.getElementById("date").value);
-          var currentDate = new Date();
-          
-          // Check if date is at least 1 day in the future
-          if (!checkDate(date, currentDate)) {
-            return false;
-          }
-          
-          // Check if email matches confirmation email
-          if (!checkEmails(email, confirmEmail)) {
-            return false;
-          }
-          
-          /*
-          // Display summary
-          var summary = "First Name: " + firstName + "\n" +
-                        "Description: " + description + "\n" +
-                        "Email: " + email + "\n" +
-                        "Phone Number: " + phoneNumber + "\n" +
-                        "Preferred Contact Method: " + contactMethod + "\n" +
-                        "Project Date: " + date.toDateString();
-          alert(summary);
-          */
-          return true;
-        }
-        
-        function checkDate(date, currentDate) {
-          if (date <= currentDate) {
-            alert("Please select a date at least 1 day in the future.");
-            return false;
-          }
-          return true;
-        }
-        
-        function checkEmails(email, confirmEmail) {
-          if (email !== confirmEmail) {
-            alert("Emails do not match.");
-            return false;
-          }
-          return true;
-        }
-    </script>
 </head>
 <body>
     <div class="navbar">
@@ -128,7 +77,7 @@
         
                     <!-- Form Section -->
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
+                        <form id ="contactForm">
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="firstName">First Name:</label><br>
@@ -163,7 +112,69 @@
                             </div>
                             <input type="submit" value="Submit">
                         </form>
-                        
+                        <h2 id="formResponse"></h2>
+                        <script>
+                            function validateForm() {
+                                var email = document.getElementById("email").value;
+                                var confirmEmail = document.getElementById("confirmEmail").value;
+                                var date = new Date(document.getElementById("date").value);
+                                var currentDate = new Date();
+                                
+                                // Check if date is at least 1 day in the future
+                                if (!checkDate(date, currentDate)) {
+                                    return false;
+                                }
+                                
+                                // Check if email matches confirmation email
+                                if (!checkEmails(email, confirmEmail)) {
+                                    return false;
+                                }
+                                return true;
+                            }
+                                
+                            function checkDate(date, currentDate) {
+                                if (date <= currentDate) {
+                                    alert("Please select a date at least 1 day in the future.");
+                                    return false;
+                                }
+                                return true;
+                            }
+                                
+                            function checkEmails(email, confirmEmail) {
+                                if (email !== confirmEmail) {
+                                    alert("Emails do not match.");
+                                    return false;
+                                }
+                                return true;
+                            }
+
+
+                            // Script used to add the php response to the bottom of the form. - Eamon Mooney 230075926
+                            // Intercept form submission
+                            document.getElementById("contactForm").addEventListener("submit", function (event) {
+                                event.preventDefault(); // Prevent default form submission
+
+                                // Call the custom validation function
+                                if (!validateForm()) {
+                                    return; // Stop submission if validation fails
+                                }
+
+                                // Collect form data
+                                const formData = new FormData(this);
+
+                                // Submit the form data using fetch
+                                fetch("/G-TECH50/php/contactForm.php", {
+                                    method: "POST",
+                                    body: formData,
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                    // Display the response inside the formResponse element
+                                    document.getElementById("formResponse").innerHTML = data;
+                                })
+                                .catch(error => console.error("Error:", error));
+                            });
+                          </script>
                     </div>
                 </div>
             </div>

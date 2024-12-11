@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     //Assigns the submitted data, if they do not exist, they are assigned to false instead
     $email=isset($_POST['email'])?$_POST['email']:false;
+    $telephone=isset($_POST['phoneNumber'])?$_POST['phoneNumber']:false;
     $TicketContent=isset($_POST['description'])?$_POST['description']:false;
     //$ticketType=isset($_POST['ticketType'])?$_POST['ticketType']:false;
 
@@ -36,7 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             exit("Invalid description!");
         } 
     }
-
+    if (!($telephone)){
+        exit("No phone number has been given!");
+    }
     if (!($ticketType)){
         exit("No subject has been given!");
     }
@@ -60,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $TicketTypeId = $stmt->fetchColumn();
 
         //Insert ticket info into the database
-        $stmt=$db->prepare("insert into supportTickets values(default,?,?,?,?,?)");
-        $stmt->execute(array($TicketTypeId, $userId, $ticketDate, false, $TicketContent));
+        $stmt=$db->prepare("insert into supportTickets values(default,?,?,?,?,?,?)");
+        $stmt->execute(array($TicketTypeId, $userId, $telephone, $ticketDate, false, $TicketContent));
 
         echo "<p>Your ticket has been submitted successfully. You will receive a response soon.</p>";
 
