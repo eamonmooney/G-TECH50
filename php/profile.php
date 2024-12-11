@@ -9,11 +9,13 @@ session_start();
 //Database connection
 require_once('connectdb.php');
 
+// If the user isn't logged in, redirect to the signin page
 if (!isset($_SESSION['userId'])) {	
-    header("Location: /G-TECH50/signin.html");
-    exit(); // This checks to see if the user is in a valid session.
-    // If they are not in a valid session, they will be redirected to the login page.
-}
+    // Return a redirect response
+    echo "redirect";
+    //Leaving the php file to ensure nothing else is performed
+    exit();
+} 
 try {
     //Collecting information about the currently logged in user
     $userId = $_SESSION['userId'];

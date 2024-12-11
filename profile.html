@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Page</title>
-  <a href="/php/profile.php"></a>
-  <a href="/php/previousOrders.php"></a>
   <style>
     body {
       margin: 0;
@@ -142,28 +140,6 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="logo">
-      <a href="index.html">Logo</a>
-    </div>
-
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-
-      <div class="dropdown">
-        <a href=#>Categories</a>
-        <div class="dropdown-content">
-          <a href="categories/Mice.html">Mice</a>
-          <a href="categories/Monitors.html">Monitors</a>
-          <a href="categories/Headphones.html">Headphones</a>
-          <a href="categories/Keyboards.html">Keyboards</a>
-          <a href="categories/Mousepads.html">Mousepads</a>
-        </div>
-      </div>
-      <a href="aboutus.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
-    </div>
-
   <div class="profile-container">
     
     <div class="sidebar">
@@ -187,10 +163,16 @@
         <ul id="orders-list"></ul>
         <script>
           // Use JavaScript to fetch updated content from a PHP script
-          fetch('php/eamontest.php')
+          fetch('php/profile.php')
               .then(response => response.text())
               .then(data => {
+                if (data == "redirect") {
+                  // Redirect to signin.html
+                  window.location.href = 'signin.html';
+                  //Otherwise if the user is logged in,
+                } else {
                   document.getElementById('orders-list').innerHTML = data;
+                }
               })
               .catch(error => console.error('Error:', error));
         </script>
