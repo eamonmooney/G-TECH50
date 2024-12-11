@@ -142,15 +142,35 @@
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="logo">
+      <a href="index.html">Logo</a>
+    </div>
 
-    
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
+        </div>
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
   <div class="profile-container">
     
     <div class="sidebar">
       <button class="tab-button" onclick="window.location.href = 'index.html';">Home</button>
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
-      <button class="tab-button" onclick="showContent('details')">Details</button>
+      <button class="tab-button" onclick="showContent('settings')">Settings</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
 
@@ -198,7 +218,7 @@
       <div id="logout" class="content">
         <h2>Logout</h2>
         
-        <form action="/logout" method="POST"> 
+        <form action="/G-TECH50/php/signOutFunction.php" method="POST"> 
           <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
         </form>
       </div>
