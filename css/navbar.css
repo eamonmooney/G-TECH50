@@ -1,0 +1,163 @@
+/* CSS FOR THE NAVBAR 
+CSS WORKED ON BY TOBIAS
+CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
+
+.navbar {
+	display: flex;
+	justify-content: space-between; 
+	align-items: center;
+	background-color: #000000;
+	width: 100%;
+	position: fixed;
+	top: 0; 
+	left: 0;
+	z-index: 1000;
+	padding: 0 20px;
+	height: 55px;
+  }
+
+  .logo {
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	align-items: center;
+	padding: 0;  
+  }
+
+ .logo-image {
+	width: 50px;
+	height: auto;
+	object-fit: contain;
+	margin-left: 10px;
+  }
+
+  .nav-links {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	flex: 1;
+	margin-left: 300px; 
+	margin-right: 50px;
+  }
+
+  .navbar a {  
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+  }
+
+  .navbar a:hover {
+	background-color: #201c1c;
+  }
+
+  .material-icons {
+	color: white; 
+	font-size: 24px;
+  }
+
+  .icon-container {
+	flex: 1; 
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 5px; 
+	margin-right: 20px;
+  }
+
+  .search-bar {
+	display: flex;
+	align-items: center;
+	background-color: #201c1c;
+	border-radius: 5px;
+	padding: 5px 10px;
+  }
+
+  .search-bar input[type="text"] {
+	background-color: transparent;
+	border: none;
+	color: white;
+	outline: none;
+	padding: 5px;
+	font-size: 16px;
+	width: 120px; 
+  }
+
+  .search-bar .material-icons {
+	color: white;
+	cursor: pointer;
+	font-size: 24px;
+  }
+
+  .search-bar input[type="text"]::placeholder {
+	color: #aaa; 
+  }
+
+  .search-results {
+	margin-top: 70px;
+	padding: 10px;
+	background-color: #201c1c;
+	color: white;
+	border-radius: 5px;
+	width: 90%;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+  .search-results a {
+	display: block;
+	margin-bottom: 5px;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	border-bottom: 1px solid #333;
+  }
+
+  .search-results a:hover {
+	background-color: #333333;
+  }
+
+  .search-results a:last-child {
+	border-bottom: none;
+  }
+  .dropdown {
+	position: relative;
+	margin-top: 15px; 
+  }
+
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #201c1c;
+	padding: 10px;
+	width: 600px;
+	border-radius: 5px;
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .dropdown:hover .dropdown-content {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+  }
+
+  .dropdown-content a {
+	color: white;
+	width: 100px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	text-align: center;
+	background-color: #201c1c;
+	border-radius: 5px;
+  }
+
+  .dropdown-content a:hover {
+	background-color: #333333;
+  }

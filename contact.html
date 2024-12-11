@@ -6,6 +6,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
 
     <script>
         function validateForm() {
@@ -59,9 +61,13 @@
     </script>
 </head>
 <body>
+   
+  
     <div class="navbar">
         <div class="logo">
-          <a href="index.html">Logo</a>
+    
+          <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
+    
         </div>
     
         <div class="nav-links">
@@ -85,16 +91,27 @@
     
     
         <div class="icon-container">
-            
-            <div class="search-bar">
-              <input type="text" placeholder="Search...">
-              <i class="material-icons">search</i>
-            </div>
+          <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search...">
+            <i class="material-icons" id="searchButton">search</i>
+          </div>
     
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+          <a href="profile.html"><i class="material-icons">account_circle</i></a>
+          <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
         </div>
       </div>
+    
+      <div id="searchResults" class="search-results" style="display: none;"></div>
+    
+      <!-- Linking to Search bar JS -->
+      <script src="js/searchBar.js"></script>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+
+    
     <main id="main">
         <section id="contact" class="contact">
             <div class="container">
