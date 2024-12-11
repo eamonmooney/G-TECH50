@@ -68,23 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         echo "<p>Your ticket has been submitted successfully. You will receive a response soon.</p>";
 
-        /*
-            NOTE: Could query the database to see if the given email is registered under a user, THEN assign the userID if said account exists,
-                Rather than check to see if the user is currently logged in
-
-                Therefore changing the SQL to:
-                    CREATE TABLE SupportTickets (
-                        TicketID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                        TicketTypeID INT NOT NULL,
-                        UserID INT,
-                        TicketDate DATE NOT NULL,
-                        Closed BOOLEAN NOT NULL,
-                        TicketContent CHAR(100) NOT NULL,
-                        FOREIGN KEY (TicketTypeID) REFERENCES TicketType(TicketTypeID),
-                        FOREIGN KEY (UserID) REFERENCES Users(UserID)
-                    );
-        */
-
     } catch (PDOexception $ex){
         echo "Sorry, an error has occured with the database. <br>";
         echo "Error details: <em>". $ex->getMessage()."</em";
