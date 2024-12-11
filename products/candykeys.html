@@ -6,8 +6,8 @@
   
   <title>G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="/css/products.css">
-  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="../css/products.css">
+  <link rel="stylesheet" href="../css/footer.css">
   
 
   <style>
@@ -136,26 +136,26 @@
   
   <div class="navbar">
     <div class="logo">
-      <a href="Home">Logo</a>
+      <a href="../">Logo</a>
     </div>
 
     <div class="nav-links">
-      <a href="/Home.html">Home</a>
+      <a href="../">Home</a>
 
       <div class="dropdown">
-        <a href="Categories">Categories</a>
+        <a href=#>Categories</a>
 
         <div class="dropdown-content">
-          <a href="/categories/Mice.html">Mice</a>
-          <a href="/categories/Monitors.html">Monitors</a>
-          <a href="/categories/Headphones.html">Headphones</a>
-          <a href="/categories/Keyboards.html">Keyboards</a>
-          <a href="/categories/Mousepads.html">Mousepads</a>
+          <a href="../categories/Mice.html">Mice</a>
+          <a href="../categories/Monitors.html">Monitors</a>
+          <a href="../categories/Headphones.html">Headphones</a>
+          <a href="../categories/Keyboards.html">Keyboards</a>
+          <a href="../categories/Mousepads.html">Mousepads</a>
         </div>
 
       </div>
-      <a href="Deals.html">Deals</a>
-      <a href="Support.html">Support</a>
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
     </div>
 
     <div class="icon-container">
@@ -182,9 +182,14 @@
         <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
         <h4>The CandyKeys Keyboard combines playful bubblegum colors with satisfying <br> tactile keys, ideal for gaming with a sweet edge. RGB backlighting lets you <br> customize your keyboard’s look with pastel and candy-themed lighting effects. <br> The CandyKeys is both wired and wireless, offering flexibility and stability whether you're gaming or creating. </h4>
         <h3>£34.99</h3>
-        <input type="number" value="1" valuemin="1" valuemax="10">
-        <button class="button">Add To Basket</button>
-        
+         <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
+         <form action="../php/products.php" method="POST">
+          <input type="hidden" name="prodName" value="CANDYKEYS KEYBOARD">
+          <input type="hidden" name="prodPrice" value="34.99">
+          <input type="number" name="prodQuant" value="1" min="1" max="10" >
+          <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+        </form>
+      
     </div>
 </div>
 
