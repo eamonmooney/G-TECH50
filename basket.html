@@ -265,11 +265,14 @@
 
             // Start an unordered list
             let basketHTML = "<ul>";
-            basket.forEach(item => {
-              //Create temp variables
-              name = item.name;
-              price = parseFloat(item.price);
-              quantity = item.quantity;
+            //Looping with a for loop
+            for (let name in basket) {
+              // Get the item object by its name key because it's an associative array rather than a number array
+              item = basket[name];  
+              // Get price and convert to a float
+              price = parseFloat(item.price);  
+              // Get product quantity (should be an int from the php it was created)
+              quantity = item.quantity;  
 
               //Create list item
               const li = document.createElement('li');
@@ -326,7 +329,7 @@
               //Method to update price
               updateTotalPrice();
 
-            });
+            };
             // Close the unordered list
             basketHTML += "</ul>";
 
