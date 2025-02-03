@@ -1,9 +1,9 @@
 ⚠️By Person:
 
 😊Eamon
--Previous orders page
--Check status of past orders
--Rate and review individual products and service by website (put this in the past orders page) 
+- Previous orders page
+- Check status of past orders
+- Rate and review individual products and service by website (put this in the past orders page) 
 
 😊Elisha
 - Error messages for sign-up
@@ -34,12 +34,12 @@
 
 
 ⚠️Future Features:
-Additional: 
+🤨Additional: 
 - Graphs for admins, e.g. location, gender, products
 - Access codes for admins
 - DIY Custom products
 
-Admin Required:
+🤨Admin Required:
 - Can sign up -> use access codes
 - Can use website as a customer
 - Can change their password
