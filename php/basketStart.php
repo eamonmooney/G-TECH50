@@ -14,8 +14,7 @@
 	  // Ensure the Content-Type is set to JSON
 	  header('Content-Type: application/json');
 
-	//If the user isn't loaded in, redirect to the signin page
-	// If the user isn't logged in
+	// If the user isn't logged in, redirect to the signin page
 	if (!isset($_SESSION['userId'])) {	
 		// Return a response encoded in JSON, with redirect = true, meaning we will redirect
 		echo json_encode(["redirect" => true]);
