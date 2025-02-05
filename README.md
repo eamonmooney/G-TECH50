@@ -35,19 +35,34 @@
 
 ⚠️Future Features:
 🤨Additional: 
-- Graphs for admins, e.g. location, gender, products
-- Access codes for admins
 - DIY Custom products
+- User Graphs for admins
+- Access codes for admins
+- 
 
 🤨Admin Required:
-- Can sign up -> use access codes
-- Can use website as a customer
-- Can change their password
-- Process user orders: Check transaction details and process shipments in a friendly way, update stock levels
-- View, add, delete and update customers’ details
-- product listing: image of the product, a price, a description, an indication of the stock level, and further info
-- Inventory alert system: user communicated if item goes out of stock, or under a specified threshold
-- Stock number updates automatically when incoming or outgoing products entered
-- Generate reports in real-time on current stock levels and incoming and outgoing orders for all products
-- Allow admins to search, filter and view the status of selected products and orders
-- Allow admins to add, edit or remove products to/ from the inventory through the website
+Admin side:
+
+⇒ Tier system of admins → link to access codes
+
+- Transaction admin, Stock admin, SuperAdmin
+
+- User transaction page → list of all orders and can process these
+- User details page → change these
+- Inventory Management page
+    - Product Listing: image, price, description, stock level, additional info
+    - Alert System - out of stock/under threshold
+    - Reports on stock: current and incoming/outgoing orders
+    - Search filter
+- Ticket viewer page
+    - See and close tickets
+- Data and analytics → consider this
+    - Graphs about user, gender, etc
+- Customer Review Page
+    - Looking at reviews
+    - Choose pinned review for the homepage
+
+- Functionality
+    - add, edit, remove products
+    - search, filter and view status of products and orders
+    - Initiate and process and incoming order
