@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basket Page</title>
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/navbar.css">
   <style>
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       display: flex;
@@ -133,10 +136,84 @@
     .price {
       font-weight: bold;
     }
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        margin: 10px;
+      }
+
+      .button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .stage-indicator {
+        gap: 10px;
+      }
+
+      .circle {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
+  
+  <div class="navbar">
+    <div class="logo">
 
+      <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
+
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
+        </div>
+
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
+  </div>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+  
  
   <div class="stage-indicator">
     <div id="stage-1" class="circle active">1</div>
@@ -242,7 +319,7 @@
         <h3>Products:</h3>
         <p>No products added yet</p>
 
-        <p>Total: $0.00</p>
+        <p>Total: £0.00</p>
       `;
       document.getElementById('summary-details').innerHTML = summaryDetailsHTML;
     }

@@ -2,95 +2,57 @@
 <html lang="en">
 <head>
     <title>Contact - G-TECH50</title>
+    <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/css/contact.css">
-
-    <script>
-        function validateForm() {
-          var firstName = document.getElementById("firstName").value;
-          var description = document.getElementById("description").value;
-          var email = document.getElementById("email").value;
-          var confirmEmail = document.getElementById("confirmEmail").value;
-          var phoneNumber = document.getElementById("phoneNumber").value;
-          var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
-          var date = new Date(document.getElementById("date").value);
-          var currentDate = new Date();
-          
-          // Check if date is at least 1 day in the future
-          if (!checkDate(date, currentDate)) {
-            return false;
-          }
-          
-          // Check if email matches confirmation email
-          if (!checkEmails(email, confirmEmail)) {
-            return false;
-          }
-          
-          // Display summary
-          var summary = "First Name: " + firstName + "\n" +
-                        "Description: " + description + "\n" +
-                        "Email: " + email + "\n" +
-                        "Phone Number: " + phoneNumber + "\n" +
-                        "Preferred Contact Method: " + contactMethod + "\n" +
-                        "Project Date: " + date.toDateString();
-          alert(summary);
-          return true;
-        }
-        
-        function checkDate(date, currentDate) {
-          if (date <= currentDate) {
-            alert("Please select a date at least 1 day in the future.");
-            return false;
-          }
-          return true;
-        }
-        
-        function checkEmails(email, confirmEmail) {
-          if (email !== confirmEmail) {
-            alert("Emails do not match.");
-            return false;
-          }
-          return true;
-        }
-    </script>
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
     <div class="navbar">
         <div class="logo">
-          <a href="Home">Logo</a>
+          <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
         </div>
-    
         <div class="nav-links">
-          <a href="/Home.html">Home</a>
-    
+          <a href="index.html">Home</a>
           <div class="dropdown">
-            <a href="Categories">Categories</a>
-    
+            <a href=#>Categories</a>
             <div class="dropdown-content">
-              <a href="/categories/Mice.html">Mice</a>
-              <a href="/categories/Monitors.html">Monitors</a>
-              <a href="/categories/Headphones.html">Headphones</a>
-              <a href="/categories/Keyboards.html">Keyboards</a>
-              <a href="/categories/Mousepads.html">Mousepads</a>
+              <a href="categories/Mice.html">Mice</a>
+              <a href="categories/Monitors.html">Monitors</a>
+              <a href="categories/Headphones.html">Headphones</a>
+              <a href="categories/Keyboards.html">Keyboards</a>
+              <a href="categories/Mousepads.html">Mousepads</a>
             </div>
-    
           </div>
-          <a href="Deals.html">Deals</a>
-          <a href="Support.html">Support</a>
+          <a href="aboutus.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
         </div>
+    
     
         <div class="icon-container">
-            
-            <div class="search-bar">
-              <input type="text" placeholder="Search...">
-              <i class="material-icons">search</i>
-            </div>
+          <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search...">
+            <i class="material-icons" id="searchButton">search</i>
+          </div>
     
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+          <a href="profile.html"><i class="material-icons">account_circle</i></a>
+          <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
         </div>
       </div>
+    
+      <div id="searchResults" class="search-results" style="display: none;"></div>
+    
+      <!-- Linking to Search bar JS -->
+      <script src="js/searchBar.js"></script>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+
+    
     <main id="main">
         <section id="contact" class="contact">
             <div class="container">
@@ -124,41 +86,95 @@
         
                     <!-- Form Section -->
                     <div class="col-lg-8 mt-5 mt-lg-0">
-                        <form>
+                        <form id ="contactForm">
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="firstName">First Name:</label><br>
-                                    <input type="text" class="form-control" id="firstName" required>
+                                    <label for="firstName">Name:</label><br>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="email">Email:</label><br>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="confirmEmail">Confirm Email:</label><br>
-                                    <input type="email" class="form-control" id="confirmEmail" required>
+                                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <label for="phoneNumber">Phone Number:</label><br>
-                                    <input type="tel" class="form-control" id="phoneNumber" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="contactMethod">Preferred Contact Method:</label><br>
-                                    <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>Email<br>
-                                    <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">Phone
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="date">Date:</label><br>
-                                    <input type="date" class="form-control" id="date" required>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
                                 </div>
                             </div>
-        
+                        
                             <div class="form-group mt-3">
                                 <label for="description">Description:</label><br>
-                                <textarea id="description" rows="5" required></textarea>
+                                <textarea id="description" name="description" rows="5" required></textarea>
                             </div>
-                            <input type="button" value="Submit" onclick="validateForm()">
+                            <input type="submit" value="Submit">
                         </form>
+                        <h2 id="formResponse"></h2>
+                        <script>
+                            function validateForm() {
+                                var email = document.getElementById("email").value;
+                                var confirmEmail = document.getElementById("confirmEmail").value;
+                                var date = new Date(document.getElementById("date").value);
+                                var currentDate = new Date();
+                                
+                                // Check if date is at least 1 day in the future
+                                if (!checkDate(date, currentDate)) {
+                                    return false;
+                                }
+                                
+                                // Check if email matches confirmation email
+                                if (!checkEmails(email, confirmEmail)) {
+                                    return false;
+                                }
+                                return true;
+                            }
+                                
+                            function checkDate(date, currentDate) {
+                                if (date <= currentDate) {
+                                    alert("Please select a date at least 1 day in the future.");
+                                    return false;
+                                }
+                                return true;
+                            }
+                                
+                            function checkEmails(email, confirmEmail) {
+                                if (email !== confirmEmail) {
+                                    alert("Emails do not match.");
+                                    return false;
+                                }
+                                return true;
+                            }
+
+
+                            // Script used to add the php response to the bottom of the form. - Eamon Mooney 230075926
+                            // Intercept form submission
+                            document.getElementById("contactForm").addEventListener("submit", function (event) {
+                                event.preventDefault(); // Prevent default form submission
+
+                                // Call the custom validation function
+                                if (!validateForm()) {
+                                    return; // Stop submission if validation fails
+                                }
+
+                                // Collect form data
+                                const formData = new FormData(this);
+
+                                // Submit the form data using fetch
+                                fetch("/G-TECH50/php/contactForm.php", {
+                                    method: "POST",
+                                    body: formData,
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                    // Display the response inside the formResponse element
+                                    document.getElementById("formResponse").innerHTML = data;
+                                })
+                                .catch(error => console.error("Error:", error));
+                            });
+                          </script>
                     </div>
                 </div>
             </div>
