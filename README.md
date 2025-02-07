@@ -4,7 +4,8 @@
 - Previous orders page
   ### Works but needs Sahil to complete the registering orders to database function
 - Check status of past orders
-- Rate and review individual products and service by website (put this in the past orders page) 
+- Rate and review individual products and service by website (put this in the past orders page)
+  ### Database needs a review table before this can be implemented
 
 😊Elisha
 - Error messages for sign-up
