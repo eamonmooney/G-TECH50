@@ -1,279 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G-Tech 50</title>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- CSS Files -->
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/footer.css">
-
-    <style>
-
-    .navbar {
-      display: flex;
-      justify-content: space-between; 
-      align-items: center;
-      background-color: #000000;
-      width: 100%;
-      position: fixed;
-      top: 0; 
-      left: 0;
-      z-index: 1000;
-      padding: 0 20px;
-      height: 55px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center; 
-      align-items: center;
-      padding: 0;  
-    }
-
-   .logo-image {
-      width: 50px;
-      height: auto;
-      object-fit: contain;
-      margin-left: 10px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex: 1;
-      margin-left: 300px; 
-      margin-right: 50px;
-    }
-
-    .navbar a {  
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .navbar a:hover {
-      background-color: #201c1c;
-    }
-
-    .material-icons {
-      color: white; 
-      font-size: 24px;
-    }
-
-    .icon-container {
-      flex: 1; 
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 5px; 
-      margin-right: 20px;
-    }
-
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background-color: #201c1c;
-      border-radius: 5px;
-      padding: 5px 10px;
-    }
-
-    .search-bar input[type="text"] {
-      background-color: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      padding: 5px;
-      font-size: 16px;
-      width: 120px; 
-    }
-
-    .search-bar .material-icons {
-      color: white;
-      cursor: pointer;
-      font-size: 24px;
-    }
-
-    .search-bar input[type="text"]::placeholder {
-      color: #aaa; 
-    }
-
-    .search-results {
-      margin-top: 70px;
-      padding: 10px;
-      background-color: #201c1c;
-      color: white;
-      border-radius: 5px;
-      width: 90%;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .search-results a {
-      display: block;
-      margin-bottom: 5px;
-      padding: 10px;
-      text-decoration: none;
-      color: white;
-      border-bottom: 1px solid #333;
-    }
-
-    .search-results a:hover {
-      background-color: #333333;
-    }
-
-    .search-results a:last-child {
-      border-bottom: none;
-    }
-    .dropdown {
-      position: relative;
-      margin-top: 15px; 
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #201c1c;
-      padding: 10px;
-      width: 600px;
-      border-radius: 5px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .dropdown-content a {
-      color: white;
-      width: 100px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      text-align: center;
-      background-color: #201c1c;
-      border-radius: 5px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #333333;
-    }
-  </style>
-
 </head>
 <body>
-  
-  <div class="navbar">
-    <div class="logo">
-     
-      <img src="images/gtechlogonew.png" alt="Logo" class="logo-image">
 
-    </div>
-
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-
-      <div class="dropdown">
-        <a href=#>Categories</a>
-
-        <div class="dropdown-content">
-          <a href="categories/Mice.html">Mice</a>
-          <a href="categories/Monitors.html">Monitors</a>
-          <a href="categories/Headphones.html">Headphones</a>
-          <a href="categories/Keyboards.html">Keyboards</a>
-          <a href="categories/Mousepads.html">Mousepads</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
         </div>
-
-      </div>
-      <a href="aboutus.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
-    </div>
-
-
-    <div class="icon-container">
-        
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
-    </div>
-  </div>
-
-  <div id="searchResults" class="search-results" style="display: none;"></div>
-
-  <script>
-    
-    const data = [
-      { name: "Mice", url: "Mice.html" },
-      { name: "Monitors", url: "Monitors.html" },
-      { name: "Headphones", url: "Headphones.html" },
-      { name: "Keyboards", url: "Keyboards.html" },
-      { name: "Mousepads", url: "Mousepads.html" },
-      
-    ];
-
-    
-    const searchBar = document.getElementById("searchBar");
-    const searchButton = document.getElementById("searchButton");
-    const searchResults = document.getElementById("searchResults");
-
-    function searchItems(query) {
-      
-      const lowerQuery = query.toLowerCase();
-      
-      
-      const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-      
-      searchResults.innerHTML = results.length
-        ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-        : '<div>No results found</div>';
-
-      searchResults.style.display = query ? 'block' : 'none';
-    }
-
-    
-    searchBar.addEventListener("input", () => searchItems(searchBar.value));
-    searchButton.addEventListener("click", () => searchItems(searchBar.value));
-  </script>
-     
-    <img src="images/Externalmade/7.png" alt="mouse with headphone image" class="img1">
-     <a href="aboutus.html">
-    <button class="button">ABOUT US</button></a>
-    </a>
-    
- 
-    <div class="pictures:hover">
-      <div class = "pictures">
-    <img src="images/Externalmade/6.png" alt="monitor">
-    <img src="images/Externalmade/5.png" alt="headphone">
-    <img src="images/Externalmade/4.png" alt="internal of desktop">
-    <img src="images/Externalmade/3.png" alt="computer set">
-    </div>
-     </div>
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-            <div class="contact-details">
-                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
         </div>
-    </footer>
+
+        <!-- Search & User Icons -->
+        <div class="icon-container">
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
+            </div>
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+    </nav>
+
+    <!-- Search Results -->
+    <div id="searchResults" class="search-results" style="display: none;"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="images/Externalmade/7.png" alt="Gaming Mouse with Headphone" class="img1">
+        <a href="aboutus.html">
+            <button class="button">SHOP NOW</button>
+        </a>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="pictures">
+        <img src="images/Externalmade/6.png" alt="Monitor">
+        <img src="images/Externalmade/5.png" alt="Headphone">
+        <img src="images/Externalmade/4.png" alt="PC Internal Hardware">
+        <img src="images/Externalmade/3.png" alt="Computer Set">
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+          <div class="footer-section">
+              <h3>G-TECH50</h3>
+              <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+          </div>
+          <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Shop</a></li>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Contact</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Contact</h3>
+              <p>📞 Phone: +44 723-4732-938</p>
+              <p>✉️ Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+              <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+          </div>
+      </div>
+      <style>
+        footer {
+            background: url('../images/8.png') no-repeat center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            font-family: 'horizon';
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+            text-align: left;
+            gap: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px
+        }
+        
+        .footer-section h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #fff;
+            display: inline-block;
+            padding-bottom: 5px;
+            font-family: 'superbrigade';
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a,
+        .footer-section p a {
+            color: #bbb;
+            text-decoration: none;
+        }
+        
+        .footer-section ul li a:hover,
+        .footer-section p a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        </style>
+    <!-- JavaScript -->
+    <script>
+        const data = [
+            { name: "Mice", url: "Mice.html" },
+            { name: "Monitors", url: "Monitors.html" },
+            { name: "Headphones", url: "Headphones.html" },
+            { name: "Keyboards", url: "Keyboards.html" },
+            { name: "Mousepads", url: "Mousepads.html" },
+        ];
+
+        const searchBar = document.getElementById("searchBar");
+        const searchButton = document.getElementById("searchButton");
+        const searchResults = document.getElementById("searchResults");
+
+        function searchItems(query) {
+            const lowerQuery = query.toLowerCase();
+            const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
+
+            searchResults.innerHTML = results.length
+                ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
+                : '<div>No results found</div>';
+
+            searchResults.style.display = query ? 'block' : 'none';
+        }
+
+        searchBar.addEventListener("input", () => searchItems(searchBar.value));
+        searchButton.addEventListener("click", () => searchItems(searchBar.value));
+    </script>
+
 </body>
 </html>
