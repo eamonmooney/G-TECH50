@@ -117,13 +117,6 @@
                             function validateForm() {
                                 var email = document.getElementById("email").value;
                                 var confirmEmail = document.getElementById("confirmEmail").value;
-                                var date = new Date(document.getElementById("date").value);
-                                var currentDate = new Date();
-                                
-                                // Check if date is at least 1 day in the future
-                                if (!checkDate(date, currentDate)) {
-                                    return false;
-                                }
                                 
                                 // Check if email matches confirmation email
                                 if (!checkEmails(email, confirmEmail)) {
