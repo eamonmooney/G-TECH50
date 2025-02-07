@@ -47,12 +47,13 @@ if (count($orders) > 0) {
 
         // Output details for each OrderItem
         if (count($orderItems) > 0) {
-            $newHtml .= "Order Items:<br>";
+            $newHtml .= "Order Items:<br><br>";
             foreach ($orderItems as $item) {
                 $newHtml .= "Product Name: " . htmlspecialchars($item['ProductName']) . "<br>";
                 $newHtml .= "Returnable: " . ($item['Returnable'] ? 'Yes' : 'No') . "<br>";
                 $newHtml .= "Price: £" . number_format($item['Price'], 2) . "<br>";
                 $newHtml .= "Quantity: " . htmlspecialchars($item['Quantity']) . "<br><br>";
+                $newHtml .= "<button>Review Product</button><br><br>";
             }
         } else {
             $newHtml .= "No items found for this order.<br>";
