@@ -2,10 +2,11 @@
 
 😊Eamon
 - Previous orders page
-  ### Works but needs Sahil to complete the registering orders to database function
+    - Works but the registering orders to database function needs to be implemented - Needs Sahil
 - Check status of past orders
+    - Requires returns function to be complete - Needs Sahil
 - Rate and review individual products and service by website (put this in the past orders page)
-  ### Database needs a review table before this can be implemented
+    - Database needs a review table before this can be implemented - Needs Sahil
 
 😊Elisha
 - Error messages for sign-up
