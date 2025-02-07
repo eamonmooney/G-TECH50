@@ -2,6 +2,7 @@
 
 😊Eamon
 - Previous orders page
+  ### Works but needs Sahil to complete the registering orders to database function
 - Check status of past orders
 - Rate and review individual products and service by website (put this in the past orders page) 
 
@@ -24,9 +25,9 @@
 - Keep me signed in feature
 
 😊Sahil
--Checkout page → dummy payment
--Place order - submit to basket and register as order in database with total price → don’t need to do payment
--Return product they’ve previously purchased 
+- Checkout page → dummy payment
+- Place order - submit to basket and register as order in database with total price → don’t need to do payment
+- Return product they’ve previously purchased 
 
 😊Tobias
 - Filter (colour, price)
