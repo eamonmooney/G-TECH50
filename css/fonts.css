@@ -8,4 +8,5 @@ Created by and implemented on all pages by Safa */
 /* Apply font to everything */
 * {
 	font-family: 'Poppins', Arial, Helvetica, sans-serif; 
+	font-size: 13px;
   }
