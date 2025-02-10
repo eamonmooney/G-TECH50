@@ -25,10 +25,11 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   }
 
  .logo-image {
-	width: 100px;
+	width: 120px;
 	height: auto;
 	object-fit: contain;
-	margin-left: 10px;
+	margin-right: 200px;
+    margin-left: 10px;
   }
 
   .nav-links {
@@ -36,14 +37,14 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	gap: 10px;
 	justify-content: center;
 	flex: 1;
-	margin-left: 300px; 
+	margin-left: 80px; 
 	margin-right: 50px;
   }
 
   .navbar a {  
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 15px 15px;
 	text-decoration: none;
   }
 
@@ -94,15 +95,17 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   }
 
   .search-results {
-	margin-top: 70px;
-	padding: 10px;
+	position: absolute; 
+	top: 55px; 
+	left: 50%; 
+	transform: translateX(-50%); 
 	background-color: #201c1c;
 	color: white;
 	border-radius: 5px;
 	width: 90%;
 	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 10px;
+	z-index: 1001;
   }
 
   .search-results a {
