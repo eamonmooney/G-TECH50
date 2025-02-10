@@ -1,183 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Contact - G-TECH50</title>
+    <title>GTECH50 | CONTACT US</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/contact.css">
-
-    <script>
-        function validateForm() {
-          var firstName = document.getElementById("firstName").value;
-          var description = document.getElementById("description").value;
-          var email = document.getElementById("email").value;
-          var confirmEmail = document.getElementById("confirmEmail").value;
-          var phoneNumber = document.getElementById("phoneNumber").value;
-          var contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
-          var date = new Date(document.getElementById("date").value);
-          var currentDate = new Date();
-          
-          // Check if date is at least 1 day in the future
-          if (!checkDate(date, currentDate)) {
-            return false;
-          }
-          
-          // Check if email matches confirmation email
-          if (!checkEmails(email, confirmEmail)) {
-            return false;
-          }
-          
-          /*
-          // Display summary
-          var summary = "First Name: " + firstName + "\n" +
-                        "Description: " + description + "\n" +
-                        "Email: " + email + "\n" +
-                        "Phone Number: " + phoneNumber + "\n" +
-                        "Preferred Contact Method: " + contactMethod + "\n" +
-                        "Project Date: " + date.toDateString();
-          alert(summary);
-          */
-          return true;
-        }
-        
-        function checkDate(date, currentDate) {
-          if (date <= currentDate) {
-            alert("Please select a date at least 1 day in the future.");
-            return false;
-          }
-          return true;
-        }
-        
-        function checkEmails(email, confirmEmail) {
-          if (email !== confirmEmail) {
-            alert("Emails do not match.");
-            return false;
-          }
-          return true;
-        }
-    </script>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
+
 <body>
-    <div class="navbar">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <div class="logo">
-          <a href="index.html">Logo</a>
+            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
         </div>
-    
         <div class="nav-links">
-          <a href="index.html">Home</a>
-    
-          <div class="dropdown">
-            <a href=#>Categories</a>
-    
-            <div class="dropdown-content">
-              <a href="categories/Mice.html">Mice</a>
-              <a href="categories/Monitors.html">Monitors</a>
-              <a href="categories/Headphones.html">Headphones</a>
-              <a href="categories/Keyboards.html">Keyboards</a>
-              <a href="categories/Mousepads.html">Mousepads</a>
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
-    
-          </div>
-          <a href="aboutus.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
         </div>
-    
-    
+
+        <!-- Search & User Icons -->
         <div class="icon-container">
-            
             <div class="search-bar">
-              <input type="text" placeholder="Search...">
-              <i class="material-icons">search</i>
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
             </div>
-    
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
             <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
         </div>
-      </div>
-    <main id="main">
-        <section id="contact" class="contact">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Contact</h2>
-                </div>
-        
-                <div class="row mt-1">
-                    <!-- Info Section -->
-                    <div class="col-lg-4">
-                        <div class="info">
-                            <div class="address">
-                                <i class="bi bi-geo-alt"></i>
-                                <h4>Location:</h4>
-                                <p>Birmingham B5 7NX</p>
-                            </div>
-        
-                            <div class="email">
-                                <i class="bi bi-envelope"></i>
-                                <h4>Email:</h4>
-                                <p>random@aston.ac.uk</p>
-                            </div>
-        
-                            <div class="phone">
-                                <i class="bi bi-phone"></i>
-                                <h4>Call:</h4>
-                                <p>+447442252100</p>
-                            </div>
-                        </div>
-                    </div>
-        
+    </nav>
+
+    <section class="hero">
+        <img src="images/Externalmade/9.png" alt="contact us main picture" class="conatct-us-main">
+      </section>
+
                     <!-- Form Section -->
-                    <div class="col-lg-8 mt-5 mt-lg-0">
+                     <div class ="formtitle">
+                        <h1>GET IN TOUCH WITH OUR TEAM</h1>
+                     </div>
+                    <div class="contactform">
                         <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="firstName">First Name:</label><br>
+                                <div class="firstname">
+                                    <label for="firstName">First Name:</label>
                                     <input type="text" class="form-control" id="firstName" name="firstName" required>
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="email">Email:</label><br>
+                                <div class="email">
+                                    <label for="email">Email:</label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="confirmEmail">Confirm Email:</label><br>
+                                <div class="confirmemail">
+                                    <label for="confirmEmail">Confirm Email:</label>
                                     <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="phoneNumber">Phone Number:</label><br>
+                                <div class="phonenumber">
+                                    <label for="phoneNumber">Phone Number:</label>
                                     <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="contactMethod">Preferred Contact Method:</label><br>
-                                    <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>Email<br>
-                                    <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">Phone
+                                <div class="prefcontact">
+                                    <label for="contactMethodTitle">Preferred Contact Method:</label>
+                                    <div id="contactMethodTitle">
+                                        <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>
+                                        <label for="emailMethod">Email</label>
+                                
+                                        <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">
+                                        <label for="phoneMethod">Phone</label>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <label for="date">Date:</label><br>
+                                <div class="date">
+                                    <label for="date">Date:</label>
                                     <input type="date" class="form-control" id="date" name="date" required>
                                 </div>
                             </div>
                         
-                            <div class="form-group mt-3">
-                                <label for="description">Description:</label><br>
+                            <div class="description">
+                                <label for="description">Description:</label>
                                 <textarea id="description" name="description" rows="5" required></textarea>
                             </div>
                             <input type="submit" value="Submit">
                         </form>
-                        
                     </div>
                 </div>
             </div>
         </section>        
     </main>
-    <footer id="footer">
-        <div class="container">
-            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-            <div class="contact-details">
-                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>G-TECH50</h3>
+                <p>&copy; 2024 G-TECH50</p>
+                <p>ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Phone: +44 7700 900123</p>
+                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
             </div>
         </div>
     </footer>
+
+    <!-- Contact Form Validation -->
+    <script>
+        function validateForm() {
+            let firstName = document.getElementById("firstName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let confirmEmail = document.getElementById("confirmEmail").value.trim();
+            let phoneNumber = document.getElementById("phoneNumber").value.trim();
+            let contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
+            let date = new Date(document.getElementById("date").value);
+            let currentDate = new Date();
+
+            if (firstName === "" || email === "" || confirmEmail === "" || phoneNumber === "") {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            if (!checkDate(date, currentDate)) {
+                return false;
+            }
+
+            if (!checkEmails(email, confirmEmail)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function checkDate(date, currentDate) {
+            if (date <= currentDate) {
+                alert("Please select a date at least 1 day in the future.");
+                return false;
+            }
+            return true;
+        }
+
+        function checkEmails(email, confirmEmail) {
+            if (email !== confirmEmail) {
+                alert("Emails do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
 </body>
 </html>

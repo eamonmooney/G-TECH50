@@ -1,27 +1,62 @@
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'superbrigade';
+    src: url('fonts/superbrigade.ttf') format('truetype');
+}
+
 footer {
-    background-color: #1a1a1a;
-    color: #ccc;
-    padding: 20px 0;
-    margin: 80px 0 0; 
-    font-size: 14px;
-    text-align: center; 
+    color: white;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    font-family: 'horizon';
 }
 
-.footer-content {
-    max-width: 600px; 
-    margin: 0 auto;
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    text-align: left;
+    gap: 20px;
+    background-color: black;
 }
 
-.contact-details p {
-    margin: 5px 0;
+.footer-section {
+    flex: 1;
+    min-width: 250px;
 }
 
-.contact-details a {
+.footer-section h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    padding-bottom: 5px;
+    font-family: 'superbrigade';
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a,
+.footer-section p a {
     color: #bbb;
     text-decoration: none;
-    transition: color 0.3s ease; 
 }
 
-.contact-details a:hover {
-    color: #6366f1;
+.footer-section ul li a:hover,
+.footer-section p a:hover {
+    color: white;
+    text-decoration: underline;
 }

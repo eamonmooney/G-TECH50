@@ -1,0 +1,145 @@
+.navbar {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Ensures space between logo, nav links, and icons */
+    background-color: #000000;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 0 20px;
+    height: 60px; /* Slightly increase height for better spacing */
+    font-family: 'horizon';
+}
+
+.logo {
+    height: 100%;
+}
+
+.logo-image {
+    width: 100px; /* Adjust size */
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center; /* Centers the nav links */
+    align-items: center;
+    flex-grow: 1; /* Pushes links to the center */
+    gap: 20px; /* Adjusts spacing between links */
+}
+
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.navbar a:hover {
+    background-color: #201c1c;
+}
+
+.material-icons {
+    color: white;
+    font-size: 24px;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligns icons to the right */
+    gap: 10px; /* Adjust spacing between icons */
+    margin-right: 0%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #201c1c;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.search-bar input[type="text"] {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    padding: 5px;
+    font-size: 12px;
+    width: 120px;
+    font-family: 'horizon';
+}
+
+.search-results {
+    position: absolute; /* Ensures the dropdown floats over other elements */
+    top: 60px; /* Adjusts the position under the search bar */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensures it stays above other content */
+    padding: 10px;
+    background-color: #201c1c;
+    color: white;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 600px;
+    font-family: 'horizon';
+    display: none; /* Initially hidden */
+}
+
+.search-results a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid #333;
+}
+
+.search-results a:hover {
+    background-color: #333333;
+}
+
+.dropdown {
+    display: flex; /* Ensures the dropdown item is aligned with the others */
+    align-items: center; /* Centers the dropdown vertically */
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #201c1c;
+    padding: 10px;
+    width: 900px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    width: 190px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #201c1c;
+    border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+    background-color: #333333;
+}
