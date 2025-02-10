@@ -23,7 +23,6 @@
 
 😊Safa
 - Basket Number updating
-- Basket link to products page when empty
 - Keep me signed in feature
 
 😊Sahil
