@@ -11,8 +11,8 @@
 😊Elisha
 - Error messages for sign-up
 
-😊Hannah
-- Mobile functionality
+😊Hanna
+- Skeleton for tickets page
 
 😊Ned
 - Password, user detail changing functionality
