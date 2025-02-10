@@ -257,6 +257,8 @@
           if (basket.length === 0) {
             //Make the empty message visible
             emptyMessage.style.display = 'block';
+            // Hide the product list because it's empty
+            productList.style.display = 'none';
             //Or if there's things in the basket
           } else {
             // Otherwise, display the items in the basket
