@@ -200,9 +200,9 @@
   
     <div class="container">
       <div class="left-container">
-        <h2>Basket</h2>
+        <h2>Basket </h2>
         <div id="Products"></div>
-        <p class="empty-basket" id="empty-message">Your basket is empty.</p>
+        <p class="empty-basket" id="empty-message">Your basket is empty. <br><a href="index.html">Home</a></p>
 
         <ul id="product-list">
 
@@ -257,8 +257,8 @@
           if (basket.length === 0) {
             //Make the empty message visible
             emptyMessage.style.display = 'block';
-            // Show a message
-            document.getElementById("Products").innerHTML = "Your basket is empty.";
+            // Hide the product list because it's empty
+            productList.style.display = 'none';
             //Or if there's things in the basket
           } else {
             // Otherwise, display the items in the basket

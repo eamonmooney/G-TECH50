@@ -7,6 +7,8 @@
 // User should be able to increase/decrease the quantity of products from basket
 // Created by Safa Riasat
 
+
+
 	// Start output buffering - using this to clean any outputs and remove uneeded outputs from irrelevant areas affecting JSON
 	ob_start();
 
@@ -19,6 +21,8 @@
 	// Set the response content type to JSON
 	header('Content-Type: application/json');
 	
+
+
 	//TESTING
 	// $_SESSION['basket'] = [
 	// 	[
@@ -42,8 +46,6 @@
 			'basket' => [],  // Empty basket
 			'totalPrice' => 0];  // Nothing for total price
 		echo json_encode($data); 
-		// Clean any previous output
-		ob_end_clean(); 
 		//Leaving the php file to ensure nothing else is performed
 		exit();
 	} 
@@ -62,14 +64,21 @@
 
 		//For each loop to go through all items
 		foreach ($_SESSION['basket'] as $product) {
-			//Temp variable for the price
-			$price = $product['price']; 
+			//Check if the product has a price and quantity
+			if (isset($product['price'], $product['quantity'])) {
+				//Temp variable for the price
+				$price = $product['price']; 
 
-			//Temp quantity variable
-			$quantity = $product['quantity'];
+				//Temp quantity variable
+				$quantity = $product['quantity'];
 
-			//Adding the price
-			$totalPrice += $price* $quantity;
+				//Adding the price
+				$totalPrice += $price* $quantity;
+			//If they don't, return an error message
+			} else {
+				echo json_encode(['error' => 'Inaccessible price and quantity in basket.']);
+				exit();
+			}
 		}
 
 

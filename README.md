@@ -1,29 +1,13 @@
-# TO DO BY MVP
-## Ned
-- Sign in functionality
-- Sign up functionality
-- Sign out functionality
+The following project is for a CS2Team Project Module at Aston University.
+Contributers are:
+- Safa Riasat: [STUDENT NUMBER] - CoderSofer
+- Eamon Mooney: [STUDENT NUMBER] -
+- Tobias Singh: [STUDENT NUMBER] -
+- Hanna : [STUDENT NUMBER] -
+- Elisha: [STUDENT NUMBER] -
+- Rayyan: [STUDENT NUMBER] -
+- Ned: [STUDENT NUMBER] -
+- Sahil: [STUDENT NUMBER] -
 
-## Eamon 
-- Contact form test
-- Displaying orders
-- Adding a return button for incomplete orders
-- Profile information
-- Profile settings
-
-## Safa
-- Fixing the basket functionality (increasing and decreasing)
-- Changing ALL the product pages to have forms (so they can be added to the basket)
-- Testing the product pages add to the basket
-- Making a filler file for the SQL tables (one of everything) and linking this to occur once on start up
-- Any remainder quality of life changes
-
-## Tobias
-- Updating nav bar on all pages
-- Including logo on nav bar
-
-## Rayyan
-- Mobile support for product pages
-
-# WE NEED A FRONTEND DEV TO DO THIS
-Extra UI features (desired): Consider incorporating features such as light mode/dark mode or a zoom feature (maybe zoom feature if one has time)
+This project is G-Tech 50: an ecommerce website specialising in technological products aiming towards late teens-early adult individuals with an interest in tech.
+Our website has the functionality of customers to browse the products, create an account, add items to their basket and purchase them (dummy payments).
