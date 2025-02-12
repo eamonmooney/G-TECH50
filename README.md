@@ -1,29 +1,70 @@
-# TO DO BY MVP
-## Ned
-- Sign in functionality
-- Sign up functionality
-- Sign out functionality
+⚠️By Person:
 
-## Eamon 
-- Contact form test
-- Displaying orders
-- Adding a return button for incomplete orders
-- Profile information
-- Profile settings
+😊Eamon
+- Previous orders page
+    - Works but the registering orders to database function needs to be implemented - Needs Sahil
+- Check status of past orders
+    - Requires returns function to be complete - Needs Sahil
+- Rate and review individual products and service by website (put this in the past orders page)
+    - Database needs a review table before this can be implemented - Needs Sahil
 
-## Safa
-- Fixing the basket functionality (increasing and decreasing)
-- Changing ALL the product pages to have forms (so they can be added to the basket)
-- Testing the product pages add to the basket
-- Making a filler file for the SQL tables (one of everything) and linking this to occur once on start up
-- Any remainder quality of life changes
+😊Elisha
+- Error messages for sign-up
 
-## Tobias
-- Updating nav bar on all pages
-- Including logo on nav bar
+😊Hanna
+- Skeleton for tickets page
 
-## Rayyan
-- Mobile support for product pages
+😊Ned
+- Password, user detail changing functionality
 
-# WE NEED A FRONTEND DEV TO DO THIS
-Extra UI features (desired): Consider incorporating features such as light mode/dark mode or a zoom feature (maybe zoom feature if one has time)
+😊Rayyan
+- Font issues
+- Better mobile functionality
+
+😊Safa
+- Basket Number updating
+- Keep me signed in feature
+
+😊Sahil
+- Checkout page → dummy payment
+- Place order - submit to basket and register as order in database with total price → don’t need to do payment
+- Return product they’ve previously purchased 
+
+😊Tobias
+- Filter (colour, price)
+- Search and filter by names of categories and/ or price range
+
+
+⚠️Future Features:
+🤨Additional: 
+- DIY Custom products
+- User Graphs for admins
+- Access codes for admins
+- 
+
+🤨Admin Required:
+Admin side:
+
+⇒ Tier system of admins → link to access codes
+
+- Transaction admin, Stock admin, SuperAdmin
+
+- User transaction page → list of all orders and can process these
+- User details page → change these
+- Inventory Management page
+    - Product Listing: image, price, description, stock level, additional info
+    - Alert System - out of stock/under threshold
+    - Reports on stock: current and incoming/outgoing orders
+    - Search filter
+- Ticket viewer page
+    - See and close tickets
+- Data and analytics → consider this
+    - Graphs about user, gender, etc
+- Customer Review Page
+    - Looking at reviews
+    - Choose pinned review for the homepage
+
+- Functionality
+    - add, edit, remove products
+    - search, filter and view status of products and orders
+    - Initiate and process and incoming order

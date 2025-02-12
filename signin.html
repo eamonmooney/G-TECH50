@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
 
 
     
 </head>
 <body>    
+  
   <div class="navbar">
     <div class="logo">
-      <a href="index.html">Logo</a>
+
+      <img src="images/g-tech50 logo.png" alt="Logo" class="logo-image">
+
     </div>
 
     <div class="nav-links">
@@ -35,17 +41,24 @@
       <a href="aboutus.html">About Us</a>
       <a href="contact.html">Contact Us</a>
     </div>
-        <div class="icon-container">
-            
-            <div class="search-bar">
-              <input type="text" placeholder="Search...">
-              <i class="material-icons">search</i>
-            </div>
-    
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
-        </div>
+
+
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
     </div>
+  </div>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+  
     <main id="main">
         <section class="ftco-section">
             <div class="container">
@@ -76,14 +89,6 @@
                       </div>
                       <div class="form-group">
                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
-                      </div>
-                      <div class="form-group d-md-flex">
-                        <div class="w-50 text-left">
-                          <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                          <input type="checkbox" checked>
-                          <span class="checkmark"></span>
-                            </label>
-                        </div>
                       </div>
                                   </form>
                                 <p class="text-center">Not a member? <a href="signup.html">Sign Up</a></p>
