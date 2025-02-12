@@ -5,13 +5,17 @@ require_once('connectdb.php');
 // checks if user has entered detaiks
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    // Input validation
-    if (empty($_POST["name"])) {
-        die("Username is required.");
-    }
+    $errors = [];
 
-    if (strlen($_POST["name"]) > 50) {
-        die("Username must not exceed 50 characters.");
+    // Sanitize inputs
+    $Name = trim($_POST['name']);
+    $Email = trim($_POST['email']);
+    $Password = $_POST['password'];
+    $ConfirmPassword = $_POST['confirmpassword'];
+
+    // Validation
+    if (empty($Name) || strlen($Name) > 50) {
+        $errors[] = "Username is required and must be at most 50 characters long.";
     }
 
     if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -70,8 +74,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     }
 }
 ?>
-
-
-            
-        
-
