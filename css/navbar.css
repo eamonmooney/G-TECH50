@@ -165,7 +165,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	background-color: #333333;
   }
 
-.hamburger-menu {
+  .hamburger-menu {
 	display: none;
 	flex-direction: column;
 	cursor: pointer;
