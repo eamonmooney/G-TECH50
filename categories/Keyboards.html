@@ -3,61 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>G-Tech 50</title>
+  <title>GTECH50 | MICE</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
-  
-  
 </head>
 
 <body>
-  
-  
-    <!-- NAV BAR FOR CATEGORY PAGES -->
-    <div class="navbar">
-      <div class="logo">
-        <img src="../images/g-tech50 logo.png" alt="Logo" class="logo-image">
-      </div>
-  
-  
-      <div class="nav-links">
-        <a href="../index.html">Home</a>
-  
-        <div class="dropdown">
-          <a href=#>Categories</a>
-  
-          <div class="dropdown-content">
-            <a href="Mice.html">Mice</a>
-            <a href="Monitors.html">Monitors</a>
-            <a href="Headphones.html">Headphones</a>
-            <a href="Keyboards.html">Keyboards</a>
-            <a href="Mousepads.html">Mousepads</a>
-          </div>
-  
+    
+    <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+        <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+    </div>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <div class="dropdown">
+        <a href=#>Categories</a>
+        <div class="dropdown-content">
+          <a href="Mice.html">Mice</a>
+          <a href="Monitors.html">Monitors</a>
+          <a href="Headphones.html">Headphones</a>
+          <a href="Keyboards.html">Keyboards</a>
+          <a href="Mousepads.html">Mousepads</a>
         </div>
-        <a href="../aboutus.html">About Us</a>
-        <a href="../contact.html">Contact Us</a>
       </div>
-  
-  
-      <div class="icon-container">
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
+  </div>
+
+    <!-- Search & User Icons -->
+    <div class="icon-container">
         <div class="search-bar">
           <input type="text" id="searchBar" placeholder="Search...">
           <i class="material-icons" id="searchButton">search</i>
         </div>
-  
-        <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
-      </div>
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
     </div>
-  
-    <div id="searchResults" class="search-results" style="display: none;"></div>
-  
-    <!-- Linking to Search bar JS -->
-    <script src="../js/searchBar.js"></script>
-    
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Bar -->
+<div class="mobile-nav-links" id="mobileNavLinks">
+    <a href="Home.html">Home</a>
+    <a href=# id="mobileCategories">Categories</a>
+    <div class="mobile-dropdown-content" id="mobileDropdownContent">
+      <a href="Mice.html">Mice</a>
+      <a href="Monitors.html">Monitors</a>
+      <a href="Headphones.html">Headphones</a>
+      <a href="Keyboards.html">Keyboards</a>
+      <a href="Mousepads.html">Mousepads</a>
+    </div>
+    <a href="AboutUs.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- Search Results -->
+<div id="searchResults" class="search-results" style="display: none;"></div>
+
+<!-- Linking to Search bar JS -->
+<script src="js/searchBar.js"></script>
+<script src="js/mobileNavbar.js"></script>
+
+  <!-- Commented out the main image for now, re add when implementing into the page - Eamon
+  <section class="hero">
+    <img src="" alt="keyboards picture" class="keyboards-picture">
+  </section>
+  -->
+
   <h1>Keyboards</h1>
 
     <div class="products">
@@ -106,15 +127,30 @@
 
     </div>
 
-    <footer>
-      <div class="footer-content">
-          <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-          <div class="contact-details">
-              <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-              <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-              <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
-          </div>
+    <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>G-TECH50</h3>
+        <p>&copy; 2024 G-TECH50</p>
+        <p>ALL RIGHTS RESERVED.</p>
       </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Phone: +44 7700 900123</p>
+        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+      </div>
+    </div>
   </footer>
 
     
