@@ -1,71 +1,13 @@
-⚠️By Person:
+The following project is for a CS2Team Project Module at Aston University.
+Contributers are:
+- Safa Riasat: [STUDENT NUMBER] - CoderSofer
+- Eamon Mooney: [STUDENT NUMBER] -
+- Tobias Singh: [STUDENT NUMBER] -
+- Hanna : [STUDENT NUMBER] -
+- Elisha: [STUDENT NUMBER] -
+- Rayyan: [STUDENT NUMBER] -
+- Ned: [STUDENT NUMBER] -
+- Sahil: [STUDENT NUMBER] -
 
-😊Eamon
-- Previous orders page
-    - Works but the registering orders to database function needs to be implemented - Needs Sahil
-- Check status of past orders
-    - Requires returns function to be complete - Needs Sahil
-- Rate and review individual products and service by website (put this in the past orders page)
-    - Database needs a review table before this can be implemented - Needs Sahil
-
-😊Elisha
-- Error messages for sign-up
-
-😊Hannah
-- Mobile functionality
-
-😊Ned
-- Password, user detail changing functionality
-
-😊Rayyan
-- Font issues
-- Better mobile functionality
-
-😊Safa
-- Basket Number updating
-- Basket link to products page when empty
-- Keep me signed in feature
-
-😊Sahil
-- Checkout page → dummy payment
-- Place order - submit to basket and register as order in database with total price → don’t need to do payment
-- Return product they’ve previously purchased 
-
-😊Tobias
-- Filter (colour, price)
-- Search and filter by names of categories and/ or price range
-
-
-⚠️Future Features:
-🤨Additional: 
-- DIY Custom products
-- User Graphs for admins
-- Access codes for admins
-- 
-
-🤨Admin Required:
-Admin side:
-
-⇒ Tier system of admins → link to access codes
-
-- Transaction admin, Stock admin, SuperAdmin
-
-- User transaction page → list of all orders and can process these
-- User details page → change these
-- Inventory Management page
-    - Product Listing: image, price, description, stock level, additional info
-    - Alert System - out of stock/under threshold
-    - Reports on stock: current and incoming/outgoing orders
-    - Search filter
-- Ticket viewer page
-    - See and close tickets
-- Data and analytics → consider this
-    - Graphs about user, gender, etc
-- Customer Review Page
-    - Looking at reviews
-    - Choose pinned review for the homepage
-
-- Functionality
-    - add, edit, remove products
-    - search, filter and view status of products and orders
-    - Initiate and process and incoming order
+This project is G-Tech 50: an ecommerce website specialising in technological products aiming towards late teens-early adult individuals with an interest in tech.
+Our website has the functionality of customers to browse the products, create an account, add items to their basket and purchase them (dummy payments).
