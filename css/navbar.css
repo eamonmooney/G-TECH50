@@ -25,10 +25,11 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   }
 
  .logo-image {
-	width: 100px;
+	width: 120px;
 	height: auto;
 	object-fit: contain;
-	margin-left: 10px;
+	margin-right: 200px;
+    margin-left: 10px;
   }
 
   .nav-links {
@@ -36,14 +37,14 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	gap: 10px;
 	justify-content: center;
 	flex: 1;
-	margin-left: 300px; 
+	margin-left: 80px; 
 	margin-right: 50px;
   }
 
   .navbar a {  
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 15px 15px;
 	text-decoration: none;
   }
 
@@ -94,15 +95,17 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   }
 
   .search-results {
-	margin-top: 70px;
-	padding: 10px;
+	position: absolute; 
+	top: 55px; 
+	left: 50%; 
+	transform: translateX(-50%); 
 	background-color: #201c1c;
 	color: white;
 	border-radius: 5px;
 	width: 90%;
 	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 10px;
+	z-index: 1001;
   }
 
   .search-results a {
@@ -160,4 +163,83 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 
   .dropdown-content a:hover {
 	background-color: #333333;
+  }
+
+  .hamburger-menu {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+	margin-left: auto; 
+	padding-right: 25px; 
+	
+  }
+
+  .hamburger-menu .bar {
+	width: 25px;
+	height: 3px;
+	background-color: white;
+	margin: 4px 0;
+  }
+
+  .mobile-nav-links {
+	display: none;
+	flex-direction: column;
+	background-color: #000000;
+	position: fixed;
+	top: 55px;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+  }
+
+  .mobile-nav-links a {
+	color: white;
+	padding: 14px 16px;
+	text-decoration: none;
+	text-align: center;
+  }
+
+  .mobile-nav-links a:hover {
+	background-color: #201c1c;
+  }
+
+  .mobile-dropdown-content {
+	display: none;
+	background-color: #201c1c;
+	padding: 10px;
+  }
+
+  .mobile-dropdown-content a {
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+  }
+
+  .mobile-dropdown-content a:hover {
+	background-color: #333333;
+  }
+
+  @media (max-width: 768px) {
+	.nav-links {
+	  display: none;
+	}
+
+	.hamburger-menu {
+	  display: flex;
+	}
+
+	.search-bar {
+	  display: flex; 
+	  margin-right: 10px; 
+	}
+
+	.mobile-nav-links.active {
+	  display: flex;
+	}
+
+	.icon-container {
+	  margin-right: 10px; 
+	}
   }
