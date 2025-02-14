@@ -6,58 +6,81 @@
    Two: create the order and insert a record into the database.
    Three: validate whether the order has gone through or not. */
 
-    session_start(); // Session is resumed to allow us to use current variables.
-    require_once ('connectdb.php'); // Establishes a connection to the database.
+session_start(); // Session is resumed to allow us to use current variables.
+require_once('connectdb.php'); // Establishes a connection to the database.
 
-    if (!isset($_SESSION['userId'])) {	
-		header("Location: index.html");
-		exit(); // This checks to see if the user is in a valid session.
-        // If they are not in a valid session, they will be redirected to the login page.
-	}
+if (!isset($_SESSION['userId'])) {	
+    header("Location: index.html");
+    exit(); // This checks to see if the user is in a valid session.
+    // If they are not in a valid session, they will be redirected to the login page.
+}
 
-    $userID = $_SESSION('userId'); // Sets the userID from the session.
-    $cart = $_SESSION['basketItems']; // Get basket items from the session.
-    $total = 0; // Initialising the total cost of the order.
+$userID = $_SESSION['userId']; // Sets the userID from the session.
+$cart = $_SESSION['basket']; // Get basket items from the session.
+$total = 0; // Initialising the total cost of the order.
 
+// Requirement 1.
+function stockCheck($cart, $db) {
+    foreach ($cart as $item) {
+        $productID = $item['ProductID'];
+        $quantity = $item['Quantity'];
 
-    // Requirement 1.
-    function stockCheck($cart, $db) {
-        foreach ($cart as $item) {
-            $productID = $item['ProductID'];
-            $quantity = $item['Quantity'];
-            $query = "SELECT Stock FROM Products WHERE id = $productID";
-        } // Getting the quantity of the stock available of the product that the user would like to order.
-        $result = $db->exec($query); // Puts the result of the query into a variable called result.
-        $product = $result->fetch_assoc(); // Fetches the next product in the basket as an associative array.
+        // Getting the quantity of the stock available of the product that the user would like to order.
+        $query = "SELECT Stock FROM Products WHERE ProductID = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$productID]);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC); // Fetches the stock as an associative array.
 
         if ($product['Stock'] < $quantity) {
             return false; /* Checks to see if the stock levels in our inventory can handle the amount of products
             the user has requested to buy. */
         }
-    } return true;
+    }
+    return true; // If all products have sufficient stock.
+}
 
-    // Requirement 2.
-    function createOrder($userID, $cart, $total) {
-        $query = "INSERT INTO Orders (UserID, OrderTypeID, OrderDate, OrderCost) VALUES ('$userID', '$orderTypeID', '$orderDate', '$total')";
-        $orderID = $conn->insert_id; // Inserting everything from the basket into an order record in the database.
-        
-        foreach ($cart as $item) {
-            $productID = $item['ProductID'];
-            $quantity = $item['Quantity']; 
-            $conn->$query("INSERT INTO OrderItem (OrderID, ProductID, Quantity) VALUES ('$orderID', '$productID', '$quantity'");
-        } // Fetches ProductID and Quantity from the cart and inserts is as an ORDERITEM record.
-    
-        if (stockCheck($cart, $conn)) {
-            if (createOrder($userID, $cart, $total, $conn)) { /* If there is sufficient stock and the order has been created, 
-                a message will be displayed to indicate that the order has been created. */
-                echo "Order placed successfully!";
-                unset($_SESSION['basketItems']); // The session will be reset and the user will be redirected to the login page for the time being.
-                header("Location: login.html");
-            } else {
-                echo "Failed to create order."; 
-            }
-        }
+// Requirement 2.
+function createOrder($userID, $cart, $total, $db) {
+    $orderDate = date("Y-m-d"); // Setting the order date.
+    $orderTypeID = 1; // Example order type ID.
+
+    // Insert the order into the Orders table.
+    $query = "INSERT INTO Orders (UserID, OrderTypeID, OrderDate, OrderCost) VALUES (?, ?, ?, ?)";
+    $stmt = $db->prepare($query);
+    $stmt->execute([$userID, $orderTypeID, $orderDate, $total]);
+    $orderID = $db->lastInsertId(); // Retrieve the last inserted OrderID.
+
+    // Inserting each product from the cart as an OrderItem and updating stock.
+    foreach ($cart as $item) {
+        $productID = $item['ProductID'];
+        $quantity = $item['Quantity'];
+
+        // Insert order item into OrderItem table.
+        $query = "INSERT INTO OrderItem (OrderID, ProductID, Quantity) VALUES (?, ?, ?)";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$orderID, $productID, $quantity]);
+
+        // Update stock for the product.
+        $query = "UPDATE Products SET Stock = Stock - ? WHERE ProductID = ?";
+        $stmt = $db->prepare($query);
+        $stmt->execute([$quantity, $productID]);
+    }
+    return $orderID; // Return the created OrderID.
+}
+
+// Checkout process.
+if (stockCheck($cart, $db)) { // Check if there is sufficient stock.
+    foreach ($cart as $item) {
+        $total += $item['Price'] * $item['Quantity']; // Calculate total cost of the order.
     }
 
-    // Requirement 3 can only be done if we integrate a payment system which can be done later.
+    $orderID = createOrder($userID, $cart, $total, $db); // Create the order.
+    echo "Order placed successfully! Your order ID is: $orderID<br>";
+    unset($_SESSION['basketItems']); // Clear the basket after the order is placed.
+    header("Location: success.html"); // Redirect to the success page.
+    exit();
+} else {
+    echo "Insufficient stock for one or more items!"; // Error message if stock is insufficient.
+}
+
 ?>
