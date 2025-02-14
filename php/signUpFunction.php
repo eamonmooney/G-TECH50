@@ -5,6 +5,38 @@ require_once('connectdb.php');
 // checks if user has entered detaiks
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+    $errors = [];
+
+    // Sanitize inputs
+    $Name = trim($_POST['name']);
+    $Email = trim($_POST['email']);
+    $Password = $_POST['password'];
+    $ConfirmPassword = $_POST['confirmpassword'];
+
+    // Validation
+    if (empty($Name) || strlen($Name) > 50) {
+        $errors[] = "Username is required and must be at most 50 characters long.";
+    }
+
+    if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        die("Valid email is required.");
+    }
+
+    if (strlen($_POST["password"]) < 8) {
+        die("Password must be at least 8 characters.");
+    }
+
+    if (!preg_match("/[a-z]/i", $_POST["password"])) {
+        die("Password must contain at least one letter.");
+    }
+
+    if (!preg_match("/[0-9]/", $_POST["password"])) {
+        die("Password must contain at least one number.");
+    }
+
+    if ($_POST["password"] !== $_POST["confirmpassword"]) {
+        die("Passwords do not match.");
+    }
     //Defines user input as variables
     $RoleID = 2;
     $Name = $_POST['name'];
@@ -42,8 +74,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     }
 }
 ?>
-
-
-            
-        
-
