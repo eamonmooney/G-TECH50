@@ -9,6 +9,13 @@
 
 	//Create / continue session
 	session_start();
+
+	// TEST - Check basket contents
+	// header('Content-Type: text/plain');
+	// var_dump($_SESSION['basket']);
+	// exit;
+
+	
 	header('Content-Type: application/json');
 
 
@@ -47,8 +54,12 @@
 			}
 		//Otherwise if the item doesn't exist
 		} else {
+		
+    $response = ['status' => 'error', 'message' => 'Item not found in basket'];
+    echo json_encode($_SESSION['basket']);
+    exit;
 			// Return a response that the item isn';t in the basket
-			$response = ['status' => 'error', 'message' => 'Item not found in basket'.$data['name']. $data['change'] ];
+			// $response = ['status' => 'error', 'message' => 'Item not found in basket'.$data['name']. $data['change'] ];
 		}
 
 		// Send the response as JSON to .html file
