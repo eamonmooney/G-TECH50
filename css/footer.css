@@ -1,3 +1,7 @@
+/* Footer HTML initialised by Elisha.  
+Changes to design, structure and CSS made by Sahil.
+*/
+
 @font-face {
     font-family: 'horizon';
     src: url('fonts/horizon.otf') format('opentype');
@@ -23,6 +27,7 @@ footer {
     text-align: left;
     gap: 20px;
     background-color: black;
+    text-align: center; /* Adjusted the footer - Sahil. */
 }
 
 .footer-section {
@@ -62,4 +67,41 @@ footer {
 .footer-section p a:hover {
     color: white;
     text-decoration: underline;
+}
+
+/* Responsive design - mobile. */
+@media (max-width: 768px) {
+
+    .footer-container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-section h3 {
+        font-size: 20px;
+    }
+
+    .footer-section a, p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .footer-section {
+        align-items: center;
+    }
+
+    .footer-section ul {
+        text-align: center;
+    }
+}
+
+/* Responsive design - laptop and tablets. */
+@media (max-width: 1024px) {
+    
+    .footer-container {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
 }

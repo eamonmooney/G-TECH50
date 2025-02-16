@@ -21,7 +21,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 	align-items: center;
 	justify-content: center; 
 	align-items: center;
-	padding: 0;  
+	padding: 0;
   }
 
  .logo-image {
@@ -222,6 +222,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
   }
 
   @media (max-width: 768px) {
+
 	.nav-links {
 	  display: none;
 	}

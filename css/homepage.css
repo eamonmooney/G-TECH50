@@ -25,7 +25,6 @@ img {
     max-width: 100%;
     width: 300px;
     height: auto;
-    margin-top: 15px;
     border-radius: 0;
 }
 
@@ -81,6 +80,7 @@ img {
     border-radius: 0;
     width: 24.75%;
     height: auto;
+    padding-top: 15px; /* Recentering the logo in the navbar messed gap between the main image and the four images section. Just added this to resolve that issue - Sahil. */
 }
 
 .pictures img:hover {
