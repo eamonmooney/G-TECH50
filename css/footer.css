@@ -12,7 +12,6 @@ footer {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 35px;
-    font-family: 'horizon';
 }
 
 .footer-container {
@@ -38,6 +37,10 @@ footer {
     display: inline-block;
     padding-bottom: 5px;
     font-family: 'superbrigade';
+}
+
+.footer-section p, a {
+    font-family: 'horizon'; /* Updated the font of the text in the footer - Sahil. */
 }
 
 .footer-section ul {
