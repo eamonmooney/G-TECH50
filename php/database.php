@@ -97,7 +97,6 @@ try {
     ";
     
     $db->exec($sql);
-    echo "Tables created successfully! <br>";
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
