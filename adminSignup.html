@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Sign Up - G-TECH50</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    
+    <script>
+        function validateForm(event) {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmpassword").value;
+            let errorMessage = "";
+        
+            if (name === "" || name.length > 50) {
+                errorMessage += "Username is required and must be at most 50 characters long.\n";
+            }
+            if (email === "" || !email.match(/^\S+@\S+\.\S+$/)) {
+                errorMessage += "Valid email is required.\n";
+            }
+            if (password.length < 8) {
+                errorMessage += "Password must be at least 8 characters.\n";
+            }
+            if (!/[a-zA-Z]/.test(password)) {
+                errorMessage += "Password must contain at least one letter.\n";
+            }
+            if (!/[0-9]/.test(password)) {
+                errorMessage += "Password must contain at least one number.\n";
+            }
+            if (password !== confirmPassword) {
+                errorMessage += "Passwords do not match.\n";
+            }
+        
+            if (errorMessage !== "") {
+                alert(errorMessage);
+                event.preventDefault(); // Stop form submission
+            }
+        }
+        </script>
+        
+</head>
+<body>    
+    <div class="navbar">
+        <div class="logo">
+          <a href="index.html">Logo</a>
+        </div>
+    
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+    
+          <div class="dropdown">
+            <a href=#>Categories</a>
+    
+            <div class="dropdown-content">
+              <a href="categories/Mice.html">Mice</a>
+              <a href="categories/Monitors.html">Monitors</a>
+              <a href="categories/Headphones.html">Headphones</a>
+              <a href="categories/Keyboards.html">Keyboards</a>
+              <a href="categories/Mousepads.html">Mousepads</a>
+            </div>
+    
+          </div>
+          <a href="aboutus.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+    
+        <div class="icon-container">
+            
+            <div class="search-bar">
+              <input type="text" placeholder="Search...">
+              <i class="material-icons">search</i>
+            </div>
+    
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+    </div>
+    <main id="main">
+        <section class="ftco-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <h2 class="heading-section">Admin Signup</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-10">
+                        <div class="wrap d-md-flex">
+                            <div class="img" style="background-image: url(images/Externalmade/bg-1.jpg);">
+                      </div>
+                            <div class="login-wrap p-4 p-md-5">
+                          <div class="d-flex">
+                              <div class="w-100">
+                                  <h3 class="mb-4">Signup</h3>
+                              </div>
+                          </div>
+                          <form action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post" onsubmit="validateForm(event)">
+                              <div class="form-group mb-3">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" name="name">
+                              </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
+                          <input type="password" id="password" class="form-control" name="password">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="confirmpassword">Confirm Password</label>
+                          <input type="password" id="confirmpassword" class="form-control" name="confirmpassword">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="accesscode">Access Code</label>
+                          <input type="number" id="accesscode" class="form-control" name="accesscode">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                        </div>
+                      </form>
+                       </div>
+                  </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
+    </main>
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
