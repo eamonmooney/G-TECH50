@@ -35,8 +35,8 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
   .nav-links {
 	display: flex;
 	gap: 10px;
-	justify-content: center;
-	flex: 1;
+	justify-content: space-between;
+	flex: 2;
 	margin-left: 80px; 
 	margin-right: 50px;
   }

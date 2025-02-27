@@ -1,18 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTECH50 | CHECKOUT</title>
+  <title>GTECH50 | Checkout</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
-  <style>
 
+  <style>
     body {
       margin: 0;
       padding: 0;
@@ -29,6 +27,7 @@
       justify-content: center;
       gap: 20px;
       margin-bottom: 20px;
+      font-family: 'horizon';
     }
 
     .circle {
@@ -59,7 +58,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      overflow-y: auto; 
+      overflow-y: auto;
     }
 
     .container.active {
@@ -78,7 +77,7 @@
       padding: 10px 20px;
       font-size: 16px;
       border: none;
-      background-color: #000000;
+      background-color: #000;
       color: white;
       border-radius: 5px;
       cursor: pointer;
@@ -93,7 +92,6 @@
       cursor: not-allowed;
     }
 
-    
     input {
       padding: 8px;
       margin: 10px;
@@ -103,7 +101,6 @@
       border-radius: 5px;
     }
 
-    
     .basket-container {
       display: flex;
       flex-direction: column;
@@ -139,6 +136,7 @@
     .price {
       font-weight: bold;
     }
+
     @media (max-width: 768px) {
       .container {
         width: 90%;
@@ -172,144 +170,83 @@
     }
   </style>
 </head>
+
 <body>
-  
-  <!-- Navigation Bar -->
   <div class="navbar">
     <div class="logo">
-        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+      <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
     </div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-          <a href=#>Categories</a>
-          <div class="dropdown-content">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-          </div>
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <a href="#">Categories</a>
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
         </div>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
     </div>
 
-    <!-- Search & User Icons -->
     <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
     </div>
+  </div>
 
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-</div>
-
-<!-- Mobile Navigation Bar -->
-<div class="mobile-nav-links" id="mobileNavLinks">
-    <a href="Home.html">Home</a>
-    <a href=# id="mobileCategories">Categories</a>
-    <div class="mobile-dropdown-content" id="mobileDropdownContent">
-      <a href="categories/Mice.html">Mice</a>
-      <a href="categories/Monitors.html">Monitors</a>
-      <a href="categories/Headphones.html">Headphones</a>
-      <a href="categories/Keyboards.html">Keyboards</a>
-      <a href="categories/Mousepads.html">Mousepads</a>
-    </div>
-    <a href="AboutUs.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-</div>
-
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
-
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
-  
- 
   <div class="stage-indicator">
     <div id="stage-1" class="circle active">1</div>
     <div id="stage-2" class="circle">2</div>
     <div id="stage-3" class="circle">3</div>
   </div>
 
-  
-  <div id="initial-container" class="container active">
-    <h2>Enter Your Delivery Details</h2>
-    <form id="delivery-form">
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="text" id="name" placeholder="First Name" required />
-      <input type="text" id="surname" placeholder="Last Name" required />
-      <input type="text" id="address" placeholder="Address" required />
-    </form>
-    <div class="button-container">
-      <button class="button" disabled>Back</button>
-      <button class="button" onclick="saveDeliveryDetails(); goToStage(2)">Next</button>
+  <form id="checkout-form" action="checkout.php" method="POST">
+    <!-- Delivery Details Form (Stage 1) -->
+    <div id="initial-container" class="container active">
+      <h2>Enter Your Delivery Details</h2>
+      <input type="email" name="email" id="email" placeholder="Email" required />
+      <input type="text" name="name" id="name" placeholder="First Name" required />
+      <input type="text" name="surname" id="surname" placeholder="Last Name" required />
+      <input type="text" name="address" id="address" placeholder="Address" required />
+      <div class="button-container">
+        <button class="button" disabled>Back</button>
+        <button type="button" class="button" onclick="goToStage(2)">Next</button>
+      </div>
     </div>
-  </div>
 
-  
-  <div id="details-container" class="container">
-    <h2>Enter Your Card Details</h2>
-    <form id="card-form">
-      <input type="text" id="card-name" placeholder="Name on Card" required />
-      <input type="text" id="card-number" placeholder="Card Number" required />
-      <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
-      <input type="text" id="cvv" placeholder="CVV" maxlength="3" required />
-    </form>
-    <div class="button-container">
-      <button class="button" onclick="goToStage(1)">Back</button>
-      <button class="button" onclick="saveCardDetails(); goToStage(3)">Next</button>
+    <!-- Card Details Form (Stage 2) -->
+    <div id="details-container" class="container">
+      <h2>Enter Your Card Details</h2>
+      <input type="text" name="card_name" id="card-name" placeholder="Name on Card" required />
+      <input type="text" name="card_number" id="card-number" placeholder="Card Number" required />
+      <input type="text" name="expiry" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
+      <input type="text" name="cvv" id="cvv" placeholder="CVV" maxlength="3" required />
+      <div class="button-container">
+        <button type="button" class="button" onclick="goToStage(1)">Back</button>
+        <button type="button" class="button" onclick="goToStage(3)">Next</button>
+      </div>
     </div>
-  </div>
 
-  
-  <div id="summary-container" class="container">
-    <h2>Order Summary</h2>
-    <div id="summary-details">
-      
+    <!-- Summary (Stage 3) -->
+    <div id="summary-container" class="container">
+      <h2>Order Summary</h2>
+      <div id="summary-details"></div>
+      <div class="button-container">
+        <button type="button" class="button" onclick="goToStage(2)">Back</button>
+        <button type="submit" class="button">Confirm Order</button>
+      </div>
     </div>
-    <div class="button-container">
-      <button class="button" onclick="goToStage(2)">Back</button>
-      <button class="button" onclick="confirmOrder()">Confirm</button>
-    </div>
-  </div>
+  </form>
 
   <script>
-    
-    let deliveryDetails = {};
-    let cardDetails = {};
-
-    
-    function saveDeliveryDetails() {
-      deliveryDetails = {
-        email: document.getElementById('email').value,
-        name: document.getElementById('name').value,
-        surname: document.getElementById('surname').value,
-        address: document.getElementById('address').value
-      };
-    }
-
-    
-    function saveCardDetails() {
-      cardDetails = {
-        cardName: document.getElementById('card-name').value,
-        cardNumber: document.getElementById('card-number').value,
-        expiry: document.getElementById('expiry').value,
-        cvv: document.getElementById('cvv').value
-      };
-    }
-
-    
     function goToStage(stage) {
       document.querySelectorAll('.container').forEach(container => container.classList.remove('active'));
       if (stage === 1) document.getElementById('initial-container').classList.add('active');
@@ -319,23 +256,31 @@
         displaySummary(); 
       }
 
-      
       document.querySelectorAll('.circle').forEach(circle => circle.classList.remove('active'));
       document.getElementById(`stage-${stage}`).classList.add('active');
     }
 
-   
     function displaySummary() {
+      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value;
+      const surname = document.getElementById('surname').value;
+      const address = document.getElementById('address').value;
+
+      const cardName = document.getElementById('card-name').value;
+      const cardNumber = document.getElementById('card-number').value;
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+
       const summaryDetailsHTML = `
         <h3>Delivery Details:</h3>
-        <p>Email: ${deliveryDetails.email}</p>
-        <p>Name: ${deliveryDetails.name} ${deliveryDetails.surname}</p>
-        <p>Address: ${deliveryDetails.address}</p>
-        
+        <p>Email: ${email}</p>
+        <p>Name: ${name} ${surname}</p>
+        <p>Address: ${address}</p>
+
         <h3>Card Details:</h3>
-        <p>Name on Card: ${cardDetails.cardName}</p>
-        <p>Card Number: ${cardDetails.cardNumber}</p>
-        <p>Expiry Date: ${cardDetails.expiry}</p>
+        <p>Name on Card: ${cardName}</p>
+        <p>Card Number: ${cardNumber}</p>
+        <p>Expiry Date: ${expiry}</p>
 
         <h3>Products:</h3>
         <p>No products added yet</p>
@@ -344,12 +289,6 @@
       `;
       document.getElementById('summary-details').innerHTML = summaryDetailsHTML;
     }
-
-    
-    function confirmOrder() {
-      alert("Thank you for your order!");
-    }
   </script>
-
 </body>
 </html>
