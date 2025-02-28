@@ -21,10 +21,13 @@ body {
     padding-left: 0;
 }
 
+.mainImage {
+    padding-bottom: 0px;
+}
+
 .aboutMembership {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    background-image: url(/images/Externalmade/16.png);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .aboutMembership h1 {
