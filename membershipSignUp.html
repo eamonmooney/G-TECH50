@@ -1,4 +1,4 @@
-<!-- Index/Homepage initialised by ______ and designed by Sahil. -->
+<!-- Membership functionality implemented and designed by Sahil. -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTECH50 | HOME</title>
+    <title>GTECH50 | MEMBERSHIP</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
@@ -14,9 +14,9 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/membershipSignUp.css">
 </head>
 
 <body>
@@ -79,52 +79,58 @@
     <!-- Search Results -->
     <div id="searchResults" class="search-results" style="display: none;"></div>
 
+    <!-- Main logo under the navigation bar. -->
+
+    <section class="mainImage">
+        <img src="/images/Externalmade/membershipLogo.png" alt="membershipLogo" class="plusImage">
+    </section>
+
+    <!-- Description of the membership -->
+
+    <section class="aboutMembership">
+        <div class="membershipText">
+            <h1>Join G-Tech50+</h1>
+            <p>At G-Tech 50, we believe cutting-edge tech should be accessible 
+            to everyone - from beginners building their first PC to experts upgrading 
+            their setups. That’s why we’re introducing G-Tech50+, a membership designed 
+            to give you the best deals, priority support, and exclusive rewards while shopping 
+            for your favorite tech and components!</p>
+        </div>
+    </section>
+
+    <section class="membershipSignUp">
+        <form action="" method="post" onsubmit="return validateForm()">
+            <div class="membershipForm">
+                <div class="firstname">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" required>
+                </div>
+                <div class="lastname">
+                    <label for="lastname">Surname:</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" required>
+                </div>
+                <div class="email">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="confirmemail">
+                    <label for="confirmEmail">Confirm Email:</label>
+                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
+                </div>
+                <input type="submit" value="join">
+            </div>
+        </form>
+    </section>
+ 
+    
+
+
     <!-- Linking to Search bar JS -->
     <script src="js/searchBar.js"></script>
     <script src="js/mobileNavbar.js"></script>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="images/Externalmade/7.png" alt="Gaming Mouse with Headphone" class="img1">
-        <a href="aboutus.html">
-            <button class="button">SHOP NOW</button>
-        </a>
-    </section>
-
-    <!-- Featured Products Section -->
-    <section class="pictures">
-        <img src="images/Externalmade/6.png" alt="Monitor">
-        <img src="images/Externalmade/5.png" alt="Headphone">
-        <img src="images/Externalmade/4.png" alt="PC Internal Hardware">
-        <img src="images/Externalmade/3.png" alt="Computer Set">
-    </section>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>G-TECH50</h3>
-                <p>&copy; 2024 G-TECH50</p>
-                <p>ALL RIGHTS RESERVED.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Phone: +44 7700 900123</p>
-                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-            </div>
-        </div>
-    </footer>
     
     <!-- JavaScript -->
+
     <script>
         const data = [
             { name: "Mice", url: "Mice.html" },
@@ -151,8 +157,54 @@
 
         searchBar.addEventListener("input", () => searchItems(searchBar.value));
         searchButton.addEventListener("click", () => searchItems(searchBar.value));
+
+        // Membership Form Validation //
+
+        function validateForm() {
+            let firstname = document.getElementById("firstname").value.trim();
+            let lastname = document.getElementById("lastname").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let confirmEmail = document.getElementById("confirmEmail").value.trim();
+
+            if (firstName === "" || lastName === "" || email === "" || confirmEmail === "") {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            if (!checkEmails(email, confirmEmail)) {
+                return false;
+            }
+
+            return true;
+        }
+
     </script>
 
 </body>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>G-TECH50</h3>
+            <p>&copy; 2024 G-TECH50</p>
+            <p>ALL RIGHTS RESERVED.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Phone: +44 7700 900123</p>
+            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+        </div>
+    </div>
+</footer>
 
 </html>
