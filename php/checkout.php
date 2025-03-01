@@ -12,8 +12,15 @@
     require_once('connectdb.php');
     
     // Validate if user is logged in
+    header('Content-Type: application/json');
+
     if (!isset($_SESSION['userId'])) {
-        header("Location: index.html");
+        echo json_encode(["success" => false, "message" => "User not logged in."]);
+        exit();
+    }
+    
+    if (!isset($_SESSION['basket']) || empty($_SESSION['basket'])) {
+        echo json_encode(["success" => false, "message" => "Basket is empty."]);
         exit();
     }
     
@@ -24,8 +31,8 @@
         $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
         $surname = filter_var($_POST['surname'], FILTER_SANITIZE_STRING);
         $address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
-        $cardName = filter_var($_POST['card_name'], FILTER_SANITIZE_STRING);
-        $cardNumber = filter_var($_POST['card_number'], FILTER_SANITIZE_STRING);
+        $cardName = filter_var($_POST['card-name'], FILTER_SANITIZE_STRING);
+        $cardNumber = filter_var($_POST['card-number'], FILTER_SANITIZE_STRING);
         $expiry = filter_var($_POST['expiry'], FILTER_SANITIZE_STRING);
         $cvv = filter_var($_POST['cvv'], FILTER_SANITIZE_STRING);
     
@@ -35,8 +42,8 @@
             exit();
         }
     
-        if (empty($name) || empty($surname) || empty($address) || empty($cardName) || empty($cardNumber) || empty($expiry) || empty($cvv)) {
-            echo "All fields are required.";
+        if (empty($name) || empty($surname) || empty($address) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(["success" => false, "message" => "Invalid form inputs."]);
             exit();
         }
     
@@ -51,6 +58,7 @@
         }
     
         // Create order
+    try {
         $orderDate = date("Y-m-d");
         $orderTypeID = 1;
         $query = "INSERT INTO Orders (UserID, OrderTypeID, OrderDate, OrderCost, Email, Name, Surname, Address, CardName, CardNumber, Expiry, CVV)
@@ -80,7 +88,10 @@
         unset($_SESSION['basket']);
     
         // Redirect to the success page
-        echo "<script>window.location.href='success.html';</script>";
+        echo json_encode(["success" => true, "message" => "Order placed successfully!"]);
+    } catch (PDOException $ex) {
+        echo json_encode(["success" => false, "message" => "Database error: " . $ex->getMessage()]);
     }
+        
     ?>
    
