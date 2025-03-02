@@ -5,9 +5,7 @@
 <?php
 
 try {
-	// Database connection
     require_once('connectdb.php');
-    // Create Database
     $db->exec("CREATE DATABASE IF NOT EXISTS $db_name");
     $db->exec("USE $db_name");
 
@@ -94,13 +92,71 @@ try {
             FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
+
+        INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES 
+            (1, 'SUGARGLIDE SPARK', 1, 100, 34.99),
+            (1, 'COSMIC CURSOR', 1, 100, 49.99),
+            (1, 'WOODLAND WANDERER', 1, 100, 42.99),
+            (1, 'PIXELWAVE MOUSE', 1, 100, 49.99),
+            (1, 'KITTYCLICKS', 1, 100, 49.99),
+            (2, 'SUGARSCREEN MONITOR', 1, 100, 179.99),
+            (2, 'COSMO VIEW CURVED MONITOR', 1, 100, 299.99),
+            (2, 'ECO VIEW MONITOR', 1, 100, 189.99),
+            (2, 'RETROVIEW LED MONITOR', 1, 100, 169.99),
+            (2, 'KITTYVIEW MONITOR', 1, 100, 199.99),
+            (3, 'BUBBLEGUM BLASTER', 1, 100, 49.99),
+            (3, 'STELLAR SOUNDWAVES', 1, 100, 59.99),
+            (3, 'WOODLAND HARMONY', 1, 100, 49.99),
+            (3, 'RETRO RAINBOW WAVE', 1, 100, 34.99),
+            (3, 'WHISKERTUNES', 1, 100, 39.99),
+            (4, 'CANDYKEYS KEYBOARD', 1, 100, 34.99),
+            (4, 'GALAXYTYPE KEYBOARD', 1, 100, 49.99),
+            (4, 'FORESTFLOW KEYBOARD', 1, 100, 42.99),
+            (4, 'PIXELPULSE KEYBOARD', 1, 100, 49.99),
+            (4, 'PURRKEYS KEYBOARD', 1, 100, 49.99),
+            (5, 'CANDYPOP MAT', 1, 100, 14.99),
+            (5, 'NEBULAGLIDE MAT', 1, 100, 18.99),
+            (5, 'EVERGREEN MAT', 1, 100, 16.99),
+            (5, 'NEONVIBES PAD', 1, 100, 19.99),
+            (5, 'PAWSOFT MAT', 1, 100, 15.99);
     ";
-    
+
     $db->exec($sql);
-    echo "Tables created successfully! <br>";
+
+    // Check if data already exists
+    $checkRole = $db->query("SELECT COUNT(*) FROM Role")->fetchColumn();
+    if ($checkRole == 0) {
+        $db->exec("
+            INSERT INTO Role (Role) VALUES 
+            ('Admin'), 
+            ('Customer');
+        ");
+    }
+
+    $checkOrderTypes = $db->query("SELECT COUNT(*) FROM OrderTypes")->fetchColumn();
+    if ($checkOrderTypes == 0) {
+        $db->exec("
+            INSERT INTO OrderTypes (OrderType) VALUES 
+            ('Admin'), 
+            ('Customer');
+        ");
+    }
+
+    $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
+    if ($checkProductType == 0) {
+        $db->exec("
+            INSERT INTO ProductType (ProductType) VALUES 
+            ('Mouse'), 
+            ('Monitor'),
+            ('Headphone'),
+            ('Keyboard'),
+            ('Mousepad');
+        ");
+    }
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 
 $conn = null;
+
 ?>
