@@ -118,34 +118,7 @@
         </div>
     </footer>
     
-    <!-- JavaScript -->
-    <script>
-        const data = [
-            { name: "Mice", url: "Mice.html" },
-            { name: "Monitors", url: "Monitors.html" },
-            { name: "Headphones", url: "Headphones.html" },
-            { name: "Keyboards", url: "Keyboards.html" },
-            { name: "Mousepads", url: "Mousepads.html" },
-        ];
-
-        const searchBar = document.getElementById("searchBar");
-        const searchButton = document.getElementById("searchButton");
-        const searchResults = document.getElementById("searchResults");
-
-        function searchItems(query) {
-            const lowerQuery = query.toLowerCase();
-            const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-            searchResults.innerHTML = results.length
-                ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-                : '<div>No results found</div>';
-
-            searchResults.style.display = query ? 'block' : 'none';
-        }
-
-        searchBar.addEventListener("input", () => searchItems(searchBar.value));
-        searchButton.addEventListener("click", () => searchItems(searchBar.value));
-    </script>
+  
 
 </body>
 
