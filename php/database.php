@@ -103,6 +103,12 @@ try {
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
 
+        CREATE TABLE IF NOT EXISTS AccessKeys (
+            RoleID INT NOT NULL PRIMARY KEY,
+            AccessKey VARCHAR(5) NOT NULL UNIQUE,
+            FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
+        );
+
 
         
     ";
@@ -150,8 +156,10 @@ try {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO Role (Role) VALUES 
-            ('Admin'), 
             ('Customer');
+            ('SubAdmin'), 
+            ('MidAdmin'), 
+            ('SuperAdmin'), 
         ");
     }
 
@@ -182,7 +190,18 @@ try {
         ");
     }
 
-
+    //Check if AccessKeys values already exists
+    $checkAccessKeys = $db->query("SELECT COUNT(*) FROM AccessKeys")->fetchColumn();
+    //If doesn't populate
+    if ($checkAccessKeys == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
+            ('2', 'PLACE'), 
+            ('3', 'MIGHT'), 
+            ('4', 'BRUNT'), 
+        ");
+    }
 
 
 } catch (PDOException $e) {
