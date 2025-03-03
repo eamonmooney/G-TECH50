@@ -93,6 +93,17 @@ try {
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
 
+        CREATE TABLE IF NOT EXISTS Reviews (
+            ReviewID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            UserID INT NOT NULL ,
+            ProductID INT NOT NULL,
+            Rating INT CHECK (Rating BETWEEN 0 AND 10),
+            Review VARCHAR(100),
+            FOREIGN KEY (UserID) REFERENCES Users(UserID),
+            FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+        );
+
+
         
     ";
 
