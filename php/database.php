@@ -5,7 +5,9 @@
 <?php
 
 try {
+    // Database connection
     require_once('connectdb.php');
+    // Create Database
     $db->exec("CREATE DATABASE IF NOT EXISTS $db_name");
     $db->exec("USE $db_name");
 
@@ -115,6 +117,23 @@ try {
 
     $db->exec($sql);
 
+
+    //Check if product types already exists
+    $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
+    //If doesn't populate
+    if ($checkProductType == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO ProductType (ProductType) VALUES 
+            ('Mouse'), 
+            ('Monitor'),
+            ('Headphone'),
+            ('Keyboard'),
+            ('Mousepad')
+        ");
+    }
+
+
     // Check if products already exists
     $checkProducts = $db->query("SELECT COUNT(*) FROM Products")->fetchColumn();
     //If doesn't populate
@@ -145,7 +164,7 @@ try {
             (5, 'NEBULAGLIDE MAT', 1, 100, 18.99),
             (5, 'EVERGREEN MAT', 1, 100, 16.99),
             (5, 'NEONVIBES PAD', 1, 100, 19.99),
-            (5, 'PAWSOFT MAT', 1, 100, 15.99);
+            (5, 'PAWSOFT MAT', 1, 100, 15.99)
         ");
     }
 
@@ -156,10 +175,10 @@ try {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO Role (Role) VALUES 
-            ('Customer');
+            ('Customer'),
             ('SubAdmin'), 
             ('MidAdmin'), 
-            ('SuperAdmin'), 
+            ('SuperAdmin') 
         ");
     }
 
@@ -171,24 +190,10 @@ try {
         $db->exec("
             INSERT INTO OrderTypes (OrderType) VALUES 
             ('Admin'), 
-            ('Customer');
+            ('Customer')
         ");
     }
 
-    //Check if product types already exists
-    $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
-    //If doesn't populate
-    if ($checkProductType == 0) {
-        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
-        $db->exec("
-            INSERT INTO ProductType (ProductType) VALUES 
-            ('Mouse'), 
-            ('Monitor'),
-            ('Headphone'),
-            ('Keyboard'),
-            ('Mousepad');
-        ");
-    }
 
     //Check if AccessKeys values already exists
     $checkAccessKeys = $db->query("SELECT COUNT(*) FROM AccessKeys")->fetchColumn();
@@ -199,7 +204,7 @@ try {
             INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
             ('2', 'PLACE'), 
             ('3', 'MIGHT'), 
-            ('4', 'BRUNT'), 
+            ('4', 'BRUNT') 
         ");
     }
 
@@ -208,6 +213,6 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-$db = null;
+$conn = null;
 
 ?>
