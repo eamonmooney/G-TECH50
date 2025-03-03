@@ -1,5 +1,5 @@
 <!-- Creating initial database and tables within -->
-<!-- Completed by Sahil (230073302), edited by Safa -->
+<!-- Completed by Sahil (230073302), edited by Safa, padding by Eamon, edited by Safa -->
 <!-- I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil. -->
 
 <?php
@@ -93,7 +93,17 @@ try {
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
 
-        INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES 
+        
+    ";
+
+    $db->exec($sql);
+
+    // Check if products already exists
+    $checkProducts = $db->query("SELECT COUNT(*) FROM Products")->fetchColumn();
+    //If doesn't populate
+    if ($checkProducts == 0) {
+        $db->exec("
+            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES 
             (1, 'SUGARGLIDE SPARK', 1, 100, 34.99),
             (1, 'COSMIC CURSOR', 1, 100, 49.99),
             (1, 'WOODLAND WANDERER', 1, 100, 42.99),
@@ -119,12 +129,12 @@ try {
             (5, 'EVERGREEN MAT', 1, 100, 16.99),
             (5, 'NEONVIBES PAD', 1, 100, 19.99),
             (5, 'PAWSOFT MAT', 1, 100, 15.99);
-    ";
+        ");
+    }
 
-    $db->exec($sql);
-
-    // Check if data already exists
+    // Check if roletypes already exists
     $checkRole = $db->query("SELECT COUNT(*) FROM Role")->fetchColumn();
+    //If doesn't populate
     if ($checkRole == 0) {
         $db->exec("
             INSERT INTO Role (Role) VALUES 
@@ -133,7 +143,9 @@ try {
         ");
     }
 
+    //Check if order types already exists
     $checkOrderTypes = $db->query("SELECT COUNT(*) FROM OrderTypes")->fetchColumn();
+    //If doesn't populate
     if ($checkOrderTypes == 0) {
         $db->exec("
             INSERT INTO OrderTypes (OrderType) VALUES 
@@ -142,7 +154,9 @@ try {
         ");
     }
 
+    //Check if product types already exists
     $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
+    //If doesn't populate
     if ($checkProductType == 0) {
         $db->exec("
             INSERT INTO ProductType (ProductType) VALUES 
@@ -153,6 +167,10 @@ try {
             ('Mousepad');
         ");
     }
+
+
+
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
