@@ -136,6 +136,7 @@ try {
     $checkRole = $db->query("SELECT COUNT(*) FROM Role")->fetchColumn();
     //If doesn't populate
     if ($checkRole == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO Role (Role) VALUES 
             ('Admin'), 
@@ -147,6 +148,7 @@ try {
     $checkOrderTypes = $db->query("SELECT COUNT(*) FROM OrderTypes")->fetchColumn();
     //If doesn't populate
     if ($checkOrderTypes == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO OrderTypes (OrderType) VALUES 
             ('Admin'), 
@@ -158,6 +160,7 @@ try {
     $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
     //If doesn't populate
     if ($checkProductType == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO ProductType (ProductType) VALUES 
             ('Mouse'), 
