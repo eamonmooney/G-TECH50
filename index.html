@@ -44,7 +44,13 @@
               <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -84,6 +90,28 @@
             <button class="button">SHOP NOW</button>
         </a>
     </section>
+
+    <!-- Javascript for updating basket number -->
+    <script>
+
+    // Using fetch on basketNumber.php
+    fetch('php/basketNumber.php')
+        //Response must be json
+        .then(response => response.json())  
+        //With the data
+        .then(data => {
+            //Print number of items to basket
+            console.log("Total number of items in basket:", data.basketNum);
+            
+            // Update the basket count in the navbar
+            document.getElementById("basketNum").textContent = data.basketNum;
+
+        })
+        //Catch errors
+        .catch(error => console.error('Error:', error));  
+    </script>
+
+
 
     <!-- Featured Products Section -->
     <section class="pictures">
