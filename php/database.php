@@ -27,12 +27,12 @@ try {
 
         CREATE TABLE IF NOT EXISTS OrderTypes (
             OrderTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            OrderType CHAR(50) NOT NULL
+            OrderType VARCHAR(50) NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS ProductType (
             ProductTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            ProductType CHAR(50) NOT NULL
+            ProductType VARCHAR(50) NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS Products (
@@ -49,7 +49,7 @@ try {
             OrderID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             UserID INT NOT NULL,
             OrderTypeID INT NOT NULL,
-            OrderDate CHAR(10) NOT NULL,
+            OrderDate VARCHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
@@ -175,6 +175,6 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-$conn = null;
+$db = null;
 
 ?>
