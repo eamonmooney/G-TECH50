@@ -1,11 +1,11 @@
 <!-- Creating initial database and tables within -->
-<!-- Completed by Sahil (230073302), edited by Safa -->
+<!-- Completed by Sahil (230073302), edited by Safa, padding by Eamon, edited by Safa -->
 <!-- I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil. -->
 
 <?php
 
 try {
-	// Database connection
+    // Database connection
     require_once('connectdb.php');
     // Create Database
     $db->exec("CREATE DATABASE IF NOT EXISTS $db_name");
@@ -29,12 +29,12 @@ try {
 
         CREATE TABLE IF NOT EXISTS OrderTypes (
             OrderTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            OrderType CHAR(50) NOT NULL
+            OrderType VARCHAR(50) NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS ProductType (
             ProductTypeID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            ProductType CHAR(50) NOT NULL
+            ProductType VARCHAR(50) NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS Products (
@@ -51,7 +51,7 @@ try {
             OrderID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             UserID INT NOT NULL,
             OrderTypeID INT NOT NULL,
-            OrderDate CHAR(10) NOT NULL,
+            OrderDate VARCHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
@@ -94,13 +94,125 @@ try {
             FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
+
+        CREATE TABLE IF NOT EXISTS Reviews (
+            ReviewID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            UserID INT NOT NULL ,
+            ProductID INT NOT NULL,
+            Rating INT CHECK (Rating BETWEEN 0 AND 10),
+            Review VARCHAR(100),
+            FOREIGN KEY (UserID) REFERENCES Users(UserID),
+            FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+        );
+
+        CREATE TABLE IF NOT EXISTS AccessKeys (
+            RoleID INT NOT NULL PRIMARY KEY,
+            AccessKey VARCHAR(5) NOT NULL UNIQUE,
+            FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
+        );
+
+
+        
     ";
-    
+
     $db->exec($sql);
-    echo "Tables created successfully! <br>";
+
+
+    //Check if product types already exists
+    $checkProductType = $db->query("SELECT COUNT(*) FROM ProductType")->fetchColumn();
+    //If doesn't populate
+    if ($checkProductType == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO ProductType (ProductType) VALUES 
+            ('Mouse'), 
+            ('Monitor'),
+            ('Headphone'),
+            ('Keyboard'),
+            ('Mousepad')
+        ");
+    }
+
+
+    // Check if products already exists
+    $checkProducts = $db->query("SELECT COUNT(*) FROM Products")->fetchColumn();
+    //If doesn't populate
+    if ($checkProducts == 0) {
+        $db->exec("
+            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES 
+            (1, 'SUGARGLIDE SPARK', 1, 100, 34.99),
+            (1, 'COSMIC CURSOR', 1, 100, 49.99),
+            (1, 'WOODLAND WANDERER', 1, 100, 42.99),
+            (1, 'PIXELWAVE MOUSE', 1, 100, 49.99),
+            (1, 'KITTYCLICKS', 1, 100, 49.99),
+            (2, 'SUGARSCREEN MONITOR', 1, 100, 179.99),
+            (2, 'COSMO VIEW CURVED MONITOR', 1, 100, 299.99),
+            (2, 'ECO VIEW MONITOR', 1, 100, 189.99),
+            (2, 'RETROVIEW LED MONITOR', 1, 100, 169.99),
+            (2, 'KITTYVIEW MONITOR', 1, 100, 199.99),
+            (3, 'BUBBLEGUM BLASTER', 1, 100, 49.99),
+            (3, 'STELLAR SOUNDWAVES', 1, 100, 59.99),
+            (3, 'WOODLAND HARMONY', 1, 100, 49.99),
+            (3, 'RETRO RAINBOW WAVE', 1, 100, 34.99),
+            (3, 'WHISKERTUNES', 1, 100, 39.99),
+            (4, 'CANDYKEYS KEYBOARD', 1, 100, 34.99),
+            (4, 'GALAXYTYPE KEYBOARD', 1, 100, 49.99),
+            (4, 'FORESTFLOW KEYBOARD', 1, 100, 42.99),
+            (4, 'PIXELPULSE KEYBOARD', 1, 100, 49.99),
+            (4, 'PURRKEYS KEYBOARD', 1, 100, 49.99),
+            (5, 'CANDYPOP MAT', 1, 100, 14.99),
+            (5, 'NEBULAGLIDE MAT', 1, 100, 18.99),
+            (5, 'EVERGREEN MAT', 1, 100, 16.99),
+            (5, 'NEONVIBES PAD', 1, 100, 19.99),
+            (5, 'PAWSOFT MAT', 1, 100, 15.99)
+        ");
+    }
+
+    // Check if roletypes already exists
+    $checkRole = $db->query("SELECT COUNT(*) FROM Role")->fetchColumn();
+    //If doesn't populate
+    if ($checkRole == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO Role (Role) VALUES 
+            ('Customer'),
+            ('SubAdmin'), 
+            ('MidAdmin'), 
+            ('SuperAdmin') 
+        ");
+    }
+
+    //Check if order types already exists
+    $checkOrderTypes = $db->query("SELECT COUNT(*) FROM OrderTypes")->fetchColumn();
+    //If doesn't populate
+    if ($checkOrderTypes == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO OrderTypes (OrderType) VALUES 
+            ('Admin'), 
+            ('Customer')
+        ");
+    }
+
+
+    //Check if AccessKeys values already exists
+    $checkAccessKeys = $db->query("SELECT COUNT(*) FROM AccessKeys")->fetchColumn();
+    //If doesn't populate
+    if ($checkAccessKeys == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
+            ('2', 'PLACE'), 
+            ('3', 'MIGHT'), 
+            ('4', 'BRUNT') 
+        ");
+    }
+
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 
 $conn = null;
+
 ?>

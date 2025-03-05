@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         die("Passwords do not match.");
     }
     //Defines user input as variables
-    $RoleID = 2;
+    $RoleID = 1;
     $Name = $_POST['name'];
     $Password = $_POST['password'];
     $Email = $_POST['email'];
