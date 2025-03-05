@@ -2,11 +2,18 @@
 Created by and implemented on all pages by Safa */
 
 /* Importing Poppins font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); */
 
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'superbrigade';
+    src: url('fonts/superbrigade.ttf') format('truetype');
+}
 
 /* Apply font to everything */
 * {
-	font-family: 'Poppins', Arial, Helvetica, sans-serif; 
-	font-size: 13px;
+	font-family: 'horizon';
   }
