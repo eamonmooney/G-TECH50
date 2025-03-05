@@ -4,16 +4,29 @@
 	*/
 
 	// Start output buffering - using this to clean any outputs and remove uneeded outputs from irrelevant areas affecting JSON
-	ob_start();
+	// ob_start();
 
 
 	//Create / continue session
 	session_start();
 
+	// TEST - Check basket contents
+	// header('Content-Type: text/plain');
+	// var_dump($_SESSION['basket']);
+	// exit;
+
+	
+	header('Content-Type: application/json');
+
+
+	$basket = $_SESSION['basket'];
+
+
 	// Get the raw POST data and decode
 	$data = json_decode(file_get_contents('php://input'), true);
-
+	
 	// Check if the 'name' and 'change' fields exist in the decoded JSON
+	// if (isset($data['name']) && isset($data['change'])) {
 	if (isset($data['name']) && isset($data['change'])) {
 		// Set Item name
 		$name = $data['name'];  
@@ -26,7 +39,6 @@
 			$currentQuantity = $_SESSION['basket'][$name]['quantity'];
 			//Calculate new quantity
 			$newQuantity = $currentQuantity + $change;
-			
 			// If quantity is below 1, remove the item from the basket
 			if ($newQuantity < 1) {
 				// Remove item from the basket
@@ -42,8 +54,12 @@
 			}
 		//Otherwise if the item doesn't exist
 		} else {
+		
+    $response = ['status' => 'error', 'message' => 'Item not found in basket'];
+    echo json_encode($_SESSION['basket']);
+    exit;
 			// Return a response that the item isn';t in the basket
-			$response = ['status' => 'error', 'message' => 'Item not found in basket'];
+			// $response = ['status' => 'error', 'message' => 'Item not found in basket'.$data['name']. $data['change'] ];
 		}
 
 		// Send the response as JSON to .html file
@@ -54,5 +70,5 @@
 		echo json_encode(['status' => 'error', 'message' => 'Invalid request parameters']);
 	}
 // Clean any previous output
-ob_end_clean(); 
+// ob_end_clean(); 
 ?>

@@ -1,0 +1,12 @@
+/* Creating a CSS file for the fonts so it's easier to swap fonts
+Created by and implemented on all pages by Safa */
+
+/* Importing Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+
+/* Apply font to everything */
+* {
+	font-family: 'Poppins', Arial, Helvetica, sans-serif; 
+	font-size: 13px;
+  }

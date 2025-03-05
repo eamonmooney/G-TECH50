@@ -5,173 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="/css/products.css">
-  <link rel="stylesheet" href="/css/footer.css">
-  
+  <link rel="stylesheet" href="../css/products.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/navbar.css">
 
-  <style>
-    .navbar {
-      display: flex;
-      justify-content: space-between; 
-      align-items: center;
-      background-color: #000000;
-      width: 100%;
-      position: fixed;
-      top: 0; 
-      left: 0;
-      z-index: 1000;
-      padding: 0 20px;
-    }
-
-    .logo {
-      flex: 1;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 10px;
-    }
-
-    .navbar a {  
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .navbar a:hover {
-      background-color: #201c1c;
-    }
-
-    .material-icons {
-      color: white; 
-      font-size: 24px;
-    }
-
-    .icon-container {
-      flex: 1; 
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 5px; 
-      margin-right: 20px;
-    }
-
-    
-    .search-bar {
-      display: flex;
-      align-items: center;
-      background-color: #201c1c;
-      border-radius: 5px;
-      padding: 5px 10px;
-    }
-
-    .search-bar input[type="text"] {
-      background-color: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      padding: 5px;
-      font-size: 16px;
-      width: 120px; 
-    }
-
-    .search-bar .material-icons {
-      color: white;
-      cursor: pointer;
-      font-size: 24px;
-    }
-
-    .search-bar input[type="text"]::placeholder {
-      color: #aaa; 
-    }
-
-    
-    .dropdown {
-      position: relative;
-      margin-top: 15px; 
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 115%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #201c1c;
-      padding: 10px;
-      width: 600px;
-      border-radius: 5px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .dropdown-content a {
-      color: white;
-      width: 100px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      text-align: center;
-      background-color: #201c1c;
-      border-radius: 5px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #333333;
-    }
-  </style>
 
 </head>
 
 <body>
   
-  <div class="navbar">
-    <div class="logo">
-      <a href="../">Logo</a>
-    </div>
-
-    <div class="nav-links">
-      <a href="../">Home</a>
-
-      <div class="dropdown">
-        <a href=#>Categories</a>
-
-        <div class="dropdown-content">
-          <a href="../categories/Mice.html">Mice</a>
-          <a href="../categories/Monitors.html">Monitors</a>
-          <a href="../categories/Headphones.html">Headphones</a>
-          <a href="../categories/Keyboards.html">Keyboards</a>
-          <a href="../categories/Mousepads.html">Mousepads</a>
+    <!-- NAV BAR FOR PRODUCT PAGES -->
+      <div class="navbar">
+        <div class="logo">
+          <img src="../images/g-tech50 logo.png" alt="Logo" class="logo-image">
         </div>
+    
+    
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+    
+          <div class="dropdown">
+            <a href=#>Categories</a>
 
+            <div class="dropdown-content">
+              <a href="../categories/Mice.html">Mice</a>
+              <a href="../categories/Monitors.html">Monitors</a>
+              <a href="../categories/Headphones.html">Headphones</a>
+              <a href="../categories/Keyboards.html">Keyboards</a>
+              <a href="../categories/Mousepads.html">Mousepads</a>
+            </div>
+    
+          </div>
+          <a href="../aboutus.html">About Us</a>
+          <a href="../contact.html">Contact Us</a>
+        </div>
+    
+    
+        <div class="icon-container">
+          <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search...">
+            <i class="material-icons" id="searchButton">search</i>
+          </div>
+    
+          <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+          <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
       </div>
-      <a href="../aboutus.html">About Us</a>
-      <a href="../contact.html">Contact Us</a>
-    </div>
-
-    <div class="icon-container">
-        
-        <div class="search-bar">
-          <input type="text" placeholder="Search...">
-          <i class="material-icons">search</i>
-        </div>
-
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
-    </div>
-  </div>
+    
+      <div id="searchResults" class="search-results" style="display: none;"></div>
+    
+      <!-- Linking to Search bar JS -->
+      <script src="../js/searchBar.js"></script>
     
   <div class="single-item">
     <div class="Picture">
-        <img class="main-image" src="/images/Ai/woodland_wanderer0001.png" alt="Mouse">
+        <img class="main-image" src="../images/Ai/woodland_wanderer0001.png" alt="Mouse">
     </div>
     <div class="item-spec">
         <h2>WOODLAND WANDERER</h2>
@@ -194,16 +82,31 @@
     
   
 
+  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-        <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-        <div class="contact-details">
-            <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-            <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-            <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
-        </div>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>G-TECH50</h3>
+        <p>&copy; 2024 G-TECH50</p>
+        <p>ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Phone: +44 7700 900123</p>
+        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+      </div>
     </div>
-</footer>
+  </footer>
 
 
    </body> 

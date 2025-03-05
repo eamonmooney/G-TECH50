@@ -1,0 +1,258 @@
+/* CSS FOR THE NAVBAR 
+CSS WORKED ON BY TOBIAS
+CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
+
+.navbar {
+	display: flex;
+	justify-content: space-between; 
+	align-items: center;
+	background-color: #000000;
+	width: 100%;
+	position: fixed;
+	top: 0; 
+	left: 0;
+	z-index: 1000;
+	padding: 0 20px;
+	height: 55px;
+  }
+
+  .logo {
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	align-items: center;
+	padding: 0;  
+  }
+
+ .logo-image {
+	width: 120px;
+	height: auto;
+	object-fit: contain;
+	margin-right: 200px;
+    margin-left: 10px;
+  }
+
+  .nav-links {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	flex: 1;
+	margin-left: 80px; 
+	margin-right: 50px;
+  }
+
+  .navbar a {  
+	color: white;
+	text-align: center;
+	padding: 15px 15px;
+	text-decoration: none;
+  }
+
+  .navbar a:hover {
+	background-color: #201c1c;
+  }
+
+  .material-icons {
+	color: white; 
+	font-size: 24px;
+  }
+
+  .icon-container {
+	flex: 1; 
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 5px; 
+	margin-right: 20px;
+  }
+
+  .search-bar {
+	display: flex;
+	align-items: center;
+	background-color: #201c1c;
+	border-radius: 5px;
+	padding: 5px 10px;
+  }
+
+  .search-bar input[type="text"] {
+	background-color: transparent;
+	border: none;
+	color: white;
+	outline: none;
+	padding: 5px;
+	font-size: 16px;
+	width: 120px; 
+  }
+
+  .search-bar .material-icons {
+	color: white;
+	cursor: pointer;
+	font-size: 24px;
+  }
+
+  .search-bar input[type="text"]::placeholder {
+	color: #aaa; 
+  }
+
+  .search-results {
+	position: absolute; 
+	top: 55px; 
+	left: 50%; 
+	transform: translateX(-50%); 
+	background-color: #201c1c;
+	color: white;
+	border-radius: 5px;
+	width: 90%;
+	max-width: 600px;
+	padding: 10px;
+	z-index: 1001;
+  }
+
+  .search-results a {
+	display: block;
+	margin-bottom: 5px;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	border-bottom: 1px solid #333;
+  }
+
+  .search-results a:hover {
+	background-color: #333333;
+  }
+
+  .search-results a:last-child {
+	border-bottom: none;
+  }
+  .dropdown {
+	position: relative;
+	margin-top: 15px; 
+  }
+
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #201c1c;
+	padding: 10px;
+	width: 600px;
+	border-radius: 5px;
+	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .dropdown:hover .dropdown-content {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+  }
+
+  .dropdown-content a {
+	color: white;
+	width: 100px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	text-align: center;
+	background-color: #201c1c;
+	border-radius: 5px;
+  }
+
+  .dropdown-content a:hover {
+	background-color: #333333;
+  }
+
+  .hamburger-menu {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+	margin-left: auto; 
+	padding-right: 25px; 
+	
+  }
+
+  .hamburger-menu .bar {
+	width: 25px;
+	height: 3px;
+	background-color: white;
+	margin: 4px 0;
+  }
+
+  .mobile-nav-links {
+	display: none;
+	flex-direction: column;
+	background-color: #000000;
+	position: fixed;
+	top: 55px;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+  }
+
+  .mobile-nav-links a {
+	color: white;
+	padding: 14px 16px;
+	text-decoration: none;
+	text-align: center;
+  }
+
+  .mobile-nav-links a:hover {
+	background-color: #201c1c;
+  }
+
+  .mobile-dropdown-content {
+	display: none;
+	background-color: #201c1c;
+	padding: 10px;
+  }
+
+  .mobile-dropdown-content a {
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+  }
+
+  .mobile-dropdown-content a:hover {
+	background-color: #333333;
+  }
+
+  @media (max-width: 768px) {
+	.nav-links {
+	  display: none;
+	}
+
+	.hamburger-menu {
+	  display: flex;
+	}
+
+	.search-bar {
+	  display: flex; 
+	  margin-right: 10px; 
+	}
+
+	.mobile-nav-links.active {
+	  display: flex;
+	}
+
+	.icon-container {
+	  margin-right: 10px; 
+	}
+  }
+
+/* TO make the basket number next to the basket icon */
+
+  /* Basket container */
+#basket-container {
+	/* Make flexbox */
+    display: flex;
+	/* Align items in center */
+    align-items: center; 
+	/* Make a gap between icon and text */
+    gap: 5px;
+    
+}
