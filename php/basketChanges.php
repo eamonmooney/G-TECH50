@@ -19,22 +19,23 @@
 	header('Content-Type: application/json');
 
 
-	$basket = $_SESSION['basket'];
-
-
+	if (!isset($_SESSION['basket'])) {
+		$_SESSION['basket'] = [];
+	}
+	
 	// Get the raw POST data and decode
 	$data = json_decode(file_get_contents('php://input'), true);
 	
-	// Check if the 'name' and 'change' fields exist in the decoded JSON
-	// if (isset($data['name']) && isset($data['change'])) {
-	if (isset($data['name']) && isset($data['change'])) {
+	// Check if the 'product_id' and 'change' fields exist in the decoded JSON
+	// if (isset($data['product_id']) && isset($data['change'])) {
+	if (isset($data['product_id']) && isset($data['change'])) {
 		// Set Item name
-		$name = $data['name'];  
+		$name = $data['product_id'];  
 		// Set change (either 1 for increase or -1 for decrease) and convert to integer
 		$change = (int) $data['change'];  
 
 		// Check if the item exists in the basket
-		if (isset($_SESSION['basket'][$name])) {
+		if (isset($_SESSION['basket'][$product_id])) {
 			//Get the current quantity
 			$currentQuantity = $_SESSION['basket'][$name]['quantity'];
 			//Calculate new quantity
@@ -42,13 +43,13 @@
 			// If quantity is below 1, remove the item from the basket
 			if ($newQuantity < 1) {
 				// Remove item from the basket
-				unset($_SESSION['basket'][$name]);  
+				unset($_SESSION['basket'][$product_id]);  
 				//Return that the item has been removed
 				$response = ['status' => 'removed', 'message' => 'Item removed from basket'];
 			//Or, if the quantity isn't negative / 0
 			} else {
 				// Update the quantity of the item in the session basket variable
-				$_SESSION['basket'][$name]['quantity'] = $newQuantity;
+				$_SESSION['basket'][$product_id]['quantity'] = $newQuantity;
 				//Return a response with the status being updated and the new quantity
 				$response = ['status' => 'updated', 'quantity' => $newQuantity, 'message' => 'Item added to basket'];
 			}

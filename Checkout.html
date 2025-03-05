@@ -1,176 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Page</title>
+  <title>GTECH50 | CHECKOUT</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <style>
+  <link rel="stylesheet" href="css/checkout.css">
 
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: #f4f4f4;
-      height: 100vh;
-    }
-
-    .stage-indicator {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #ccc;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .circle.active {
-      background-color: #000;
-    }
-
-    .container {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 700px;
-      height: 400px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      overflow-y: auto; 
-    }
-
-    .container.active {
-      display: flex;
-    }
-
-    .button-container {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      background-color: #000000;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background-color: #444;
-    }
-
-    .button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    
-    input {
-      padding: 8px;
-      margin: 10px;
-      width: calc(100% - 20px); 
-      max-width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    
-    .basket-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .product {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-    }
-
-    .product-name {
-      font-size: 16px;
-    }
-
-    .quantity {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .quantity button {
-      padding: 5px 10px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .price {
-      font-weight: bold;
-    }
-    @media (max-width: 768px) {
-      .container {
-        width: 90%;
-        margin: 10px;
-      }
-
-      .button {
-        padding: 8px 16px;
-        font-size: 14px;
-      }
-
-      input {
-        padding: 10px;
-        font-size: 14px;
-      }
-
-      .button-container {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .stage-indicator {
-        gap: 10px;
-      }
-
-      .circle {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-      }
-    }
-  </style>
+  <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 </head>
+
 <body>
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("basket.php")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Debugging
+                if (data.basket.length === 0) {
+                    document.getElementById("summary-details").innerHTML = "<p>Your basket is empty.</p>";
+                    return;
+                }
+    
+                let basketHtml = "<ul>";
+                data.basket.forEach(item => {
+                    basketHtml += `<li>${item.name} - ${item.quantity} x £${item.price.toFixed(2)}</li>`;
+                });
+                basketHtml += "</ul><p><strong>Total: £" + data.totalPrice.toFixed(2) + "</strong></p>";
+    
+                document.getElementById("summary-details").innerHTML = basketHtml;
+            })
+            .catch(error => console.error("Error fetching basket:", error));
+    });
+    </script>
+
+  <!-- Checking if signed in. -->
+   <div id="checkoutStart"></div>
+
+   <script>
+    fetch("checkout.php", {
+      method: "POST",
+      body: new FormData(document.getElementById("checkout-form")),
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error("Error:", error));
+
+   </script>
   <!-- Navigation Bar -->
   <div class="navbar">
     <div class="logo">
@@ -190,6 +68,7 @@
         </div>
         <a href="aboutus.html">About Us</a>
         <a href="contact.html">Contact Us</a>
+        <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
 
     <!-- Search & User Icons -->
@@ -215,11 +94,11 @@
     <a href="Home.html">Home</a>
     <a href=# id="mobileCategories">Categories</a>
     <div class="mobile-dropdown-content" id="mobileDropdownContent">
-      <a href="categories/Mice.html">Mice</a>
-      <a href="categories/Monitors.html">Monitors</a>
-      <a href="categories/Headphones.html">Headphones</a>
-      <a href="categories/Keyboards.html">Keyboards</a>
-      <a href="categories/Mousepads.html">Mousepads</a>
+        <a href="categories/Mice.html">Mice</a>
+        <a href="categories/Monitors.html">Monitors</a>
+        <a href="categories/Headphones.html">Headphones</a>
+        <a href="categories/Keyboards.html">Keyboards</a>
+        <a href="categories/Mousepads.html">Mousepads</a>
     </div>
     <a href="AboutUs.html">About Us</a>
     <a href="contact.html">Contact Us</a>
@@ -231,108 +110,109 @@
 <!-- Linking to Search bar JS -->
 <script src="js/searchBar.js"></script>
 <script src="js/mobileNavbar.js"></script>
-  
- 
+
   <div class="stage-indicator">
     <div id="stage-1" class="circle active">1</div>
     <div id="stage-2" class="circle">2</div>
     <div id="stage-3" class="circle">3</div>
   </div>
 
-  
-  <div id="initial-container" class="container active">
-    <h2>Enter Your Delivery Details</h2>
-    <form id="delivery-form">
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="text" id="name" placeholder="First Name" required />
-      <input type="text" id="surname" placeholder="Last Name" required />
-      <input type="text" id="address" placeholder="Address" required />
-    </form>
-    <div class="button-container">
-      <button class="button" disabled>Back</button>
-      <button class="button" onclick="saveDeliveryDetails(); goToStage(2)">Next</button>
+  <form id="checkout-form" method="POST" action="/php/checkout.php">
+    <!-- Delivery Details Form (Stage 1) -->
+    <div id="initial-container" class="container active">
+      <h2>Enter Your Delivery Details</h2>
+      <input type="email" name="email" id="email" placeholder="Email" required />
+      <input type="text" name="name" id="name" placeholder="First Name" required />
+      <input type="text" name="surname" id="surname" placeholder="Last Name" required />
+      <input type="text" name="address" id="address" placeholder="Address" required />
+      <div class="button-container">
+        <button class="button" disabled>Back</button>
+        <button type="button" class="button" onclick="goToStage(2)">Next</button>
+      </div>
     </div>
-  </div>
 
-  
-  <div id="details-container" class="container">
-    <h2>Enter Your Card Details</h2>
-    <form id="card-form">
-      <input type="text" id="card-name" placeholder="Name on Card" required />
-      <input type="text" id="card-number" placeholder="Card Number" required />
-      <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
-      <input type="text" id="cvv" placeholder="CVV" maxlength="3" required />
-    </form>
-    <div class="button-container">
-      <button class="button" onclick="goToStage(1)">Back</button>
-      <button class="button" onclick="saveCardDetails(); goToStage(3)">Next</button>
+    <!-- Card Details Form (Stage 2) -->
+    <div id="details-container" class="container">
+      <h2>Enter Your Card Details</h2>
+      <input type="text" name="card-name" id="card-name" placeholder="Name on Card" required />
+      <input type="text" name="card-number" id="card-number" placeholder="Card Number" required />
+      <input type="text" name="expiry" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
+      <input type="text" name="cvv" id="cvv" placeholder="CVV" maxlength="3" required />
+      <div class="button-container">
+        <button type="button" class="button" onclick="goToStage(1)">Back</button>
+        <button type="button" class="button" onclick="goToStage(3)">Next</button>
+      </div>
     </div>
-  </div>
 
-  
-  <div id="summary-container" class="container">
-    <h2>Order Summary</h2>
-    <div id="summary-details">
-      
+    <!-- Summary (Stage 3) -->
+    <div id="summary-container" class="container">
+      <h2>Order Summary</h2>
+      <div id="summary-details"></div>
+      <div class="button-container">
+        <button type="button" class="button" onclick="goToStage(2)">Back</button>
+        <button type="submit" class="button">Confirm Order</button>
+      </div>
     </div>
-    <div class="button-container">
-      <button class="button" onclick="goToStage(2)">Back</button>
-      <button class="button" onclick="confirmOrder()">Confirm</button>
-    </div>
-  </div>
+  </form>
 
   <script>
-    
-    let deliveryDetails = {};
-    let cardDetails = {};
-
-    
-    function saveDeliveryDetails() {
-      deliveryDetails = {
-        email: document.getElementById('email').value,
-        name: document.getElementById('name').value,
-        surname: document.getElementById('surname').value,
-        address: document.getElementById('address').value
-      };
-    }
-
-    
-    function saveCardDetails() {
-      cardDetails = {
-        cardName: document.getElementById('card-name').value,
-        cardNumber: document.getElementById('card-number').value,
-        expiry: document.getElementById('expiry').value,
-        cvv: document.getElementById('cvv').value
-      };
-    }
-
-    
     function goToStage(stage) {
-      document.querySelectorAll('.container').forEach(container => container.classList.remove('active'));
-      if (stage === 1) document.getElementById('initial-container').classList.add('active');
-      if (stage === 2) document.getElementById('details-container').classList.add('active');
-      if (stage === 3) {
-        document.getElementById('summary-container').classList.add('active');
-        displaySummary(); 
-      }
+    document.querySelectorAll(".container").forEach(container => {
+        container.classList.remove("active");
 
-      
-      document.querySelectorAll('.circle').forEach(circle => circle.classList.remove('active'));
-      document.getElementById(`stage-${stage}`).classList.add('active');
+        // Disable all input fields in hidden sections
+        container.querySelectorAll("input").forEach(input => {
+            input.required = false;
+        });
+    });
+
+    let targetContainer;
+    if (stage === 1) {
+        targetContainer = document.getElementById("initial-container");
+    } else if (stage === 2) {
+        targetContainer = document.getElementById("details-container");
+    } else if (stage === 3) {
+        targetContainer = document.getElementById("summary-container");
     }
 
-   
+    // Enable required for inputs in the currently active stage
+    targetContainer.classList.add("active");
+    targetContainer.querySelectorAll("input").forEach(input => {
+        input.required = true;
+    });
+}
+
+    function updateSummary() {
+      const summary = document.getElementById("summary-details");
+      summary.innerHTML = `
+          <p>Email: ${document.getElementById("email").value}</p>
+          <p>Name: ${document.getElementById("name").value} ${document.getElementById("surname").value}</p>
+          <p>Address: ${document.getElementById("address").value}</p>
+          <p>Card: **** **** **** ${document.getElementById("card-number").value.slice(-4)}</p>
+      `;
+    }
+
     function displaySummary() {
+      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value;
+      const surname = document.getElementById('surname').value;
+      const address = document.getElementById('address').value;
+
+      const cardName = document.getElementById('card-name').value;
+      const cardNumber = document.getElementById('card-number').value;
+      const expiry = document.getElementById('expiry').value;
+      const cvv = document.getElementById('cvv').value;
+
       const summaryDetailsHTML = `
         <h3>Delivery Details:</h3>
-        <p>Email: ${deliveryDetails.email}</p>
-        <p>Name: ${deliveryDetails.name} ${deliveryDetails.surname}</p>
-        <p>Address: ${deliveryDetails.address}</p>
-        
+        <p>Email: ${email}</p>
+        <p>Name: ${name} ${surname}</p>
+        <p>Address: ${address}</p>
+
         <h3>Card Details:</h3>
-        <p>Name on Card: ${cardDetails.cardName}</p>
-        <p>Card Number: ${cardDetails.cardNumber}</p>
-        <p>Expiry Date: ${cardDetails.expiry}</p>
+        <p>Name on Card: ${cardName}</p>
+        <p>Card Number: ${cardNumber}</p>
+        <p>Expiry Date: ${expiry}</p>
 
         <h3>Products:</h3>
         <p>No products added yet</p>
@@ -342,11 +222,24 @@
       document.getElementById('summary-details').innerHTML = summaryDetailsHTML;
     }
 
-    
-    function confirmOrder() {
-      alert("Thank you for your order!");
-    }
-  </script>
+    document.getElementById("checkout-form").addEventListener("submit", function (event) {
+    event.preventDefault();
 
+    let formData = new FormData(this);
+    fetch("checkout.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "success.html"; // Redirect to success page
+        } else {
+            alert("Error: " + data.message);
+        }
+    })
+    .catch(error => console.error("Error submitting order:", error));
+});
+  </script>
 </body>
 </html>

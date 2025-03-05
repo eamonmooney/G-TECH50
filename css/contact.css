@@ -1,7 +1,10 @@
+/* Contact Page CSS designed by Sahil Awan. */
+
 body {
   background-color: black;
   color: white; 
   overflow-x: hidden;
+  width: min-content;
 }
 
 .navbar {
@@ -19,9 +22,6 @@ body {
   src: url('fonts/superbrigade.ttf') format('truetype');
 }
 
-.navbar .logo-image {
-  margin-top: 15px;
-}
 
 /* Contact Section */
 
@@ -144,22 +144,21 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-      flex-direction: column;
-      text-align: center;
-  }
-
-  .nav-links {
-      flex-direction: column;
-      gap: 10px;
-  }
 
   .contact {
-      width: 90%;
+      width: 50%;
   }
 
-  .footer-container {
-      flex-direction: column;
-      text-align: center;
+  .formtitle {
+    font-size: 12px;
+  }
+
+  .contactform {
+    width: fit-content;
+  }
+
+  .hero img {
+    width: 100%;
+    height: 100%;
   }
 }

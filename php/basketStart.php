@@ -7,9 +7,9 @@
 	session_start();
 
 		//!!! FOR TESTING - REMOVE!!!!
-		// $_SESSION['userId'] = 1;
+		//$_SESSION['userId'] = 1;
 
-		// $_SESSION['basket'] = null;
+		//$_SESSION['basket'] = null;
 
 	  // Ensure the Content-Type is set to JSON
 	  header('Content-Type: application/json');
