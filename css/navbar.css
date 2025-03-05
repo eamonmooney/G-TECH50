@@ -1,6 +1,6 @@
 /* CSS FOR THE NAVBAR 
 CSS WORKED ON BY TOBIAS
-CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
+CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 
 .navbar {
 	display: flex;
@@ -21,7 +21,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	align-items: center;
 	justify-content: center; 
 	align-items: center;
-	padding: 0;  
+	padding: 0;
   }
 
  .logo-image {
@@ -35,8 +35,8 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   .nav-links {
 	display: flex;
 	gap: 10px;
-	justify-content: center;
-	flex: 1;
+	justify-content: space-between;
+	flex: 2;
 	margin-left: 80px; 
 	margin-right: 50px;
   }
@@ -80,8 +80,9 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	color: white;
 	outline: none;
 	padding: 5px;
-	font-size: 16px;
-	width: 120px; 
+	font-size: 12px;
+	width: 120px;
+	font-family: 'horizon';
   }
 
   .search-bar .material-icons {
@@ -137,7 +138,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	transform: translateX(-50%);
 	background-color: #201c1c;
 	padding: 10px;
-	width: 600px;
+	width: fit-content;
 	border-radius: 5px;
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   }
@@ -150,7 +151,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 
   .dropdown-content a {
 	color: white;
-	width: 100px;
+	width: auto;
 	height: 40px;
 	display: flex;
 	align-items: center;
@@ -159,6 +160,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	text-align: center;
 	background-color: #201c1c;
 	border-radius: 5px;
+	font-family: 'horizon';
   }
 
   .dropdown-content a:hover {
@@ -222,6 +224,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
   }
 
   @media (max-width: 768px) {
+
 	.nav-links {
 	  display: none;
 	}
@@ -243,3 +246,16 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA*/
 	  margin-right: 10px; 
 	}
   }
+
+/* TO make the basket number next to the basket icon */
+
+  /* Basket container */
+#basket-container {
+	/* Make flexbox */
+    display: flex;
+	/* Align items in center */
+    align-items: center; 
+	/* Make a gap between icon and text */
+    gap: 5px;
+    
+}

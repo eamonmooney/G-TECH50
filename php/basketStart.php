@@ -7,9 +7,9 @@
 	session_start();
 
 		//!!! FOR TESTING - REMOVE!!!!
-		// $_SESSION['userId'] = 1;
+		//$_SESSION['userId'] = 1;
 
-		// $_SESSION['basket'] = null;
+		//$_SESSION['basket'] = null;
 
 	  // Ensure the Content-Type is set to JSON
 	  header('Content-Type: application/json');
@@ -27,6 +27,7 @@
 	$response = [
 		"redirect" => false,
 		"userID" => $_SESSION['userId'],
+		"name" => $_SESSION['username'],
 		"basket" => isset($_SESSION['basket']) ? $_SESSION['basket'] : [] // Include basket or empty if not set
 	];
 

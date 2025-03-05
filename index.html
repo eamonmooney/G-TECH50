@@ -1,3 +1,5 @@
+<!-- Index/Homepage initialised by ______ and designed by Sahil. -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTECH50 | HOME</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/fonts.css">
@@ -35,6 +40,7 @@
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
+            <a href="membershipSignUp.html">G-TECH50+</a>
         </div>
 
         <!-- Search & User Icons -->
@@ -44,7 +50,13 @@
               <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -85,6 +97,28 @@
         </a>
     </section>
 
+    <!-- Javascript for updating basket number -->
+    <script>
+
+    // Using fetch on basketNumber.php
+    fetch('php/basketNumber.php')
+        //Response must be json
+        .then(response => response.json())  
+        //With the data
+        .then(data => {
+            //Print number of items to basket
+            console.log("Total number of items in basket:", data.basketNum);
+            
+            // Update the basket count in the navbar
+            document.getElementById("basketNum").textContent = data.basketNum;
+
+        })
+        //Catch errors
+        .catch(error => console.error('Error:', error));  
+    </script>
+
+
+
     <!-- Featured Products Section -->
     <section class="pictures">
         <img src="images/Externalmade/6.png" alt="Monitor">
@@ -118,34 +152,7 @@
         </div>
     </footer>
     
-    <!-- JavaScript -->
-    <script>
-        const data = [
-            { name: "Mice", url: "Mice.html" },
-            { name: "Monitors", url: "Monitors.html" },
-            { name: "Headphones", url: "Headphones.html" },
-            { name: "Keyboards", url: "Keyboards.html" },
-            { name: "Mousepads", url: "Mousepads.html" },
-        ];
-
-        const searchBar = document.getElementById("searchBar");
-        const searchButton = document.getElementById("searchButton");
-        const searchResults = document.getElementById("searchResults");
-
-        function searchItems(query) {
-            const lowerQuery = query.toLowerCase();
-            const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-            searchResults.innerHTML = results.length
-                ? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-                : '<div>No results found</div>';
-
-            searchResults.style.display = query ? 'block' : 'none';
-        }
-
-        searchBar.addEventListener("input", () => searchItems(searchBar.value));
-        searchButton.addEventListener("click", () => searchItems(searchBar.value));
-    </script>
+  
 
 </body>
 
