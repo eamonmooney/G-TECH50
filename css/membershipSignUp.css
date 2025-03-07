@@ -14,12 +14,8 @@ body {
     background-color: black;
 }
 
-.navbar {
-    position: fixed;
-}
-
 .navbar .icon-container {
-    padding-right: 35px !important;
+    padding-right: 35px;
 }
 
 .plusImage {
