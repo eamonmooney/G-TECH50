@@ -27,6 +27,7 @@
 	$response = [
 		"redirect" => false,
 		"userID" => $_SESSION['userId'],
+		"name" => $_SESSION['username'],
 		"basket" => isset($_SESSION['basket']) ? $_SESSION['basket'] : [] // Include basket or empty if not set
 	];
 

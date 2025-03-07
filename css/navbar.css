@@ -245,3 +245,16 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 	  margin-right: 10px; 
 	}
   }
+
+/* TO make the basket number next to the basket icon */
+
+  /* Basket container */
+#basket-container {
+	/* Make flexbox */
+    display: flex;
+	/* Align items in center */
+    align-items: center; 
+	/* Make a gap between icon and text */
+    gap: 5px;
+    
+}
