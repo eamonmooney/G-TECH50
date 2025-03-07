@@ -28,7 +28,7 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 	width: 120px;
 	height: auto;
 	object-fit: contain;
-	margin-right: 200px;
+	margin-right: 90px;
     margin-left: 10px;
   }
 
@@ -36,9 +36,9 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 	display: flex;
 	gap: 10px;
 	justify-content: space-between;
-	flex: 2;
-	margin-left: 80px; 
-	margin-right: 50px;
+	flex: 1;
+	margin-left: auto;
+	margin-right: auto;
   }
 
   .navbar a {  
@@ -63,7 +63,6 @@ CSS COMPILED, TESTED AND THIS PAGE INCORPORATED ON EVERY PAGE BY SAFA */
 	justify-content: flex-end;
 	align-items: center;
 	gap: 5px; 
-	margin-right: 20px;
   }
 
   .search-bar {
