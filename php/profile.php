@@ -10,12 +10,10 @@ session_start();
 require_once('connectdb.php');
 
 // If the user isn't logged in, redirect to the signin page
-if (!isset($_SESSION['userId'])) {	
-    // Return a redirect response
-    echo "redirect";
-    //Leaving the php file to ensure nothing else is performed
+if (!isset($_SESSION['userId'])) {    
+    header("Location: ../signin.html");
     exit();
-} 
+}
 try {
     //Collecting information about the currently logged in user
     $userId = $_SESSION['userId'];
