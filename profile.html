@@ -232,25 +232,28 @@
           //Script for chaging html attributes of the profile page. Eamon - 230075926
           // Use JavaScript to fetch user details from a PHP script
           fetch('php/profile.php')
-          .then(response => response.text())
-          .then(data => {
-          if (data == "redirect") {
-            // Redirect to signin.html
-            window.location.href = 'signin.html';
-            //Otherwise if the user is logged in, display the user details
-          } else {
-            document.getElementById('account').innerHTML = data;
-          }
-          })
-          .catch(error => console.error('Error:', error));
-
+            .then(response => {
+              if (response.redirected) {
+                // If PHP sent a redirect, follow it
+                window.location.href = response.url;
+              }
+              return response.text();
+            })
+            .then(data => {
+              if (data.trim() === "redirect") {
+                window.location.href = 'signin.html'; // Fallback redirect
+              } else {
+                document.getElementById('account').innerHTML = data;
+              }
+            })
+            .catch(error => console.error('Error:', error));
           // Updating orders list upon page load
           fetch('php/previousOrders.php')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('orders-list').innerHTML = data;
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('orders-list').innerHTML = data;
           })
-          .catch(error => console.error('Error:', error)); 
+          .catch(error => console.error('Error:', error));
         </script>
       </div>
 
