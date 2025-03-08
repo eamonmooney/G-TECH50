@@ -1,6 +1,5 @@
-
-
 <?php
+// Created by Safa Riasat - 230078145
 // PHP Code for every page to have a number of items in the basket 
 
 // Start the session

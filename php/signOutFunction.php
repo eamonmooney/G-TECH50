@@ -1,4 +1,5 @@
 <?php
+// Created by Ned Goodman - 230019355
 session_start();
 // establish database connection
 require_once('connectdb.php');

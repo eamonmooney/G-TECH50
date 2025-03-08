@@ -1,9 +1,6 @@
 <?php
-##########################################################################
-# Collects Variables from the database to be displayed on the profile page
-##########################################################################
-# - Eamon Mooney - 230075926
-##########################################################################
+// Collects Variables from the database to be displayed on the profile page
+// Created by Eamon Mooney - 230075926
 session_start();
 
 //Database connection
