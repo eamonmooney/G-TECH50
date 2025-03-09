@@ -5,7 +5,7 @@
  If the user isn't logged in when they try to add something to the basket,
  they will be redirected to the log-in page.
  Basket session variable is now an associative array
- Created by Safa Riasat.
+ Created by Safa Riasat - 230078145
 
  -->
 

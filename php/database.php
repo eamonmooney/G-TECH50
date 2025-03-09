@@ -1,5 +1,5 @@
 <!-- Creating initial database and tables within -->
-<!-- Completed by Sahil (230073302), edited by Safa, padding by Eamon, edited by Safa -->
+<!-- Completed by Sahil (230073302), Table Insertion by Eamon (230075926), edited by Safa (230078145) -->
 <!-- I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil. -->
 
 <?php
