@@ -1,0 +1,96 @@
+/* Membership Sign-up Page CSS. Designed by Sahil. */
+
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'superbrigade';
+    src: url('fonts/superbrigade.ttf') format('truetype');
+  }
+
+body {
+    margin: 0;
+    background-color: black;
+}
+
+.navbar .icon-container {
+    padding-right: 35px;
+}
+
+.plusImage {
+    width: 100%;
+    height: calc(100% - 55px);
+    margin: 0;
+    display: inline-block;
+    object-fit: cover;
+    padding-left: 0;
+}
+
+.mainImage {
+    padding-bottom: 0px;
+}
+
+.aboutMembership {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.aboutMembership h1 {
+    font-family: 'superbrigade';
+    font-size: 50px;
+}
+
+.membershipText {
+    width: 75%;
+    margin: auto;
+    color: white;
+    text-align: center;
+}
+
+.membershipSignUp {
+    display: flexbox;
+    flex-direction: column;
+    gap: 15px;
+    padding: 100px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.membershipSignUp input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.membershipSignUp label {
+    color: white;
+    font-family: 'superbrigade';
+}
+
+.membershipSignUp input[type="submit"] {
+    background: #0099ff;
+    color: black;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'superbrigade';
+    box-sizing: content-box;
+  }
+
+  .membershipSignUp input[type="submit"]:hover {
+    background: rgba(0, 153, 255, 0.637);
+  }
+
+
+
+
+
+
