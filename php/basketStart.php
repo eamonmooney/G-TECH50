@@ -1,15 +1,15 @@
 <?php
 // This page should handle the backend for the basket page's redirection to sign in
 //  If the user isn't loaded in, redirect to the login page.
-//  Created by Safa Riasat
+//  Created by Safa Riasat - 230078145
 
 	// Start/resume the session 
 	session_start();
 
 		//!!! FOR TESTING - REMOVE!!!!
-		// $_SESSION['userId'] = 1;
+		//$_SESSION['userId'] = 1;
 
-		// $_SESSION['basket'] = null;
+		//$_SESSION['basket'] = null;
 
 	  // Ensure the Content-Type is set to JSON
 	  header('Content-Type: application/json');
@@ -22,7 +22,7 @@
 		exit();
 	} 
 
-	// // Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID and basket
+	// Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID and basket
 
 	$response = [
 		"redirect" => false,

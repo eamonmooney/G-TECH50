@@ -1,4 +1,10 @@
+/* CSS for the homepage initially worked on by Hanna Appiah - 230089015
+Design updated by Sahil Awan - 230073302. */
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
 
 @font-face {
     font-family: 'horizon';
@@ -18,7 +24,6 @@ img {
     max-width: 100%;
     width: 300px;
     height: auto;
-    margin-top: 15px;
     border-radius: 0;
 }
 
@@ -38,7 +43,7 @@ img {
 }
 
 .hero .button {
-    top: 750px;
+    top: 450px;
 }
 .button {
     height: 75px;
@@ -63,8 +68,8 @@ img {
 
 .pictures {
     display: flex;                    /* Enable Flexbox layout */
-    justify-content: space-between;    /* Distribute images evenly */
-    flex-wrap: wrap;                   /* Ensure images wrap if necessary */
+    justify-content: space-between;   /* Distribute images evenly */
+    flex-wrap: wrap;                  /* Ensure images wrap if necessary */
     gap: 1px;                         /* Space between images */
     margin-top: -12px;
 }
@@ -74,6 +79,7 @@ img {
     border-radius: 0;
     width: 24.75%;
     height: auto;
+    padding-top: 15px; /* Recentering the logo in the navbar messed gap between the main image and the four images section. Just added this to resolve that issue - Sahil. */
 }
 
 .pictures img:hover {
@@ -92,7 +98,7 @@ img {
     }
 
     .img1 {
-        height: 250px;
+        height:m;
     }
 }
 

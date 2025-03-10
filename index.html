@@ -1,3 +1,8 @@
+<!-- 
+    Page and text content made by Hanna Appiah - 230089015 
+    Redesign by Sahil Awan - 230073302
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +10,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTECH50 | HOME</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/fonts.css">
@@ -15,6 +23,25 @@
 </head>
 
 <body>
+    
+      <!-- THE FIRST JAVASCRIPT -->
+  <script>
+
+    //Javascript for calling the rememberMe.php page
+
+    // Using AJAX Requests - Asynchronous JavaScript and XML: helps send and recieve from PHP without reloading page
+    //Use fetch() API to open rememberMe.php page - makes an HTTP GET request 
+    fetch('php/rememberMe.php')
+      // Parse response from PHP into JSON
+      .then(response => response.json())
+      //With this data
+      .then(data => {
+        // Print the result to the console     
+        console.log('PHP Response:', data.result);
+      })
+      // Handle errors
+      .catch(error => console.error('Error:', error));  
+  </script>
 
     <!-- Navigation Bar -->
     <div class="navbar">
@@ -35,6 +62,7 @@
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
+            <a href="membershipSignUp.html">G-TECH50+</a>
         </div>
 
         <!-- Search & User Icons -->
@@ -44,7 +72,13 @@
               <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -84,6 +118,28 @@
             <button class="button">SHOP NOW</button>
         </a>
     </section>
+
+    <!-- Javascript for updating basket number -->
+    <script>
+
+    // Using fetch on basketNumber.php
+    fetch('php/basketNumber.php')
+        //Response must be json
+        .then(response => response.json())  
+        //With the data
+        .then(data => {
+            //Print number of items to basket
+            console.log("Total number of items in basket:", data.basketNum);
+            
+            // Update the basket count in the navbar
+            document.getElementById("basketNum").textContent = data.basketNum;
+
+        })
+        //Catch errors
+        .catch(error => console.error('Error:', error));  
+    </script>
+
+
 
     <!-- Featured Products Section -->
     <section class="pictures">

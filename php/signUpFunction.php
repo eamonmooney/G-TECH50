@@ -1,4 +1,6 @@
 <?php
+// Created by Ned Goodman - 230019355
+// Input sanitization by Elisha Kolade - 220383798
 session_start();
 //establishes database connection
 require_once('connectdb.php');
@@ -38,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         die("Passwords do not match.");
     }
     //Defines user input as variables
-    $RoleID = 2;
+    $RoleID = 1;
     $Name = $_POST['name'];
     $Password = $_POST['password'];
     $Email = $_POST['email'];

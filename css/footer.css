@@ -1,3 +1,7 @@
+/* Footer HTML initialised by Hanna Appiah - 230089015.  
+Changes to design, structure and CSS made by Sahil Awan - 230073302.
+*/
+
 @font-face {
     font-family: 'horizon';
     src: url('fonts/horizon.otf') format('opentype');
@@ -12,7 +16,6 @@ footer {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 35px;
-    font-family: 'horizon';
 }
 
 .footer-container {
@@ -24,6 +27,7 @@ footer {
     text-align: left;
     gap: 20px;
     background-color: black;
+    text-align: center; /* Adjusted the footer - Sahil. */
 }
 
 .footer-section {
@@ -38,6 +42,10 @@ footer {
     display: inline-block;
     padding-bottom: 5px;
     font-family: 'superbrigade';
+}
+
+.footer-section p, a {
+    font-family: 'horizon'; /* Updated the font of the text in the footer - Sahil. */
 }
 
 .footer-section ul {
@@ -59,4 +67,41 @@ footer {
 .footer-section p a:hover {
     color: white;
     text-decoration: underline;
+}
+
+/* Responsive design - mobile. */
+@media (max-width: 768px) {
+
+    .footer-container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-section h3 {
+        font-size: 20px;
+    }
+
+    .footer-section a, p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .footer-section {
+        align-items: center;
+    }
+
+    .footer-section ul {
+        text-align: center;
+    }
+}
+
+/* Responsive design - laptop and tablets. */
+@media (max-width: 1024px) {
+    
+    .footer-container {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+    }
 }
