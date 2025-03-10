@@ -22,7 +22,7 @@
 		exit();
 	} 
 
-	// // Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID and basket
+	// Otherwise if user is logged in, return a JSON response with redirect = true, meaning we won't redirect, and return userID and basket
 
 	$response = [
 		"redirect" => false,

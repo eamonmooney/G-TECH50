@@ -3,6 +3,7 @@
 // Shld be linked in pages where login is required at the start
 
 // Auto-login via cookie 
+// If user ID isnt set and cookie remember me is active
 if (!isset($_SESSION['userId']) && isset($_COOKIE['rememberMe'])) {
 	// Create the token for remember me
 	$token = $_COOKIE['rememberMe'];
@@ -24,9 +25,20 @@ if (!isset($_SESSION['userId']) && isset($_COOKIE['rememberMe'])) {
 		$_SESSION['roleId'] = $user['RoleID'];
 		$_SESSION['username'] = $user['Name'];
 		$_SESSION['email'] = $user['Email'];
+		$response = "User is set";
+		echo json_encode($response);
+		exit();
 		// Otherwise
 	} else {
 		// Clear the invalid/expired cookie
 		setcookie("rememberMe", "", time() - 3600, "/");
+		$response = "User isn't set";
+		echo json_encode($response);
+		exit();
 	}
+}else{
+	$response = "No cookie";
+	echo json_encode($response);
+
 }
+?>

@@ -20,6 +20,25 @@
 </head>
 
 <body>
+    
+      <!-- THE FIRST JAVASCRIPT -->
+  <script>
+
+    //Javascript for calling the rememberMe.php page
+
+    // Using AJAX Requests - Asynchronous JavaScript and XML: helps send and recieve from PHP without reloading page
+    //Use fetch() API to open rememberMe.php page - makes an HTTP GET request 
+    fetch('php/rememberMe.php')
+      // Parse response from PHP into JSON
+      .then(response => response.json())
+      //With this data
+      .then(data => {
+        // Print the result to the console     
+        console.log('PHP Response:', data.result);
+      })
+      // Handle errors
+      .catch(error => console.error('Error:', error));  
+  </script>
 
     <!-- Navigation Bar -->
     <div class="navbar">
