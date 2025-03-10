@@ -1,6 +1,6 @@
 <?php
-// Sign out by Ned
-// Cookie destroy by Safa
+// Created by Ned Goodman - 230019355
+// Cookie destroy by Safa Riasat - 230078145
 session_start();
 // establish database connection
 require_once('connectdb.php');

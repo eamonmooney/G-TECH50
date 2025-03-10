@@ -1,6 +1,6 @@
 <?php
 	/* This PHP page is to update the basket according to the changes made in the basket.html
-	Created by Safa
+		Created by Safa Riasat - 230078145
 	*/
 
 	// Start output buffering - using this to clean any outputs and remove uneeded outputs from irrelevant areas affecting JSON

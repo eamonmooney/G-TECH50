@@ -1,7 +1,7 @@
 <?php
 // This page should handle the backend for the basket page's redirection to sign in
 //  If the user isn't loaded in, redirect to the login page.
-//  Created by Safa Riasat
+//  Created by Safa Riasat - 230078145
 
 	// Start/resume the session 
 	session_start();

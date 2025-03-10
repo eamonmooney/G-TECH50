@@ -1,7 +1,6 @@
 <?php
-// Sign in - Ned
-// Remember me functionality - Safa
-
+// Created by Ned Goodman - 230019355
+// Remember me functionality by Safa Riasat - 230078145
 session_start();
 //establishes database connection
 require_once('connectdb.php');
