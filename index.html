@@ -41,6 +41,18 @@
       })
       // Handle errors
       .catch(error => console.error('Error:', error));  
+
+      //Database connection - Eamon Mooney (230075926)
+      fetch('php/connectdb.php')
+      // Parse response from PHP into JSON
+      .then(response => response.json())
+      //With this data
+      .then(data => {
+        // Print the result to the console     
+        console.log('PHP Response:', data.result);
+      })
+      // Handle errors
+      .catch(error => console.error('Error:', error));  
   </script>
 
     <!-- Navigation Bar -->
