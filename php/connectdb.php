@@ -15,8 +15,16 @@ $username = 'root';
 $password = '';
 
 try {
-	$db = new PDO("mysql:dbname=$db_name;host=$db_host", $username, $password); 
+	$db = new PDO("mysql:host=$db_host", $username, $password); 
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	// Create Database
+    $db->exec("CREATE DATABASE IF NOT EXISTS $db_name");
+
+	// Reconnect to the newly created database
+    $db = new PDO("mysql:host=$db_host;dbname=$db_name", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 	require_once('database.php');
 } catch(PDOException $ex) {
 	echo("Failed to connect to the database. <br>");
