@@ -35,7 +35,8 @@
 		$change = (int) $data['change'];  
 
 		// Check if the item exists in the basket
-		if (isset($_SESSION['basket'][$product_id])) {
+		// if (isset($_SESSION['basket'][$product_id])) {
+			if (isset($_SESSION['basket'][$name])) { //$product_id isn't defined anywhere, so makes sense to use $name. - Sahil.
 			//Get the current quantity
 			$currentQuantity = $_SESSION['basket'][$name]['quantity'];
 			//Calculate new quantity
@@ -70,6 +71,8 @@
 		//Send a message that the request parameters are invalid
 		echo json_encode(['status' => 'error', 'message' => 'Invalid request parameters']);
 	}
+
+	session_write_close(); // Saves the changes made in this session - Sahil.
 // Clean any previous output
 // ob_end_clean(); 
 ?>

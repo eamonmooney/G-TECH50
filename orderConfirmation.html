@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTECH50 | CHECKOUT</title>
+  <title>GTECH50 | CONFIRMATION</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
@@ -14,7 +14,7 @@
 <body>
 
   <!-- Checking if signed in. -->
-  <div id="checkoutStart"></div>
+   <div id="checkoutStart"></div>
 
   <!-- Navigation Bar -->
   <div class="navbar">
@@ -24,7 +24,7 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <div class="dropdown">
-          <a href="#">Categories</a>
+          <a href=#>Categories</a>
           <div class="dropdown-content">
             <a href="categories/Mice.html">Mice</a>
             <a href="categories/Monitors.html">Monitors</a>
@@ -37,7 +37,7 @@
         <a href="contact.html">Contact Us</a>
         <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
-    
+
     <!-- Search & User Icons -->
     <div class="icon-container">
         <div class="search-bar">
@@ -54,12 +54,12 @@
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
-  </div>
+</div>
 
-  <!-- Mobile Navigation Bar -->
-  <div class="mobile-nav-links" id="mobileNavLinks">
+<!-- Mobile Navigation Bar -->
+<div class="mobile-nav-links" id="mobileNavLinks">
     <a href="Home.html">Home</a>
-    <a href="#" id="mobileCategories">Categories</a>
+    <a href=# id="mobileCategories">Categories</a>
     <div class="mobile-dropdown-content" id="mobileDropdownContent">
         <a href="categories/Mice.html">Mice</a>
         <a href="categories/Monitors.html">Monitors</a>
@@ -69,51 +69,18 @@
     </div>
     <a href="AboutUs.html">About Us</a>
     <a href="contact.html">Contact Us</a>
-  </div>
+</div>
 
-  <!-- Search Results -->
-  <div id="searchResults" class="search-results" style="display: none;"></div>
+<!-- Search Results -->
+<div id="searchResults" class="search-results" style="display: none;"></div>
 
-  <!-- Linking to JavaScript Files -->
-  <script src="js/searchBar.js"></script>
-  <script src="js/mobileNavbar.js"></script>
+<!-- Linking to Search bar JS -->
+<script src="js/searchBar.js"></script>
+<script src="js/mobileNavbar.js"></script>
 
-  <!-- Checkout Form -->
-  <form id="checkout-form" class="checkout-form" method="POST">
-    <h2>Enter Your Delivery Details</h2>
-    <input type="email" name="email" id="email" placeholder="Email" required />
-    <input type="text" name="name" id="name" placeholder="First Name" required />
-    <input type="text" name="surname" id="surname" placeholder="Last Name" required />
-    <input type="text" name="address" id="address" placeholder="Address" required />
-    <input type="text" name="card-name" id="card-name" placeholder="Name on Card" required />
-    <input type="text" name="card-number" id="card-number" placeholder="Card Number" required />
-    <input type="text" name="expiry" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
-    <input type="text" name="cvv" id="cvv" placeholder="CVV" maxlength="3" required />
-    <div class="button-container">
-      <button type="button" class="button" onclick="window.location='php/checkoutSummary.php';">Checkout</button>
-    </div>
-  </form>
-
-  <!-- Checkout Form Submission Script -->
-  <script>
-    document.getElementById("checkout-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const formData = new FormData(this);
-
-      fetch('php/checkoutSummary.php', {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-          alert(data);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while processing your order.');
-      });
-    });
-  </script>
+<div class="container">
+    <h1>Thank You!</h1>
+    <p>Your order has been placed successfully.</p>
+    <a href="index.html" class="button">Return to Home</a>
+</div>
 </body>
-</html>
