@@ -2,6 +2,7 @@
 session_start();
 require_once('connectdb.php');
 
+
 $basket = isset($_SESSION['basket']) ? $_SESSION['basket'] : [];
 $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
 
@@ -16,10 +17,14 @@ $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
-  <link rel="stylesheet" href="../css/checkout.css">
+  <link rel="stylesheet" href="../css/checkoutSummary.css">
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 </head>
 <body>
+
+<style>
+<?php include '../css/checkoutSummary.css'; ?>
+</style>
 
 <!-- Navigation Bar -->
 <div class="navbar">
@@ -53,7 +58,15 @@ $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
     </div>
 </div>
 
-<h2>CHECKOUT SUMMARY</h2>
+<div class="title">
+    <img src="../images/Externalmade/20.png" alt="summary picture" class="checkout-title">
+</div>
+
+<section class="summary-section">
+
+<div class="heading">
+    <h2>Here's what you've ordered:</h2>
+</div>
 
 <ul id="checkout-summary">
     <?php if (empty($basket)): ?>
@@ -72,6 +85,8 @@ $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
 
 <!-- Order Button -->
 <button onclick="placeOrder()">Confirm Order</button>
+
+</section>
 
 <script>
     function placeOrder() {
