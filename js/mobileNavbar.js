@@ -1,3 +1,4 @@
+// By Tobias Singh - 230073379
 const hamburgerMenu = document.getElementById("hamburgerMenu");
 const mobileNavLinks = document.getElementById("mobileNavLinks");
 const mobileCategories = document.getElementById("mobileCategories");

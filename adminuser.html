@@ -1,10 +1,9 @@
-<!-- Page by Rayyan Akhlaq - 230074804-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management System</title>
+    <title>Admin User Details</title>
 
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -87,22 +86,6 @@
         .close-button:hover {
             background-color: #ff0000;
         }
-
-        .filter-bar {
-      display: flex;
-      justify-content: space-between;
-      /* Align items on the same line */
-      align-items: center;
-      /* Vertically center align */
-      width: 50%;
-      /* Adjust width as needed */
-      margin-bottom: 20px;
-      /* Add some space below */
-    }
-
-    button-bar {
-        margin-top: 20px;
-    }
     </style>
 </head>
 <body>
@@ -170,104 +153,68 @@
 
     <!-- Table Section -->
     <div class="container">
-        <h2>Inventory Management System</h2>
-        <div class="filter-bar">
-            <div class="top-buttons">
-                <button type="button">Show Low Stock</button>
-                <button type="button">View Orders</button>
-            </div>
-            <div class="top-filters">
-                <label for="category-filter">Show: </label>
-                <select name="category-filter" id="category-filter">
-                    <option value="All">All</option>
-                    <option value="Mice">Mice</option>
-                    <option value="Monitors">Monitors</option>
-                    <option value="Headphones">Headphones</option>
-                    <option value="Keyboards">Keyboards</option>
-                    <option value="Mousepads">Mousepads</option>
-                </select>
-                &nbsp;
-                &nbsp;
-                <input type="text" id="admin-searchBar" placeholder="Search...">
-                
-                
-            </div>
-        </div>
+        <h2>Admin user details</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Select</th>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Stock Level</th>
-                    <th>Category</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Email verified</th>
+                    <th>Admin</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    
+                    <td>Mary Johnson</td>
+                    <td>MaryJohnson12@gmail.com</td>
+                    <td>True</td>
+                    <td>True</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <td>Kenedy Moore</td>
+                    <td>kennedymorre2@yahoo.co.uk</td>
+                    <td>True</td>
+                    <td>True</td>
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>Ben Smith</td>
+                    <td>bensmith@yahoo.com</td>
+                    <td>True</td>
+                    <td>True</td>
                 </tr>
+                <td>Sam Sharp</td>
+                <td>itzsamsharp@gmail.com</td>
+                <td>True</td>
+                <td>True</td>
+                
             </tbody>
         </table>
-
-        <div class="button-bar">
-            <button type="button">Add Item</button>
-            <button type="button">Remove Iem</button>
-            <button type="button">Update Stock</button>
-            <button type="button">lookup item</button>
-        </div>
     </div>
 
-
-    
     <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>G-TECH50</h3>
-            <p>&copy; 2024 G-TECH50</p>
-            <p>ALL RIGHTS RESERVED.</p>
-          </div>
-          <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Phone: +44 7700 900123</p>
-            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-          </div>
-        </div>
-      </footer>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>G-TECH50</h3>
+        <p>&copy; 2024 G-TECH50</p>
+        <p>ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Phone: +44 7700 900123</p>
+        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>

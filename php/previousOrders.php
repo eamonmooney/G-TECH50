@@ -1,9 +1,6 @@
 <?php
-##########################################################################
-# Previous orders page functionalities
-##########################################################################
-# - Eamon Mooney - 230075926
-##########################################################################
+// Previous orders page functionalities
+// Created by Eamon Mooney - 230075926
 session_start();
 
 //Database connection
