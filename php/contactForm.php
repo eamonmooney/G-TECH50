@@ -1,9 +1,7 @@
 <?php
-###############################################################
-# Collects Variables from the contact form for SQL query
-###############################################################
-# - Eamon Mooney - 230075926
-###############################################################
+
+// Collects Variables from the contact form for SQL query
+// Created by Eamon Mooney - 230075926
 session_start();
 
 //Register button pressed
