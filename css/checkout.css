@@ -1,40 +1,51 @@
-/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  background-image: url(../images/Externalmade/19.png);
   background-color: black;
-  color: #614949;
-  background-image: url(/images/Externalmade/14.png)
+}
+
+.navbar .icon-container {
+  padding-right: 100px;
 }
 
 /* Checkout Form */
 .checkout-form {
+  display: flexbox;
+  flex-direction: column;
+  gap: 15px;
+  padding: 100px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+  max-width: 100%;
+  margin: 0 auto;
   max-width: 500px;
-  background: white;
-  padding: 20px;
-  margin: 30px auto;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: black;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 
 .checkout-form h2 {
   text-align: center;
-  color: #444;
+  color: white;
+  font-family: 'superbrigade';
 }
 
 .checkout-form input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  padding-right: 0px;
+  margin-top: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
+  margin-bottom: 20px;
+  font-family: 'horizon';
 }
 
-.checkout-form input:focus {
-  border-color: #ff6600;
-  outline: none;
+.checkout-form label {
+  color: white;
+  font-family: 'superbrigade';
 }
 
 .button-container {
@@ -43,18 +54,20 @@ body {
 }
 
 .button-container button {
-  background-color: #ff6600;
-  color: white;
+  background-color: #00ff26;
+  color: black;
   border: none;
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
+  font-family: 'superbrigade';
+  box-sizing: content-box;
 }
 
 .button-container button:hover {
-  background-color: #cc5500;
+  background-color: rgba(2, 149, 0, 0.637);
 }
 
 /* Responsive Design */
