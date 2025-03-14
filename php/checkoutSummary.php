@@ -58,14 +58,10 @@ $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
     </div>
 </div>
 
-<div class="title">
-    <img src="../images/Externalmade/20.png" alt="summary picture" class="checkout-title">
-</div>
-
 <section class="summary-section">
 
 <div class="heading">
-    <h2>Here's what you've ordered:</h2>
+    <h2>ORDER SUMMARY:</h2>
 </div>
 
 <ul id="checkout-summary">
