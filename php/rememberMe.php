@@ -1,6 +1,6 @@
 <?php
 // Remember me logic by Safa
-// Shld be linked in pages where login is required/ at the start
+// Should be linked in pages where login is required/ at the start
 
 // Auto-login via cookie 
 // If user ID isnt set and cookie remember me is active
