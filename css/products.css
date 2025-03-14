@@ -2,6 +2,7 @@
 body {
     background-color:black;
     color: white;
+    margin: 0;
 }
 
 h1 { 
@@ -28,8 +29,6 @@ h1 {
     border-radius: 5%;
     flex-basis: 30%;
 }
-
-
 
 .items h3 {
     margin-top: 20px;
@@ -64,6 +63,10 @@ h1 {
     margin-top: 60px;
     margin-left: 60px;
     gap: 10%;
+}
+
+.hero-picture {
+    width: 100%;
 }
 
 .Picture {
