@@ -2,7 +2,6 @@
 body {
     background-color:black;
     color: white;
-
 }
 
 h1 { 
@@ -68,9 +67,7 @@ h1 {
 }
 
 .Picture {
-    
     flex-basis: 20%;
-    
 }
 
 .Picture img {
@@ -78,16 +75,25 @@ h1 {
     width: 450px;
     height: auto;
     border-radius: 5%;
-
-
 }
 
 .item-spec {
-    
     flex-basis: 70%;
     text-align: left;
     margin-top: 40px;
     margin-right: 100px;
+}
+
+.item-spec h2 {
+    font-family: 'superbrigade';
+}
+
+.item-spec h3 {
+    font-family: 'superbrigade';
+}
+
+.item-spec h4 {
+    font-family: 'horizon';
 }
 
 .button {
@@ -101,6 +107,8 @@ h1 {
     cursor: pointer;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'superbrigade';
+    display: flex;
 }
 .button:hover {
     background: linear-gradient(45deg, rgb(7, 22, 35), rgb(117, 84, 187));
