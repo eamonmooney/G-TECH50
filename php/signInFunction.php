@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Execute this with the variables
                 $rememberStmt->execute(([
                     ':token' => $token,
-                    ':expiry' => date('d-m-Y H:i:s', $expiry),
+                    ':expiry' => date('Y-m-d H:i:s', $expiry),
                     ':userId' => $uData['UserID']
                 ]));
 
