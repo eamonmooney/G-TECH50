@@ -3,6 +3,9 @@
 // Created by Eamon Mooney - 230075926
 session_start();
 
+// Error testing - prints all values in session
+// print_r($_SESSION); 
+
 //Database connection
 require_once('connectdb.php');
 
