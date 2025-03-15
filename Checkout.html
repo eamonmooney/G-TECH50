@@ -9,47 +9,14 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/checkout.css">
-
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 </head>
 
 <body>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch("basket.php")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Debugging
-                if (data.basket.length === 0) {
-                    document.getElementById("summary-details").innerHTML = "<p>Your basket is empty.</p>";
-                    return;
-                }
-    
-                let basketHtml = "<ul>";
-                data.basket.forEach(item => {
-                    basketHtml += `<li>${item.name} - ${item.quantity} x £${item.price.toFixed(2)}</li>`;
-                });
-                basketHtml += "</ul><p><strong>Total: £" + data.totalPrice.toFixed(2) + "</strong></p>";
-    
-                document.getElementById("summary-details").innerHTML = basketHtml;
-            })
-            .catch(error => console.error("Error fetching basket:", error));
-    });
-    </script>
 
   <!-- Checking if signed in. -->
-   <div id="checkoutStart"></div>
+  <div id="checkoutStart"></div>
 
-   <script>
-    fetch("checkout.php", {
-      method: "POST",
-      body: new FormData(document.getElementById("checkout-form")),
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(error => console.error("Error:", error));
-
-   </script>
   <!-- Navigation Bar -->
   <div class="navbar">
     <div class="logo">
@@ -58,7 +25,7 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <div class="dropdown">
-          <a href=#>Categories</a>
+          <a href="#">Categories</a>
           <div class="dropdown-content">
             <a href="categories/Mice.html">Mice</a>
             <a href="categories/Monitors.html">Monitors</a>
@@ -71,7 +38,7 @@
         <a href="contact.html">Contact Us</a>
         <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
-
+    
     <!-- Search & User Icons -->
     <div class="icon-container">
         <div class="search-bar">
@@ -88,12 +55,12 @@
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
-</div>
+  </div>
 
-<!-- Mobile Navigation Bar -->
-<div class="mobile-nav-links" id="mobileNavLinks">
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav-links" id="mobileNavLinks">
     <a href="Home.html">Home</a>
-    <a href=# id="mobileCategories">Categories</a>
+    <a href="#" id="mobileCategories">Categories</a>
     <div class="mobile-dropdown-content" id="mobileDropdownContent">
         <a href="categories/Mice.html">Mice</a>
         <a href="categories/Monitors.html">Monitors</a>
@@ -103,144 +70,77 @@
     </div>
     <a href="AboutUs.html">About Us</a>
     <a href="contact.html">Contact Us</a>
-</div>
-
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
-
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
-
-  <div class="stage-indicator">
-    <div id="stage-1" class="circle active">1</div>
-    <div id="stage-2" class="circle">2</div>
-    <div id="stage-3" class="circle">3</div>
   </div>
 
-  <form id="checkout-form" method="POST" action="/php/checkout.php">
-    <!-- Delivery Details Form (Stage 1) -->
-    <div id="initial-container" class="container active">
-      <h2>Enter Your Delivery Details</h2>
-      <input type="email" name="email" id="email" placeholder="Email" required />
-      <input type="text" name="name" id="name" placeholder="First Name" required />
-      <input type="text" name="surname" id="surname" placeholder="Last Name" required />
-      <input type="text" name="address" id="address" placeholder="Address" required />
-      <div class="button-container">
-        <button class="button" disabled>Back</button>
-        <button type="button" class="button" onclick="goToStage(2)">Next</button>
-      </div>
-    </div>
+  <!-- Search Results -->
+  <div id="searchResults" class="search-results" style="display: none;"></div>
 
-    <!-- Card Details Form (Stage 2) -->
-    <div id="details-container" class="container">
-      <h2>Enter Your Card Details</h2>
-      <input type="text" name="card-name" id="card-name" placeholder="Name on Card" required />
-      <input type="text" name="card-number" id="card-number" placeholder="Card Number" required />
-      <input type="text" name="expiry" id="expiry" placeholder="Expiry Date (MM/YY)" maxlength="5" required />
-      <input type="text" name="cvv" id="cvv" placeholder="CVV" maxlength="3" required />
-      <div class="button-container">
-        <button type="button" class="button" onclick="goToStage(1)">Back</button>
-        <button type="button" class="button" onclick="goToStage(3)">Next</button>
-      </div>
-    </div>
+  <!-- Linking to JavaScript Files -->
+  <script src="js/searchBar.js"></script>
+  <script src="js/mobileNavbar.js"></script>
 
-    <!-- Summary (Stage 3) -->
-    <div id="summary-container" class="container">
-      <h2>Order Summary</h2>
-      <div id="summary-details"></div>
+  <!-- Checkout Form -->
+  <form id="checkout-form" class="checkout-form" method="POST">
+    <h2>Enter Your Details to checkout</h2>
+    <div class="row">
+      <div class="email">
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="firstName">
+        <label for="firstName">First Name: </label>
+        <input type="text" class="form-control" id="first-Name" name="firstName" required>
+      </div>
+      <div class="surename">
+        <label for="surname">Last Name: </label>
+        <input type="text" class="form-control" id="surname" name="surename" required>
+      </div>
+      <div class="address">
+        <label for="address">Address: </label>
+        <input type="text" class="form-control" id="address" name="address" required>
+      </div>
+      <div class="cardName">
+        <label for="cardName">Name on card: </label>
+        <input type="text" class="form-control" id="card-name" name="cardName" required>
+      </div>
+      <div class="cardNumber">
+        <label for="cardNumber">Card Number: </label>
+        <input type="text" class="form-control" id="card-number" name="cardNumber" maxlength="16" required>
+      </div>
+      <div class="expiry">
+        <label for="expiry">Expiry: </label>
+        <input type="text" class="form-control" id="expiry" name="expiry" required>
+      </div>
+      <div class="cvv">
+        <label for="cvv">CVV: </label>
+        <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3">
+      </div>
       <div class="button-container">
-        <button type="button" class="button" onclick="goToStage(2)">Back</button>
-        <button type="submit" class="button">Confirm Order</button>
+        <button type="button" class="button" onclick="window.location='checkoutSummary.html';">Checkout</button>
       </div>
     </div>
   </form>
 
+  <!-- Checkout Form Submission Script -->
   <script>
-    function goToStage(stage) {
-    document.querySelectorAll(".container").forEach(container => {
-        container.classList.remove("active");
+    document.getElementById("checkout-form").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        // Disable all input fields in hidden sections
-        container.querySelectorAll("input").forEach(input => {
-            input.required = false;
-        });
+      const formData = new FormData(this);
+
+      fetch('php/checkoutSummary.php', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+          alert(data);
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while processing your order.');
+      });
     });
-
-    let targetContainer;
-    if (stage === 1) {
-        targetContainer = document.getElementById("initial-container");
-    } else if (stage === 2) {
-        targetContainer = document.getElementById("details-container");
-    } else if (stage === 3) {
-        targetContainer = document.getElementById("summary-container");
-    }
-
-    // Enable required for inputs in the currently active stage
-    targetContainer.classList.add("active");
-    targetContainer.querySelectorAll("input").forEach(input => {
-        input.required = true;
-    });
-}
-
-    function updateSummary() {
-      const summary = document.getElementById("summary-details");
-      summary.innerHTML = `
-          <p>Email: ${document.getElementById("email").value}</p>
-          <p>Name: ${document.getElementById("name").value} ${document.getElementById("surname").value}</p>
-          <p>Address: ${document.getElementById("address").value}</p>
-          <p>Card: **** **** **** ${document.getElementById("card-number").value.slice(-4)}</p>
-      `;
-    }
-
-    function displaySummary() {
-      const email = document.getElementById('email').value;
-      const name = document.getElementById('name').value;
-      const surname = document.getElementById('surname').value;
-      const address = document.getElementById('address').value;
-
-      const cardName = document.getElementById('card-name').value;
-      const cardNumber = document.getElementById('card-number').value;
-      const expiry = document.getElementById('expiry').value;
-      const cvv = document.getElementById('cvv').value;
-
-      const summaryDetailsHTML = `
-        <h3>Delivery Details:</h3>
-        <p>Email: ${email}</p>
-        <p>Name: ${name} ${surname}</p>
-        <p>Address: ${address}</p>
-
-        <h3>Card Details:</h3>
-        <p>Name on Card: ${cardName}</p>
-        <p>Card Number: ${cardNumber}</p>
-        <p>Expiry Date: ${expiry}</p>
-
-        <h3>Products:</h3>
-        <p>No products added yet</p>
-
-        <p>Total: £0.00</p>
-      `;
-      document.getElementById('summary-details').innerHTML = summaryDetailsHTML;
-    }
-
-    document.getElementById("checkout-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let formData = new FormData(this);
-    fetch("checkout.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            window.location.href = "success.html"; // Redirect to success page
-        } else {
-            alert("Error: " + data.message);
-        }
-    })
-    .catch(error => console.error("Error submitting order:", error));
-});
   </script>
 </body>
 </html>
