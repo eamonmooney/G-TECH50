@@ -12,6 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
     // Clear the remember me cookie
     setcookie("rememberMe", "", time() - 3600, "/");
+
+    // Go into SQL and remove the tokens
+    
     
     // change user to index page
     header("Location: /G-TECH50/index.html");
