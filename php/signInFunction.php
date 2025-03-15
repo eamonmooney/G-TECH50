@@ -62,7 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     ':userId' => $uData['UserID']
                 ]));
 
-                // Set cookie with the token -HTTP and Secure
+                // Set cookie with the rememberme token
+                // "rememberMe" - name of cookie
+                // $token - value of cookie
+                // $expiry - expiration date 
+                // "/" - path the cookie is available ( everywhere) 
+                // "" - domain (empty so current domain)
+                // true - Secure flag, so only sent over HTTPS
+                // true - HttpOnly flag, so not accessible via JS to prevbent XSS attacks
                 setcookie("rememberMe", $token, $expiry, "/", "", true, true); 
             }
 
