@@ -1,4 +1,7 @@
 <?php
+// Created by Eamon Mooney - 230075926
+// Acts as a function to close a ticket selected in ticket.html
+
 session_start();
 
 //Database connection
