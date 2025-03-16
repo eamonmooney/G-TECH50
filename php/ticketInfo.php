@@ -52,7 +52,11 @@ try {
             } else{$newHtml .= "<td>Error</td>";}
             $newHtml .= "<td>" . htmlspecialchars($ticket['Telephone']) . "</td>";
             $newHtml .= "<td>" . htmlspecialchars($ticket['TicketDate']) . "</td>";
-            $newHtml .= "<td>" . htmlspecialchars($ticket['Closed']) . "</td>";
+            if(!($ticket['Closed'])){
+                $newHtml .= "<td>Open</td>";
+            } else {
+                $newHtml .= "<td>Closed</td>";
+            }
             $newHtml .= "<td>" . htmlspecialchars($ticket['TicketContent']) . "</td>";
             $newHtml .= "<td><button class='close-button'>Close Ticket</button></td>";
             $newHtml .= "</tr>";
