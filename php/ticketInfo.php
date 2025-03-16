@@ -60,7 +60,7 @@ try {
                 $newHtml .= "<td>Closed</td>";
             }
             $newHtml .= "<td>" . htmlspecialchars($ticket['TicketContent']) . "</td>";
-            $newHtml .= "<td><button class='close-button'>Close Ticket</button></td>";
+            $newHtml .= "<td><form action='php/closeTicket.php' method='POST'><input type='hidden' name='ticket_id' value='" . htmlspecialchars($ticket['TicketID']) . "'><button class='close-button' type='submit'>Close Ticket</button></form></td>";
             $newHtml .= "</tr>";
         }
     } else {
