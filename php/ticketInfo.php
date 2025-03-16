@@ -13,10 +13,12 @@ try {
     //$stmt = $db->prepare("SELECT TicketID, UserID, Telephone, TicketDate, Closed, TicketContent FROM supporttickets");
     //$stmt->execute();
 
-    // Prepare query with JOIN to get username
+    // Prepare query with JOIN to get username and ticketType
     $stmt = $db->prepare("
         SELECT 
             supporttickets.TicketID, 
+            supporttickets.TicketTypeID,
+            tickettypes.TicketType, 
             supporttickets.UserID, 
             users.Name, 
             supporttickets.Telephone, 
@@ -26,7 +28,10 @@ try {
         FROM 
             supporttickets
         INNER JOIN 
-            users ON supporttickets.UserID = users.UserID
+            tickettypes ON supporttickets.TicketTypeID = tickettypes.TicketTypeID
+        LEFT JOIN
+            users ON supporttickets.UserID = users.UserID;
+
     ");
     $stmt->execute();
 
@@ -40,7 +45,11 @@ try {
         foreach ($tickets as $ticket) {
             $newHtml .= "<tr>";
             $newHtml .= "<td>" . htmlspecialchars($ticket['TicketID']) . "</td>";
-            $newHtml .= "<td>" . htmlspecialchars($ticket['Name']) . "</td>";
+            if($ticket['TicketTypeID'] == 1) {
+                $newHtml .= "<td>" . htmlspecialchars($ticket['TicketType']) . "</td>";
+            } else if($ticket['TicketTypeID'] == 2){
+                $newHtml .= "<td>" . htmlspecialchars($ticket['Name']) . "</td>";
+            } else{$newHtml .= "<td>Error</td>";}
             $newHtml .= "<td>" . htmlspecialchars($ticket['Telephone']) . "</td>";
             $newHtml .= "<td>" . htmlspecialchars($ticket['TicketDate']) . "</td>";
             $newHtml .= "<td>" . htmlspecialchars($ticket['Closed']) . "</td>";
