@@ -30,7 +30,9 @@ try {
         INNER JOIN 
             tickettypes ON supporttickets.TicketTypeID = tickettypes.TicketTypeID
         LEFT JOIN
-            users ON supporttickets.UserID = users.UserID;
+            users ON supporttickets.UserID = users.UserID
+        ORDER BY 
+        supporttickets.TicketID ASC;
 
     ");
     $stmt->execute();
