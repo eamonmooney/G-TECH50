@@ -184,6 +184,18 @@ try {
         ");
     }
 
+    // Check if tickettypes already exists
+    $checkTicket = $db->query("SELECT COUNT(*) FROM tickettypes")->fetchColumn();
+    //If doesn't populate
+    if ($checkTicket == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO tickettypes (TicketType) VALUES 
+            ('Guest'),
+            ('User')
+        ");
+    }
+
     //Check if order types already exists
     $checkOrderTypes = $db->query("SELECT COUNT(*) FROM OrderTypes")->fetchColumn();
     //If doesn't populate
