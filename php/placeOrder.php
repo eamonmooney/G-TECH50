@@ -51,6 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $stmt->execute([$quantity, $productID]);
         }
 
+        // Adding points to the user's account when an order is placed. £1 = 1 point. 
+        $userId = $_SESSION['userId'];
+        $addPoints = (int)($total);
+
+        $query = "UPDATE Members SET Points = Points + ? WHERE UserID = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $points_to_add, PDO::PARAM_INT);
+        $stmt->bindValue(2, $userID, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->error) {
+            echo "Error updating points: " . $stmt->error;
+        } else {
+            echo "Points updated successfully!";
+        }
+
         // Clear session basket
         unset($_SESSION['basket']);
         session_write_close(); // Ensures session is updated

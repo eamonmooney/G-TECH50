@@ -101,7 +101,7 @@
     </section>
 
     <section class="membershipSignUp">
-        <form id="membershipSignUpForm" method="POST" action="membershipRewards.html">
+        <form id="membershipSignUpForm" method="POST" action="php/membershipSubmit.php">
             <div class="membershipForm">
                 <div class="firstname">
                     <label for="firstname">First Name:</label>
@@ -182,15 +182,21 @@
         }
 
         // Block of code below basically doesn't allow the user to access GTECH50+ page without signing in. 
-
+  
         fetch('php/membershipSignUp.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.redirect) {
-                    window.location.href = 'signin.html';
-                }
-            })
-            .catch(error => console.error('Error:', error));
+        .then(response => {
+            if (response.redirected) {
+                // If the response is a redirect, handle it here
+                window.location.href = response.url;  // Redirect to the new URL
+            }
+            return response.json();  // Continue with JSON response if no redirect
+        })
+        .then(data => {
+            // Handle the JSON response here if needed
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+
         
         // Function to validate card expiry
 
@@ -231,6 +237,25 @@
             if (!validateExpiryDate()) {
                 event.preventDefault();  // Prevent form submission if expiry is invalid
             }
+        });
+
+        document.getElementById("membershipSignUpForm").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent the form from submitting the traditional way
+
+        let formData = new FormData(this);
+
+        fetch('php/membershipSubmit.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);  // Show error message if something goes wrong
+            }
+            // If the backend sends a redirect, the browser will automatically handle it based on header response
+        })
+        .catch(error => console.error('Error:', error));
         });
 
     </script>
