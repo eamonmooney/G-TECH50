@@ -1,3 +1,5 @@
+<!-- Place Order functionality implemented and designed by Sahil Awan (230073302). -->
+
 <?php
 session_start();
 require_once('connectdb.php');
