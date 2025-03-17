@@ -19,6 +19,8 @@
 	header('Content-Type: application/json');
 
 
+	
+
 	if (!isset($_SESSION['basket'])) {
 		$_SESSION['basket'] = [];
 	}

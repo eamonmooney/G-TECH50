@@ -15,6 +15,8 @@
 	//Resume the session to allow us to use the session variables
 	session_start();
 
+	
+
 	//Set the userID 
 	$userID = $_SESSION['userId'];
 
