@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Transaction Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            margin-top: 80px; 
+        }
+
+        .transaction-table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        .transaction-table th, .transaction-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .transaction-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .filter-container {
+            width: 90%;
+            margin: 20px auto;
+            text-align: right;
+        }
+
+        .filter-container input {
+            padding: 8px;
+            font-size: 16px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="filter-container">
+        <input type="text" id="filterInput" onkeyup="filterTable()" placeholder="Search for transactions...">
+    </div>
+
+    
+    <table class="transaction-table" id="transactionTable">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    
+    <script>
+        
+        function filterTable() {
+            var input = document.getElementById("filterInput");
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById("transactionTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var tdOrderID = tr[i].getElementsByTagName("td")[0];
+                var tdDate = tr[i].getElementsByTagName("td")[1];
+                var tdProduct = tr[i].getElementsByTagName("td")[2];
+                var tdAmount = tr[i].getElementsByTagName("td")[3];
+                var tdStatus = tr[i].getElementsByTagName("td")[4];
+
+                if (tdOrderID || tdDate || tdProduct || tdAmount || tdStatus) {
+                    var orderIDValue = tdOrderID.textContent || tdOrderID.innerText;
+                    var dateValue = tdDate.textContent || tdDate.innerText;
+                    var productValue = tdProduct.textContent || tdProduct.innerText;
+                    var amountValue = tdAmount.textContent || tdAmount.innerText;
+                    var statusValue = tdStatus.textContent || tdStatus.innerText;
+
+                    if (orderIDValue.toLowerCase().indexOf(filter) > -1 ||
+                        dateValue.toLowerCase().indexOf(filter) > -1 ||
+                        productValue.toLowerCase().indexOf(filter) > -1 ||
+                        amountValue.toLowerCase().indexOf(filter) > -1 ||
+                        statusValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Function to add a new transaction to the table
+        function addTransaction(orderID, date, product, amount, status) {
+            var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+            var newRow = tableBody.insertRow();
+
+            newRow.insertCell(0).innerHTML = orderID;
+            newRow.insertCell(1).innerHTML = date;
+            newRow.insertCell(2).innerHTML = product;
+            newRow.insertCell(3).innerHTML = amount;
+            newRow.insertCell(4).innerHTML = status;
+        }
+
+        
+    </script>
+
+</body>
+</html>

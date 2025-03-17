@@ -1,0 +1,12 @@
+/* Created by Sahil Awan - 230073302.
+
+This is a fix for an error that is affecting some pages but not all.
+The navbar on some pages require a little shift from the right-hand side to allow the
+basket icon to be fully visible. 
+
+This fix has been applied to only a few pages, including all html pages in the categories section,
+contact, aboutus, checkout and basket pages. */
+
+.navbar .icon-container {
+	padding-right: 100px;
+  }

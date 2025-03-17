@@ -167,35 +167,18 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mike Tyson</td>
-                    <td>07886593844</td>
-                    <td>2024-02-11</td>
-                    <td>No</td>
-                    <td>Issue with login</td>
-                    <td><button class="close-button">Close Ticket</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Mikasa Ackerman</td>
-                    <td>0787654321</td>
-                    <td>2024-02-10</td>
-                    <td>No</td>
-                    <td>Payment not processed</td>
-                    <td><button class="close-button">Close Ticket</button></td> <!-- Close button -->
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Eren Jeager</td>
-                    <td>075775827665</td>
-                    <td>2024-02-09</td>
-                    <td>No</td>
-                    <td>Received wrong item</td>
-                    <td><button class="close-button">Close Ticket</button></td> 
-                </tr>
-            </tbody>
+            <tbody id="ticketRows"></tbody>
+                <script>
+                    //Script for changing html attributes of the ticket table. Eamon - 230075926
+                    // Use JavaScript to fetch user details from a PHP script
+                    // Updating orders list upon page load
+                    fetch('php/ticketInfo.php')
+                      .then(response => response.text())
+                      .then(data => {
+                        document.getElementById('ticketRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+                </script>
         </table>
     </div>
 
