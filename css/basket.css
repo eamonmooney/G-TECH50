@@ -1,105 +1,196 @@
+/* General Page Styles */
 body {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    margin-top: 50px;
-    overflow: hidden;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/Externalmade/6.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
   }
-
-.navbar .icon-container {
-    padding-right: 100px;
-}
-
-.container {
+  
+  .container {
     display: flex;
-    width: 100%;
-    height: calc(100% - 50px);
-}
-
-.left-container {
-    flex: 3;
-    background-color: #ffffff;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 20px auto;
     padding: 20px;
-    overflow-y: auto;
-}
-
-.right-container {
-    flex: 1;
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: white;
+    margin-top: 80px;
+  }
+  
+  /* Left Container (Product List) */
+  .left-container {
+    flex: 2;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.summary-box {
-    width: 100%;
-    background-color: #fff;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-ul {
+  }
+  
+  .left-container h2 {
+    margin-bottom: 10px;
+    font-family: 'superbrigade';
+  }
+  
+  #product-list {
     list-style: none;
-}
-
-li {
-    background-color: #fff;
-    margin: 10px 0;
-    padding: 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+  }
+  
+  #product-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.product-info {
-    flex: 2;
-}
-
-.quantity-controls {
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 20px rgb(174, 0, 255);
+    color: white;
+    font-family: 'superbrigade';
+  }
+  
+  .product-info {
+    font-size: 16px;
+  }
+  
+  .quantity-controls {
     display: flex;
     align-items: center;
-}
-
-button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
+  }
+  
+  .quantity-controls button {
+    background-color: #00c91e;
+    color: white;
     border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.summary-title {
+    border-radius: 3px;
+  }
+  
+  .quantity-controls button:hover {
+    background-color: #007211;
+  }
+  
+  .empty-basket {
+    text-align: center;
+    color: #888;
+  }
+  
+  /* Right Container (Summary & Checkout) */
+  .right-container {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .summary-box {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 8px 20px rgb(174, 0, 255);
+    font-family: 'superbrigade';
+  }
+  
+  .summary-title {
+    font-size: 18px;
     font-weight: bold;
-    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .total-price {
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .checkout-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00c91e;
+    color: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-family: 'superbrigade';
+  }
+  
+  .checkout-button:hover {
+    background-color: #007211;
+  }
+
+  .discount-box {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 8px 20px rgb(174, 0, 255);
+    font-family: 'superbrigade';
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 10px; /* Space between discount and summary */
+}
+
+.discount-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
     margin-bottom: 10px;
 }
 
-.total-price {
-    font-size: 1.5em;
+#discount-code, .apply-discount-buttons {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-family: 'superbrigade';
+
+}
+
+.apply-discount-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgb(174, 0, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'superbrigade';
+}
+
+.apply-discount-button:hover {
+    background-color: rgb(140, 0, 204);
+}
+
+#discount-message {
+    font-size: 14px;
+    color: white;
     margin-top: 10px;
 }
 
-.checkout-button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #28a745;
-}
-
-.checkout-button:hover {
-    background-color: #218838;
-}
-
-.empty-basket {
-    text-align: center;
-    color: #999;
-    margin-top: 20px;
-}
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .right-container {
+      border-left: none;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+  }
+  
