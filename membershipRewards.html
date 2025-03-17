@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/rewards.css">
+    <link rel="stylesheet" href="css/navbarfix.css">
 </head>
 
 <!-- Navigation Bar -->
@@ -89,3 +90,32 @@
 <section class="plusImage">
     <img src="images/Externalmade/gtech50plus.png" alt="mainImage" class="membershipImage">
 </section>
+
+<div id="welcomeMember"></div>
+
+<div class="container">
+    <div class="column">
+        <h2>Column 1</h2>
+        <p>Content for the first column goes here.</p>
+    </div>
+    <div class="column">
+        <h2>Column 2</h2>
+        <p>Content for the second column goes here.</p>
+    </div>
+    <div class="column">
+        <h2>Column 3</h2>
+        <p>Content for the third column goes here. </p>
+    </div>
+</div>
+
+<script> 
+    fetch('php/membershipSignUp.php')
+        .then(response => response.json()) // Parse the response as JSON
+        .then(data => {
+            // Assuming 'data' contains a 'name' property
+            document.getElementById('welcomeMember').innerHTML = `<h1>Hey ${data.name}, <br> welcome to the members page. <br> You're officially a G-TECH50 VIP!</h1>`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+</script>

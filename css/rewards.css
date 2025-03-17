@@ -1,7 +1,39 @@
 body {
     margin: 0;
+    background-color: black;
 }
 
 .membershipImage {
     width: 100%;
+}
+
+#welcomeMember {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #ffde59;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between; /* Space between columns */
+    gap: 20px;
+    padding: 20px;
+}
+
+.column {
+    background-color: black;
+    padding: 20px;
+    border-radius: 4px;
+    flex: 1; /* Make each column equal width */
+    min-height: 400px;
+    box-shadow: 4px 4px 8px #ffde59;
+    color: white;
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack the columns on smaller screens */
+    }
 }
