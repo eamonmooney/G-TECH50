@@ -1,3 +1,5 @@
+<!-- Checkout Summary functionality implemented and designed by Sahil Awan (230073302). -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function placeOrder() {
-    console.log("placeOrder function called!");
     fetch("php/placeOrder.php", {
         method: "POST",
         headers: {
