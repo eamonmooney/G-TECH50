@@ -35,7 +35,7 @@ $stmt->execute([$userID]);
 $member = $stmt->fetch();
 
 if ($member) {
-    header("Location: ../membershipRewards.html");
+    header("Location: membershipRewards.html");
     exit();
 }
 
@@ -48,7 +48,7 @@ $stmt->execute([$userID, $cardName, $cardNumber, $expiry, $cvv]);
 
 // Check if the insertion was successful
 if ($stmt->rowCount() > 0) {
-    header("Location: ../membershipRewards.html");
+    header("Location: membershipRewards.html");
     exit();
 } else {
     echo json_encode(["error" => "There was an error creating your membership. Please try again."]);

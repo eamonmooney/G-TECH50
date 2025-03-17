@@ -96,6 +96,21 @@ function placeOrder() {
     })
     .catch(error => console.error("Error placing order:", error));
 }
+
+fetch("php/membershipSubmit.php", {
+    method: "POST",
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    if (data.error) {
+        alert(data.error);
+    } else {
+        updatePointsBalance(); // Update points dynamically after order
+    }
+})
+.catch(error => console.error("Error:", error));
+
 </script>
 
 </body>

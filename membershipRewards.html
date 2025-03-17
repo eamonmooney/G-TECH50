@@ -110,7 +110,7 @@
         <h2>Points Balance</h2>
         <div class="points-container">
             <p>Your current points:</p>
-            <span id="pointsBalance">100</span>
+            <span id="pointsBalance"></span>
             <p><span class="small-text">Remember, making purchases increases your balance!</span></p>
     </div>
     </div>
@@ -148,4 +148,20 @@
             console.error('Error:', error);
         });
 
+        document.addEventListener("DOMContentLoaded", function () {
+            function updatePointsBalance() {
+                fetch("php/updatePoints.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.points !== undefined) {
+                            document.getElementById("pointsBalance").textContent = data.points;
+                        } else {
+                            console.error("Error fetching points:", data.error);
+                        }
+                    })
+                    .catch(error => console.error("Fetch error:", error));
+            }
+
+            updatePointsBalance(); // Fetch points on page load
+        });
 </script>

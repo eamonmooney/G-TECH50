@@ -183,7 +183,7 @@
 
         // Block of code below basically doesn't allow the user to access GTECH50+ page without signing in. 
   
-        fetch('php/membershipSignUp.php')
+        /*fetch('php/membershipSignUp.php')
         .then(response => {
             if (response.redirected) {
                 // If the response is a redirect, handle it here
@@ -195,7 +195,7 @@
             // Handle the JSON response here if needed
             console.log(data);
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error)); */
 
         
         // Function to validate card expiry
@@ -252,6 +252,7 @@
         .then(data => {
             if (data.error) {
                 alert(data.error);  // Show error message if something goes wrong
+                window.location.href = 'membershipRewards.html';
             }
             // If the backend sends a redirect, the browser will automatically handle it based on header response
         })
