@@ -20,8 +20,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         if($uData)
         {
             // verifies password input with hash in database
-            // if(password_verify($Password, $uData['Password']))
-            // {
+            if(password_verify($Password, $uData['Password']))
+            {
                 // declare session variables
                 $_SESSION['userId'] = $uData['UserID'];
                 $_SESSION['roleId'] = $uData['RoleID'];
@@ -34,9 +34,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         }else
         {
             // output error message as password or username doesnt match
-            echo "Incorrect details";
+            echo "Incorrect password";
+            die;
         }
+        echo "Incorrect username";
     }
+}
 }
 ?>
 
