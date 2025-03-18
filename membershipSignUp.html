@@ -111,14 +111,6 @@
                     <label for="lastname">Surname:</label>
                     <input type="text" class="form-control" id="lastname" name="lastname" required>
                 </div>
-                <div class="email">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="confirmemail">
-                    <label for="confirmEmail">Confirm Email:</label>
-                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
-                </div>
                 <div class="cardName">
                     <label for="cardName">Name on card: </label>
                     <input type="text" class="form-control" id="card-name" name="cardName" required>
@@ -153,32 +145,15 @@
         function validateForm() {
             let firstname = document.getElementById("firstname").value.trim();
             let lastname = document.getElementById("lastname").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let confirmEmail = document.getElementById("confirmEmail").value.trim();
             let cardName = document.getElementById("card-name").value.trim();
             let cardNumber = document.getElementById("card-number").value.trim();
             let expiry = document.getElementById("expiry").value.trim();
             let cvv = document.getElementById("cvv").value.trim();
 
-            if (firstname === "" || lastname === "" || email === "" || confirmEmail === "") {
+            if (firstname === "" || lastname === "") {
                 alert("Please fill in all required fields.");
                 return false;
             }
-
-            if (!checkEmails(email, confirmEmail)) {
-                return false;
-            }
-            return true;
-        }
-
-        // Checks that both emails that have been entered in the form match. 
-
-        function checkEmails(email, confirmEmail) {
-            if (email !== confirmEmail) {
-                alert("Emails do not match.");
-                return false;
-            }
-            return true;
         }
 
         // Block of code below basically doesn't allow the user to access GTECH50+ page without signing in. 
