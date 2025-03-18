@@ -1,9 +1,6 @@
 <?php
-##########################################################################
-# Previous orders page functionalities
-##########################################################################
-# - Eamon Mooney - 230075926
-##########################################################################
+// Previous orders page functionalities
+// Created by Eamon Mooney - 230075926
 session_start();
 
 //Database connection
@@ -19,8 +16,8 @@ try {
     $totalOrders = $stmt->fetchColumn();
 
     // Prepare a query to get all orders made by the specific user
-$stmt = $db->prepare("SELECT OrderID, OrderDate, OrderCost FROM Orders WHERE UserID = ?");
-$stmt->execute([$userId]);
+    $stmt = $db->prepare("SELECT OrderID, OrderDate, OrderCost FROM Orders WHERE UserID = ?");
+    $stmt->execute([$userId]);
 
 // Fetch all the results
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
