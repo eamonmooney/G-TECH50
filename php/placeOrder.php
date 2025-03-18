@@ -60,14 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $stmt->bindValue(2, $userID, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            echo "Points updated successfully!";
+            echo json_encode("Order completed and points updated successfully!");
         } else {
             $error = $stmt->errorInfo();
-            echo "Error updating points: " . $error[2]; // Fetch the SQL error message
+            echo json_encode("Error updating points: " . $error[2]); // Fetch the SQL error message
         }
 
     } catch (Exception $e) {  // Properly catch any errors
-        echo "Error processing order: " . $e->getMessage();
+        echo json_encode("Error processing order: " . $e->getMessage());
     }
 
     unset($_SESSION['basket']);
