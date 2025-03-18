@@ -125,14 +125,21 @@
         </ul>
       </div>
       <div class="right-container">
-        <div class="summary-box">
-          <div class="summary-title">Summary</div>
-          <div>Total Price: <span class="total-price" id="total-price">£0.00</span></div>
-          <button class="checkout-button" onclick="checkout()">Checkout</button>
+        <!-- Discount Box -->
+        <div class="discount-box">
+            <div class="discount-title">Discount Code</div>
+            <input type="text" id="discount-code" placeholder="Enter code">
+            <button class="apply-discount-button" onclick="applyDiscount()">Apply</button>
+            <p id="discount-message"></p>
         </div>
-      </div>
+    
+        <!-- Summary Box (Now separate) -->
+        <div class="summary-box">
+            <div>Total Price: <span class="total-price" id="total-price">£0.00</span></div>
+            <button class="checkout-button" onclick="checkout()">Checkout</button>
+        </div>
     </div>
-  </div>
+    
 
 
   <!-- REST OF THE JAVASCRIPT -->

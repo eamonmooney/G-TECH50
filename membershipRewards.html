@@ -86,26 +86,55 @@
 <script src="js/searchBar.js"></script>
 <script src="js/mobileNavbar.js"></script>
 
-<!-- Main Image Section -->
-<section class="plusImage">
-    <img src="images/Externalmade/gtech50plus.png" alt="mainImage" class="membershipImage">
-</section>
-
 <div id="welcomeMember"></div>
 
 <div class="container">
     <div class="column">
-        <h2>Column 1</h2>
-        <p>Content for the first column goes here.</p>
+        <h2>Membership Benefits</h2>
+        <ul>
+            <li>Priority access to new products!</li>
+            <li>Exclusive Member-Only sales!</li>
+            <li>Birthday rewards!</li>
+            <li>Limited Edition Member-Only Products!</li>
+            <li>Exclusive monthly newsletters!</li>
+            <li>Weekly giveaways!</li>
+            <li>Free delivery on all orders!</li>
+            <li>Access to unreleased products!</li>
+            <li>Start with 100 points to spend!</li>
+            <li>Extended returns window!</li>
+            <li>Free samples with orders!</li>
+        </ul>
+    </div>
+    <div class="split-columns">
+    <div class="column">
+        <h2>Points Balance</h2>
+        <div class="points-container">
+            <p>Your current points:</p>
+            <span id="pointsBalance"></span>
+            <p><span class="small-text">Remember, making purchases increases your balance!</span></p>
+    </div>
     </div>
     <div class="column">
-        <h2>Column 2</h2>
-        <p>Content for the second column goes here.</p>
+        <h2>Your G-tech50 rank</h2>
+        <div class="progress-container">
+            <p>Current Rank: <span id="rewardStage">G-TECH50 BEGINNER</span></p>
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+            <p>Purchases: <span id="purchaseCount">0</span> / 30</p>
+        </div>
     </div>
-    <div class="column">
-        <h2>Column 3</h2>
-        <p>Content for the third column goes here. </p>
     </div>
+    <div class="split-columns">
+        <div class="column">
+            <h2>Column 4</h2>
+            <p>Content for the second column goes here.</p>
+        </div>
+        <div class="column">
+            <h2>Column 5</h2>
+            <p>Content for the third column goes here. </p>
+        </div>
+        </div>
 </div>
 
 <script> 
@@ -117,5 +146,22 @@
         })
         .catch(error => {
             console.error('Error:', error);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function updatePointsBalance() {
+                fetch("php/updatePoints.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.points !== undefined) {
+                            document.getElementById("pointsBalance").textContent = data.points;
+                        } else {
+                            console.error("Error fetching points:", data.error);
+                        }
+                    })
+                    .catch(error => console.error("Fetch error:", error));
+            }
+
+            updatePointsBalance(); // Fetch points on page load
         });
 </script>
