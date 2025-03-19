@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 // Step 1: Check if user is signed in
 if (!isset($_SESSION['userId'])) {
-    header("Location: signin.html");
+    header("Location: ../signin.html");
     exit();
 }
 
