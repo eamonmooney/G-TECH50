@@ -16,7 +16,7 @@
     <style>
         html, body {
             height: 100%;
-            background-color: #111;
+            background-color: #000000;
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
@@ -88,39 +88,61 @@
         .close-button:hover {
             background-color: #ff0000;
         }
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
+     <!-- Navigation Bar -->
+     <div class="navbar">
         <div class="logo">
             <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <div class="dropdown">
-            <a href=#>Categories</a>
-            <div class="dropdown-content">
+              <a href=#>Categories</a>
+              <div class="dropdown-content">
                 <a href="categories/Mice.html">Mice</a>
                 <a href="categories/Monitors.html">Monitors</a>
                 <a href="categories/Headphones.html">Headphones</a>
                 <a href="categories/Keyboards.html">Keyboards</a>
                 <a href="categories/Mousepads.html">Mousepads</a>
-            </div>
+              </div>
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
+            <a href="membershipSignUp.html">G-TECH50+</a>
         </div>
 
         <!-- Search & User Icons -->
         <div class="icon-container">
             <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
+              <input type="text" id="searchBar" placeholder="Search...">
+              <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
