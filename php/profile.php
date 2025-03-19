@@ -3,11 +3,14 @@
 // Created by Eamon Mooney - 230075926
 session_start();
 
+// Error testing - prints all values in session
+print_r($_SESSION); 
+
 //Database connection
 require_once('connectdb.php');
 
 // If the user isn't logged in, redirect to the signin page
-if (!isset($_SESSION['userId'])) {    
+if ($_SESSION['signedIn'] == False) {    
     header("Location: ../signin.html");
     exit();
 }

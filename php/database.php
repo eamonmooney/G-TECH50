@@ -23,7 +23,7 @@ try {
             RoleID INT NOT NULL,
             Name VARCHAR(50) NOT NULL,
             Email VARCHAR(73) UNIQUE NOT NULL,
-            Password VARCHAR(50) NOT NULL,
+            Password VARCHAR(100) NOT NULL,
             rememberToken VARCHAR(64) NULL,
             tokenExpiry DATETIME NULL,
             FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
@@ -198,6 +198,18 @@ try {
             ('SubAdmin'), 
             ('MidAdmin'), 
             ('SuperAdmin') 
+        ");
+    }
+
+    // Check if tickettypes already exists
+    $checkTicket = $db->query("SELECT COUNT(*) FROM tickettypes")->fetchColumn();
+    //If doesn't populate
+    if ($checkTicket == 0) {
+        //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
+        $db->exec("
+            INSERT INTO tickettypes (TicketType) VALUES 
+            ('Guest'),
+            ('User')
         ");
     }
 
