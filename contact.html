@@ -127,6 +127,38 @@
                                 <textarea id="description" name="description" rows="5" required></textarea>
                             </div>
                             <input type="submit" value="Submit">
+
+                            <!-- Header tag to dispaly to the user their ticket confirmation through PHP/JS -->
+                            <h2 id="formResponse"></h2>
+
+                            <script>
+                                //Script used to add php response to the bottom of the form. - Eamon Mooney 230075926
+                                // Intercept form submission
+                                document.getElementById("contactForm").addEventListener("submit", function (event) {
+                                    event.preventDefault(); // Prevent default form submission
+
+                                    // Call the custom validation function
+                                    if (!validateForm()) {
+                                        return; // Stop submission if validation fails
+                                    }
+
+                                    // Collect form data
+                                    const formData = new FormData(this);
+
+                                    // Submit this form data using fetch
+                                    fetch("/G-TECH50/php/contactForm.php", {
+                                        method: "POST",
+                                        body: formData,
+                                    })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        //Display the response inside the formResponse element
+                                        document.getElementById("formResponse").innerHTML = data;
+                                    })
+                                    .catch(error => console.error("Error:", error));
+                                });
+                            </script>
+
                         </form>
                     </div>
                 </div>
