@@ -3,12 +3,13 @@ session_start();
 header('Content-Type: application/json');
 
 // Step 1: Check if user is signed in
-if (!isset($_SESSION['userId'])) {
-    header("Location: ../signin.html");
-    exit();
-}
 
 $userID = $_SESSION['userId'];
+
+if (!$userID) {
+    echo json_encode(["redirect" => "signin.html"]);
+    exit();
+}
 
 // Connect to the database
 require_once('connectdb.php');
@@ -20,8 +21,13 @@ $stmt->execute([$userID]);
 $member = $stmt->fetch();
 
 if ($member) {
-    header("Location: ../membershipRewards.html");
+    echo json_encode(["redirect" => "membershipRewards.html",
+                      "name" => $member['CardName']]);
     exit();
 } 
+
+echo json_encode(["status" => "not_a_member"]);
 exit();
+
+
 ?>

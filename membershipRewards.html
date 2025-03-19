@@ -235,16 +235,6 @@
                 const progressBar = document.getElementById("progressFill");
                 let progressPercentage = Math.min((data.purchases / 20) * 100, 100);
 
-                /* if (data.purchases >= 20) {
-                    progressPercentage = 100;
-                } else if (data.purchases >= 15) {
-                    progressPercentage = 66;  
-                } else if (data.purchases >= 5) {
-                    progressPercentage = 33;  
-                } else {
-                    progressPercentage = (data.purchases / 5) * 33;  
-                } */
-
                 progressBar.style.width = `${progressPercentage}%`;
                 progressBar.textContent = `${progressPercentage.toFixed(0)}%`;
             })

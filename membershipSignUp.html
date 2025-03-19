@@ -127,7 +127,7 @@
                     <label for="cvv">CVV: </label>
                     <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3">
                   </div>
-                <input type="submit" value="Complete Registration">
+                  <button type="submit">Complete Registration</button>
             </div>
         </form>
     </section>
@@ -139,6 +139,30 @@
     <!-- JavaScript -->
 
     <script>
+
+        document.getElementById('membershipSignUpForm').addEventListener('submit', async function(event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    // Redirect to membershipRewards.html after successful form submission
+                    window.location.href = 'membershipRewards.html';
+                } else {
+                    console.error('Error:', response.statusText);
+                    alert('There was an error processing your request.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            }
+        });
         
         // Membership Form Validation.
 
@@ -159,16 +183,14 @@
         //Block of code below basically doesn't allow the user to access GTECH50+ page without signing in. 
   
         fetch('php/membershipSignUp.php')
-        .then(response => {
-            if (response.redirected) {
-                // If the response is a redirect, handle it here
-                window.location.href = response.url;  // Redirect to the new URL
-            }
-            return response.json();  // Continue with JSON response if no redirect
-        })
+        .then(response => response.json())  // Parse the JSON response
         .then(data => {
-            // Handle the JSON response here if needed
-            console.log(data);
+            if (data.redirect) {
+                // Redirect using the URL from the JSON response
+                window.location.href = data.redirect;
+            } else if (data.status === "not_a_member") {
+                console.log("User is not a member yet.");
+            }
         })
         .catch(error => console.error('Error:', error));
 
@@ -214,25 +236,6 @@
             }
         });
 
-        document.getElementById("membershipSignUpForm").addEventListener("submit", function(event) {
-        event.preventDefault();  // Prevent the form from submitting the traditional way
-
-        let formData = new FormData(this);
-
-        fetch('php/membershipSubmit.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);  // Show error message if something goes wrong
-                window.location.href = 'membershipRewards.html';
-            }
-            // If the backend sends a redirect, the browser will automatically handle it based on header response
-        })
-        .catch(error => console.error('Error:', error));
-        });
 
     </script>
 
