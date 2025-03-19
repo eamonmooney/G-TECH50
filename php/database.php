@@ -150,32 +150,40 @@ try {
     //If doesn't populate
     if ($checkProducts == 0) {
         $db->exec("
-            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES 
+            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES
             (1, 'SUGARGLIDE SPARK', 1, 100, 34.99),
             (1, 'COSMIC CURSOR', 1, 100, 49.99),
             (1, 'WOODLAND WANDERER', 1, 100, 42.99),
             (1, 'PIXELWAVE MOUSE', 1, 100, 49.99),
             (1, 'KITTYCLICKS', 1, 100, 49.99),
+            
             (2, 'SUGARSCREEN MONITOR', 1, 100, 179.99),
             (2, 'COSMO VIEW CURVED MONITOR', 1, 100, 299.99),
             (2, 'ECO VIEW MONITOR', 1, 100, 189.99),
             (2, 'RETROVIEW LED MONITOR', 1, 100, 169.99),
             (2, 'KITTYVIEW MONITOR', 1, 100, 199.99),
+            
             (3, 'BUBBLEGUM BLASTER', 1, 100, 49.99),
             (3, 'STELLAR SOUNDWAVES', 1, 100, 59.99),
             (3, 'WOODLAND HARMONY', 1, 100, 49.99),
             (3, 'RETRO RAINBOW WAVE', 1, 100, 34.99),
             (3, 'WHISKERTUNES', 1, 100, 39.99),
+            
             (4, 'CANDYKEYS KEYBOARD', 1, 100, 34.99),
             (4, 'GALAXYTYPE KEYBOARD', 1, 100, 49.99),
             (4, 'FORESTFLOW KEYBOARD', 1, 100, 42.99),
             (4, 'PIXELPULSE KEYBOARD', 1, 100, 49.99),
             (4, 'PURRKEYS KEYBOARD', 1, 100, 49.99),
+            
             (5, 'CANDYPOP MAT', 1, 100, 14.99),
             (5, 'NEBULAGLIDE MAT', 1, 100, 18.99),
             (5, 'EVERGREEN MAT', 1, 100, 16.99),
             (5, 'NEONVIBES PAD', 1, 100, 19.99),
-            (5, 'PAWSOFT MAT', 1, 100, 15.99)
+            (5, 'PAWSOFT MAT', 1, 100, 15.99),
+            
+            (4, 'OMEGA KEYBOARD', 1, 100, 99.99),    
+            (2, 'OMEGA MONITOR', 1, 100, 329.99),    
+            (1, 'OMEGA MOUSE', 1, 100, 64.99);       
         ");
     }
 
