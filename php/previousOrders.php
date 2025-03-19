@@ -7,8 +7,7 @@ session_start();
 require_once('connectdb.php');
 try {
     //Collecting information about the currently logged in user
-    //$userId = $_SESSION['userId'];
-    $userId = 1;
+    $userId = $_SESSION['userId'];
 
     // Prepare the query to count the orders for the specific user
     $stmt = $db->prepare("SELECT COUNT(*) FROM Orders WHERE UserID = ?");
