@@ -88,7 +88,7 @@
                         <h1>GET IN TOUCH WITH OUR TEAM</h1>
                      </div>
                     <div class="contactform">
-                        <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
+                        <form id="contactFormActual">
                             <div class="row">
                                 <div class="firstname">
                                     <label for="firstName">First Name:</label>
@@ -116,10 +116,6 @@
                                         <label for="phoneMethod">Phone</label>
                                     </div>
                                 </div>
-                                <div class="date">
-                                    <label for="date">Date:</label>
-                                    <input type="date" class="form-control" id="date" name="date" required>
-                                </div>
                             </div>
                         
                             <div class="description">
@@ -134,7 +130,7 @@
                             <script>
                                 //Script used to add php response to the bottom of the form. - Eamon Mooney 230075926
                                 // Intercept form submission
-                                document.getElementById("contactForm").addEventListener("submit", function (event) {
+                                document.getElementById("contactFormActual").addEventListener("submit", function (event) {
                                     event.preventDefault(); // Prevent default form submission
 
                                     // Call the custom validation function
@@ -200,15 +196,9 @@
             let confirmEmail = document.getElementById("confirmEmail").value.trim();
             let phoneNumber = document.getElementById("phoneNumber").value.trim();
             let contactMethod = document.querySelector('input[name="contactMethod"]:checked').value;
-            let date = new Date(document.getElementById("date").value);
-            let currentDate = new Date();
 
             if (firstName === "" || email === "" || confirmEmail === "" || phoneNumber === "") {
                 alert("Please fill in all required fields.");
-                return false;
-            }
-
-            if (!checkDate(date, currentDate)) {
                 return false;
             }
 
@@ -216,14 +206,6 @@
                 return false;
             }
 
-            return true;
-        }
-
-        function checkDate(date, currentDate) {
-            if (date <= currentDate) {
-                alert("Please select a date at least 1 day in the future.");
-                return false;
-            }
             return true;
         }
 
