@@ -1,8 +1,8 @@
-<!-- Creating initial database and tables within -->
-<!-- Completed by Sahil (230073302), Table Insertion by Eamon (230075926), edited by Safa (230078145) -->
-<!-- I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil. -->
-
 <?php
+
+// Creating initial database and tables within 
+// Completed by Sahil (230073302), Table Insertion by Eamon (230075926), edited by Safa (230078145) 
+// I have tested and ran this in phpMyAdmin and everything seems to be working fine. Sahil.
 
 try {
     // Database connection
@@ -23,7 +23,7 @@ try {
             RoleID INT NOT NULL,
             Name VARCHAR(50) NOT NULL,
             Email VARCHAR(73) UNIQUE NOT NULL,
-            Password VARCHAR(50) NOT NULL,
+            Password VARCHAR(100) NOT NULL,
             rememberToken VARCHAR(64) NULL,
             tokenExpiry DATETIME NULL,
             FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
@@ -113,8 +113,17 @@ try {
             FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
         );
 
-
-        
+        CREATE TABLE IF NOT EXISTS Members (
+            MemberID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            UserID INT NOT NULL,
+            CardName VARCHAR(50) NOT NULL,
+            CardNumber INT NOT NULL,
+            ExpiryDate VARCHAR(5) NOT NULL,
+            CVV VARCHAR(3) NOT NULL,
+            Points INT NOT NULL DEFAULT 100,
+            CurrentRank VARCHAR(30) NOT NULL DEFAULT 'G-TECH50 BEGINNER',
+            FOREIGN KEY (UserID) REFERENCES Users(UserID)
+        );
     ";
 
     $db->exec($sql);

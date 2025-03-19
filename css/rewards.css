@@ -1,6 +1,10 @@
 body {
     margin: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: black;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/Externalmade/6.png);
 }
 
 .membershipImage {
@@ -8,32 +12,140 @@ body {
 }
 
 #welcomeMember {
-    margin-top: 40px;
+    margin-top: 100px;
     text-align: center;
     font-size: 12px;
-    color: #ffde59;
+    color: white;
+    margin-bottom: 40px;
+}
+
+#welcomeMember h1 {
+    font-family: 'superbrigade';
+    text-shadow: 0px 0px 10px rgb(174, 0, 255);
+    filter: blur(0.5px);
 }
 
 .container {
     display: flex;
-    justify-content: space-between; /* Space between columns */
+    justify-content: space-between;
     gap: 20px;
     padding: 20px;
+    align-items: stretch; 
 }
 
 .column {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 4px;
-    flex: 1; /* Make each column equal width */
+    flex: 1; 
     min-height: 400px;
-    box-shadow: 4px 4px 8px #ffde59;
+    box-shadow: 4px 4px 8px rgb(174, 0, 255);
     color: white;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Add responsiveness */
+.column h2 {
+    font-family: 'superbrigade';
+    text-shadow: 0px 0px 10px rgb(174, 0, 255);
+    filter: blur(0.5px);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.column p,
+.column ul {
+    flex-grow: 1; 
+    color: #00ff80;
+}
+
+.split-columns {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px; 
+}
+
+.split-columns .column {
+    flex: 1; 
+    min-height: 200px; 
+}
+
+#pointsBalance {
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 0px 0px 10px rgb(174, 0, 255);
+}
+
+.points-container {
+    text-align: center;
+}
+
+.points-container p {
+    font-family: 'superbrigade';
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.progress-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(174, 0, 255, 0.1);
+    box-shadow: 2px 2px 5px #00ff80;
+    max-width: 100%; /* Ensures it stays within column width */
+    box-sizing: border-box; /* Includes padding in the width */
+    overflow: hidden;
+}
+
+.progress-container p {
+    font-family: 'superbrigade';
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+#progressFill {
+    height: 100%;
+    width: 0%;
+    background-color: #00ff80;
+    transition: width 0.5s ease-in-out;
+}
+
+#rewardStage {
+    font-weight: bold;
+    color: #00ff80;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column,
+    .split-columns {
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stack the columns on smaller screens */
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .column {
+        min-height: auto;
     }
 }

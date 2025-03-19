@@ -1,6 +1,6 @@
-<!-- Checkout functionality. By Sahil Awan (230073302). -->
-
 <?php
+
+// Checkout functionality. By Sahil Awan (230073302). 
 session_start();
 ob_start(); // Preventing comments from the database file to be added in the output.
 require_once('connectdb.php');

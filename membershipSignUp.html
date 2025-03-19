@@ -101,7 +101,7 @@
     </section>
 
     <section class="membershipSignUp">
-        <form id="membershipSignUpForm" method="POST" action="membershipRewards.html">
+        <form id="membershipSignUpForm" method="POST" action="php/membershipSubmit.php">
             <div class="membershipForm">
                 <div class="firstname">
                     <label for="firstname">First Name:</label>
@@ -110,14 +110,6 @@
                 <div class="lastname">
                     <label for="lastname">Surname:</label>
                     <input type="text" class="form-control" id="lastname" name="lastname" required>
-                </div>
-                <div class="email">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="confirmemail">
-                    <label for="confirmEmail">Confirm Email:</label>
-                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
                 </div>
                 <div class="cardName">
                     <label for="cardName">Name on card: </label>
@@ -153,44 +145,33 @@
         function validateForm() {
             let firstname = document.getElementById("firstname").value.trim();
             let lastname = document.getElementById("lastname").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let confirmEmail = document.getElementById("confirmEmail").value.trim();
             let cardName = document.getElementById("card-name").value.trim();
             let cardNumber = document.getElementById("card-number").value.trim();
             let expiry = document.getElementById("expiry").value.trim();
             let cvv = document.getElementById("cvv").value.trim();
 
-            if (firstname === "" || lastname === "" || email === "" || confirmEmail === "") {
+            if (firstname === "" || lastname === "") {
                 alert("Please fill in all required fields.");
                 return false;
             }
-
-            if (!checkEmails(email, confirmEmail)) {
-                return false;
-            }
-            return true;
-        }
-
-        // Checks that both emails that have been entered in the form match. 
-
-        function checkEmails(email, confirmEmail) {
-            if (email !== confirmEmail) {
-                alert("Emails do not match.");
-                return false;
-            }
-            return true;
         }
 
         // Block of code below basically doesn't allow the user to access GTECH50+ page without signing in. 
+  
+        /*fetch('php/membershipSignUp.php')
+        .then(response => {
+            if (response.redirected) {
+                // If the response is a redirect, handle it here
+                window.location.href = response.url;  // Redirect to the new URL
+            }
+            return response.json();  // Continue with JSON response if no redirect
+        })
+        .then(data => {
+            // Handle the JSON response here if needed
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error)); */
 
-        fetch('php/membershipSignUp.php')
-            .then(response => response.json())
-            .then(data => {
-                if (data.redirect) {
-                    window.location.href = 'signin.html';
-                }
-            })
-            .catch(error => console.error('Error:', error));
         
         // Function to validate card expiry
 
@@ -231,6 +212,26 @@
             if (!validateExpiryDate()) {
                 event.preventDefault();  // Prevent form submission if expiry is invalid
             }
+        });
+
+        document.getElementById("membershipSignUpForm").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent the form from submitting the traditional way
+
+        let formData = new FormData(this);
+
+        fetch('php/membershipSubmit.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);  // Show error message if something goes wrong
+                window.location.href = 'membershipRewards.html';
+            }
+            // If the backend sends a redirect, the browser will automatically handle it based on header response
+        })
+        .catch(error => console.error('Error:', error));
         });
 
     </script>

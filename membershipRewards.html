@@ -86,27 +86,109 @@
 <script src="js/searchBar.js"></script>
 <script src="js/mobileNavbar.js"></script>
 
-<!-- Main Image Section -->
-<section class="plusImage">
-    <img src="images/Externalmade/gtech50plus.png" alt="mainImage" class="membershipImage">
-</section>
-
 <div id="welcomeMember"></div>
 
 <div class="container">
     <div class="column">
-        <h2>Column 1</h2>
-        <p>Content for the first column goes here.</p>
+        <h2>Membership Benefits</h2>
+        <ul>
+            <li>Priority access to new products!</li>
+            <li>Exclusive Member-Only sales!</li>
+            <li>Birthday rewards!</li>
+            <li>Limited Edition Member-Only Products!</li>
+            <li>Exclusive monthly newsletters!</li>
+            <li>Weekly giveaways!</li>
+            <li>Free delivery on all orders!</li>
+            <li>Access to unreleased products!</li>
+            <li>Start with 100 points to spend!</li>
+            <li>Extended returns window!</li>
+            <li>Free samples with orders!</li>
+        </ul>
     </div>
+    <div class="split-columns">
     <div class="column">
-        <h2>Column 2</h2>
-        <p>Content for the second column goes here.</p>
+        <h2>Points Balance</h2>
+        <div class="points-container">
+            <p>Your current points:</p>
+            <span id="pointsBalance"></span>
+            <p><span class="small-text">Remember, making purchases increases your balance!</span></p>
+        </div>
     </div>
+
     <div class="column">
-        <h2>Column 3</h2>
-        <p>Content for the third column goes here. </p>
+        <h2>Your G-tech50 rank</h2>
+        <div class="progress-container">
+            <p>Current Rank: <span id="rewardStage"> Loading...</span></p>
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+            <p>Purchases: <span id="purchaseCount">0</span></p>
+        </div>
+    </div>
+    </div>
+
+    <div class="split-columns">
+        <div class="column">
+            <h2>Unreleased Products</h2>
+            <div class="unreleased">
+                <p>Psst... Here's access to our top secret unreleased products here!</p>
+                <button onclick="window.location.href='unreleasedProducts.html'">SHOP</button>
+            </div>
+            <style>
+                .unreleased {
+                    text-align: center;
+                    font-size: 14px;
+                    margin-top: 10px;
+                }
+
+                .unreleased button {
+                    margin-top: 20px;
+                    background-color: rgb(174, 0, 255);
+                    border: 0px;
+                    padding: 8px;
+                    border-radius: 2px;
+                }
+
+                .unreleased button:hover{
+                    background-color: rgb(108, 0, 158);
+                }
+            </style>
+        </div>
+        <div class="column">
+            <h2>Exclusive Newsletter</h2>
+            <div class="newsletter">
+                <p>Check out our exclusive <br> G-TECH50 news! (Exclusive members events inside!)</p>
+                <button onclick="window.location.href='exclusiveNews.html'">View</button>
+            </div>
+            <style>
+                .newsletter {
+                    text-align: center;
+                }
+
+                .newsletter p {
+                    text-align: center;
+                    font-size: 14px;
+                    margin-top: 10px;
+                }
+                
+                .newsletter button {
+                    margin-top: 20px;
+                    background-color: rgb(174, 0, 255);
+                    border: 0px;
+                    padding: 8px;
+                    border-radius: 2px;
+                    align-items: center;
+                }
+
+                .newsletter button:hover{
+                    background-color: rgb(108, 0, 158);
+                }
+            </style>
+        </div>
+        </div>
     </div>
 </div>
+
 
 <script> 
     fetch('php/membershipSignUp.php')
@@ -118,4 +200,61 @@
         .catch(error => {
             console.error('Error:', error);
         });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // Fetches only the points
+    function updatePointsBalance() {
+        fetch("php/updatePoints.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.points !== undefined) {
+                    document.getElementById("pointsBalance").textContent = data.points;
+                } else {
+                    console.error("Error fetching points:", data.error);
+                }
+            })
+            .catch(error => console.error("Fetch error:", error));
+    }
+    updatePointsBalance();
+
+    // Fetch the rank and purchase count dynamically.
+    function updateRankAndPurchases() {
+        fetch("php/updateRank.php") 
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error:", data.error);
+                    return;
+                }
+
+                // Update rank and purchase count in the HTML.
+                document.getElementById("rewardStage").textContent = data.rank;
+                document.getElementById("purchaseCount").textContent = data.purchases;
+
+                // Update the progress bar based on purchases.
+                const progressBar = document.getElementById("progressFill");
+                let progressPercentage = Math.min((data.purchases / 20) * 100, 100);
+
+                /* if (data.purchases >= 20) {
+                    progressPercentage = 100;
+                } else if (data.purchases >= 15) {
+                    progressPercentage = 66;  
+                } else if (data.purchases >= 5) {
+                    progressPercentage = 33;  
+                } else {
+                    progressPercentage = (data.purchases / 5) * 33;  
+                } */
+
+                progressBar.style.width = `${progressPercentage}%`;
+                progressBar.textContent = `${progressPercentage.toFixed(0)}%`;
+            })
+            .catch(error => console.error("Error loading rank and purchases:", error));
+    }
+
+    // Call the function on page load
+    updateRankAndPurchases();
+});
+
+
+
 </script>
