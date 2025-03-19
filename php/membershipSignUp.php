@@ -18,15 +18,10 @@ $query = "SELECT * FROM Members WHERE UserID = ?";
 $stmt = $db->prepare($query);
 $stmt->execute([$userID]);
 $member = $stmt->fetch();
-/*
+
 if ($member) {
     header("Location: ../membershipRewards.html");
     exit();
-} else {
-    // If the user is not a member, allow them to fill out the membership form
-    header("Location: ../membershipSignUp.html");
-    exit();
-} */
-
+} 
 exit();
 ?>
