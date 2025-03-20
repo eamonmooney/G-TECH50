@@ -92,6 +92,9 @@ try {
             ProductID INT NOT NULL,
             ReturnValue FLOAT NOT NULL,
             ReturnDate DATE NOT NULL,
+            Reason VARCHAR(255) NOT NULL,
+            Status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+            CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)

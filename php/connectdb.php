@@ -1,6 +1,6 @@
 <?php
 // Created by Emaon Mooney - 230075926
-//This is the login to our virtual server database, feel free to change this for local use if needed. - Eamon
+// This is the login to our virtual server database, feel free to change this for local use if needed. - Eamon
 
 //For the server 
 // $db_host = 'localhost';

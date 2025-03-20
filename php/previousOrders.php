@@ -23,7 +23,6 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $newHtml = "";
 
-// Check if there are any orders
 if (count($orders) > 0) {
     foreach ($orders as $order) {
         $newHtml .= "<li>";
@@ -50,6 +49,26 @@ if (count($orders) > 0) {
                 $newHtml .= "Price: £" . number_format($item['Price'], 2) . "<br>";
                 $newHtml .= "Quantity: " . htmlspecialchars($item['Quantity']) . "<br><br>";
                 $newHtml .= "<button>Review Product</button><br><br>";
+
+                // Only show return button if the product is returnable - Sahil Awan (230073302)
+                if ($item['Returnable']) {
+                    $newHtml .= "
+                    <form method='POST' action='php/processReturn.php' style='margin-bottom: 20px;'>
+                        <input type='hidden' name='userId' value='" . $userId . "'>
+                        <input type='hidden' name='orderId' value='" . $order['OrderID'] . "'>
+                        <input type='hidden' name='productId' value='" . $item['ProductID'] . "'>
+                
+                        <label for='reason'>Reason for return:</label>
+                        <select name='reason' required style='margin-bottom: 15px; padding: 5px;'>
+                            <option value='Damaged'>Damaged</option>
+                            <option value='Wrong item'>Wrong item</option>
+                            <option value='Not as described'>Not as described</option>
+                            <option value='Other'>Other</option>
+                        </select>
+                
+                        <button type='submit' style='margin-top: 10px; padding: 10px 15px;'>Return Product</button>
+                    </form>";
+                }
             }
         } else {
             $newHtml .= "No items found for this order.<br>";
@@ -66,4 +85,5 @@ echo $newHtml;
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
+
 ?>
