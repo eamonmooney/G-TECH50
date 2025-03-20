@@ -146,6 +146,17 @@
                 </tr>
             </thead>
             <tbody>
+                <script>
+                    // Script for changing html attributes of the review table. Eamon - 230075926
+                    // Use JavaScript to fetch user details from a PHP script
+                    // Updating reviews list upon page load
+                    fetch('php/ticketInfo.php')
+                      .then(response => response.text())
+                      .then(data => {
+                        document.getElementById('ticketRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+                </script>
                 <tr onclick="window.location='review-details.html';">
                     <td>101</td>
                     <td>5001</td>
