@@ -105,7 +105,7 @@
         <div class="review-box" id="review-box"></div>
 
         <div class="admin-actions">
-            <div>Admin Comments</div>
+            <div  onclick="back()">Back to review table</div>
             <div><button>Add</button>
                 <button onclick="deleteReview()">Delete</button>
                 <button>Pin</button>
@@ -187,6 +187,10 @@
             } else {
                 console.log('No review ID found in URL');
             }
+        }
+
+        function back() {
+            window.location.href = "customer-review.html";
         }
     </script>
 </body>
