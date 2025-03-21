@@ -154,10 +154,10 @@
 
                     // Display review details on the page
                     document.getElementById('review-box').innerHTML = `
-                    <p>Review ID: ${data.ReviewID}</p>
-                    <p>User ID: ${data.UserID}</p>
-                    <p>Product ID: ${data.ProductID}</p>
-                    <p>Rating: ${data.Rating}</p>
+                        <p>Review ID: ${data.review.ReviewID}</p>
+                        <p>User ID: ${data.review.UserID}</p>
+                        <p>Product ID: ${data.review.ProductID}</p>
+                        <p>Rating: ${data.review.Rating}</p>
                     `;
             
                     // Change the text inside the hide button depending on the status of 'hidden'

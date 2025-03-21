@@ -25,7 +25,7 @@ try {
 
     $stmt->execute(['reviewID' => $reviewID]);
 
-    $review = $stmt->fetch();
+    $review = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($review) {
         // Return review details along with whether it is pinned or not
