@@ -155,7 +155,14 @@
                     <p>User ID: ${data.UserID}</p>
                     <p>Product ID: ${data.ProductID}</p>
                     <p>Rating: ${data.Rating}</p>
-                `;})
+                    `;
+            
+                    if(data.Hidden) {
+                        document.getElementById('hideButton').innerHTML = `Unhide`
+                    } else {
+                        document.getElementById('hideButton').innerHTML = `Hide`
+                    }
+                })
             .catch(error => console.error('Error:', error));
             } else {
                 console.log('No review ID found in URL');
@@ -208,7 +215,7 @@
 
                     // Change button text
                     document.getElementById('hideButton').innerHTML = `
-                    Hidden
+                    Unhide
                 `;})
             .catch(error => console.error('Error:', error));
             } else {
