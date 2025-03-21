@@ -166,6 +166,13 @@
                     } else {
                         document.getElementById('hideButton').innerHTML = `Hide`
                     }
+
+                    // Change the text inside the pin button depending on the status of pinned
+                    if (data.isPinned) {
+                        document.getElementById('pinButton').innerHTML = 'Unpin';
+                    } else {
+                        document.getElementById('pinButton').innerHTML = 'Pin';
+                    }
                 })
             .catch(error => console.error('Error:', error));
             } else {
