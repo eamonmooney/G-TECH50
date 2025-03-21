@@ -62,6 +62,7 @@ try {
             OrderTypeID INT NOT NULL,
             OrderDate VARCHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
+            Address VARCHAR(50) NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (GuestID) REFERENCES GuestInfo(GuestID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
