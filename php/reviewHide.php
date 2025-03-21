@@ -6,30 +6,29 @@ require_once('connectdb.php');
 
 try {
     $reviewID = $_POST['reviewID'] ?? null;
+    $hidden = isset($_POST['hidden']) ? (int)$_POST['hidden'] : null;
 
-    if ($reviewID === null) {
-        echo json_encode(['error' => 'No review ID provided']);
+    if ($reviewID === null || $hidden === null) {
+        echo json_encode(['error' => 'Review ID or hidden status not provided']);
         exit;
     }
 
-    // Prepare the SQL query to set hidden = true
+    // Prepare the SQL query to set hidden = true/false
     $stmt = $db->prepare('UPDATE reviews SET hidden = :hidden WHERE ReviewID = :reviewID');
 
-    // Execute the query with both parameters
     $success = $stmt->execute([
-        ':hidden' => true,
-        ':reviewID' => $reviewID 
+        ':hidden' => $hidden,
+        ':reviewID' => $reviewID
     ]);
 
-    // Check if any rows were affected
     if ($success && $stmt->rowCount() > 0) {
-        echo json_encode(['success' => 'Review hidden successfully!']);
+        $action = $hidden ? 'hidden' : 'unhidden';
+        echo json_encode(['success' => "Review successfully $action!"]);
     } else {
-        echo json_encode(['error' => 'No review found with that ID or it was already hidden.']);
+        echo json_encode(['error' => 'No review found with that ID or no change made.']);
     }
 
 } catch (PDOException $e) {
-    // Handle any errors in connecting/querying the database
     echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
 ?>

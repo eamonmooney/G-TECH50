@@ -109,7 +109,7 @@
             <div><button>Add</button>
                 <button onclick="deleteReview()">Delete</button>
                 <button>Pin</button>
-                <button id="hideButton" onclick="hideReview()">Hide</button>
+                <button id="hideButton" onclick="toggleReviewVisibility()">Hide</button>
             </div>
         </div>
     </div>
@@ -196,28 +196,39 @@
             }
         }
 
-        // Script for hiding the currently selected review. Eamon - 230075926
-        function hideReview() {
-            
+        // Script for toggling hidden status of the selected review. Eamon - 230075926
+        function toggleReviewVisibility() {
+
             const reviewID = getQueryParam('reviewID');
-            
+
             if (reviewID) {
+                // Grab the button text to know what action to take
+                const button = document.getElementById('hideButton');
+                const isCurrentlyHidden = button.innerText.trim() === 'Unhide';
+
+                // Determine action: if it's currently hidden, unhide it (false). Otherwise, hide it (true)
+                const hideValue = !isCurrentlyHidden;
+
+                // Send request to PHP script
                 fetch('php/reviewHide.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                    body: 'reviewID=' + encodeURIComponent(reviewID) + '&hidden=' + (hideValue ? 1 : 0)
                 })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Review Data:', data);
 
-                    // Change button text
-                    document.getElementById('hideButton').innerHTML = `
-                    Unhide
-                `;})
-            .catch(error => console.error('Error:', error));
+                    // Update button text based on new state
+                    if (hideValue) {
+                        button.innerText = 'Unhide';
+                    } else {
+                        button.innerText = 'Hide';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
             } else {
                 console.log('No review ID found in URL');
             }
