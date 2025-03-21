@@ -164,21 +164,28 @@
 
         // Script for deleting the currently selected review. Eamon - 230075926
         function deleteReview() {
-            // Function to get query parameters from the URL
-            function getQueryParam(param) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(param);
-            }
             
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
-                fetch('php/reviewDelete.php')
-                      .then(response => response.text())
-                      .then(data => {
-                        document.getElementById('ticketRows').innerHTML = data;
-                    })
-                    .catch(error => console.error('Error:', error));
+                fetch('php/reviewDelete.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Example: Display it on the page
+                    document.getElementById('review-box').innerHTML = `
+                    <p>Review ${reviewID} Deleted.</p>
+                `;})
+            .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
             }
         }
     </script>
