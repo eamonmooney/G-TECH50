@@ -148,6 +148,13 @@ try {
             CurrentRank VARCHAR(30) NOT NULL DEFAULT 'G-TECH50 BEGINNER',
             FOREIGN KEY (UserID) REFERENCES Users(UserID)
         );
+
+        ALTER TABLE Products
+        ADD COLUMN pinnedReviewID INT;
+
+        ALTER TABLE Products
+        ADD CONSTRAINT fk_pinnedReview
+        FOREIGN KEY (pinnedReviewID) REFERENCES Reviews(ReviewID);
     ";
 
     $db->exec($sql);
