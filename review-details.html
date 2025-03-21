@@ -102,42 +102,7 @@
     <div class="container">
         <div>Review Details</div>
 
-        <div class="review-box">
-            <script>
-                // Function to get query parameters from the URL
-                function getQueryParam(param) {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    return urlParams.get(param);
-                }
-                
-                const reviewID = getQueryParam('reviewID');
-                console.log('Review ID:', reviewID);
-
-                if (reviewID) {
-                    fetch('php/reviewDetails.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: 'reviewID=' + encodeURIComponent(reviewID)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log('Review Data:', data);
-
-                        // Example: Display it on the page
-                        document.getElementById('reviewDetails').innerHTML = `
-                        <h2>Review ID: ${data.ReviewID}</h2>
-                        <p>User ID: ${data.UserID}</p>
-                        <p>Product ID: ${data.ProductID}</p>
-                        <p>Rating: ${data.Rating}</p>
-                    `;})
-                .catch(error => console.error('Error:', error));
-                } else {
-                    console.log('No review ID found in URL');
-                }
-            </script>
-        </div>
+        <div class="review-box" id="review-box"></div>
 
         <div class="admin-actions">
             <div>Admin Comments</div>
@@ -159,5 +124,41 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to get query parameters from the URL
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+            
+            const reviewID = getQueryParam('reviewID');
+            console.log('Review ID:', reviewID);
+
+            if (reviewID) {
+                fetch('php/reviewDetails.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Example: Display it on the page
+                    document.getElementById('review-box').innerHTML = `
+                    <p>Review ID: ${data.ReviewID}</p>
+                    <p>User ID: ${data.UserID}</p>
+                    <p>Product ID: ${data.ProductID}</p>
+                    <p>Rating: ${data.Rating}</p>
+                `;})
+            .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+        });
+    </script>
 </body>
 </html>
