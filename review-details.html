@@ -109,7 +109,7 @@
             <div><button>Add</button>
                 <button onclick="deleteReview()">Delete</button>
                 <button>Pin</button>
-                <button>Hide</button>
+                <button id="hideButton" onclick="hideReview()">Hide</button>
             </div>
         </div>
     </div>
@@ -149,7 +149,7 @@
                 .then(data => {
                     console.log('Review Data:', data);
 
-                    // Example: Display it on the page
+                    // Display it on the page
                     document.getElementById('review-box').innerHTML = `
                     <p>Review ID: ${data.ReviewID}</p>
                     <p>User ID: ${data.UserID}</p>
@@ -168,6 +168,33 @@
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
+                fetch('php/reviewHide.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Display it on the page
+                    document.getElementById('review-box').innerHTML = `
+                    <p>Review ${reviewID} Deleted.</p>
+                `;})
+            .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+        }
+
+        // Script for hiding the currently selected review. Eamon - 230075926
+        function hideReview() {
+            
+            const reviewID = getQueryParam('reviewID');
+            
+            if (reviewID) {
                 fetch('php/reviewDelete.php', {
                     method: 'POST',
                     headers: {
@@ -179,9 +206,9 @@
                 .then(data => {
                     console.log('Review Data:', data);
 
-                    // Example: Display it on the page
-                    document.getElementById('review-box').innerHTML = `
-                    <p>Review ${reviewID} Deleted.</p>
+                    // Change button text
+                    document.getElementById('hideButton').innerHTML = `
+                    Hidden
                 `;})
             .catch(error => console.error('Error:', error));
             } else {
