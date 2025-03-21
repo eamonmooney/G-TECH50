@@ -49,22 +49,42 @@ try {
             FOREIGN KEY (ProductTypeID) REFERENCES ProductType(ProductTypeID)
         );
 
+        CREATE TABLE IF NOT EXISTS GuestInfo (
+            GuestID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            Name VARCHAR(50) NOT NULL,
+            Email VARCHAR(73) NOT NULL
+        );
+
         CREATE TABLE IF NOT EXISTS Orders (
             OrderID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            UserID INT NOT NULL,
+            UserID INT,
+            GuestID INT,
             OrderTypeID INT NOT NULL,
             OrderDate VARCHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
+            Address VARCHAR(50) NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
+            FOREIGN KEY (GuestID) REFERENCES GuestInfo(GuestID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
         );
+
+
+        CREATE TABLE IF NOT EXISTS GuestOrders (
+            GuestID INT NOT NULL,
+            OrderID INT NOT NULL,
+            PRIMARY KEY (GuestID, OrderID),
+            FOREIGN KEY (GuestID) REFERENCES GuestInfo(GuestID) ON DELETE CASCADE,
+            FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE
+        );
+
+
 
         CREATE TABLE IF NOT EXISTS OrderItem (
             OrderID INT NOT NULL,
             ProductID INT NOT NULL,
             Quantity INT NOT NULL,
             PRIMARY KEY (OrderID, ProductID),
-            FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+            FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE,
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
 
@@ -92,6 +112,9 @@ try {
             ProductID INT NOT NULL,
             ReturnValue FLOAT NOT NULL,
             ReturnDate DATE NOT NULL,
+            Reason VARCHAR(255) NOT NULL,
+            Status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+            CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
@@ -195,6 +218,7 @@ try {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO Role (Role) VALUES 
+            ('Guest'),
             ('Customer'),
             ('SubAdmin'), 
             ('MidAdmin'), 
@@ -203,12 +227,12 @@ try {
     }
 
     // Check if tickettypes already exists
-    $checkTicket = $db->query("SELECT COUNT(*) FROM tickettypes")->fetchColumn();
+    $checkTicket = $db->query("SELECT COUNT(*) FROM TicketTypes")->fetchColumn();
     //If doesn't populate
     if ($checkTicket == 0) {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
-            INSERT INTO tickettypes (TicketType) VALUES 
+            INSERT INTO TicketTypes (TicketType) VALUES 
             ('Guest'),
             ('User')
         ");
@@ -222,7 +246,8 @@ try {
         $db->exec("
             INSERT INTO OrderTypes (OrderType) VALUES 
             ('Admin'), 
-            ('Customer')
+            ('Customer'),
+            ('Guest')
         ");
     }
 
@@ -234,17 +259,13 @@ try {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
-            ('2', 'PLACE'), 
-            ('3', 'MIGHT'), 
-            ('4', 'BRUNT') 
+            ('3', 'PLACE'), 
+            ('4', 'MIGHT'), 
+            ('5', 'BRUNT') 
         ");
     }
-
-
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 
 $conn = null;
-
-?>

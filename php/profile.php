@@ -4,7 +4,8 @@
 session_start();
 
 // Error testing - prints all values in session
-print_r($_SESSION); 
+// print_r($_SESSION); 
+// print_r($_COOKIE); 
 
 //Database connection
 require_once('connectdb.php');
