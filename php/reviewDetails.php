@@ -1,4 +1,5 @@
 <?php
+// Fetches all details about a specific review - Eamon Mooney - 230075926
 header('Content-Type: application/json');
 
 //Database connection

@@ -1,4 +1,5 @@
 <?php
+// Deletes the currently selected review in review-details.html - Eamon Mooney - 230075926
 header('Content-Type: application/json');
 
 //Database connection

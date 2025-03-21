@@ -1,3 +1,5 @@
+<!-- Page made by Elisha Kolade - 220383798 -->
+ <!-- JS and Backend by Eamon Mooney - 230075926 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,6 +134,7 @@
                 return urlParams.get(param);
         }
 
+        // Wait for content to load before changing attributes
         document.addEventListener('DOMContentLoaded', () => {
             
             const reviewID = getQueryParam('reviewID');
@@ -149,7 +152,7 @@
                 .then(data => {
                     console.log('Review Data:', data);
 
-                    // Display it on the page
+                    // Display review details on the page
                     document.getElementById('review-box').innerHTML = `
                     <p>Review ID: ${data.ReviewID}</p>
                     <p>User ID: ${data.UserID}</p>
@@ -157,6 +160,7 @@
                     <p>Rating: ${data.Rating}</p>
                     `;
             
+                    // Change the text inside the hide button depending on the status of 'hidden'
                     if(data.Hidden) {
                         document.getElementById('hideButton').innerHTML = `Unhide`
                     } else {

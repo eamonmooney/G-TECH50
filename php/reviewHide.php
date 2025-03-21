@@ -1,10 +1,12 @@
 <?php
+// Hides the currently selected review in review-details.html - Eamon Mooney - 230075926
 header('Content-Type: application/json');
 
 // Database connection
 require_once('connectdb.php');
 
 try {
+    //Set the current reviewID and the status of hidden
     $reviewID = $_POST['reviewID'] ?? null;
     $hidden = isset($_POST['hidden']) ? (int)$_POST['hidden'] : null;
 
@@ -21,6 +23,7 @@ try {
         ':reviewID' => $reviewID
     ]);
 
+    // Display appropriate text depending on the senario
     if ($success && $stmt->rowCount() > 0) {
         $action = $hidden ? 'hidden' : 'unhidden';
         echo json_encode(['success' => "Review successfully $action!"]);
