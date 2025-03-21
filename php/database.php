@@ -149,12 +149,20 @@ try {
             FOREIGN KEY (UserID) REFERENCES Users(UserID)
         );
 
-        ALTER TABLE Products
-        ADD COLUMN pinnedReviewID INT;
+        IF NOT EXISTS (
+            SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE table_name = 'Products' AND column_name = 'pinnedReviewID'
+        ) THEN
+            ALTER TABLE Products ADD COLUMN pinnedReviewID INT;
+        END IF;
 
-        ALTER TABLE Products
-        ADD CONSTRAINT fk_pinnedReview
-        FOREIGN KEY (pinnedReviewID) REFERENCES Reviews(ReviewID);
+        IF NOT EXISTS (
+            SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+            WHERE table_name = 'Products' AND constraint_name = 'fk_pinnedReview'
+        ) THEN
+            ALTER TABLE Products
+            ADD CONSTRAINT fk_pinnedReview FOREIGN KEY (pinnedReviewID) REFERENCES Reviews(ReviewID);
+        END IF;
     ";
 
     $db->exec($sql);
