@@ -129,9 +129,16 @@
         <div class="search-filter">
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search reviews...">
             <select id="filterSelect" onchange="filterTable()">
-                <option value="">Filter by Order ID</option>
-                <option value="5001">5001</option>
-                <option value="5002">5002</option>
+                <option value="">Filter by Product ID</option>
+                <script>
+                    // Script for changing html attributes of the filter options. Eamon - 230075926
+                    fetch('php/reviewFilter.php')
+                      .then(response => response.text())
+                      .then(data => {
+                        document.getElementById('filterSelect').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+                </script>
             </select>
         </div>
 
