@@ -47,7 +47,7 @@ try {
     if (count($reviews) > 0) {
         foreach ($reviews as $review) {
             //Display information about each review in each row
-            $newHtml .= "<tr onclick=\"window.location='review-details.html';\">";
+            $newHtml .= '<tr onclick="window.location=\'review-details.html?reviewID=' . urlencode($review['ReviewID']) . '\'">';
             $newHtml .= "<td>" . htmlspecialchars($review['ReviewID']) . "</td>";
             $newHtml .= "<td>" . htmlspecialchars($review['UserID']) . "</td>";
             $newHtml .= "<td>" . htmlspecialchars($review['ProductID']) . "</td>";
