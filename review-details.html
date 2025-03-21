@@ -107,7 +107,7 @@
         <div class="admin-actions">
             <div>Admin Comments</div>
             <div><button>Add</button>
-                <button>Delete</button>
+                <button onclick="deleteReview()">Delete</button>
                 <button>Pin</button>
                 <button>Hide</button>
             </div>
@@ -125,12 +125,14 @@
         </div>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Function to get query parameters from the URL
-            function getQueryParam(param) {
+
+         // Function to get query parameters from the URL
+         function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
-            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
             
             const reviewID = getQueryParam('reviewID');
             console.log('Review ID:', reviewID);
@@ -159,6 +161,26 @@
                 console.log('No review ID found in URL');
             }
         });
+
+        // Script for deleting the currently selected review. Eamon - 230075926
+        function deleteReview() {
+            // Function to get query parameters from the URL
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+            
+            const reviewID = getQueryParam('reviewID');
+            
+            if (reviewID) {
+                fetch('php/reviewDelete.php')
+                      .then(response => response.text())
+                      .then(data => {
+                        document.getElementById('ticketRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
     </script>
 </body>
 </html>
