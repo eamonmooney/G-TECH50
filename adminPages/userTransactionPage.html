@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         body {
-            margin-top: 80px; 
+            margin-top: 80px;
         }
 
         .transaction-table {
@@ -16,7 +17,8 @@
             border-collapse: collapse;
         }
 
-        .transaction-table th, .transaction-table td {
+        .transaction-table th,
+        .transaction-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -40,14 +42,15 @@
         }
     </style>
 </head>
+
 <body>
 
-    
+
     <div class="filter-container">
         <input type="text" id="filterInput" onkeyup="filterTable()" placeholder="Search for transactions...">
     </div>
 
-    
+
     <table class="transaction-table" id="transactionTable">
         <thead>
             <tr>
@@ -59,13 +62,13 @@
             </tr>
         </thead>
         <tbody>
-            
+
         </tbody>
     </table>
 
-    
+
     <script>
-        
+
         function filterTable() {
             var input = document.getElementById("filterInput");
             var filter = input.value.toLowerCase();
@@ -111,8 +114,9 @@
             newRow.insertCell(4).innerHTML = status;
         }
 
-        
+
     </script>
 
 </body>
+
 </html>
