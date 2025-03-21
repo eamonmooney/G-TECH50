@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- USER TRANSCATION PAGE - FRONTEND FRAMEWORK BY TOBIAS, BACKEND AND FRONTEND TWEAKS BY SAFA -->
 <html lang="en">
 
 <head>
@@ -6,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Transaction Page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
+
     <style>
         body {
             margin-top: 80px;
@@ -55,6 +60,8 @@
         <thead>
             <tr>
                 <th>Order ID</th>
+                <th>User ID</th>
+                <th>User Type</th>
                 <th>Date</th>
                 <th>Product</th>
                 <th>Amount</th>
@@ -68,33 +75,49 @@
 
 
     <script>
-
+        // Filter table rows based on input (search?)
         function filterTable() {
+            // Get the input
             var input = document.getElementById("filterInput");
+            // Convert to lowercase
             var filter = input.value.toLowerCase();
+            // Get table
             var table = document.getElementById("transactionTable");
+            // Get all rows
             var tr = table.getElementsByTagName("tr");
 
+            // Loop through all table rows (but not the header)
             for (var i = 1; i < tr.length; i++) {
+                // Get the values for that row
                 var tdOrderID = tr[i].getElementsByTagName("td")[0];
-                var tdDate = tr[i].getElementsByTagName("td")[1];
-                var tdProduct = tr[i].getElementsByTagName("td")[2];
-                var tdAmount = tr[i].getElementsByTagName("td")[3];
-                var tdStatus = tr[i].getElementsByTagName("td")[4];
+                var tdUserID = tr[i].getElementsByTagName("td")[1];
+                var tdUserType = tr[i].getElementsByTagName("td")[2];
+                var tdDate = tr[i].getElementsByTagName("td")[3];
+                var tdProduct = tr[i].getElementsByTagName("td")[4];;
+                var tdAmount = tr[i].getElementsByTagName("td")[5];
+                var tdStatus = tr[i].getElementsByTagName("td")[6];
 
-                if (tdOrderID || tdDate || tdProduct || tdAmount || tdStatus) {
+                // If the row has valid data cells
+                if (tdOrderID || tdUserID || tdUserType || tdDate || tdProduct || tdAmount || tdStatus) {
                     var orderIDValue = tdOrderID.textContent || tdOrderID.innerText;
+                    var userID = tdUserID.textContent || tdUserID.innerText;
+                    var userType = tdUserType.textContent || tdUserType.innerText;
                     var dateValue = tdDate.textContent || tdDate.innerText;
                     var productValue = tdProduct.textContent || tdProduct.innerText;
                     var amountValue = tdAmount.textContent || tdAmount.innerText;
                     var statusValue = tdStatus.textContent || tdStatus.innerText;
 
+                    // If the column contains search text
                     if (orderIDValue.toLowerCase().indexOf(filter) > -1 ||
+                        userIDValue.toLowerCase().indexOf(filter) > -1 ||
+                        userTypeValue.toLowerCase().indexOf(filter) > -1 ||
                         dateValue.toLowerCase().indexOf(filter) > -1 ||
                         productValue.toLowerCase().indexOf(filter) > -1 ||
                         amountValue.toLowerCase().indexOf(filter) > -1 ||
                         statusValue.toLowerCase().indexOf(filter) > -1) {
+                        // Show the row
                         tr[i].style.display = "";
+                    // Otherwise hide the row
                     } else {
                         tr[i].style.display = "none";
                     }
@@ -103,15 +126,20 @@
         }
 
         // Function to add a new transaction to the table
-        function addTransaction(orderID, date, product, amount, status) {
+        function addTransaction(orderID, userID, userType, date, product, amount, status) {
+            // Get table body
             var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+            // Insert a new row
             var newRow = tableBody.insertRow();
 
+            // Insert each data into respective columns
             newRow.insertCell(0).innerHTML = orderID;
-            newRow.insertCell(1).innerHTML = date;
-            newRow.insertCell(2).innerHTML = product;
-            newRow.insertCell(3).innerHTML = amount;
-            newRow.insertCell(4).innerHTML = status;
+            newRow.insertCell(1).innerHTML = userID;
+            newRow.insertCell(2).innerHTML = userType;
+            newRow.insertCell(3).innerHTML = date;
+            newRow.insertCell(4).innerHTML = product;
+            newRow.insertCell(5).innerHTML = amount;
+            newRow.insertCell(6).innerHTML = status;
         }
 
 
