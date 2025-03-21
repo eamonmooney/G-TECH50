@@ -15,6 +15,7 @@
 		$_SESSION['userId'] = 0;
 		$_SESSION['roleId'] = 1;
 		$_SESSION['username'] = 'Guest';
+		$_SESSION['signedIn'] = False;
 	}
 
 	// If basket isnt set, initialise

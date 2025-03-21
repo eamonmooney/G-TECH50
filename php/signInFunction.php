@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $_SESSION['roleId'] = $uData['RoleID'];
                 $_SESSION['username'] = $uData['Name'];
                 $_SESSION['email'] = $uData['Email'];
+                $_SESSION['signedIn'] = True;
 
                 // Remember me functionality
 
