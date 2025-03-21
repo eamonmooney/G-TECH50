@@ -110,7 +110,7 @@
             <div  onclick="back()">Back to review table</div>
             <div><button>Add</button>
                 <button onclick="deleteReview()">Delete</button>
-                <button>Pin</button>
+                <button id="pinButton" onclick="togglePin()">Pin</button>
                 <button id="hideButton" onclick="toggleReviewVisibility()">Hide</button>
             </div>
         </div>
@@ -237,6 +237,44 @@
                 console.log('No review ID found in URL');
             }
         }
+
+        // Script for toggling pin status of the selected review. Eamon - 230075926
+        function togglePin() {
+
+            const reviewID = getQueryParam('reviewID');
+
+            if (reviewID) {
+                // Grab the button text to know what action to take
+                const button = document.getElementById('pinButton');
+                const isCurrentlyPinned = button.innerText.trim() === 'Unpin';
+
+                // Determine action: if it's currently pinned, unpin it (false). Otherwise, pin it (true)
+                const pinValue = !isCurrentlyPinned;
+
+                // Send request to PHP script
+                fetch('php/reviewPin.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID) + '&pinned=' + (pinValue ? 1 : 0)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Update button text based on new state
+                    if (pinValue) {
+                        button.innerText = 'Unpin';
+                    } else {
+                        button.innerText = 'Pin';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+            }
 
         function back() {
             window.location.href = "customer-review.html";
