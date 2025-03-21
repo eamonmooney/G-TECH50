@@ -1,3 +1,6 @@
+<!-- Page made by Elisha Kolade - 220383798 -->
+<!-- SearchTable, FilterTable, SortTable JS by Elisha Kolade - 220383798 -->
+<!-- Backend by Eamon Mooney - 230075926 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,9 +132,15 @@
         <div class="search-filter">
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search reviews...">
             <select id="filterSelect" onchange="filterTable()">
-                <option value="">Filter by Order ID</option>
-                <option value="5001">5001</option>
-                <option value="5002">5002</option>
+                <script>
+                    // Script for changing html attributes of the filter options. Eamon - 230075926
+                    fetch('php/reviewFilter.php')
+                      .then(response => response.text())
+                      .then(data => {
+                        document.getElementById('filterSelect').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+                </script>
             </select>
         </div>
 
@@ -145,30 +154,16 @@
                     <th onclick="sortTable(3)">Rating <span>🔽</span></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="reviewRows">
                 <script>
                     // Script for changing html attributes of the review table. Eamon - 230075926
-                    // Use JavaScript to fetch user details from a PHP script
-                    // Updating reviews list upon page load
-                    fetch('php/ticketInfo.php')
+                    fetch('php/reviewsTable.php')
                       .then(response => response.text())
                       .then(data => {
-                        document.getElementById('ticketRows').innerHTML = data;
+                        document.getElementById('reviewRows').innerHTML = data;
                     })
                     .catch(error => console.error('Error:', error));
                 </script>
-                <tr onclick="window.location='review-details.html';">
-                    <td>101</td>
-                    <td>5001</td>
-                    <td>2025-03-10</td>
-                    <td>14:30</td>
-                </tr>
-                <tr onclick="window.location='review-details.html';">
-                    <td>102</td>
-                    <td>5002</td>
-                    <td>2025-03-09</td>
-                    <td>10:15</td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -199,7 +194,7 @@
             let rows = document.querySelectorAll("#reviewsTable tbody tr");
 
             rows.forEach(row => {
-                let orderID = row.cells[1].innerText;
+                let orderID = row.cells[2].innerText;
                 row.style.display = filter === "" || orderID === filter ? "" : "none";
             });
         }
