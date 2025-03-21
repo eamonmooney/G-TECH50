@@ -11,8 +11,11 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/basket.css">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="js/basketNumber.js"></script>
   <title>Basket Page</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
@@ -50,49 +53,55 @@
   </script>
 
   <div>
-    
+
     <!-- Navigation Bar -->
     <div class="navbar">
       <div class="logo">
-          <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
       </div>
       <div class="nav-links">
-          <a href="index.html">Home</a>
-          <div class="dropdown">
-            <a href=#>Categories</a>
-            <div class="dropdown-content">
-              <a href="categories/Mice.html">Mice</a>
-              <a href="categories/Monitors.html">Monitors</a>
-              <a href="categories/Headphones.html">Headphones</a>
-              <a href="categories/Keyboards.html">Keyboards</a>
-              <a href="categories/Mousepads.html">Mousepads</a>
-            </div>
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <a href=#>Categories</a>
+          <div class="dropdown-content">
+            <a href="categories/Mice.html">Mice</a>
+            <a href="categories/Monitors.html">Monitors</a>
+            <a href="categories/Headphones.html">Headphones</a>
+            <a href="categories/Keyboards.html">Keyboards</a>
+            <a href="categories/Mousepads.html">Mousepads</a>
           </div>
-          <a href="aboutus.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="membershipSignUp.html">G-TECH50+</a>
+        </div>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="membershipSignUp.html">G-TECH50+</a>
       </div>
 
       <!-- Search & User Icons -->
       <div class="icon-container">
-          <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
-          </div>
-          <a href="profile.html"><i class="material-icons">account_circle</i></a>
-          <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        <div class="search-bar">
+          <input type="text" id="searchBar" placeholder="Search...">
+          <i class="material-icons" id="searchButton">search</i>
+        </div>
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <!-- Basket Section in navbar -->
+        <a href="basket.html" id="basket-container">
+          <!-- Basket Icon -->
+          <i class="material-icons">shopping_basket</i>
+          <!-- Basket Number - changes to that with the javascript calling php -->
+          <span id="basketNum"></span>
+        </a>
       </div>
 
       <!-- Hamburger Menu -->
       <div class="hamburger-menu" id="hamburgerMenu">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </div>
-  </div>
+    </div>
 
-  <!-- Mobile Navigation Bar -->
-  <div class="mobile-nav-links" id="mobileNavLinks">
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav-links" id="mobileNavLinks">
       <a href="Home.html">Home</a>
       <a href=# id="mobileCategories">Categories</a>
       <div class="mobile-dropdown-content" id="mobileDropdownContent">
@@ -104,15 +113,15 @@
       </div>
       <a href="AboutUs.html">About Us</a>
       <a href="contact.html">Contact Us</a>
-  </div>
+    </div>
 
-  <!-- Search Results -->
-  <div id="searchResults" class="search-results" style="display: none;"></div>
+    <!-- Search Results -->
+    <div id="searchResults" class="search-results" style="display: none;"></div>
 
-  <!-- Linking to Search bar JS -->
-  <script src="js/searchBar.js"></script>
-  <script src="js/mobileNavbar.js"></script>
-  
+    <!-- Linking to Search bar JS -->
+    <script src="js/searchBar.js"></script>
+    <script src="js/mobileNavbar.js"></script>
+
     <div class="container">
       <div class="left-container">
         <h2>Basket </h2>
@@ -126,283 +135,283 @@
       <div class="right-container">
         <!-- Discount Box -->
         <div class="discount-box">
-            <div class="discount-title">Discount Code</div>
-            <input type="text" id="discount-code" placeholder="Enter code">
-            <button class="apply-discount-button" onclick="applyDiscount()">Apply</button>
-            <p id="discount-message"></p>
+          <div class="discount-title">Discount Code</div>
+          <input type="text" id="discount-code" placeholder="Enter code">
+          <button class="apply-discount-button" onclick="applyDiscount()">Apply</button>
+          <p id="discount-message"></p>
         </div>
-    
+
         <!-- Summary Box (Now separate) -->
         <div class="summary-box">
-            <div>Total Price: <span class="total-price" id="total-price">£0.00</span></div>
-            <button class="checkout-button" onclick="checkout()">Checkout</button>
+          <div>Total Price: <span class="total-price" id="total-price">£0.00</span></div>
+          <button class="checkout-button" onclick="checkout()">Checkout</button>
         </div>
-    </div>
-    
+      </div>
 
 
-  <!-- REST OF THE JAVASCRIPT -->
-  <script>
 
-    //BASKET JAVASCRIPT
-    //JAVASCRIPT FOR RUNNING BASKET.PHP
+      <!-- REST OF THE JAVASCRIPT -->
+      <script>
 
-    //EMPTY MESSAGE CONSTANT
-    const emptyMessage = document.getElementById('empty-message');
+        //BASKET JAVASCRIPT
+        //JAVASCRIPT FOR RUNNING BASKET.PHP
 
-    //Declaring these here so they can be used everywhere - not just in this
-    //Product List constant
-    const productList = document.getElementById('product-list');
+        //EMPTY MESSAGE CONSTANT
+        const emptyMessage = document.getElementById('empty-message');
 
-    //Total price constant
-    const totalPriceElement = document.getElementById('total-price');
+        //Declaring these here so they can be used everywhere - not just in this
+        //Product List constant
+        const productList = document.getElementById('product-list');
+
+        //Total price constant
+        const totalPriceElement = document.getElementById('total-price');
 
 
-    // When the page loads, do this function
-    document.addEventListener('DOMContentLoaded', function () {
+        // When the page loads, do this function
+        document.addEventListener('DOMContentLoaded', function () {
 
-      // Use fetch() on the PHP
-      fetch("php/basketDisplay.php", {
-        //Using POST
-        method: "POST"
-      })
-        //Get the response as a JSON
-        .then(response => response.json())
-        //Then with this data
-        .then(data => {
-          // Store the basket items in suitable variable 
-          const basket = data.basket;
-          //Store total price
-          const totalPrice = data.totalPrice;
+          // Use fetch() on the PHP
+          fetch("php/basketDisplay.php", {
+            //Using POST
+            method: "POST"
+          })
+            //Get the response as a JSON
+            .then(response => response.json())
+            //Then with this data
+            .then(data => {
+              // Store the basket items in suitable variable 
+              const basket = data.basket;
+              //Store total price
+              const totalPrice = data.totalPrice;
 
-          // If the basket is empty
-          if (basket.length === 0) {
-            //Make the empty message visible
-            emptyMessage.style.display = 'block';
-            // Hide the product list because it's empty
-            productList.style.display = 'none';
-            //Or if there's things in the basket
-          } else {
-            // Otherwise, display the items in the basket
+              // If the basket is empty
+              if (basket.length === 0) {
+                //Make the empty message visible
+                emptyMessage.style.display = 'block';
+                // Hide the product list because it's empty
+                productList.style.display = 'none';
+                //Or if there's things in the basket
+              } else {
+                // Otherwise, display the items in the basket
 
-            // Start an unordered list
-            let basketHTML = "<ul>";
-            //Looping with a for loop
-            for (let name in basket) {
-              // Get the item object by its name key because it's an associative array rather than a number array
-              item = basket[name];  
-              // Get price and convert to a float
-              price = parseFloat(item.price);  
-              // Get product quantity (should be an int from the php it was created)
-              quantity = item.quantity;  
+                // Start an unordered list
+                let basketHTML = "<ul>";
+                //Looping with a for loop
+                for (let name in basket) {
+                  // Get the item object by its name key because it's an associative array rather than a number array
+                  item = basket[name];
+                  // Get price and convert to a float
+                  price = parseFloat(item.price);
+                  // Get product quantity (should be an int from the php it was created)
+                  quantity = item.quantity;
 
-              //Create list item
-              const li = document.createElement('li');
-              //Create a div
-              const productInfo = document.createElement('div');
-              //Populate div with product info and price
-              productInfo.className = 'product-info';
-              productInfo.textContent = `${name} - $${price}`;
+                  //Create list item
+                  const li = document.createElement('li');
+                  //Create a div
+                  const productInfo = document.createElement('div');
+                  //Populate div with product info and price
+                  productInfo.className = 'product-info';
+                  productInfo.textContent = `${name} - $${price}`;
 
-              //Creating a div to control the quanity
-              const quantityControls = document.createElement('div');
-              quantityControls.className = 'quantity-controls';
+                  //Creating a div to control the quanity
+                  const quantityControls = document.createElement('div');
+                  quantityControls.className = 'quantity-controls';
 
-              //Creating the minus button 
-              const minusButton = document.createElement('button');
-              minusButton.textContent = '-';
-              //When clicked, the quanity is updated with these parameters
-              minusButton.onclick = () => updateQuantity(li, price, -1);
+                  //Creating the minus button 
+                  const minusButton = document.createElement('button');
+                  minusButton.textContent = '-';
+                  //When clicked, the quanity is updated with these parameters
+                  minusButton.onclick = () => updateQuantity(li, price, -1);
 
-              //Creating a quantity button that the quantity will be changed by 
-              const quantitySpan = document.createElement('span');
-              //Set quantity dependent on quantity
-              quantitySpan.textContent = quantity;
-              quantitySpan.style.margin = '0 5px';
+                  //Creating a quantity button that the quantity will be changed by 
+                  const quantitySpan = document.createElement('span');
+                  //Set quantity dependent on quantity
+                  quantitySpan.textContent = quantity;
+                  quantitySpan.style.margin = '0 5px';
 
-              //Creating the plus button
-              const plusButton = document.createElement('button');
-              plusButton.textContent = '+';
-              //When clicked, the quanity is updated with these parameters
-              plusButton.onclick = () => updateQuantity(li, price, 1);
+                  //Creating the plus button
+                  const plusButton = document.createElement('button');
+                  plusButton.textContent = '+';
+                  //When clicked, the quanity is updated with these parameters
+                  plusButton.onclick = () => updateQuantity(li, price, 1);
 
-              //Add these quantity control buttons to the quantity controls
-              quantityControls.appendChild(minusButton);
-              quantityControls.appendChild(quantitySpan);
-              quantityControls.appendChild(plusButton);
+                  //Add these quantity control buttons to the quantity controls
+                  quantityControls.appendChild(minusButton);
+                  quantityControls.appendChild(quantitySpan);
+                  quantityControls.appendChild(plusButton);
 
-              //Add these to the product list 
-              //Product info
-              li.appendChild(productInfo);
-              //Quantity controls
-              li.appendChild(quantityControls);
-              //Price
-              li.setAttribute('data-price', price);
-              //Quantity
-              li.setAttribute('data-quantity', quantity);
-              //Setting name here for ease later on with updating php
-              li.setAttribute('data-name', name);
-              //Add this to the Product list
-              productList.appendChild(li);
+                  //Add these to the product list 
+                  //Product info
+                  li.appendChild(productInfo);
+                  //Quantity controls
+                  li.appendChild(quantityControls);
+                  //Price
+                  li.setAttribute('data-price', price);
+                  //Quantity
+                  li.setAttribute('data-quantity', quantity);
+                  //Setting name here for ease later on with updating php
+                  li.setAttribute('data-name', name);
+                  //Add this to the Product list
+                  productList.appendChild(li);
 
-              //Temporarily let total be 0
-              let total = 0;
+                  //Temporarily let total be 0
+                  let total = 0;
 
-              //Method to update price
-              updateTotalPrice();
+                  //Method to update price
+                  updateTotalPrice();
 
-            };
-            // Close the unordered list
-            basketHTML += "</ul>";
+                };
+                // Close the unordered list
+                basketHTML += "</ul>";
 
-          }
-        })
-        //Incase of errors, display to console
-        .catch(error => {
-          console.error('Error:', error);
-          document.getElementById("Products").innerHTML = "There was an error retrieving your basket.";
+              }
+            })
+            //Incase of errors, display to console
+            .catch(error => {
+              console.error('Error:', error);
+              document.getElementById("Products").innerHTML = "There was an error retrieving your basket.";
+            });
+
         });
 
-    });
 
-
-    //JAVASCRIPT FOR BASKET
-    function checkEmpty() {
-      console.log(`Product list children count: ${productList.children.length}`);
-      if (productList.children.length === 0) {
-        //Make the empty message visible
-        emptyMessage.style.display = 'block';
-      } else {
-        emptyMessage.style.display = 'none';
-      }
-
-    }
-
-
-    //Method to update quantity
-    function updateQuantity(item, price, change) {
-      const quantitySpan = item.querySelector('.quantity-controls span');
-      //Temporatily make current quantity this
-      let currentQuantity = parseInt(item.getAttribute('data-quantity'));
-      //Update current quantity by the parameter (which is 1 / -1)
-      currentQuantity += change;
-
-      //If current Quantity is negative
-      if (currentQuantity < 1) {
-        //Remove this item from the list of products on the product list
-        item.remove();
-        //If there aren't any products in the product list
-        if (productList.children.length === 0) {
-          //Make the empty message visible
-          emptyMessage.style.display = 'block';
-        }
-        //Otherwise update the list
-      } else {
-        //Set the current quantity of the product being added to the product list
-        item.setAttribute('data-quantity', currentQuantity);
-        //Update the displayed quantity of the product to the user
-        quantitySpan.textContent = currentQuantity;
-
-      }
-      //Update total cost
-      updateTotalPrice();
-      //Check if its empty
-      checkEmpty();
-
-
-      //PHP FOR UPDATING LOCAL SESSION VARIABLE BASKET
-
-      // Getting the item's name temporarily
-      let name = item.getAttribute('data-name');
-      console.log(name);
-      console.log(change);
-
-      //Using fetch() to run the updateBasket.php
-      fetch('php/basketChanges.php', {
-        //With POST method
-        method: 'POST',
-        //Make sure it's suited for JSON
-        headers: {
-          'Content-Type': 'application/json',
-        },
-
-        //Sending the following in the body as string from JSON
-        body: JSON.stringify({
-          //The name
-          name: name,
-          //The change - will perform logic there
-          change: change
-        })
-      })
-        //Return the response as a JSON
-        .then(response => response.json())
-        //With the data,
-        .then(data => {
-          // If the item has been removed
-          if (data.status === 'removed') {
-            //Note this in console
-            console.log(data.message);
-            //Else if item has been updated
-          } else if (data.status === 'updated') {
-            //Note this in console
-            console.log(`Quantity updated to: ${data.quantity}`);
-            //Otherwise, if it hasn;t been any of these
+        //JAVASCRIPT FOR BASKET
+        function checkEmpty() {
+          console.log(`Product list children count: ${productList.children.length}`);
+          if (productList.children.length === 0) {
+            //Make the empty message visible
+            emptyMessage.style.display = 'block';
           } else {
-            //Enter the message that happened
-            console.log(data.message);
+            emptyMessage.style.display = 'none';
           }
 
-          // Update total cost
+        }
+
+
+        //Method to update quantity
+        function updateQuantity(item, price, change) {
+          const quantitySpan = item.querySelector('.quantity-controls span');
+          //Temporatily make current quantity this
+          let currentQuantity = parseInt(item.getAttribute('data-quantity'));
+          //Update current quantity by the parameter (which is 1 / -1)
+          currentQuantity += change;
+
+          //If current Quantity is negative
+          if (currentQuantity < 1) {
+            //Remove this item from the list of products on the product list
+            item.remove();
+            //If there aren't any products in the product list
+            if (productList.children.length === 0) {
+              //Make the empty message visible
+              emptyMessage.style.display = 'block';
+            }
+            //Otherwise update the list
+          } else {
+            //Set the current quantity of the product being added to the product list
+            item.setAttribute('data-quantity', currentQuantity);
+            //Update the displayed quantity of the product to the user
+            quantitySpan.textContent = currentQuantity;
+
+          }
+          //Update total cost
           updateTotalPrice();
-          //Check if empty
+          //Check if its empty
           checkEmpty();
-        })
-        //Catch any errors with this
-        .catch(error => console.error('Error updating basket:', error));
 
 
-    }
+          //PHP FOR UPDATING LOCAL SESSION VARIABLE BASKET
 
-    //Update total cost
-    function updateTotalPrice() {
-      //Constant of all items in product list
-      const items = document.querySelectorAll('#product-list li');
-      console.log(`Found ${items.length} items.`); // Debug: Log the number of items
-      //Temporarily let total be 0
-      let total = 0;
+          // Getting the item's name temporarily
+          let name = item.getAttribute('data-name');
+          console.log(name);
+          console.log(change);
 
-      //For every item
-      items.forEach(item => {
-        //Get the quantity
-        const quantity = parseInt(item.getAttribute('data-quantity'));
-        //Get the price
-        const price = parseFloat(item.getAttribute('data-price'));
-        //Add these to the total
-        total += quantity * price;
-      });
+          //Using fetch() to run the updateBasket.php
+          fetch('php/basketChanges.php', {
+            //With POST method
+            method: 'POST',
+            //Make sure it's suited for JSON
+            headers: {
+              'Content-Type': 'application/json',
+            },
 
-      //Update the total price
-      totalPriceElement.textContent = `$${total.toFixed(2)}`;
-      if (productList.children.length === 0) {
-        //Make the empty message visible
-        emptyMessage.style.display = 'block';
-      } else {
-        emptyMessage.style.display = 'none';
-      }
-    }
+            //Sending the following in the body as string from JSON
+            body: JSON.stringify({
+              //The name
+              name: name,
+              //The change - will perform logic there
+              change: change
+            })
+          })
+            //Return the response as a JSON
+            .then(response => response.json())
+            //With the data,
+            .then(data => {
+              // If the item has been removed
+              if (data.status === 'removed') {
+                //Note this in console
+                console.log(data.message);
+                //Else if item has been updated
+              } else if (data.status === 'updated') {
+                //Note this in console
+                console.log(`Quantity updated to: ${data.quantity}`);
+                //Otherwise, if it hasn;t been any of these
+              } else {
+                //Enter the message that happened
+                console.log(data.message);
+              }
 
-    //Checkout button
-    function checkout() {
-      //If product list is empty 
-      if (!productList || productList.children.length === 0) {
-        //Alert the user the basket is empty
-        alert("Your basket is empty. Add some products before checking out.");
-        //Otherwise, take to checkout page
-      } else {
-        window.location.href = 'checkout.html';
-      }
-    }
-  </script>
+              // Update total cost
+              updateTotalPrice();
+              //Check if empty
+              checkEmpty();
+            })
+            //Catch any errors with this
+            .catch(error => console.error('Error updating basket:', error));
+
+
+        }
+
+        //Update total cost
+        function updateTotalPrice() {
+          //Constant of all items in product list
+          const items = document.querySelectorAll('#product-list li');
+          console.log(`Found ${items.length} items.`); // Debug: Log the number of items
+          //Temporarily let total be 0
+          let total = 0;
+
+          //For every item
+          items.forEach(item => {
+            //Get the quantity
+            const quantity = parseInt(item.getAttribute('data-quantity'));
+            //Get the price
+            const price = parseFloat(item.getAttribute('data-price'));
+            //Add these to the total
+            total += quantity * price;
+          });
+
+          //Update the total price
+          totalPriceElement.textContent = `$${total.toFixed(2)}`;
+          if (productList.children.length === 0) {
+            //Make the empty message visible
+            emptyMessage.style.display = 'block';
+          } else {
+            emptyMessage.style.display = 'none';
+          }
+        }
+
+        //Checkout button
+        function checkout() {
+          //If product list is empty 
+          if (!productList || productList.children.length === 0) {
+            //Alert the user the basket is empty
+            alert("Your basket is empty. Add some products before checking out.");
+            //Otherwise, take to checkout page
+          } else {
+            window.location.href = 'checkout.html';
+          }
+        }
+      </script>
 </body>
 
 </html>

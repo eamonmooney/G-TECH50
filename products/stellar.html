@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,8 @@
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/navbarfix.css">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
@@ -17,76 +20,83 @@
 </head>
 
 <body>
-  
-    <!-- NAV BAR FOR PRODUCT PAGES -->
-      <div class="navbar">
-        <div class="logo">
-          <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+
+  <!-- NAV BAR FOR PRODUCT PAGES -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+    </div>
+
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="../categories/Mice.html">Mice</a>
+          <a href="../categories/Monitors.html">Monitors</a>
+          <a href="../categories/Headphones.html">Headphones</a>
+          <a href="../categories/Keyboards.html">Keyboards</a>
+          <a href="../categories/Mousepads.html">Mousepads</a>
         </div>
-    
-    
-        <div class="nav-links">
-          <a href="../index.html">Home</a>
-    
-          <div class="dropdown">
-            <a href=#>Categories</a>
-    
-            <div class="dropdown-content">
-              <a href="../categories/Mice.html">Mice</a>
-              <a href="../categories/Monitors.html">Monitors</a>
-              <a href="../categories/Headphones.html">Headphones</a>
-              <a href="../categories/Keyboards.html">Keyboards</a>
-              <a href="../categories/Mousepads.html">Mousepads</a>
-            </div>
-    
-          </div>
-          <a href="../aboutus.html">About Us</a>
-          <a href="../contact.html">Contact Us</a>
-          <a href="membershipSignUp.html">G-TECH50+</a>
-        </div>
-    
-    
-        <div class="icon-container">
-          <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
-          </div>
-    
-          <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-          <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
-        </div>
+
       </div>
-    
-      <div id="searchResults" class="search-results" style="display: none;"></div>
-    
-      <!-- Linking to Search bar JS -->
-      <script src="../js/searchBar.js"></script>
-    
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
+      <a href="membershipSignUp.html">G-TECH50+</a>
+    </div>
+
+
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
+    </div>
+  </div>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="../js/searchBar.js"></script>
+
   <div class="single-item">
     <div class="Picture">
-        <img class="main-image" src="../images/Ai/stellar0001.png" alt="Mouse">
+      <img class="main-image" src="../images/Ai/stellar0001.png" alt="Mouse">
     </div>
     <div class="item-spec">
-        <h2>STELLAR SOUNDWAVES</h2>
-        <h3>  "Take your ears to infinity and beyond!" </h3>
-        <h4>Colour: Black and purple, black and blue</h4>
-        <h4>Functionality: Adjustable mic, Wired & Wireless</h4>
-        <h4>Compatability:  PS4, PS5, PC, Xbox Series X/S, Switch</h4>
-        <h4>Superior studio sound with high mic sensitivity and high bass resonation giving you a vivid listening experience </h4>
-        <h3>£59.99</h3>
-         <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
-         <form action="../php/products.php" method="POST">
-          <input type="hidden" name="prodName" value="STELLAR SOUNDWAVES">
-          <input type="hidden" name="prodPrice" value="59.99">
-          <input type="number" name="prodQuant" value="1" min="1" max="10" >
-          <button type="submit" name="basketAdd" class="button">Add To Basket</button>
-          <a href="../reviews.html?product=STELLAR%20HEADPHONES" class="button1">Write a Review</a>
-        </form>
+      <h2>STELLAR SOUNDWAVES</h2>
+      <h3> "Take your ears to infinity and beyond!" </h3>
+      <h4>Colour: Black and purple, black and blue</h4>
+      <h4>Functionality: Adjustable mic, Wired & Wireless</h4>
+      <h4>Compatability: PS4, PS5, PC, Xbox Series X/S, Switch</h4>
+      <h4>Superior studio sound with high mic sensitivity and high bass resonation giving you a vivid listening
+        experience </h4>
+      <h3>£59.99</h3>
+      <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
+      <form action="../php/products.php" method="POST">
+        <input type="hidden" name="prodName" value="STELLAR SOUNDWAVES">
+        <input type="hidden" name="prodPrice" value="59.99">
+        <input type="number" name="prodQuant" value="1" min="1" max="10">
+        <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+        <a href="../reviews.html?product=STELLAR%20HEADPHONES" class="button1">Write a Review</a>
+      </form>
     </div>
-</div>
+  </div>
 
-    
-  
+
+
 
   <!-- Footer -->
   <footer>
@@ -115,6 +125,6 @@
   </footer>
 
 
-   </body> 
+</body>
 
-    </html>
+</html>

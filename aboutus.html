@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="css/aboutus.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
-
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
+
 <body>
-    
+
     <!-- Navigation Bar -->
     <div class="navbar">
         <div class="logo">
@@ -25,14 +27,14 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <div class="dropdown">
-              <a href=#>Categories</a>
-              <div class="dropdown-content">
-                <a href="categories/Mice.html">Mice</a>
-                <a href="categories/Monitors.html">Monitors</a>
-                <a href="categories/Headphones.html">Headphones</a>
-                <a href="categories/Keyboards.html">Keyboards</a>
-                <a href="categories/Mousepads.html">Mousepads</a>
-              </div>
+                <a href=#>Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
@@ -42,11 +44,17 @@
         <!-- Search & User Icons -->
         <div class="icon-container">
             <div class="search-bar">
-              <input type="text" id="searchBar" placeholder="Search...">
-              <i class="material-icons" id="searchButton">search</i>
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -81,7 +89,7 @@
 
     <!-- We are G-TECH50 Logo -->
     <section class="hero">
-      <img src="images/Externalmade/8.png" alt="about us main picture" class="about-us-main">
+        <img src="images/Externalmade/8.png" alt="about us main picture" class="about-us-main">
     </section>
 
     <!-- About Us Section -->
@@ -91,10 +99,10 @@
                 <h2>Who We Are</h2>
                 <p class="description">
                     We’re a team of tech enthusiasts who are passionate about creating high-quality,
-                    user-friendly gear that enhances every interaction you have with your devices. 
-                    Whether you're a gamer, a designer, or just someone who loves great sound and precision, 
-                    we’ve got you covered with accessories that are built for performance, comfort, and style. 
-                    We’re committed to delivering accessories that don’t just work well but feel right. We’re here 
+                    user-friendly gear that enhances every interaction you have with your devices.
+                    Whether you're a gamer, a designer, or just someone who loves great sound and precision,
+                    we’ve got you covered with accessories that are built for performance, comfort, and style.
+                    We’re committed to delivering accessories that don’t just work well but feel right. We’re here
                     to help you find the perfect mouse, keyboard, or headphones that fit your style and needs.
                 </p>
             </div>
@@ -102,13 +110,17 @@
 
     <section>
         <div class="vision-section">
-            <img src="images/Externalmade/keyboard_backlight_purple_212155_2560x1440.jpg" alt="keyboard" class="promise-image">
+            <img src="images/Externalmade/keyboard_backlight_purple_212155_2560x1440.jpg" alt="keyboard"
+                class="promise-image">
             <div class="vision-text">
                 <h2>OUR VISION</h2>
                 <p>
-                    We’re a small but driven team with a big vision: to offer tech accessories that don’t just meet expectations but exceed them.
-                    Our products are designed to deliver on quality and functionality while elevating your experience with exceptional style.
-                    With a shared passion for technology and an eye for innovative design, we aim to provide accessories that blend seamlessly with your life.
+                    We’re a small but driven team with a big vision: to offer tech accessories that don’t just meet
+                    expectations but exceed them.
+                    Our products are designed to deliver on quality and functionality while elevating your experience
+                    with exceptional style.
+                    With a shared passion for technology and an eye for innovative design, we aim to provide accessories
+                    that blend seamlessly with your life.
                 </p>
                 <a href="contact.html"><button class="contact">Contact us</button></a>
             </div>

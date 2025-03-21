@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="css/footer.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
+
 <body>
-    
+
     <!-- Navigation Bar -->
     <div class="navbar">
         <div class="logo">
@@ -23,14 +26,14 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <div class="dropdown">
-              <a href=#>Categories</a>
-              <div class="dropdown-content">
-                <a href="categories/Mice.html">Mice</a>
-                <a href="categories/Monitors.html">Monitors</a>
-                <a href="categories/Headphones.html">Headphones</a>
-                <a href="categories/Keyboards.html">Keyboards</a>
-                <a href="categories/Mousepads.html">Mousepads</a>
-              </div>
+                <a href=#>Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
@@ -40,11 +43,17 @@
         <!-- Search & User Icons -->
         <div class="icon-container">
             <div class="search-bar">
-              <input type="text" id="searchBar" placeholder="Search...">
-              <i class="material-icons" id="searchButton">search</i>
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -82,19 +91,23 @@
         <div class="news-section">
             <h2>Exclusive News for GTech50 Members</h2>
             <ul>
-                <li><strong>New RGB Mouse:</strong> The **GTech50 Nebula X** gaming mouse launches next month, featuring customizable RGB zones and a precision optical sensor.</li>
-                <li><strong>Exclusive Software Update:</strong> The **GTech50 SyncHub 2.0** now offers enhanced RGB effects, including audio-reactive lighting modes.</li>
-                <li><strong>Insider Preview:</strong> Members get early access to the **GTech50 OMEGA Keyboard** with per-key RGB customization and low-latency wireless support.</li>
+                <li><strong>New RGB Mouse:</strong> The **GTech50 Nebula X** gaming mouse launches next month, featuring
+                    customizable RGB zones and a precision optical sensor.</li>
+                <li><strong>Exclusive Software Update:</strong> The **GTech50 SyncHub 2.0** now offers enhanced RGB
+                    effects, including audio-reactive lighting modes.</li>
+                <li><strong>Insider Preview:</strong> Members get early access to the **GTech50 OMEGA Keyboard** with
+                    per-key RGB customization and low-latency wireless support.</li>
             </ul>
         </div>
-    
+
         <!-- Future Events Timeline Section -->
         <div class="timeline-section">
             <h2>Upcoming Events Timeline</h2>
             <div class="timeline">
                 <div class="event left">
                     <h3>April 10, 2025</h3>
-                    <p>**RGB Masterclass Webinar:** Learn how to customize and sync GTech50 peripherals for ultimate aesthetics.</p>
+                    <p>**RGB Masterclass Webinar:** Learn how to customize and sync GTech50 peripherals for ultimate
+                        aesthetics.</p>
                 </div>
                 <div class="event right">
                     <h3>May 22, 2025</h3>
@@ -102,14 +115,17 @@
                 </div>
                 <div class="event left">
                     <h3>June 18, 2025</h3>
-                    <p>**Esports Sponsorship Announcement:** GTech50 partners with pro teams, unveiling limited-edition gear.</p>
+                    <p>**Esports Sponsorship Announcement:** GTech50 partners with pro teams, unveiling limited-edition
+                        gear.</p>
                 </div>
                 <div class="event right">
                     <h3>July 5, 2025</h3>
-                    <p>**RGB Battle Station Contest:** Members compete by sharing photos of their setups for exclusive prizes.</p>
+                    <p>**RGB Battle Station Contest:** Members compete by sharing photos of their setups for exclusive
+                        prizes.</p>
                 </div>
             </div>
         </div>
     </div>
-  </body>
+</body>
+
 </html>

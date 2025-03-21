@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/navbarfix.css">
   <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
 </head>
 
 <body>
@@ -45,7 +47,13 @@
         <i class="material-icons" id="searchButton">search</i>
       </div>
       <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-      <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
     </div>
 
     <!-- Hamburger Menu -->
