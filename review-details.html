@@ -195,7 +195,7 @@
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
-                fetch('php/reviewDelete.php', {
+                fetch('php/reviewHide.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
