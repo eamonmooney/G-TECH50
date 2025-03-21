@@ -3,6 +3,7 @@
 <!-- Backend by Eamon Mooney - 230075926 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Customer Review - G-TECH50</title>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="css/signin.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
-        
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +21,7 @@
             padding: 0;
             text-align: center;
         }
+
         .navbar {
             position: fixed;
             top: 0;
@@ -27,54 +29,67 @@
             background: #000000;
             z-index: 1000;
         }
+
         .container {
             width: 60%;
             margin: auto;
             padding: 20px;
             margin-top: 80px;
         }
+
         .search-filter {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        input, select {
+
+        input,
+        select {
             padding: 8px;
             font-size: 14px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
             cursor: pointer;
         }
+
         th {
             background: #444;
             color: white;
             position: relative;
         }
+
         th span {
             cursor: pointer;
             margin-left: 5px;
         }
+
         tr:hover {
             background: #f1f1f1;
         }
+
         .review-details {
             margin-top: 30px;
             padding: 20px;
             border: 1px solid #ccc;
         }
+
         .admin-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
+
         .admin-actions div {
             width: 48%;
             padding: 15px;
@@ -82,51 +97,59 @@
             text-align: center;
             cursor: pointer;
         }
+
         .admin-actions div:hover {
             background: #f1f1f1;
         }
     </style>
-    
+
 </head>
-<body>    
+
+<body>
     <div class="navbar">
         <div class="logo">
-          <a href="index.html">Logo</a>
+            <a href="index.html">Logo</a>
         </div>
-    
+
         <div class="nav-links">
-          <a href="index.html">Home</a>
-    
-          <div class="dropdown">
-            <a href=#>Categories</a>
-    
-            <div class="dropdown-content">
-              <a href="categories/Mice.html">Mice</a>
-              <a href="categories/Monitors.html">Monitors</a>
-              <a href="categories/Headphones.html">Headphones</a>
-              <a href="categories/Keyboards.html">Keyboards</a>
-              <a href="categories/Mousepads.html">Mousepads</a>
+            <a href="index.html">Home</a>
+
+            <div class="dropdown">
+                <a href=#>Categories</a>
+
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
+
             </div>
-    
-          </div>
-          <a href="aboutus.html">About Us</a>
-          <a href="contact.html">Contact Us</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
         </div>
-    
+
         <div class="icon-container">
-            
+
             <div class="search-bar">
-              <input type="text" placeholder="Search...">
-              <i class="material-icons">search</i>
+                <input type="text" placeholder="Search...">
+                <i class="material-icons">search</i>
             </div>
-    
+
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
     </div>
 
     <div class="container">
-    <div>Customer Reviews</div>
+        <div>Customer Reviews</div>
 
         <!-- Search & Filter -->
         <div class="search-filter">
@@ -135,11 +158,11 @@
                 <script>
                     // Script for changing html attributes of the filter options. Eamon - 230075926
                     fetch('php/reviewFilter.php')
-                      .then(response => response.text())
-                      .then(data => {
-                        document.getElementById('filterSelect').innerHTML = data;
-                    })
-                    .catch(error => console.error('Error:', error));
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('filterSelect').innerHTML = data;
+                        })
+                        .catch(error => console.error('Error:', error));
                 </script>
             </select>
         </div>
@@ -158,23 +181,25 @@
                 <script>
                     // Script for changing html attributes of the review table. Eamon - 230075926
                     fetch('php/reviewsTable.php')
-                      .then(response => response.text())
-                      .then(data => {
-                        document.getElementById('reviewRows').innerHTML = data;
-                    })
-                    .catch(error => console.error('Error:', error));
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('reviewRows').innerHTML = data;
+                        })
+                        .catch(error => console.error('Error:', error));
                 </script>
             </tbody>
         </table>
     </div>
-</div>
+    </div>
     <footer id="footer">
         <div class="container">
             <p>&copy; 2024 G-TECH50. All rights reserved.</p>
             <div class="contact-details">
                 <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com"
+                        style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank"
+                        style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
             </div>
         </div>
     </footer>
@@ -245,4 +270,5 @@
     </script>
 
 </body>
+
 </html>
