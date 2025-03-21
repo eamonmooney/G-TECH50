@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login - G-TECH50</title>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/signin.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
-
-
-
-    
+  <title>Login - G-TECH50</title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/signin.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/navbarfix.css">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="js/basketNumber.js"></script>
 </head>
 <body>    
   
@@ -39,12 +38,17 @@
 
     <!-- Search & User Icons -->
     <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
     </div>
 
     <!-- Hamburger Menu -->

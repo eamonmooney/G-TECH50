@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,13 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
     <script src="js/searchBar.js"></script>
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
 
     <!-- Page Styling for Table -->
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             background-color: #111;
             color: white;
@@ -23,7 +27,7 @@
             flex-direction: column;
         }
 
-       
+
         .container {
             flex: 1;
             display: flex;
@@ -52,7 +56,8 @@
             overflow: hidden;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             border: 1px solid #555;
             text-align: left;
@@ -75,7 +80,7 @@
         }
 
         .close-button {
-            background-color:transparent;
+            background-color: transparent;
             color: white;
             border-color: rgb(255, 255, 255);
             padding: 8px 12px;
@@ -88,6 +93,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navigation Bar -->
@@ -98,14 +104,14 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <div class="dropdown">
-            <a href=#>Categories</a>
-            <div class="dropdown-content">
-                <a href="categories/Mice.html">Mice</a>
-                <a href="categories/Monitors.html">Monitors</a>
-                <a href="categories/Headphones.html">Headphones</a>
-                <a href="categories/Keyboards.html">Keyboards</a>
-                <a href="categories/Mousepads.html">Mousepads</a>
-            </div>
+                <a href=#>Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
@@ -114,11 +120,17 @@
         <!-- Search & User Icons -->
         <div class="icon-container">
             <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -166,63 +178,47 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mike Tyson</td>
-                    <td>07886593844</td>
-                    <td>2024-02-11</td>
-                    <td>No</td>
-                    <td>Issue with login</td>
-                    <td><button class="close-button">Close Ticket</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Mikasa Ackerman</td>
-                    <td>0787654321</td>
-                    <td>2024-02-10</td>
-                    <td>No</td>
-                    <td>Payment not processed</td>
-                    <td><button class="close-button">Close Ticket</button></td> <!-- Close button -->
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Eren Jeager</td>
-                    <td>075775827665</td>
-                    <td>2024-02-09</td>
-                    <td>No</td>
-                    <td>Received wrong item</td>
-                    <td><button class="close-button">Close Ticket</button></td> 
-                </tr>
-            </tbody>
+            <tbody id="ticketRows"></tbody>
+            <script>
+                //Script for changing html attributes of the ticket table. Eamon - 230075926
+                // Use JavaScript to fetch user details from a PHP script
+                // Updating orders list upon page load
+                fetch('php/ticketInfo.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('ticketRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+            </script>
         </table>
     </div>
 
     <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>G-TECH50</h3>
-        <p>&copy; 2024 G-TECH50</p>
-        <p>ALL RIGHTS RESERVED.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p>Phone: +44 7700 900123</p>
-        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-      </div>
-    </div>
-  </footer>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>G-TECH50</h3>
+                <p>&copy; 2024 G-TECH50</p>
+                <p>ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Phone: +44 7700 900123</p>
+                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
 
 </body>
+
 </html>

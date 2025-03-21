@@ -9,14 +9,18 @@
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/navbarfix.css">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
 
-
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
 
 </head>
 
 <body>
 
-    <!-- NAV BAR FOR PRODUCT PAGES -->
+  <!-- NAV BAR FOR PRODUCT PAGES -->
   <div class="navbar">
     <div class="logo">
       <img src="../images/g-tech50 logo.png" alt="Logo" class="logo-image">
@@ -50,8 +54,14 @@
       </div>
 
       <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-      <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
-  </div>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
+    </div>
   </div>
 
   <div id="searchResults" class="search-results" style="display: none;"></div>

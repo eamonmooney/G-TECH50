@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,81 +9,94 @@
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
-  
+  <link rel="stylesheet" href="../css/navbarfix.css">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
 
-  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
 
 </head>
 
 <body>
-    <!-- NAV BAR FOR PRODUCT PAGES -->
-      <div class="navbar">
-        <div class="logo">
-          <img src="../images/g-tech50 logo.png" alt="Logo" class="logo-image">
+  <!-- NAV BAR FOR PRODUCT PAGES -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+    </div>
+
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="../categories/Mice.html">Mice</a>
+          <a href="../categories/Monitors.html">Monitors</a>
+          <a href="../categories/Headphones.html">Headphones</a>
+          <a href="../categories/Keyboards.html">Keyboards</a>
+          <a href="../categories/Mousepads.html">Mousepads</a>
         </div>
-    
-    
-        <div class="nav-links">
-          <a href="../index.html">Home</a>
-    
-          <div class="dropdown">
-            <a href=#>Categories</a>
-    
-            <div class="dropdown-content">
-              <a href="../categories/Mice.html">Mice</a>
-              <a href="../categories/Monitors.html">Monitors</a>
-              <a href="../categories/Headphones.html">Headphones</a>
-              <a href="../categories/Keyboards.html">Keyboards</a>
-              <a href="../categories/Mousepads.html">Mousepads</a>
-            </div>
-    
-          </div>
-          <a href="../aboutus.html">About Us</a>
-          <a href="../contact.html">Contact Us</a>
-        </div>
-    
-    
-        <div class="icon-container">
-          <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
-          </div>
-    
-          <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-          <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
-        </div>
+
       </div>
-    
-      <div id="searchResults" class="search-results" style="display: none;"></div>
-    
-      <!-- Linking to Search bar JS -->
-      <script src="../js/searchBar.js"></script>
-    
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
+      <a href="membershipSignUp.html">G-TECH50+</a>
+    </div>
+
+
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
+    </div>
+  </div>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="../js/searchBar.js"></script>
+
   <div class="single-item">
     <div class="Picture">
-        <img class="main-image" src="../images/Ai/candypop0001.png" alt="Mouse">
+      <img class="main-image" src="../images/Ai/candypop0001.png" alt="Mouse">
     </div>
     <div class="item-spec">
-        <h2>CANDYPOP MAT</h2>
-        <h3> "A pop of color with every move!" </h3>
-        <h4>Colour: Bubblegum Pink with Candy Blue Accents</h4>
-        <h4>Functionality: Anti-slip base, water-resistant coating</h4>
-        <h4>Size: 12 x 10 inches (30.5 x 25.4 cm)</h4>
-        <h4>Add a touch of sweetness to your gaming space with the CandyPop Mat. <br> This extra-large mousepad features a smooth, bubblegum-pink surface <br> with candy-blue detailing for effortless movement and precision. <br> The anti-slip base keeps it securely in place, while the vibrant colours <br> bring a playful vibe to your setup.</h4>
-        <h3>£14.99</h3>
-         <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
-         <form action="../php/products.php" method="POST">
-          <input type="hidden" name="prodName" value="CANDYPOP MAT">
-          <input type="hidden" name="prodPrice" value="14.99">
-          <input type="number" name="prodQuant" value="1" min="1" max="10" >
-          <button type="submit" name="basketAdd" class="button">Add To Basket</button>
-        </form>
-        
-    </div>
-</div>
+      <h2>CANDYPOP MAT</h2>
+      <h3> "A pop of color with every move!" </h3>
+      <h4>Colour: Bubblegum Pink with Candy Blue Accents</h4>
+      <h4>Functionality: Anti-slip base, water-resistant coating</h4>
+      <h4>Size: 12 x 10 inches (30.5 x 25.4 cm)</h4>
+      <h4>Add a touch of sweetness to your gaming space with the CandyPop Mat. <br> This extra-large mousepad features a
+        smooth, bubblegum-pink surface <br> with candy-blue detailing for effortless movement and precision. <br> The
+        anti-slip base keeps it securely in place, while the vibrant colours <br> bring a playful vibe to your setup.
+      </h4>
+      <h3>£14.99</h3>
+      <!-- Form to Add Product to Basket - CHANGE FOR EVERY PRODUCT -->
+      <form action="../php/products.php" method="POST">
+        <input type="hidden" name="prodName" value="CANDYPOP MAT">
+        <input type="hidden" name="prodPrice" value="14.99">
+        <input type="number" name="prodQuant" value="1" min="1" max="10">
+        <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+      </form>
 
-    
-  
+    </div>
+  </div>
+
+
+
 
   <!-- Footer -->
   <footer>
@@ -111,6 +125,6 @@
   </footer>
 
 
-   </body> 
+</body>
 
-    </html>
+</html>

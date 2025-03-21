@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .filter-section {
+      width: 25%;
+      padding: 15px;
+      background-color: #f4f4f4;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-section h2 {
+      margin-top: 0;
+    }
+
+    .filter-section select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .filter-section button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .filter-section button:hover {
+      background-color: #0056b3;
+    }
+
+    .products-section {
+      width: 75%;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product-card {
+      width: calc(33.33% - 20px);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      text-align: center;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Filter Section -->
+  <div class="filter-section">
+    <h2>Filters</h2>
+    <button onclick="filterProducts()">Search</button>
+
+    <h3>Price</h3>
+    <select id="price-filter">
+      <option value="all">All</option>
+      <option value="0-50">£0 - £50</option>
+      <option value="50-100">£50 - £100</option>
+      <option value="100-200">£100 - £200</option>
+      <option value="200-300">£200 - £300</option>
+    </select>
+
+    <h3>Color</h3>
+    <select id="color-filter">
+      <option value="all">All</option>
+      <option value="pink">Pink</option>
+      <option value="galaxy">Galaxy</option>
+      <option value="neon">Neon</option>
+      <option value="earthy">Earthy</option>
+      <option value="animal">Animal</option>
+    </select>
+  </div>
+
+
+  <div class="products-section" id="products-section">
+
+    <div class="product-card" data-price="34.99" data-color="pink">
+      <img src="sugarglide.html" alt="Sugar Glide">
+      <h3>Sugar Glide</h3>
+      <p>£34.99</p>
+      <p>Pink</p>
+    </div>
+    <div class="product-card" data-price="179.99" data-color="pink">
+      <img src="sugarscreen.html" alt="Sugar Screen">
+      <h3>Sugar Screen</h3>
+      <p>£179.99</p>
+      <p>Pink</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="pink">
+      <img src="bubblegum.html" alt="Bubble Gum">
+      <h3>Bubble Gum</h3>
+      <p>£49.99</p>
+      <p>Pink</p>
+    </div>
+    <div class="product-card" data-price="34.99" data-color="pink">
+      <img src="candykeys.html" alt="Candy Keys">
+      <h3>Candy Keys</h3>
+      <p>£34.99</p>
+      <p>Pink</p>
+    </div>
+    <div class="product-card" data-price="14.99" data-color="pink">
+      <img src="candypop.html" alt="Candy Pop">
+      <h3>Candy Pop</h3>
+      <p>£14.99</p>
+      <p>Pink</p>
+    </div>
+
+
+    <div class="product-card" data-price="19.99" data-color="neon">
+      <img src="neonvibes.html" alt="Neon Vibes">
+      <h3>Neon Vibes</h3>
+      <p>£19.99</p>
+      <p>Neon</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="neon">
+      <img src="pixelpulse.html" alt="Pixel Pulse">
+      <h3>Pixel Pulse</h3>
+      <p>£49.99</p>
+      <p>Neon</p>
+    </div>
+    <div class="product-card" data-price="34.99" data-color="neon">
+      <img src="retro.html" alt="Retro Rainbow">
+      <h3>Retro Rainbow</h3>
+      <p>£34.99</p>
+      <p>Neon</p>
+    </div>
+    <div class="product-card" data-price="169.99" data-color="neon">
+      <img src="retroview.html" alt="Retro View">
+      <h3>Retro View</h3>
+      <p>£169.99</p>
+      <p>Neon</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="neon">
+      <img src="pixelwave.html" alt="Pixel Wave">
+      <h3>Pixel Wave</h3>
+      <p>£49.99</p>
+      <p>Neon</p>
+    </div>
+
+
+    <div class="product-card" data-price="42.99" data-color="earthy">
+      <img src="woodland_wanderer.html" alt="Woodland Wanderer">
+      <h3>Woodland Wanderer</h3>
+      <p>£42.99</p>
+      <p>Earthy</p>
+    </div>
+    <div class="product-card" data-price="189.99" data-color="earthy">
+      <img src="eco.html" alt="Eco View">
+      <h3>Eco View</h3>
+      <p>£189.99</p>
+      <p>Earthy</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="earthy">
+      <img src="woodland.html" alt="Woodland">
+      <h3>Woodland</h3>
+      <p>£49.99</p>
+      <p>Earthy</p>
+    </div>
+    <div class="product-card" data-price="42.99" data-color="earthy">
+      <img src="forestflow.html" alt="Forest Flow">
+      <h3>Forest Flow</h3>
+      <p>£42.99</p>
+      <p>Earthy</p>
+    </div>
+    <div class="product-card" data-price="16.99" data-color="earthy">
+      <img src="evergreen.html" alt="Evergreen">
+      <h3>Evergreen</h3>
+      <p>£16.99</p>
+      <p>Earthy</p>
+    </div>
+
+
+    <div class="product-card" data-price="15.99" data-color="animal">
+      <img src="pawsoft.html" alt="Paw Soft">
+      <h3>Paw Soft</h3>
+      <p>£15.99</p>
+      <p>Animal</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="animal">
+      <img src="kittyclicks.html" alt="Kitty Clicks">
+      <h3>Kitty Clicks</h3>
+      <p>£49.99</p>
+      <p>Animal</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="animal">
+      <img src="purrkeys.html" alt="Purr Keys">
+      <h3>Purr Keys</h3>
+      <p>£49.99</p>
+      <p>Animal</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="animal">
+      <img src="whiskertunes.html" alt="Whisker Tunes">
+      <h3>Whisker Tunes</h3>
+      <p>£49.99</p>
+      <p>Animal</p>
+    </div>
+    <div class="product-card" data-price="199.99" data-color="animal">
+      <img src="kittyview.html" alt="Kitty View">
+      <h3>Kitty View</h3>
+      <p>£199.99</p>
+      <p>Animal</p>
+    </div>
+
+
+    <div class="product-card" data-price="299.99" data-color="galaxy">
+      <img src="cosmoview.html" alt="Cosmo View">
+      <h3>Cosmo View</h3>
+      <p>£299.99</p>
+      <p>Galaxy</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="galaxy">
+      <img src="cosmiccursor.html" alt="Cosmic Cursor">
+      <h3>Cosmic Cursor</h3>
+      <p>£49.99</p>
+      <p>Galaxy</p>
+    </div>
+    <div class="product-card" data-price="59.99" data-color="galaxy">
+      <img src="stellarsoundwaves.html" alt="Stellar Soundwaves">
+      <h3>Stellar Soundwaves</h3>
+      <p>£59.99</p>
+      <p>Galaxy</p>
+    </div>
+    <div class="product-card" data-price="49.99" data-color="galaxy">
+      <img src="galaxytype.html" alt="Galaxy Type">
+      <h3>Galaxy Type</h3>
+      <p>£49.99</p>
+      <p>Galaxy</p>
+    </div>
+    <div class="product-card" data-price="18.99" data-color="galaxy">
+      <img src="nebulaglides.html" alt="Nebula Glide">
+      <h3>Nebula Glide</h3>
+      <p>£18.99</p>
+      <p>Galaxy</p>
+    </div>
+  </div>
+
+  <script>
+    function filterProducts() {
+      const priceFilter = document.getElementById('price-filter').value;
+      const colorFilter = document.getElementById('color-filter').value;
+      const products = document.querySelectorAll('.product-card');
+
+      products.forEach(product => {
+        const productPrice = parseFloat(product.getAttribute('data-price'));
+        const productColor = product.getAttribute('data-color');
+
+
+        let priceMatch = false;
+        if (priceFilter === 'all') {
+          priceMatch = true;
+        } else if (priceFilter === '0-50') {
+          priceMatch = (productPrice >= 0 && productPrice <= 50);
+        } else if (priceFilter === '50-100') {
+          priceMatch = (productPrice > 50 && productPrice <= 100);
+        } else if (priceFilter === '100-200') {
+          priceMatch = (productPrice > 100 && productPrice <= 200);
+        } else if (priceFilter === '200-300') {
+          priceMatch = (productPrice > 200 && productPrice <= 300);
+        }
+
+
+        const colorMatch = colorFilter === 'all' || productColor === colorFilter;
+
+
+        if (priceMatch && colorMatch) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+
+</body>
+
+</html>

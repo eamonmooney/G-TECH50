@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>GTECH50 | CONTACT US</title>
     <meta charset="UTF-8">
@@ -9,6 +10,11 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 </head>
 
 <body>
@@ -20,14 +26,14 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <div class="dropdown">
-              <a href=#>Categories</a>
-              <div class="dropdown-content">
-                <a href="categories/Mice.html">Mice</a>
-                <a href="categories/Monitors.html">Monitors</a>
-                <a href="categories/Headphones.html">Headphones</a>
-                <a href="categories/Keyboards.html">Keyboards</a>
-                <a href="categories/Mousepads.html">Mousepads</a>
-              </div>
+                <a href=#>Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
             </div>
             <a href="aboutus.html">About Us</a>
             <a href="contact.html">Contact Us</a>
@@ -36,11 +42,17 @@
         <!-- Search & User Icons -->
         <div class="icon-container">
             <div class="search-bar">
-              <input type="text" id="searchBar" placeholder="Search...">
-              <i class="material-icons" id="searchButton">search</i>
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
         </div>
 
         <!-- Hamburger Menu -->
@@ -74,60 +86,60 @@
     <script src="js/mobileNavbar.js"></script>
 
     <section class="hero">
-        <img src="images/Externalmade/9.png" alt="contact us main picture" class="conatct-us-main">
-      </section>
+        <img src="images/Externalmade/9.png" alt="contact us main picture" class="contact-us-main">
+    </section>
 
-                    <!-- Form Section -->
-                     <div class ="formtitle">
-                        <h1>GET IN TOUCH WITH OUR TEAM</h1>
-                     </div>
-                    <div class="contactform">
-                        <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
-                            <div class="row">
-                                <div class="firstname">
-                                    <label for="firstName">First Name:</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="email">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="confirmemail">
-                                    <label for="confirmEmail">Confirm Email:</label>
-                                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
-                                </div>
-                                <div class="phonenumber">
-                                    <label for="phoneNumber">Phone Number:</label>
-                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
-                                </div>
-                                <div class="prefcontact">
-                                    <label for="contactMethodTitle">Preferred Contact Method:</label>
-                                    <div id="contactMethodTitle">
-                                        <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>
-                                        <label for="emailMethod">Email</label>
-                                
-                                        <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">
-                                        <label for="phoneMethod">Phone</label>
-                                    </div>
-                                </div>
-                                <div class="date">
-                                    <label for="date">Date:</label>
-                                    <input type="date" class="form-control" id="date" name="date" required>
-                                </div>
-                            </div>
-                        
-                            <div class="description">
-                                <label for="description">Description:</label>
-                                <textarea id="description" name="description" rows="5" required></textarea>
-                            </div>
-                            <input type="submit" value="Submit">
-                        </form>
+    <!-- Form Section -->
+    <div class="formtitle">
+        <h1>GET IN TOUCH WITH OUR TEAM</h1>
+    </div>
+    <div class="contactform">
+        <form action="/G-TECH50/php/contactForm.php" method="post" onsubmit="return validateForm()">
+            <div class="row">
+                <div class="firstname">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+                <div class="email">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="confirmemail">
+                    <label for="confirmEmail">Confirm Email:</label>
+                    <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" required>
+                </div>
+                <div class="phonenumber">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                </div>
+                <div class="prefcontact">
+                    <label for="contactMethodTitle">Preferred Contact Method:</label>
+                    <div id="contactMethodTitle">
+                        <input type="radio" id="emailMethod" name="contactMethod" value="Email" checked>
+                        <label for="emailMethod">Email</label>
+
+                        <input type="radio" id="phoneMethod" name="contactMethod" value="Phone">
+                        <label for="phoneMethod">Phone</label>
                     </div>
                 </div>
+                <div class="date">
+                    <label for="date">Date:</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
             </div>
-        </section>        
+
+            <div class="description">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    </div>
+    </div>
+    </section>
     </main>
-    
+
     <!-- Footer -->
     <footer>
         <div class="footer-container">
@@ -199,4 +211,5 @@
     </script>
 
 </body>
+
 </html>
