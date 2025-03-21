@@ -103,6 +103,7 @@ try {
             ProductID INT NOT NULL,
             Rating INT CHECK (Rating BETWEEN 0 AND 10),
             Review VARCHAR(100),
+            Hidden BOOLEAN NOT NULL DEFAULT FALSE,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
         );
