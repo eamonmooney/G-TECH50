@@ -22,7 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 
     try {
+
+        $status = "Processing"; //Status of orders : processing, delivering, sent
+
         $orderDate = date("Y-m-d");
+
+
+        // Grab the number of items in an order
+        $orderAmount = 0;
+        foreach ($basket as $itemName => $details) {
+            $orderAmount += $details['quantity'];
+        }
 
         // Total Order
         $total = 0;
@@ -54,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
             // ORDERS table 
             // Insert into Orders table as a guest order
-            $query = "INSERT INTO Orders (UserID, GuestID, OrderTypeID, OrderDate, OrderCost, Address) VALUES (?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO Orders (UserID, GuestID, OrderTypeID, OrderDate, OrderCost, Address, OrderAmount, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $db->prepare($query);
-            $stmt->execute([NULL, $guestID, $orderTypeID, $orderDate, $total, $address]);
+            $stmt->execute([NULL, $guestID, $orderTypeID, $orderDate, $total, $address, $orderAmount, $status]);
             $orderID = $db->lastInsertId();
 
 
@@ -71,9 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             $orderTypeID = 2; // Customer Order (includes admins)
 
             // Insert into Orders table
-            $query = "INSERT INTO Orders (UserID, OrderTypeID, OrderDate, OrderCost, Address) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO Orders (UserID, OrderTypeID, OrderDate, OrderCost, Address, OrderAmount, Status) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $db->prepare($query);
-            $stmt->execute([$userID, $orderTypeID, $orderDate, $total, $address]);
+            $stmt->execute([$userID, $orderTypeID, $orderDate, $total, $address, $orderAmount, $status]);
             $orderID = $db->lastInsertId();
 
             // Adding points to the user's account when an order is placed. £1 = 1 point.

@@ -61,10 +61,10 @@
             <tr>
                 <th>Order ID</th>
                 <th>User ID</th>
-                <th>User Type</th>
+                <th>Guest ID</th>
                 <th>Date</th>
-                <th>Product</th>
-                <th>Amount</th>
+                <th>Order Amount</th>
+                <th>Order Cost</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -75,6 +75,43 @@
 
 
     <script>
+
+        // Function to fetch initial data from php and insert into table
+        function loadOrders() {
+            // Call PHP 
+            fetch('../php/userTransaction.php')
+                // Convert response to JSON
+                .then(response => response.json())
+                // With the JSON response
+                .then(data => {
+                    // Get the table
+                    var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+
+                    // For every column in the data we recieved from the php
+                    data.forEach(order => {
+                        // Create a new row
+                        var newRow = tableBody.insertRow();
+
+                        
+                        // Insert the row info
+                        newRow.insertCell(0).innerHTML = order.OrderID;
+                        newRow.insertCell(1).innerHTML = order.UserID ?? 'N/A';
+                        newRow.insertCell(2).innerHTML = order.GuestID ?? 'N/A';
+                        newRow.insertCell(3).innerHTML = order.OrderDate;
+                        newRow.insertCell(4).innerHTML = order.OrderAmount;
+                        newRow.insertCell(5).innerHTML = order.OrderCost;
+                        newRow.insertCell(6).innerHTML = order.Status;
+                    });
+                })
+                // Catch errors
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Call function when the page loads
+        window.onload = loadOrders;
+
+
+
         // Filter table rows based on input (search?)
         function filterTable() {
             // Get the input
@@ -91,33 +128,33 @@
                 // Get the values for that row
                 var tdOrderID = tr[i].getElementsByTagName("td")[0];
                 var tdUserID = tr[i].getElementsByTagName("td")[1];
-                var tdUserType = tr[i].getElementsByTagName("td")[2];
-                var tdDate = tr[i].getElementsByTagName("td")[3];
-                var tdProduct = tr[i].getElementsByTagName("td")[4];;
-                var tdAmount = tr[i].getElementsByTagName("td")[5];
+                var tdGuestID = tr[i].getElementsByTagName("td")[2];
+                var tdOrderDate = tr[i].getElementsByTagName("td")[3];
+                var tdOrderAmount = tr[i].getElementsByTagName("td")[4];
+                var tdOrderCost = tr[i].getElementsByTagName("td")[5];;
                 var tdStatus = tr[i].getElementsByTagName("td")[6];
 
                 // If the row has valid data cells
-                if (tdOrderID || tdUserID || tdUserType || tdDate || tdProduct || tdAmount || tdStatus) {
+                if (tdOrderID || tdUserID || tfGuestID || tdOrderDate || tdOrderAmount || tdOrderCost || tdStatus) {
                     var orderIDValue = tdOrderID.textContent || tdOrderID.innerText;
-                    var userID = tdUserID.textContent || tdUserID.innerText;
-                    var userType = tdUserType.textContent || tdUserType.innerText;
-                    var dateValue = tdDate.textContent || tdDate.innerText;
-                    var productValue = tdProduct.textContent || tdProduct.innerText;
-                    var amountValue = tdAmount.textContent || tdAmount.innerText;
+                    var userIDValue = tdUserID.textContent || tdUserID.innerText;
+                    var guestIDValue = tdGuestID.textContent || tdGuestID.innerText;
+                    var orderDateValue = tdOrderDate.textContent || tdOrderDate.innerText;
+                    var orderAmountValue = tdOrderAmount.textContent || tdOrderAmount.innerText;
+                    var orderCostValue = tdOrderCost.textContent || tdOrderCost.innerText;
                     var statusValue = tdStatus.textContent || tdStatus.innerText;
 
                     // If the column contains search text
                     if (orderIDValue.toLowerCase().indexOf(filter) > -1 ||
                         userIDValue.toLowerCase().indexOf(filter) > -1 ||
-                        userTypeValue.toLowerCase().indexOf(filter) > -1 ||
-                        dateValue.toLowerCase().indexOf(filter) > -1 ||
-                        productValue.toLowerCase().indexOf(filter) > -1 ||
-                        amountValue.toLowerCase().indexOf(filter) > -1 ||
+                        guestIDValue.toLowerCase().indexOf(filter) > -1 ||
+                        orderDateValue.toLowerCase().indexOf(filter) > -1 ||
+                        orderAmountValue.toLowerCase().indexOf(filter) > -1 ||
+                        orderCostValue.toLowerCase().indexOf(filter) > -1 ||
                         statusValue.toLowerCase().indexOf(filter) > -1) {
                         // Show the row
                         tr[i].style.display = "";
-                    // Otherwise hide the row
+                        // Otherwise hide the row
                     } else {
                         tr[i].style.display = "none";
                     }
@@ -126,7 +163,7 @@
         }
 
         // Function to add a new transaction to the table
-        function addTransaction(orderID, userID, userType, date, product, amount, status) {
+        function addTransaction(orderID, userID, guestID, orderDate, orderAmount, orderCost, status) {
             // Get table body
             var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
             // Insert a new row
@@ -135,10 +172,10 @@
             // Insert each data into respective columns
             newRow.insertCell(0).innerHTML = orderID;
             newRow.insertCell(1).innerHTML = userID;
-            newRow.insertCell(2).innerHTML = userType;
-            newRow.insertCell(3).innerHTML = date;
-            newRow.insertCell(4).innerHTML = product;
-            newRow.insertCell(5).innerHTML = amount;
+            newRow.insertCell(2).innerHTML = guestID;
+            newRow.insertCell(3).innerHTML = orderDate;
+            newRow.insertCell(4).innerHTML = orderAmount;
+            newRow.insertCell(5).innerHTML = orderCost;
             newRow.insertCell(6).innerHTML = status;
         }
 
