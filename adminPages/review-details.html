@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/signin.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     
     <style>
         body {
@@ -141,7 +141,7 @@
             console.log('Review ID:', reviewID);
 
             if (reviewID) {
-                fetch('php/reviewDetails.php', {
+                fetch('../php/reviewDetails.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -158,17 +158,18 @@
                         <p>User ID: ${data.review.UserID}</p>
                         <p>Product ID: ${data.review.ProductID}</p>
                         <p>Rating: ${data.review.Rating}</p>
+                        <p>Content: "${data.review.Review}"</p>
                     `;
             
                     // Change the text inside the hide button depending on the status of 'hidden'
-                    if(data.Hidden) {
+                    if(data.review.Hidden) {
                         document.getElementById('hideButton').innerHTML = `Unhide`
                     } else {
                         document.getElementById('hideButton').innerHTML = `Hide`
                     }
 
                     // Change the text inside the pin button depending on the status of pinned
-                    if (data.isPinned) {
+                    if (data.review.isPinned) {
                         document.getElementById('pinButton').innerHTML = 'Unpin';
                     } else {
                         document.getElementById('pinButton').innerHTML = 'Pin';
@@ -186,7 +187,7 @@
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
-                fetch('php/reviewHide.php', {
+                fetch('../php/reviewDelete.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -221,7 +222,7 @@
                 const hideValue = !isCurrentlyHidden;
 
                 // Send request to PHP script
-                fetch('php/reviewHide.php', {
+                fetch('../php/reviewHide.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -259,7 +260,7 @@
                 const pinValue = !isCurrentlyPinned;
 
                 // Send request to PHP script
-                fetch('php/reviewPin.php', {
+                fetch('../php/reviewPin.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

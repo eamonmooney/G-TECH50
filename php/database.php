@@ -124,13 +124,14 @@ try {
 
         CREATE TABLE IF NOT EXISTS Reviews (
             ReviewID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            UserID INT NOT NULL ,
+            UserID INT NULL,
             ProductID INT NOT NULL,
-            Rating INT CHECK (Rating BETWEEN 0 AND 10),
+            Rating INT CHECK (Rating BETWEEN 0 AND 5),
             Review VARCHAR(100),
             Hidden BOOLEAN NOT NULL DEFAULT FALSE,
-            FOREIGN KEY (UserID) REFERENCES Users(UserID),
-            FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+            Verified BOOLEAN NOT NULL DEFAULT FALSE,
+            FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE SET NULL,
+            FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
         );
 
         CREATE TABLE IF NOT EXISTS AccessKeys (
