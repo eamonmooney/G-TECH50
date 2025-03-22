@@ -104,6 +104,54 @@
     </div>
   </div>
 
+  <div id="reviews"></div>
+
+  <script>
+    const productId = 11;
+
+    // Fetch reviews for the given productId
+    fetch('../php/reviewGet.php', {
+        method: 'POST', // Use POST method
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId: productId })  // Send the productId in JSON format
+    })
+    .then(response => response.json())  // Parse the JSON response
+    .then(data => {
+        if (data.error) {
+            console.error('Error:', data.error);
+        } else {
+            // Process the reviews data
+            displayReviews(data);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+
+
+    // Function to display the reviews on the page
+    function displayReviews(reviews) {
+      const reviewsContainer = document.getElementById('reviews');
+      reviewsContainer.innerHTML = '';  // Clear previous content
+
+      // Loop through each review and create HTML for each review
+      reviews.forEach(review => {
+          const reviewElement = document.createElement('div');
+          reviewElement.classList.add('review');
+
+          // Add review details to the reviewElement
+          reviewElement.innerHTML = `
+              <p>${review.Rating}</p>
+              <p>" ${review.Review} "</p>
+              <p>${review.UserID}</p>
+          `;
+
+          // Append the review to the container
+          reviewsContainer.appendChild(reviewElement);
+      });
+    }
+</script>
+
 
 
 
