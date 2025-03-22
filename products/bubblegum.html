@@ -221,6 +221,7 @@
                 const averageRating = calculateAverageRating(data.reviews);
                 displayAverageRating(averageRating);
                 displayReviews(data.reviews);
+                displayPinnedReview(data.pinnedReview);  // Display pinned review
             }
         })
         .catch(error => {
