@@ -127,6 +127,8 @@
             margin-top: 80px;
         }
 
+        /* TABLE */
+
         .transaction-table {
             width: 90%;
             margin: 20px auto;
@@ -145,23 +147,142 @@
             font-weight: bold;
         }
 
-        .filter-container {
-            width: 90%;
-            margin: 20px auto;
+        /* FILTERS */
+
+        /* ORDERID SEARCHBAR */
+        .orderIDSearch {
+            /* Make it to the left */
+            text-align: left;
+        }
+
+        /* FILTERBUTTON */
+        .filterButton {
+            /* Make it to the right */
             text-align: right;
         }
 
+        /* Container of all filter things */
+        .filter-container {
+            /* Make it a flexbox */
+            display: flex;
+            /* Make space between */
+            justify-content: space-between;
+            /* Align via center */
+            align-items: center;
+            /* Positioning */
+            width: 90%;
+            margin: 20px auto;
+            /* Makes sure everything is positioned relative so filter button doesnmt dissapear */
+            position: relative;
+        }
+
+        /* Searchbar measurements */
         .filter-container input {
             padding: 8px;
             font-size: 16px;
             width: 200px;
+        }
+
+        /* Filter button */
+        .filter-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border-radius: 5px;
+        }
+
+        /* Hidden filter panel */
+        .filter-panel {
+            /* Hidden by default */
+            display: none;
+            /* Background colour */
+            background: #f9f9f9;
+            /* Aesthetic */
+            padding: 15px;
+            /* Border */
+            border-radius: 5px;
+            /* Shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Positioning */
+            position: absolute;
+            width: 100%;
+            top: 45px;
+            left: 0;
+            /* Stack ontop of database table */
+            z-index: 10;
+        }
+
+        /* Right side - OrderID searchbar and status */
+        .rightSide {
+            /* Make it a flexbox */
+            display: flex;
+            /* make them center aligned*/
+            align-items: center;
+            /* gap between them */
+            gap: 10px;
+        }
+
+        /* Format for the filter options */
+        .filter-options {
+            /* Make them flexbox */
+            display: flex;
+            /* Make them wrap */
+            flex-wrap: wrap;
+            /* Gap between them */
+            gap: 10px;
+            /* Cetntre align */
+            align-items: center;
+        }
+
+        /* Input options */
+        .filter-container input,
+        .filter-container select {
+            /* Formatting */
+            padding: 8px;
+            margin: 10px;
+            font-size: 14px;
+        }
+
+
+        /* Labels - make them stay together */
+        .filter-options label {
+            /* Flexy */
+            display: inline-flex;
+            align-items: center;
+            /* Small gap */
+            gap: 5px;
+            /* Prevent wrapping */
+            white-space: nowrap;
+        }
+
+        /* Date filter */
+        .date-filters {
+            /* Flexbox */
+            display: flex;
+            /* Gap between them */
+            gap: 10px;
+        }
+
+        /* Checkbox visuals */
+        .filter-options input[type="checkbox"] {
+            /* Make a small gap */
+            margin: 5px;
+            padding: 10px;
+            width: 16px;
+            /* Checkbox size */
+            height: 16px;
         }
     </style>
 </head>
 
 <body>
 
-<<<<<<< HEAD:userTransactionPage.html
     <div class="navbar">
         <div class="logo">
             <img src="file:///C:/Users/tobia/Downloads/g-tech50%20logo.png" alt="Logo" class="logo-image">
@@ -194,27 +315,105 @@
         <a href="Tickets.html">Tickets</a>
     </div>
 
-=======
->>>>>>> b39edf8ff78f897cad83e3382a6530b4e6d21ca5:adminPages/userTransactionPage.html
-
     <div class="filter-container">
-        <input type="text" id="filterInput" onkeyup="filterTable()" placeholder="Search for transactions...">
+        <!-- Filter Button -->
+        <div class="filterButton">
+            <button class="filter-btn" onclick="toggleFilters()">
+                <span class="material-icons">filter_list</span> Filters
+            </button>
+        </div>
+
+        <!-- Right side -->
+        <div class="rightSide">
+            <div class="filter-options">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" onchange="filterTable()">
+                    <option value="all">All</option>
+                    <option value="processing">Processing</option>
+                    <option value="delivering">Delivering</option>
+                    <option value="sent">Sent</option>
+                </select>
+            </div>
+
+
+            <!-- ORDERID SEARCHBAR -->
+            <div class="orderIDSearch">
+                <input type="text" id="orderIDFilter" onkeyup="filterTable()" placeholder="Search by OrderID...">
+            </div>
+
+        </div>
+
+        <!-- Filter Panel (Hidden Initially) -->
+        <div class="filter-panel" id="filterPanel">
+            <!-- Searchboxes -->
+            <div class="filter-options">
+                <!-- userID search -->
+                <input type="text" id="userIDFilter" onkeyup="filterTable()" placeholder="Search by User ID">
+                <!-- guestID search -->
+                <input type="text" id="guestIDFilter" onkeyup="filterTable()" placeholder="Search by Guest ID">
+            </div>
+
+            <!-- Checkboxes for guest or customer -->
+            <div class="filter-options">
+                <label>
+                    <input type="checkbox" id="customerCheckbox" onclick="filterTable()" checked> Customer
+                </label>
+                <label>
+                    <input type="checkbox" id="guestCheckbox" onclick="filterTable()" checked> Guest
+                </label>
+            </div>
+
+            <!-- Date filter -->
+            <div class="filter-options date-filters">
+                <div class="date">
+                    <label for="dateFrom">From:</label>
+                    <input type="date" id="dateFrom" onchange="filterTable()">
+                </div>
+                <label for="dateTo">To:</label>
+                <input type="date" id="dateTo" onchange="filterTable()">
+            </div>
+
+            <!-- Order Amount filter  -->
+            <div class="filter-options">
+                <label>Order Amount:</label>
+                <label><input type="checkbox" class="orderAmountFilter" value="1-10" onclick="filterTable()">
+                    1-10</label>
+                <label><input type="checkbox" class="orderAmountFilter" value="11-20" onclick="filterTable()">
+                    11-20</label>
+                <label><input type="checkbox" class="orderAmountFilter" value="21-50" onclick="filterTable()">
+                    21-50</label>
+                <label><input type="checkbox" class="orderAmountFilter" value="51-100" onclick="filterTable()">
+                    51-100</label>
+                <label><input type="checkbox" class="orderAmountFilter" value="101+" onclick="filterTable()">
+                    101+</label>
+            </div>
+
+            <!-- Order cost filter -->
+            <div class="filter-options">
+                <label>Order Cost (£):</label>
+                <label><input type="checkbox" class="orderCostFilter" value="1-10" onclick="filterTable()"> 1-10</label>
+                <label><input type="checkbox" class="orderCostFilter" value="11-20" onclick="filterTable()">
+                    11-20</label>
+                <label><input type="checkbox" class="orderCostFilter" value="21-50" onclick="filterTable()">
+                    21-50</label>
+                <label><input type="checkbox" class="orderCostFilter" value="51-100" onclick="filterTable()">
+                    51-100</label>
+                <label><input type="checkbox" class="orderCostFilter" value="101+" onclick="filterTable()"> 101+</label>
+            </div>
+
+
+        </div>
     </div>
-
-<<<<<<< HEAD:userTransactionPage.html
     <!-- Transaction Table -->
-=======
-
->>>>>>> b39edf8ff78f897cad83e3382a6530b4e6d21ca5:adminPages/userTransactionPage.html
     <table class="transaction-table" id="transactionTable">
         <thead>
             <tr>
                 <th>Order ID</th>
                 <th>User ID</th>
-                <th>User Type</th>
+                <th>Guest ID</th>
                 <th>Date</th>
-                <th>Product</th>
-                <th>Amount</th>
+                <th>Order Amount</th>
+                <th>Order Cost</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -225,62 +424,185 @@
 
 
     <script>
-<<<<<<< HEAD:userTransactionPage.html
+
+        // Function to make filters visible / invisible when clicking button
+        function toggleFilters() {
+            // Get the panel
+            var panel = document.getElementById("filterPanel");
+            // Change it to visible or invisible
+            panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+        }
+
+        // Function to fetch initial data from php and insert into table
+        function loadOrders() {
+            // Call PHP 
+            fetch('../php/userTransaction.php')
+                // Convert response to JSON
+                .then(response => response.json())
+                // With the JSON response
+                .then(data => {
+                    // Get the table
+                    var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+
+                    // For every column in the data we recieved from the php
+                    data.forEach(order => {
+                        // Create a new row
+                        var newRow = tableBody.insertRow();
+
+                        // Set an attribute to determine if guest or customer
+                        newRow.setAttribute("data-user-type", order.OrderType);
+
+                        // Insert the row info
+                        newRow.insertCell(0).innerHTML = order.OrderID;
+                        newRow.insertCell(1).innerHTML = order.UserID ?? 'N/A';
+                        newRow.insertCell(2).innerHTML = order.GuestID ?? 'N/A';
+                        newRow.insertCell(3).innerHTML = order.OrderDate;
+                        newRow.insertCell(4).innerHTML = order.OrderAmount;
+                        newRow.insertCell(5).innerHTML = order.OrderCost;
+                        newRow.insertCell(6).innerHTML = order.Status;
+                    });
+                })
+                // Catch errors
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Call function when the page loads
+        window.onload = loadOrders;
+
+
+
         // Function to filter the table based on search input
-=======
         // Filter table rows based on input (search?)
->>>>>>> b39edf8ff78f897cad83e3382a6530b4e6d21ca5:adminPages/userTransactionPage.html
         function filterTable() {
-            // Get the input
-            var input = document.getElementById("filterInput");
-            // Convert to lowercase
-            var filter = input.value.toLowerCase();
+
             // Get table
             var table = document.getElementById("transactionTable");
             // Get all rows
             var tr = table.getElementsByTagName("tr");
 
+            // Get the inputs
+            // status filter input and turn to lowercase
+            var statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+            // orderID filter input and turn to lowercase
+            var orderIDFilter = document.getElementById("orderIDFilter").value.toLowerCase();
+            // userID filter input and turn to lowercase
+            var userIDFilter = document.getElementById("userIDFilter").value.toLowerCase();
+            // guestID filter input and turn to lowercase
+            var guestIDFilter = document.getElementById("guestIDFilter").value.toLowerCase();
+            // showcustomers filter input
+            var customerFilter = document.getElementById("customerCheckbox").checked;
+            // showguests filter input
+            var guestFilter = document.getElementById("guestCheckbox").checked;
+            //datefilter inputs 
+            var dateFromFilter = document.getElementById("dateFrom").value;
+            var dateToFilter = document.getElementById("dateTo").value;
+
+            // Convert date values to Date objects for comparison
+            var dateFromObj = dateFromFilter ? new Date(dateFromFilter) : null;
+            var dateToObj = dateToFilter ? new Date(dateToFilter) : null;
+
+            // Get selected order amount ranges
+            var selectedOrderAmounts = [...document.querySelectorAll(".orderAmountFilter:checked")].map(cb => cb.value);
+            // Get the selected order cost ranges
+            var selectedOrderCosts = [...document.querySelectorAll(".orderCostFilter:checked")].map(cb => cb.value);
+
             // Loop through all table rows (but not the header)
             for (var i = 1; i < tr.length; i++) {
-                // Get the values for that row
+                // Get the table cell element for that row
                 var tdOrderID = tr[i].getElementsByTagName("td")[0];
                 var tdUserID = tr[i].getElementsByTagName("td")[1];
-                var tdUserType = tr[i].getElementsByTagName("td")[2];
-                var tdDate = tr[i].getElementsByTagName("td")[3];
-                var tdProduct = tr[i].getElementsByTagName("td")[4];;
-                var tdAmount = tr[i].getElementsByTagName("td")[5];
+                var tdGuestID = tr[i].getElementsByTagName("td")[2];
+                var tdOrderDate = tr[i].getElementsByTagName("td")[3];
+                var tdOrderAmount = tr[i].getElementsByTagName("td")[4];
+                var tdOrderCost = tr[i].getElementsByTagName("td")[5];;
                 var tdStatus = tr[i].getElementsByTagName("td")[6];
 
-                // If the row has valid data cells
-                if (tdOrderID || tdUserID || tdUserType || tdDate || tdProduct || tdAmount || tdStatus) {
-                    var orderIDValue = tdOrderID.textContent || tdOrderID.innerText;
-                    var userID = tdUserID.textContent || tdUserID.innerText;
-                    var userType = tdUserType.textContent || tdUserType.innerText;
-                    var dateValue = tdDate.textContent || tdDate.innerText;
-                    var productValue = tdProduct.textContent || tdProduct.innerText;
-                    var amountValue = tdAmount.textContent || tdAmount.innerText;
-                    var statusValue = tdStatus.textContent || tdStatus.innerText;
+                // Get user values by using these table cell elements
+                // User type value
+                var userType = tr[i].getAttribute("data-user-type");
+                // Status value
+                var statusText = tdStatus.textContent.toLowerCase();
+                // Order date value
+                var orderDate = new Date(tdOrderDate.textContent);
+                // order amount value
+                var orderAmount = parseFloat(tdOrderAmount.textContent) || 0;
+                // order cost values
+                var orderCost = parseFloat(tdOrderCost.textContent) || 0;
 
-                    // If the column contains search text
-                    if (orderIDValue.toLowerCase().indexOf(filter) > -1 ||
-                        userIDValue.toLowerCase().indexOf(filter) > -1 ||
-                        userTypeValue.toLowerCase().indexOf(filter) > -1 ||
-                        dateValue.toLowerCase().indexOf(filter) > -1 ||
-                        productValue.toLowerCase().indexOf(filter) > -1 ||
-                        amountValue.toLowerCase().indexOf(filter) > -1 ||
-                        statusValue.toLowerCase().indexOf(filter) > -1) {
-                        // Show the row
-                        tr[i].style.display = "";
-                    // Otherwise hide the row
-                    } else {
-                        tr[i].style.display = "none";
+                // Filtering this row
+                // Show this row depending on if they're a customer / guest and the box for that is ticked 
+                var showRow = (userType === "Customer" && customerFilter) || (userType === "Guest" && guestFilter);
+
+                // Check if the orderID matches if it was searched for
+                var matchesOrderID = tdOrderID.textContent.toLowerCase().includes(orderIDFilter);
+                // Check if the userID matches if it was searched for
+                var matchesUserID = tdUserID.textContent.toLowerCase().includes(userIDFilter);
+                // Check if the guestID matches if it was searched for
+                var matchesGuestID = tdGuestID.textContent.toLowerCase().includes(guestIDFilter);
+
+                // Check if status matches
+                var matchesStatus = (statusFilter === "all") || (statusText.includes(statusFilter));
+
+                // Check if date matches
+                // Instantiate matches Date
+                var matchesDate = true;
+                // If the date is selected and the date is before the date from value, set to false
+                if (dateFromObj && orderDate < dateFromObj) matchesDate = false;
+                // If the date is selected and the date is after the date to value, set to false
+                if (dateToObj && orderDate > dateToObj) matchesDate = false;
+
+                // Order amount filter
+                // If no ranges are selected, it's true OR checks if it falls within the range
+                var matchesAmount = selectedOrderAmounts.length === 0 || selectedOrderAmounts.some(range => {
+                    // Incase of the end number with the plus
+                    if (range.includes('+')) {
+                        // extract as a float
+                        let min = parseFloat(range);
+                        // Return if this is in the range
+                        return orderAmount >= min;  
                     }
+                    // Split the range into numbers (e.g. 1-10)
+                    var [min, max] = range.split("-").map(Number);
+                    // Check if it's between the range
+                    return orderAmount >= min && (isNaN(max) || orderAmount <= max);
+                });
+
+                // Order cost filter
+                // If no ranges are selected, it's true OR checks if it falls within the range
+                var matchesCost = selectedOrderCosts.length === 0 || selectedOrderCosts.some(range => {
+                    // Incase of the end number with the plus
+                    if (range.includes('+')) {
+                        // extract as a float
+                        let min = parseFloat(range);
+                        // Return if this is in the range
+                        return orderCost >= min;  
+                    }
+                    // Split the range into numbers (e.g. 1-10)
+                    var [min, max] = range.split("-").map(Number);
+                    // Check if it's between the range
+                    return orderCost >= min && (isNaN(max) || orderCost <= max);
+                });
+
+                // // Check if cost matches
+                // console.log("Order Cost:", orderCost, "Selected Ranges:", selectedOrderCosts, "Matches:", matchesCost);
+
+
+                // End checks
+                // If it goes through all the filters
+                if (showRow && matchesOrderID && matchesUserID && matchesGuestID && matchesStatus && matchesDate && matchesAmount && matchesCost) {
+                    // Show the row
+                    tr[i].style.display = "";
+                    // Otherwise hide the row
+                } else {
+                    tr[i].style.display = "none";
                 }
+
+
             }
         }
 
         // Function to add a new transaction to the table
-        function addTransaction(orderID, userID, userType, date, product, amount, status) {
+        function addTransaction(orderID, userID, guestID, orderDate, orderAmount, orderCost, status) {
             // Get table body
             var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
             // Insert a new row
@@ -289,14 +611,12 @@
             // Insert each data into respective columns
             newRow.insertCell(0).innerHTML = orderID;
             newRow.insertCell(1).innerHTML = userID;
-            newRow.insertCell(2).innerHTML = userType;
-            newRow.insertCell(3).innerHTML = date;
-            newRow.insertCell(4).innerHTML = product;
-            newRow.insertCell(5).innerHTML = amount;
+            newRow.insertCell(2).innerHTML = guestID;
+            newRow.insertCell(3).innerHTML = orderDate;
+            newRow.insertCell(4).innerHTML = orderAmount;
+            newRow.insertCell(5).innerHTML = orderCost;
             newRow.insertCell(6).innerHTML = status;
         }
-
-<<<<<<< HEAD:userTransactionPage.html
         // Hamburger menu functionality
         const hamburgerMenu = document.getElementById("hamburgerMenu");
         const mobileNavLinks = document.getElementById("mobileNavLinks");
@@ -304,9 +624,6 @@
         hamburgerMenu.addEventListener("click", () => {
             mobileNavLinks.classList.toggle("active");
         });
-=======
-
->>>>>>> b39edf8ff78f897cad83e3382a6530b4e6d21ca5:adminPages/userTransactionPage.html
     </script>
 
 </body>
