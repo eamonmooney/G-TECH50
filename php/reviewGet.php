@@ -9,23 +9,14 @@ $productId = $data['productId'] ?? null;
 if ($productId) {
     try {
         // Prepare the SQL query to fetch reviews for the given productId
-        $stmt = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ProductID = :productId");
+        $stmt = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ProductID = :productId AND Hidden = 0");
         $stmt->execute([':productId' => $productId]);
 
         // Fetch the results
         $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Calculate the average rating
-        $stmtAvg = $db->prepare("SELECT AVG(Rating) as avgRating FROM Reviews WHERE ProductID = :productId");
-        $stmtAvg->execute([':productId' => $productId]);
-        $avgRatingResult = $stmtAvg->fetch(PDO::FETCH_ASSOC);
-        $avgRating = round($avgRatingResult['avgRating'], 1); // Round to 1 decimal place
-
-        // Return both reviews and the average rating as a JSON response
-        echo json_encode([
-            'reviews' => $reviews,
-            'averageRating' => $avgRating
-        ]);
+        // Return the reviews as a JSON response
+        echo json_encode($reviews);
     } catch (PDOException $e) {
         echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
     }
