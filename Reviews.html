@@ -139,6 +139,7 @@
         
             const urlParams = new URLSearchParams(window.location.search);
             const productName = urlParams.get("product");
+            const productID = urlParams.get("productID");
             if (productName) {
                 document.getElementById("product-name").textContent = decodeURIComponent(productName);
             }
@@ -173,26 +174,60 @@
                     ratingMessage.style.display = "block"; 
                 }
             });
+
             document.getElementById("submit-review").addEventListener("click", function () {
-    const ratingValue = document.getElementById("rating").value;
-    const reviewText = document.getElementById("review-text").value.trim();
-    const ratingMessage = document.getElementById("rating-message");
+                const ratingValue = document.getElementById("rating").value;
+                const reviewText = document.getElementById("review-text").value.trim();
+                const ratingMessage = document.getElementById("rating-message");
 
-    if (ratingValue === "0") {
-        ratingMessage.style.display = "block";
-        return;
-    } else {
-        ratingMessage.style.display = "none";
-    }
+                if (ratingValue === "0") {
+                    ratingMessage.style.display = "block";
+                    return;
+                } else {
+                    ratingMessage.style.display = "none";
+                }
 
-    if (reviewText === "") {
-        alert("Please enter a review before submitting.");
-        return;
-    }
+                if (reviewText === "") {
+                    alert("Please enter a review before submitting.");
+                    return;
+                }
 
-    // Redirect if both fields are filled
-    window.location.href = "reviewconfirm.html";
-});
+                const urlParams = new URLSearchParams(window.location.search);
+                const productID = urlParams.get("productID");
+
+                if (!productID) {
+                    alert("Product ID not found.");
+                    return;
+                }
+
+                // Prepare data for PHP
+                const data = new URLSearchParams();
+                data.append('productID', productID);
+                data.append('rating', ratingValue);
+                data.append('review', reviewText);
+
+                // Send POST request to PHP
+                fetch('php/reviewSubmit.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: data
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result); // for debugging
+                    if (result.success) {
+                        window.location.href = "reviewconfirm.html";
+                    } else {
+                        alert(result.error || "Failed to submit review.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while submitting the review.");
+                });
+            });
 
         });
     </script>
