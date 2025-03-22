@@ -8,15 +8,33 @@ $productId = $data['productId'] ?? null;
 
 if ($productId) {
     try {
-        // Prepare the SQL query to fetch reviews for the given productId
-        $stmt = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ProductID = :productId AND Hidden = 0");
-        $stmt->execute([':productId' => $productId]);
+        // Fetch the pinnedReviewID from the Products table
+        $stmtPinnedId = $db->prepare("SELECT pinnedReviewID FROM Products WHERE ProductID = :productId");
+        $stmtPinnedId->execute([':productId' => $productId]);
+        $pinnedIdResult = $stmtPinnedId->fetch(PDO::FETCH_ASSOC);
 
-        // Fetch the results
-        $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Check if pinnedReviewID exists and is not null
+        $pinnedReview = null;
+        if ($pinnedIdResult && $pinnedIdResult['pinnedReviewID'] !== null) {
+            $pinnedReviewId = $pinnedIdResult['pinnedReviewID'];
 
-        // Return the reviews as a JSON response
-        echo json_encode($reviews);
+            // Fetch the pinned review details
+            $stmtPinnedReview = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ReviewID = :pinnedReviewId AND Hidden = 0");
+            $stmtPinnedReview->execute([':pinnedReviewId' => $pinnedReviewId]);
+            $pinnedReview = $stmtPinnedReview->fetch(PDO::FETCH_ASSOC);
+        }
+
+        // Fetch all visible reviews for the product
+        $stmtReviews = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ProductID = :productId AND Hidden = 0");
+        $stmtReviews->execute([':productId' => $productId]);
+        $reviews = $stmtReviews->fetchAll(PDO::FETCH_ASSOC);
+
+        // Return both the pinned review and the other reviews
+        echo json_encode([
+            'pinnedReview' => $pinnedReview,
+            'reviews' => $reviews
+        ]);
+
     } catch (PDOException $e) {
         echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
     }

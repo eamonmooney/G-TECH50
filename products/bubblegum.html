@@ -106,6 +106,8 @@
     </div>
   </div>
 
+  <div id="pinnedReview"></div>
+
   <div id="reviews"></div>
 
   <script>
@@ -183,6 +185,25 @@
         });
     }
 
+    function displayPinnedReview(pinnedReview) {
+        const pinnedReviewContainer = document.getElementById('pinnedReview');
+
+        if (!pinnedReview) {
+            pinnedReviewContainer.innerHTML = ''; // No pinned review to display
+            return;
+        }
+
+        const starsHTML = generateStarHTML(pinnedReview.Rating);
+
+        pinnedReviewContainer.innerHTML = `
+            <div class="pinned-review" style="border: 2px solid gold; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+                <h3 style="color: gold;">⭐ Pinned Review ⭐</h3>
+                <p>${starsHTML}</p>
+                <p>" ${pinnedReview.Review} "</p>
+            </div>
+        `;
+    }
+
     // Fetch reviews and update the page
     fetch('../php/reviewGet.php', {
         method: 'POST',
@@ -191,21 +212,28 @@
         },
         body: JSON.stringify({ productId: 11 }) // <-- Product ID
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error('Error:', data.error);
-                document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
-            } else {
-                const averageRating = calculateAverageRating(data);
-                displayAverageRating(averageRating);
-                displayReviews(data);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
+    .then(response => response.json())
+    .then(data => {
+    if (data.error) {
+        console.error('Error:', data.error);
+        document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
+    } else {
+        const averageRating = calculateAverageRating(data.reviews);
+        displayAverageRating(averageRating);
+
+        // Display pinned review first if it exists
+        if (data.pinnedReview) {
+            displayPinnedReview(data.pinnedReview);
+        }
+
+        // Filter out pinned review from the regular reviews list
+        const filteredReviews = data.reviews.filter(review => {
+            return !data.pinnedReview || review.ReviewID !== data.pinnedReview.ReviewID;
         });
+
+        displayReviews(filteredReviews);
+    }
+})
 </script>
 
   <!-- Footer -->
