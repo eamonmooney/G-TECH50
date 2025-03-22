@@ -3,6 +3,7 @@
 <!-- CSS updated by Sahil Awan - 230073302 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,78 +14,88 @@
   <link rel="stylesheet" href="css/profile.css">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="js/basketNumber.js"></script>
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
   <div class="navbar">
     <div class="logo">
-        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+      <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
     </div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-          <a href=#>Categories</a>
-          <div class="dropdown-content">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-          </div>
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <a href=#>Categories</a>
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
         </div>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="membershipSignUp.html">G-TECH50+</a>
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
 
     <!-- Search & User Icons -->
     <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
     </div>
 
     <!-- Hamburger Menu -->
     <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
-</div>
+  </div>
 
-<!-- Mobile Navigation Bar -->
-<div class="mobile-nav-links" id="mobileNavLinks">
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav-links" id="mobileNavLinks">
     <a href="Home.html">Home</a>
     <a href=# id="mobileCategories">Categories</a>
     <div class="mobile-dropdown-content" id="mobileDropdownContent">
-        <a href="categories/Mice.html">Mice</a>
-        <a href="categories/Monitors.html">Monitors</a>
-        <a href="categories/Headphones.html">Headphones</a>
-        <a href="categories/Keyboards.html">Keyboards</a>
-        <a href="categories/Mousepads.html">Mousepads</a>
+      <a href="categories/Mice.html">Mice</a>
+      <a href="categories/Monitors.html">Monitors</a>
+      <a href="categories/Headphones.html">Headphones</a>
+      <a href="categories/Keyboards.html">Keyboards</a>
+      <a href="categories/Mousepads.html">Mousepads</a>
     </div>
     <a href="AboutUs.html">About Us</a>
     <a href="contact.html">Contact Us</a>
-</div>
+  </div>
 
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
+  <!-- Search Results -->
+  <div id="searchResults" class="search-results" style="display: none;"></div>
 
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+  <script src="js/mobileNavbar.js"></script>
 
   <div class="profile-container">
-    
+
     <div class="sidebar">
       <button class="tab-button" onclick="window.location.href = 'index.html';">Home</button>
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
+      <button class="tab-button" onclick="window.location.href = 'adminHomepage.html';">Admin</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
 
@@ -123,54 +134,62 @@
             .then(response => response.text())
             .then(data => {
               document.getElementById('orders-list').innerHTML = data;
-          })
-          .catch(error => console.error('Error:', error));
+            })
+            .catch(error => console.error('Error:', error));
         </script>
       </div>
 
       <div id="settings" class="content">
         <h2>Settings</h2>
-        
+
         <p>Change your personal details here </p>
 
         <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
           <label for="username">Name: </label>
           <input type="text" id="username" name="username" placeholder="Enter your new username">
-          
+
           <label for="email">Email: </label>
           <input type="email" id="email" name="email" placeholder="Enter your new Email">
 
           <label for="password">Password: </label>
           <input type="password" id="password" name="password" placeholder="Enter your new Password">
-          
+
           <button type="submit">Update Information</button>
         </form>
       </div>
 
       <div id="logout" class="content">
         <h2>Logout</h2>
-        
-        <form action="/G-TECH50/php/signOutFunction.php" method="POST"> 
-          <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: rgb(136, 0, 255); color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
+
+        <form action="/G-TECH50/php/signOutFunction.php" method="POST">
+          <button type="submit"
+            style="padding: 10px 20px; font-size: 16px; background-color: rgb(136, 0, 255); color: white; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
         </form>
       </div>
 
-  <script>
-    function showContent(contentId) {
-      const contents = document.querySelectorAll('.content');
-      contents.forEach(content => content.classList.remove('active'));
+      <script>
+        function showContent(contentId) {
+          const contents = document.querySelectorAll('.content');
+          contents.forEach(content => content.classList.remove('active'));
 
-      const buttons = document.querySelectorAll('.sidebar button');
-      buttons.forEach(button => button.classList.remove('active'));
+          const buttons = document.querySelectorAll('.sidebar button');
+          buttons.forEach(button => button.classList.remove('active'));
 
-      document.getElementById(contentId).classList.add('active');
+          document.getElementById(contentId).classList.add('active');
 
-      const activeButton = Array.from(buttons).find(button =>
-        button.innerText.includes(contentId.charAt(0).toUpperCase() + contentId.slice(1).toLowerCase())
-      );
-      if (activeButton) activeButton.classList.add('active');
-    }
-  </script>
+          const activeButton = Array.from(buttons).find(button =>
+            button.innerText.includes(contentId.charAt(0).toUpperCase() + contentId.slice(1).toLowerCase())
+          );
+          if (activeButton) activeButton.classList.add('active');
+        }
+
+        //Function to review a product from the previous orders list. Eamon Mooney - 230075926
+        function reviewProduct(productName, productID) {
+          // Redirect to reviews.html with product and productID in query params
+          const url = `reviews.html?product=${encodeURIComponent(productName)}&productID=${productID}`;
+          window.location.href = url;
+        }
+      </script>
 </body>
-</html>
 
+</html>

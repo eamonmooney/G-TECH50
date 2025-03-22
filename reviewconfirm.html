@@ -1,5 +1,7 @@
+<!-- Page made by Hanna Appiah - 230089015 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 
@@ -12,6 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews Confirmation</title>
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
     <style>
         /* Ensure body takes full height and flexbox is used */
         body {
@@ -59,10 +63,12 @@
         /* Push footer to the bottom */
         footer {
             width: 100%;
-            margin-top: auto; /* Moves footer to the bottom */
+            margin-top: auto;
+            /* Moves footer to the bottom */
         }
     </style>
 </head>
+
 <body>
 
     <!-- Linking PHP as an invisible image -->
@@ -97,8 +103,11 @@
                 <i class="material-icons" id="searchButton">search</i>
             </div>
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <!-- Basket Section in navbar -->
             <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
                 <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
                 <span id="basketNum"></span>
             </a>
         </div>
@@ -157,6 +166,5 @@
     </footer>
 
 </body>
+
 </html>
-
-

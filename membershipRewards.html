@@ -8,7 +8,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
-    
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/rewards.css">
     <link rel="stylesheet" href="css/navbarfix.css">
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
 </head>
 
 <!-- Navigation Bar -->
@@ -26,14 +28,14 @@
     <div class="nav-links">
         <a href="index.html">Home</a>
         <div class="dropdown">
-          <a href=#>Categories</a>
-          <div class="dropdown-content">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-          </div>
+            <a href=#>Categories</a>
+            <div class="dropdown-content">
+                <a href="categories/Mice.html">Mice</a>
+                <a href="categories/Monitors.html">Monitors</a>
+                <a href="categories/Headphones.html">Headphones</a>
+                <a href="categories/Keyboards.html">Keyboards</a>
+                <a href="categories/Mousepads.html">Mousepads</a>
+            </div>
         </div>
         <a href="aboutus.html">About Us</a>
         <a href="contact.html">Contact Us</a>
@@ -43,8 +45,8 @@
     <!-- Search & User Icons -->
     <div class="icon-container">
         <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
+            <input type="text" id="searchBar" placeholder="Search...">
+            <i class="material-icons" id="searchButton">search</i>
         </div>
         <a href="profile.html"><i class="material-icons">account_circle</i></a>
         <!-- Basket Section in navbar -->
@@ -106,25 +108,25 @@
         </ul>
     </div>
     <div class="split-columns">
-    <div class="column">
-        <h2>Points Balance</h2>
-        <div class="points-container">
-            <p>Your current points:</p>
-            <span id="pointsBalance"></span>
-            <p><span class="small-text">Remember, making purchases increases your balance!</span></p>
-        </div>
-    </div>
-
-    <div class="column">
-        <h2>Your G-tech50 rank</h2>
-        <div class="progress-container">
-            <p>Current Rank: <span id="rewardStage"> Loading...</span></p>
-            <div class="progress-bar">
-                <div id="progressFill"></div>
+        <div class="column">
+            <h2>Points Balance</h2>
+            <div class="points-container">
+                <p>Your current points:</p>
+                <span id="pointsBalance"></span>
+                <p><span class="small-text">Remember, making purchases increases your balance!</span></p>
             </div>
-            <p>Purchases: <span id="purchaseCount">0</span></p>
         </div>
-    </div>
+
+        <div class="column">
+            <h2>Your G-tech50 rank</h2>
+            <div class="progress-container">
+                <p>Current Rank: <span id="rewardStage"> Loading...</span></p>
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+                <p>Purchases: <span id="purchaseCount">0</span></p>
+            </div>
+        </div>
     </div>
 
     <div class="split-columns">
@@ -149,7 +151,7 @@
                     border-radius: 2px;
                 }
 
-                .unreleased button:hover{
+                .unreleased button:hover {
                     background-color: rgb(108, 0, 158);
                 }
             </style>
@@ -170,7 +172,7 @@
                     font-size: 14px;
                     margin-top: 10px;
                 }
-                
+
                 .newsletter button {
                     margin-top: 20px;
                     background-color: rgb(174, 0, 255);
@@ -180,17 +182,17 @@
                     align-items: center;
                 }
 
-                .newsletter button:hover{
+                .newsletter button:hover {
                     background-color: rgb(108, 0, 158);
                 }
             </style>
         </div>
-        </div>
     </div>
+</div>
 </div>
 
 
-<script> 
+<script>
     fetch('php/membershipSignUp.php')
         .then(response => response.json()) // Parse the response as JSON
         .then(data => {
@@ -202,48 +204,48 @@
         });
 
     document.addEventListener("DOMContentLoaded", function () {
-    // Fetches only the points
-    function updatePointsBalance() {
-        fetch("php/updatePoints.php")
-            .then(response => response.json())
-            .then(data => {
-                if (data.points !== undefined) {
-                    document.getElementById("pointsBalance").textContent = data.points;
-                } else {
-                    console.error("Error fetching points:", data.error);
-                }
-            })
-            .catch(error => console.error("Fetch error:", error));
-    }
-    updatePointsBalance();
+        // Fetches only the points
+        function updatePointsBalance() {
+            fetch("php/updatePoints.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.points !== undefined) {
+                        document.getElementById("pointsBalance").textContent = data.points;
+                    } else {
+                        console.error("Error fetching points:", data.error);
+                    }
+                })
+                .catch(error => console.error("Fetch error:", error));
+        }
+        updatePointsBalance();
 
-    // Fetch the rank and purchase count dynamically.
-    function updateRankAndPurchases() {
-        fetch("php/updateRank.php") 
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    console.error("Error:", data.error);
-                    return;
-                }
+        // Fetch the rank and purchase count dynamically.
+        function updateRankAndPurchases() {
+            fetch("php/updateRank.php")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error("Error:", data.error);
+                        return;
+                    }
 
-                // Update rank and purchase count in the HTML.
-                document.getElementById("rewardStage").textContent = data.rank;
-                document.getElementById("purchaseCount").textContent = data.purchases;
+                    // Update rank and purchase count in the HTML.
+                    document.getElementById("rewardStage").textContent = data.rank;
+                    document.getElementById("purchaseCount").textContent = data.purchases;
 
-                // Update the progress bar based on purchases.
-                const progressBar = document.getElementById("progressFill");
-                let progressPercentage = Math.min((data.purchases / 20) * 100, 100);
+                    // Update the progress bar based on purchases.
+                    const progressBar = document.getElementById("progressFill");
+                    let progressPercentage = Math.min((data.purchases / 20) * 100, 100);
 
-                progressBar.style.width = `${progressPercentage}%`;
-                progressBar.textContent = `${progressPercentage.toFixed(0)}%`;
-            })
-            .catch(error => console.error("Error loading rank and purchases:", error));
-    }
+                    progressBar.style.width = `${progressPercentage}%`;
+                    progressBar.textContent = `${progressPercentage.toFixed(0)}%`;
+                })
+                .catch(error => console.error("Error loading rank and purchases:", error));
+        }
 
-    // Call the function on page load
-    updateRankAndPurchases();
-});
+        // Call the function on page load
+        updateRankAndPurchases();
+    });
 
 
 

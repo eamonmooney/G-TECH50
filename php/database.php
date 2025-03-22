@@ -62,6 +62,7 @@ try {
             OrderTypeID INT NOT NULL,
             OrderDate VARCHAR(10) NOT NULL,
             OrderCost FLOAT NOT NULL,
+            Address VARCHAR(50) NOT NULL,
             FOREIGN KEY (UserID) REFERENCES Users(UserID),
             FOREIGN KEY (GuestID) REFERENCES GuestInfo(GuestID),
             FOREIGN KEY (OrderTypeID) REFERENCES OrderTypes(OrderTypeID)
@@ -121,12 +122,14 @@ try {
 
         CREATE TABLE IF NOT EXISTS Reviews (
             ReviewID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            UserID INT NOT NULL ,
+            UserID INT NULL,
             ProductID INT NOT NULL,
-            Rating INT CHECK (Rating BETWEEN 0 AND 10),
+            Rating INT CHECK (Rating BETWEEN 0 AND 5),
             Review VARCHAR(100),
-            FOREIGN KEY (UserID) REFERENCES Users(UserID),
-            FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+            Hidden BOOLEAN NOT NULL DEFAULT FALSE,
+            Verified BOOLEAN NOT NULL DEFAULT FALSE,
+            FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE SET NULL,
+            FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
         );
 
         CREATE TABLE IF NOT EXISTS AccessKeys (
@@ -146,6 +149,21 @@ try {
             CurrentRank VARCHAR(30) NOT NULL DEFAULT 'G-TECH50 BEGINNER',
             FOREIGN KEY (UserID) REFERENCES Users(UserID)
         );
+
+        IF NOT EXISTS (
+            SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE table_name = 'Products' AND column_name = 'pinnedReviewID'
+        ) THEN
+            ALTER TABLE Products ADD COLUMN pinnedReviewID INT;
+        END IF;
+
+        IF NOT EXISTS (
+            SELECT 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+            WHERE table_name = 'Products' AND constraint_name = 'fk_pinnedReview'
+        ) THEN
+            ALTER TABLE Products
+            ADD CONSTRAINT fk_pinnedReview FOREIGN KEY (pinnedReviewID) REFERENCES Reviews(ReviewID);
+        END IF;
     ";
 
     $db->exec($sql);
