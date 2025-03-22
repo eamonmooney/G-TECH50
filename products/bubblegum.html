@@ -4,7 +4,6 @@
   Review Frontend by Hanna Appiah - 230089015
   Review Backend by Eamon Mooney - 230075926
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -229,6 +228,24 @@
             document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
         });
 </script>
+
+<style>
+  .verified-badge {
+    display: inline-block;
+    background-color: #4CAF50; 
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  
+  .review .verified-badge {
+    margin-top: 5px;
+  }
+</style>
 
   <!-- Footer -->
   <footer>
