@@ -1,72 +1,89 @@
+<!-- Evergreen product page
+  Frontend worked on by: by Rayyan Akhlaq - 230074804
+  Form for adding to basket added by Safa Riasat - 230078145
+  Review Frontend by Hanna Appiah - 230089015
+  Review Backend by Eamon Mooney - 230075926
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>G-TECH50 | EVERGREEN MAT</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/navbarfix.css">
-  
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
 
 </head>
 
 <body>
-  
-    <!-- NAV BAR FOR PRODUCT PAGES -->
-     <div class="navbar">
-      <div class="logo">
-        <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
-      </div>
-  
-  
-      <div class="nav-links">
-        <a href="../index.html">Home</a>
-  
-        <div class="dropdown">
-          <a href=#>Categories</a>
-  
-          <div class="dropdown-content">
-            <a href="../categories/Mice.html">Mice</a>
-            <a href="../categories/Monitors.html">Monitors</a>
-            <a href="../categories/Headphones.html">Headphones</a>
-            <a href="../categories/Keyboards.html">Keyboards</a>
-            <a href="../categories/Mousepads.html">Mousepads</a>
-          </div>
-  
-        </div>
-        <a href="../aboutus.html">About Us</a>
-        <a href="../contact.html">Contact Us</a>
-        <a href="membershipSignUp.html">G-TECH50+</a>
-      </div>
-  
-  
-      <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-  
-        <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
-      </div>
+
+  <!-- NAV BAR FOR PRODUCT PAGES -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
     </div>
-  
-    <div id="searchResults" class="search-results" style="display: none;"></div>
-  
-    <!-- Linking to Search bar JS -->
-    <script src="../js/searchBar.js"></script>
-    
+
+
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+
+      <div class="dropdown">
+        <a href=#>Categories</a>
+
+        <div class="dropdown-content">
+          <a href="../categories/Mice.html">Mice</a>
+          <a href="../categories/Monitors.html">Monitors</a>
+          <a href="../categories/Headphones.html">Headphones</a>
+          <a href="../categories/Keyboards.html">Keyboards</a>
+          <a href="../categories/Mousepads.html">Mousepads</a>
+        </div>
+
+      </div>
+      <a href="../aboutus.html">About Us</a>
+      <a href="../contact.html">Contact Us</a>
+      <a href="membershipSignUp.html">G-TECH50+</a>
+    </div>
+
+
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
+    </div>
+  </div>
+
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="../js/searchBar.js"></script>
+
   <div class="single-item">
     <div class="Picture">
-        <img class="main-image" src="../images/Ai/evergreen0001.png" alt="Mouse">
+      <img class="main-image" src="../images/Ai/evergreen0001.png" alt="Mouse">
     </div>
     <div class="item-spec">
         <h2>EVERGREEN MAT</h2>
+        <p id="averageRating"></p>
         <h3> "Ground your game in nature." </h3>
         <h4>Colour: Forest Greens</h4>
         <h4>Functionality: Non-slip backing, water-resistant surface, eco-friendly materials</h4>
@@ -79,12 +96,154 @@
           <input type="hidden" name="prodPrice" value="16.99">
           <input type="number" name="prodQuant" value="1" min="1" max="10" >
           <button type="submit" name="basketAdd" class="button">Add To Basket</button>
+          <a href="../reviews.html?product=EVERGREEN%20MAT&productID=23" class="button1">Write a Review</a>
         </form>
     </div>
-</div>
+  </div>
 
-    
+  <div id="pinnedReview"></div>
+
+  <div id="reviews"></div>
+
+  <script>
+    function calculateAverageRating(reviews) {
+        let totalRating = 0;
+        let visibleReviewsCount = 0;
+
+        reviews.forEach(review => {
+            if (review.Hidden === 0) { // Only count non-hidden reviews
+                totalRating += review.Rating;
+                visibleReviewsCount++;
+            }
+        });
+
+        let averageRating = visibleReviewsCount > 0 ? totalRating / visibleReviewsCount : 0;
+        return averageRating;
+    }
+
+    function generateStarHTML(rating) {
+        const fullStars = Math.floor(rating);
+        const halfStar = (rating - fullStars) >= 0.5;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+        let starsHTML = '';
+
+        // Full stars
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<i class="fa fa-star"></i>';
+        }
+
+        if (halfStar) {
+            starsHTML += '<i class="fa fa-star-half-o"></i>';
+        }
+
+        // Empty stars
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<i class="fa fa-star-o"></i>';
+        }
+
+        return starsHTML;
+    }
+
+    function displayAverageRating(averageRating) {
+        const averageRatingElement = document.getElementById('averageRating');
+        averageRatingElement.innerHTML = `
+            ${generateStarHTML(averageRating)}
+        `;
+    }
+
+    function displayReviews(reviews) {
+        const reviewsContainer = document.getElementById('reviews');
+        reviewsContainer.innerHTML = ''; // Clear existing reviews first
+
+        const visibleReviews = reviews.filter(review => review.Hidden === 0);
+
+        if (visibleReviews.length === 0) {
+            reviewsContainer.innerHTML = '<p>No reviews yet!</p>';
+            return;
+        }
+
+        visibleReviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('review');
+
+            const starsHTML = generateStarHTML(review.Rating);
+
+            // Add the review and stars to the review element
+            reviewElement.innerHTML = `
+                <p>${starsHTML}</p>
+                <p>" ${review.Review} "</p>
+                ${review.Verified ? '<span class="verified-badge">Verified</span>' : ''}
+            `;
+
+            reviewsContainer.appendChild(reviewElement);
+        });
+    }
+
+    function displayPinnedReview(pinnedReview) {
+        const pinnedReviewContainer = document.getElementById('pinnedReview');
+
+        if (!pinnedReview) {
+            pinnedReviewContainer.innerHTML = ''; // No pinned review to display
+            return;
+        }
+
+        const starsHTML = generateStarHTML(pinnedReview.Rating);
+
+        pinnedReviewContainer.innerHTML = `
+            <div class="pinned-review" style="border: 2px solid gold; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+                <h3 style="color: gold;">⭐ Pinned Review ⭐</h3>
+                <p>${starsHTML}</p>
+                <p>" ${pinnedReview.Review} "</p>
+            </div>
+        `;
+    }
+
+    // Fetch reviews and update the page
+    fetch('../php/reviewGet.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ productId: 23 }) // <-- Product ID
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+                document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
+            } else {
+                const averageRating = calculateAverageRating(data.reviews);
+                displayAverageRating(averageRating);
+                displayReviews(data.reviews);
+                displayPinnedReview(data.pinnedReview);  // Display pinned review
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
+        });
+</script>
+
+<style>
+  .verified-badge {
+    display: inline-block;
+    background-color: #4CAF50; 
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
   
+  .review .verified-badge {
+    margin-top: 5px;
+  }
+</style>
+
+
 
   <!-- Footer -->
   <footer>
@@ -113,6 +272,6 @@
   </footer>
 
 
-   </body> 
+</body>
 
-    </html>
+</html>

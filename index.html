@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <!-- Link to basketnumber JavaScript file -->
+    <script src="js/basketNumber.js"></script>
 </head>
 
 <body>
@@ -39,21 +41,21 @@
                 console.log('PHP Response:', data.result);
             })
             // Handle errors
-            .catch(error => console.error('Error:', error));  
-      
+            .catch(error => console.error('Error:', error));
+
         //Database connection - Eamon Mooney (230075926)
         fetch('php/connectdb.php')
-        // Parse response from PHP into JSON
-        .then(response => response.json())
-        //With this data
-        .then(data => {
-          // Print the result to the console     
-          console.log('PHP Response:', data.result);
-        })
-        // Handle errors
-        .catch(error => console.error('Error:', error));  
+            // Parse response from PHP into JSON
+            .then(response => response.json())
+            //With this data
+            .then(data => {
+                // Print the result to the console     
+                console.log('PHP Response:', data.result);
+            })
+            // Handle errors
+            .catch(error => console.error('Error:', error));  
     </script>
-  
+
     <!-- Linking php as an invisible image -->
     <img src="php/guestAccount.php" style="display: none;">
 
