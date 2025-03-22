@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/signin.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     
     <style>
         body {
@@ -141,7 +141,7 @@
             console.log('Review ID:', reviewID);
 
             if (reviewID) {
-                fetch('php/reviewDetails.php', {
+                fetch('../php/reviewDetails.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -186,7 +186,7 @@
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
-                fetch('php/reviewHide.php', {
+                fetch('../php/reviewHide.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -221,7 +221,7 @@
                 const hideValue = !isCurrentlyHidden;
 
                 // Send request to PHP script
-                fetch('php/reviewHide.php', {
+                fetch('../php/reviewHide.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -259,7 +259,7 @@
                 const pinValue = !isCurrentlyPinned;
 
                 // Send request to PHP script
-                fetch('php/reviewPin.php', {
+                fetch('../php/reviewPin.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
