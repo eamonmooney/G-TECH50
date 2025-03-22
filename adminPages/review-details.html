@@ -161,14 +161,14 @@
                     `;
             
                     // Change the text inside the hide button depending on the status of 'hidden'
-                    if(data.Hidden) {
+                    if(data.review.Hidden) {
                         document.getElementById('hideButton').innerHTML = `Unhide`
                     } else {
                         document.getElementById('hideButton').innerHTML = `Hide`
                     }
 
                     // Change the text inside the pin button depending on the status of pinned
-                    if (data.isPinned) {
+                    if (data.review.isPinned) {
                         document.getElementById('pinButton').innerHTML = 'Unpin';
                     } else {
                         document.getElementById('pinButton').innerHTML = 'Pin';
