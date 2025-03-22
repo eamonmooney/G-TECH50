@@ -158,17 +158,18 @@
                         <p>User ID: ${data.review.UserID}</p>
                         <p>Product ID: ${data.review.ProductID}</p>
                         <p>Rating: ${data.review.Rating}</p>
+                        <p>Content: "${data.review.Review}"</p>
                     `;
             
                     // Change the text inside the hide button depending on the status of 'hidden'
-                    if(data.Hidden) {
+                    if(data.review.Hidden) {
                         document.getElementById('hideButton').innerHTML = `Unhide`
                     } else {
                         document.getElementById('hideButton').innerHTML = `Hide`
                     }
 
                     // Change the text inside the pin button depending on the status of pinned
-                    if (data.isPinned) {
+                    if (data.review.isPinned) {
                         document.getElementById('pinButton').innerHTML = 'Unpin';
                     } else {
                         document.getElementById('pinButton').innerHTML = 'Pin';
@@ -186,7 +187,7 @@
             const reviewID = getQueryParam('reviewID');
             
             if (reviewID) {
-                fetch('../php/reviewHide.php', {
+                fetch('../php/reviewDelete.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
