@@ -1,0 +1,292 @@
+<!-- Page made by Elisha Kolade - 220383798 -->
+ <!-- JS and Backend by Eamon Mooney - 230075926 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Review Details - G-TECH50</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+        .review-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .admin-actions div {
+            width: 48%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+        }
+        .admin-actions div:hover {
+            background: #f1f1f1;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background: #333;
+            color: white;
+        }
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>    
+  
+    <div class="navbar">
+        <div class="logo">
+          <a href="index.html">Logo</a>
+        </div>
+    
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+    
+          <div class="dropdown">
+            <a href=#>Categories</a>
+    
+            <div class="dropdown-content">
+              <a href="categories/Mice.html">Mice</a>
+              <a href="categories/Monitors.html">Monitors</a>
+              <a href="categories/Headphones.html">Headphones</a>
+              <a href="categories/Keyboards.html">Keyboards</a>
+              <a href="categories/Mousepads.html">Mousepads</a>
+            </div>
+    
+          </div>
+          <a href="aboutus.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+    
+        <div class="icon-container">
+            
+            <div class="search-bar">
+              <input type="text" placeholder="Search...">
+              <i class="material-icons">search</i>
+            </div>
+    
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div>Review Details</div>
+
+        <div class="review-box" id="review-box"></div>
+
+        <div class="admin-actions">
+            <div  onclick="back()">Back to review table</div>
+            <div><button>Add</button>
+                <button onclick="deleteReview()">Delete</button>
+                <button id="pinButton" onclick="togglePin()">Pin</button>
+                <button id="hideButton" onclick="toggleReviewVisibility()">Hide</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+         // Function to get query parameters from the URL
+         function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+        }
+
+        // Wait for content to load before changing attributes
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const reviewID = getQueryParam('reviewID');
+            console.log('Review ID:', reviewID);
+
+            if (reviewID) {
+                fetch('../php/reviewDetails.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Display review details on the page
+                    document.getElementById('review-box').innerHTML = `
+                        <p>Review ID: ${data.review.ReviewID}</p>
+                        <p>User ID: ${data.review.UserID}</p>
+                        <p>Product ID: ${data.review.ProductID}</p>
+                        <p>Rating: ${data.review.Rating}</p>
+                        <p>Content: "${data.review.Review}"</p>
+                    `;
+            
+                    // Change the text inside the hide button depending on the status of 'hidden'
+                    if(data.review.Hidden) {
+                        document.getElementById('hideButton').innerHTML = `Unhide`
+                    } else {
+                        document.getElementById('hideButton').innerHTML = `Hide`
+                    }
+
+                    // Change the text inside the pin button depending on the status of pinned
+                    if (data.review.isPinned) {
+                        document.getElementById('pinButton').innerHTML = 'Unpin';
+                    } else {
+                        document.getElementById('pinButton').innerHTML = 'Pin';
+                    }
+                })
+            .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+        });
+
+        // Script for deleting the currently selected review. Eamon - 230075926
+        function deleteReview() {
+            
+            const reviewID = getQueryParam('reviewID');
+            
+            if (reviewID) {
+                fetch('../php/reviewDelete.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Display it on the page
+                    document.getElementById('review-box').innerHTML = `
+                    <p>Review ${reviewID} Deleted.</p>
+                `;})
+            .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+        }
+
+        // Script for toggling hidden status of the selected review. Eamon - 230075926
+        function toggleReviewVisibility() {
+
+            const reviewID = getQueryParam('reviewID');
+
+            if (reviewID) {
+                // Grab the button text to know what action to take
+                const button = document.getElementById('hideButton');
+                const isCurrentlyHidden = button.innerText.trim() === 'Unhide';
+
+                // Determine action: if it's currently hidden, unhide it (false). Otherwise, hide it (true)
+                const hideValue = !isCurrentlyHidden;
+
+                // Send request to PHP script
+                fetch('../php/reviewHide.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID) + '&hidden=' + (hideValue ? 1 : 0)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Update button text based on new state
+                    if (hideValue) {
+                        button.innerText = 'Unhide';
+                    } else {
+                        button.innerText = 'Hide';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+        }
+
+        // Script for toggling pin status of the selected review. Eamon - 230075926
+        function togglePin() {
+
+            const reviewID = getQueryParam('reviewID');
+
+            if (reviewID) {
+                // Grab the button text to know what action to take
+                const button = document.getElementById('pinButton');
+                const isCurrentlyPinned = button.innerText.trim() === 'Unpin';
+
+                // Determine action: if it's currently pinned, unpin it (false). Otherwise, pin it (true)
+                const pinValue = !isCurrentlyPinned;
+
+                // Send request to PHP script
+                fetch('../php/reviewPin.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'reviewID=' + encodeURIComponent(reviewID) + '&pinned=' + (pinValue ? 1 : 0)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Review Data:', data);
+
+                    // Update button text based on new state
+                    if (pinValue) {
+                        button.innerText = 'Unpin';
+                    } else {
+                        button.innerText = 'Pin';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                console.log('No review ID found in URL');
+            }
+            }
+
+        function back() {
+            window.location.href = "customer-review.html";
+        }
+    </script>
+</body>
+</html>

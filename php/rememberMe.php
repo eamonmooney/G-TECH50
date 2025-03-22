@@ -1,6 +1,11 @@
 <?php
 // Remember me logic by Safa
-// Shld be linked in pages where login is required at the start
+// Should be linked in pages where login is required/ at the start
+// Start/resume the session 
+session_start();
+
+// Error testing - prints all values in session
+// print_r($_SESSION); 
 
 // Auto-login via cookie 
 // If user ID isnt set and cookie remember me is active
@@ -25,10 +30,11 @@ if (!isset($_SESSION['userId']) && isset($_COOKIE['rememberMe'])) {
 		$_SESSION['roleId'] = $user['RoleID'];
 		$_SESSION['username'] = $user['Name'];
 		$_SESSION['email'] = $user['Email'];
+		$_SESSION['signedIn'] = True;
 		$response = "User is set";
 		echo json_encode($response);
 		exit();
-		// Otherwise
+		// Otherwise if there's no cookie in the database / invalid
 	} else {
 		// Clear the invalid/expired cookie
 		setcookie("rememberMe", "", time() - 3600, "/");
@@ -36,9 +42,17 @@ if (!isset($_SESSION['userId']) && isset($_COOKIE['rememberMe'])) {
 		echo json_encode($response);
 		exit();
 	}
-}else{
+} else {
+	// If the user ID isn't set or if the user ID is 0 (guest)
+	if (!isset($_SESSION['userId']) || $_SESSION['userId'] == 0) {
+		// Set signed in to false
+		$_SESSION['signedIn'] = False;
+		// Else (meaning if the user ID is a valid number)
+	} else {
+		// Set signed in to true
+		$_SESSION['signedIn'] = True;
+	}
+
 	$response = "No cookie";
 	echo json_encode($response);
-
 }
-?>
