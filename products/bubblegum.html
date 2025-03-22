@@ -14,6 +14,7 @@
 
   <title>G-TECH50 | BUBBLEGUM BLASTER</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
@@ -109,26 +110,29 @@
 
   <script>
 
-    // Function to get the star rating string (out of 5)
     function getStarRating(rating) {
-        let fullStars = Math.floor(rating);  // Full stars based on the integer part of the rating
-        let halfStar = (rating % 1) >= 0.5 ? 1 : 0;  // Half star if the decimal part is >= 0.5
-        let emptyStars = 5 - fullStars - halfStar;  // Remaining stars to make it 5
+        let fullStars = Math.floor(rating);
+        let halfStars = Math.ceil(rating) - fullStars;
+        let emptyStars = 5 - (fullStars + halfStars);
 
-        let starString = '';
+        let stars = '';
+
         // Add full stars
         for (let i = 0; i < fullStars; i++) {
-            starString += '★';  // Full star
+            stars += '<i class="fa fa-star"></i>';
         }
-        // Add half star if needed
-        if (halfStar) {
-            starString += '☆';  // Half star
+
+        // Add half stars
+        for (let i = 0; i < halfStars; i++) {
+            stars += '<i class="fa fa-star-half-o"></i>';
         }
+
         // Add empty stars
         for (let i = 0; i < emptyStars; i++) {
-            starString += '☆';  // Empty star
+            stars += '<i class="fa fa-star-o"></i>';
         }
-        return starString;
+
+        return stars;
     }
 
     // Function to fetch reviews and display them
