@@ -181,6 +181,13 @@
           );
           if (activeButton) activeButton.classList.add('active');
         }
+
+        //Function to review a product from the previous orders list. Eamon Mooney - 230075926
+        function reviewProduct(productName, productID) {
+          // Redirect to reviews.html with product and productID in query params
+          const url = `reviews.html?product=${encodeURIComponent(productName)}&productID=${productID}`;
+          window.location.href = url;
+        }
       </script>
 </body>
 
