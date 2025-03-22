@@ -1,4 +1,10 @@
 <?php
+//Submits a review.
+//Checks to see if the current user has bought the selected product, this product will then be labelled as a verified purchase.S
+//Signed out users can make reviews
+//Signed in users can make reviews
+//Signed in users with a verified purchase can make reviews
+//Eamon Mooney - 230075926
 header('Content-Type: application/json');
 session_start();
 require_once('connectdb.php');

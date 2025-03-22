@@ -1,4 +1,11 @@
 <?php
+// Gets the list of reviews for each product to be displayed at the bottom of their pages.
+// Collects, displays and excludes the pinned review from the main list (If there is one)
+// Labels reviews as verified if the user making the review has bounght the item
+// Does not show reviews that have been marked as hidden
+// Calculates the average amount of stars for each product (Excluding hidden reviews)
+// Eamon Mooney - 230075926
+
 // Database connection
 require_once('connectdb.php');
 
