@@ -10,9 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/signin.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 
     <style>
         body {
@@ -157,7 +157,7 @@
             <select id="filterSelect" onchange="filterTable()">
                 <script>
                     // Script for changing html attributes of the filter options. Eamon - 230075926
-                    fetch('php/reviewFilter.php')
+                    fetch('../php/reviewFilter.php')
                         .then(response => response.text())
                         .then(data => {
                             document.getElementById('filterSelect').innerHTML = data;
@@ -180,7 +180,7 @@
             <tbody id="reviewRows">
                 <script>
                     // Script for changing html attributes of the review table. Eamon - 230075926
-                    fetch('php/reviewsTable.php')
+                    fetch('../php/reviewsTable.php')
                         .then(response => response.text())
                         .then(data => {
                             document.getElementById('reviewRows').innerHTML = data;
@@ -248,7 +248,7 @@
             }
 
             // Fetch the review data and populate the table
-            fetch('php/reviewsTable.php')
+            fetch('../php/reviewsTable.php')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('reviewRows').innerHTML = data;
@@ -260,7 +260,7 @@
                 .catch(error => console.error('Error:', error));
 
             // Fetch filter options
-            fetch('php/reviewFilter.php')
+            fetch('../php/reviewFilter.php')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('filterSelect').innerHTML = data;
