@@ -8,16 +8,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/navbarfix.css">
   <script src="js/searchBar.js"></script>
   <title>Admin User Details</title>
   <style>
     .title {
-        position: relative;
-     left: 45%;
+     position: relative;
+     left: 35%;
      color: white;
      font-size: medium;
      font-weight: bold;
-     font-family: 'Arial', sans-serif;
+     padding-top: 50px;
+     font-size: 30px;
     }
     .container { 
       width: 60%; 
@@ -32,7 +34,7 @@
       color: white;
     }
     body {
-      background-color: #111;
+      background-color: #000000;
       color: white;
      overflow-x: hidden;
 }
@@ -49,7 +51,7 @@
       border: 1px solid white;
       color: white; 
     }
-    .button button {
+    .button1 button {
       background-color: transparent;
       color: rgb(255, 255, 255);
       border-color: rgb(255, 255, 255);
@@ -59,67 +61,113 @@
       position: relative;
       left: 40%;
     }
+    @media (max-width: 1024px) {
+            .container {
+                width: 80%;
+            }
+            .title {
+                left: 25%;
+                font-size: 28px;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+            .title {
+                left: 15%;
+                font-size: 24px;
+                text-align: center;
+            }
+            .button button {
+                left: 30%;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding: 0 10px;
+            }
+            .title {
+                left: 0;
+                font-size: 20px;
+                text-align: center;
+            }
+            label, input, select {
+                width: 95%;
+                margin: 10px 0;
+            }
+            .button button {
+                left: 0;
+                width: 100%;
+                text-align: center;
+            }
+          }
+ 
+ 
   </style>
+
    <!-- Navigation Bar -->
-    <div class="navbar">
-        <div class="logo">
-            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <div class="dropdown">
-            <a href=#>Categories</a>
-            <div class="dropdown-content">
-                <a href="categories/Mice.html">Mice</a>
-                <a href="categories/Monitors.html">Monitors</a>
-                <a href="categories/Headphones.html">Headphones</a>
-                <a href="categories/Keyboards.html">Keyboards</a>
-                <a href="categories/Mousepads.html">Mousepads</a>
-            </div>
-            </div>
-            <a href="aboutus.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </div>
-
-        <!-- Search & User Icons -->
-        <div class="icon-container">
-            <div class="search-bar">
-            <input type="text" id="searchBar" placeholder="Search...">
-            <i class="material-icons" id="searchButton">search</i>
-            </div>
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
-        </div>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger-menu" id="hamburgerMenu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+   <div class="navbar">
+    <div class="logo">
+        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
     </div>
-
-    <!-- Mobile Navigation Bar -->
-    <div class="mobile-nav-links" id="mobileNavLinks">
-        <a href="Home.html">Home</a>
-        <a href=# id="mobileCategories">Categories</a>
-        <div class="mobile-dropdown-content" id="mobileDropdownContent">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <a href=#>Categories</a>
+          <div class="dropdown-content">
             <a href="categories/Mice.html">Mice</a>
             <a href="categories/Monitors.html">Monitors</a>
             <a href="categories/Headphones.html">Headphones</a>
             <a href="categories/Keyboards.html">Keyboards</a>
             <a href="categories/Mousepads.html">Mousepads</a>
+          </div>
         </div>
-        <a href="AboutUs.html">About Us</a>
+        <a href="aboutus.html">About Us</a>
         <a href="contact.html">Contact Us</a>
+        <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
 
-    <!-- Search Results -->
-    <div id="searchResults" class="search-results" style="display: none;"></div>
+    <!-- Search & User Icons -->
+    <div class="icon-container">
+        <div class="search-bar">
+          <input type="text" id="searchBar" placeholder="Search...">
+          <i class="material-icons" id="searchButton">search</i>
+        </div>
+        <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+    </div>
 
-    <!-- Linking to Search bar JS -->
-    <script src="js/searchBar.js"></script>
-    <script src="js/mobileNavbar.js"></script>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+
+<!-- Mobile Navigation Bar -->
+<div class="mobile-nav-links" id="mobileNavLinks">
+    <a href="Home.html">Home</a>
+    <a href=# id="mobileCategories">Categories</a>
+    <div class="mobile-dropdown-content" id="mobileDropdownContent">
+        <a href="categories/Mice.html">Mice</a>
+        <a href="categories/Monitors.html">Monitors</a>
+        <a href="categories/Headphones.html">Headphones</a>
+        <a href="categories/Keyboards.html">Keyboards</a>
+        <a href="categories/Mousepads.html">Mousepads</a>
+    </div>
+    <a href="AboutUs.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- Search Results -->
+<div id="searchResults" class="search-results" style="display: none;"></div>
+
+<!-- Linking to Search bar JS -->
+<script src="js/searchBar.js"></script>
+<script src="js/mobileNavbar.js"></script>
 
 </head>
 <body>
@@ -141,7 +189,7 @@
           <option value="false">False</option>
         </select>
       </label>
-      <div class="button">
+      <div class="button1">
         <button>Confirm</button>
       </div>
     </div>

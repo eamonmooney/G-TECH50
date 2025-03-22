@@ -11,9 +11,11 @@
 	//Check if user is logged in
 	//If they arent, make a default guest account
 	if (!isset($_SESSION['userId'])) {	
+		// Temporarily given 0 so we know its a guest - not used in database tho
 		$_SESSION['userId'] = 0;
 		$_SESSION['roleId'] = 1;
 		$_SESSION['username'] = 'Guest';
+		$_SESSION['signedIn'] = False;
 	}
 
 	// If basket isnt set, initialise

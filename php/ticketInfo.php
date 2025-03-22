@@ -10,9 +10,6 @@ require_once('connectdb.php');
 try {
 
     // Prepare a query to get all tickets
-    //$stmt = $db->prepare("SELECT TicketID, UserID, Telephone, TicketDate, Closed, TicketContent FROM supporttickets");
-    //$stmt->execute();
-
     // Prepare query with JOIN to get username and ticketType
     $stmt = $db->prepare("
         SELECT 
