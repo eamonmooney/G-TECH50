@@ -19,13 +19,13 @@ if ($productId) {
             $pinnedReviewId = $pinnedIdResult['pinnedReviewID'];
 
             // Fetch the pinned review details
-            $stmtPinnedReview = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ReviewID = :pinnedReviewId AND Hidden = 0");
+            $stmtPinnedReview = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden, Verified FROM Reviews WHERE ReviewID = :pinnedReviewId AND Hidden = 0");
             $stmtPinnedReview->execute([':pinnedReviewId' => $pinnedReviewId]);
             $pinnedReview = $stmtPinnedReview->fetch(PDO::FETCH_ASSOC);
         }
 
         // Fetch all visible reviews for the product
-        $stmtReviews = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden FROM Reviews WHERE ProductID = :productId AND Hidden = 0");
+        $stmtReviews = $db->prepare("SELECT ReviewID, UserID, ProductID, Rating, Review, Hidden, Verified FROM Reviews WHERE ProductID = :productId AND Hidden = 0");
         $stmtReviews->execute([':productId' => $productId]);
         $reviews = $stmtReviews->fetchAll(PDO::FETCH_ASSOC);
 

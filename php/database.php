@@ -127,7 +127,8 @@ try {
             Rating INT CHECK (Rating BETWEEN 0 AND 5),
             Review VARCHAR(100),
             Hidden BOOLEAN NOT NULL DEFAULT FALSE,
-            FOREIGN KEY (UserID) REFERENCES Users(UserID),
+            Verified BOOLEAN NOT NULL DEFAULT FALSE,
+            FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE SET NULL,
             FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
         );
 

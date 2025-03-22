@@ -138,7 +138,6 @@
             starsHTML += '<i class="fa fa-star"></i>';
         }
 
-        // Half star (you can replace this with a custom half-star icon if you have one)
         if (halfStar) {
             starsHTML += '<i class="fa fa-star-half-o"></i>';
         }
@@ -177,9 +176,10 @@
 
             // Add the review and stars to the review element
             reviewElement.innerHTML = `
-                    <p>${starsHTML}</p>
-                    <p>" ${review.Review} "</p>
-                `;
+                <p>${starsHTML}</p>
+                <p>" ${review.Review} "</p>
+                ${review.Verified ? '<span class="verified-badge">Verified</span>' : ''}
+            `;
 
             reviewsContainer.appendChild(reviewElement);
         });
@@ -212,28 +212,21 @@
         },
         body: JSON.stringify({ productId: 11 }) // <-- Product ID
     })
-    .then(response => response.json())
-    .then(data => {
-    if (data.error) {
-        console.error('Error:', data.error);
-        document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
-    } else {
-        const averageRating = calculateAverageRating(data.reviews);
-        displayAverageRating(averageRating);
-
-        // Display pinned review first if it exists
-        if (data.pinnedReview) {
-            displayPinnedReview(data.pinnedReview);
-        }
-
-        // Filter out pinned review from the regular reviews list
-        const filteredReviews = data.reviews.filter(review => {
-            return !data.pinnedReview || review.ReviewID !== data.pinnedReview.ReviewID;
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Error:', data.error);
+                document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
+            } else {
+                const averageRating = calculateAverageRating(data.reviews);
+                displayAverageRating(averageRating);
+                displayReviews(data.reviews);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('reviews').innerHTML = '<p>Error loading reviews.</p>';
         });
-
-        displayReviews(filteredReviews);
-    }
-})
 </script>
 
   <!-- Footer -->
