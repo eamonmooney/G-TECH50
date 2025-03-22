@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/checkout.css">
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="js/basketNumber.js"></script>
 </head>
 
 <body>
@@ -30,34 +32,34 @@
       //With this data
       .then(data => {
         // Change the qns depending on the data
-  
+
         // If signed in, tell console this and hide the elements
         if (data.status === "signedIn") {
-        console.log("User  signed in - additional qns hidden");
+          console.log("User  signed in - additional qns hidden");
 
-        // Temp variables
-        let emailField = document.getElementById("email");
-        let firstNameField = document.getElementById("firstName"); 
-        let surnameField = document.getElementById("surname");
+          // Temp variables
+          let emailField = document.getElementById("email");
+          let firstNameField = document.getElementById("firstName");
+          let surnameField = document.getElementById("surname");
 
-        // If email exists, make it dissapear
-        if (emailField){
-          emailField.style.display = "none";
-        } 
+          // If email exists, make it dissapear
+          if (emailField) {
+            emailField.style.display = "none";
+          }
 
-        // If first name exists, make it dissapear
-        if (firstNameField){
-          firstNameField.style.display = "none";
-        } 
-        // If surname exists, make it dissapoear
-        if (surnameField){
-          surnameField.style.display = "none";
-        } 
-      // Otherwise tell console they arent signed in and keep the qns
-      } else {
-        console.log("User not signed in - additional qns shown");
-      }
-    })
+          // If first name exists, make it dissapear
+          if (firstNameField) {
+            firstNameField.style.display = "none";
+          }
+          // If surname exists, make it dissapoear
+          if (surnameField) {
+            surnameField.style.display = "none";
+          }
+          // Otherwise tell console they arent signed in and keep the qns
+        } else {
+          console.log("User not signed in - additional qns shown");
+        }
+      })
 
   </script>
 
@@ -94,7 +96,13 @@
         <i class="material-icons" id="searchButton">search</i>
       </div>
       <a href="profile.html"><i class="material-icons">account_circle</i></a>
-      <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
     </div>
 
     <!-- Hamburger Menu -->
@@ -132,16 +140,16 @@
     <h2>Enter Your Details to checkout</h2>
     <div class="row">
       <div id="email">
-      <div class="email">
-        <label for="email">Email:</label>
-        <input type="text" class="form-control" id="email" name="email" required>
-      </div>
+        <div class="email">
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+        </div>
       </div>
       <div class="firstName" id="firstName">
         <label for="firstName">First Name: </label>
         <input type="text" class="form-control" id="first-Name" name="firstName" required>
       </div>
-      <div class="surname" id ="surname">
+      <div class="surname" id="surname">
         <label for="surname">Last Name: </label>
         <input type="text" class="form-control" id="surname" name="surename" required>
       </div>
@@ -166,7 +174,7 @@
         <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3">
       </div>
       <div class="button-container">
-        <button type="button" class="button" onclick="window.location='checkoutSummary.html';">Checkout</button>
+        <button type="submit" class="button" onclick="window.location='checkoutSummary.html';">Checkout</button>
       </div>
     </div>
   </form>
