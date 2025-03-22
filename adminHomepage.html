@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - G-Tech 50</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/adminHomepage.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/adminHomepage.js" defer></script>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="file:///C:/Users/tobia/Downloads/g-tech50%20logo.png" alt="Logo" class="logo-image">
+    </div>
+
+    <div class="nav-links">
+      <a href="Transactions.html">Transactions</a>
+      <a href="Users.html">Users</a>
+      <a href="Inventory.html">Inventory</a>
+      <a href="Reviews.html">Reviews</a>
+      <a href="Tickets.html">Tickets</a>
+    </div>
+
+    <div class="icon-container">
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+    </div>
+
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+  
+  <div class="mobile-nav-links" id="mobileNavLinks">
+    <a href="Transactions.html">Transactions</a>
+    <a href="Users.html">Users</a>
+    <a href="Inventory.html">Inventory</a>
+    <a href="Reviews.html">Reviews</a>
+    <a href="Tickets.html">Tickets</a>
+  </div>
+
+  <div class="container">
+    <h1>Welcome, Admin!</h1>
+    <div class="cards">
+      <div class="card"><h3>Total Sales</h3><p id="totalSales">Loading...</p></div>
+      <div class="card"><h3>Active Users</h3><p id="activeUsers">Loading...</p></div>
+      <div class="card"><h3>Pending Tickets</h3><p id="pendingTickets">Loading...</p></div>
+      <div class="card"><h3>Stock Items</h3><p id="stockItems">Loading...</p></div>
+    </div>
+
+    <div class="chart-container">
+      <h2>Recent Sales</h2>
+      <canvas id="salesChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Stock Overview</h2>
+      <canvas id="stockChart"></canvas>
+    </div>
+  </div>
+
+</body>
+</html>
