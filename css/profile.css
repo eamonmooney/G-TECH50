@@ -1,0 +1,184 @@
+/* CSS foundation done by Tobias Singh. Updated for design uniformity by Sahil Awan - 230073302. */
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'superbrigade';
+    src: url('fonts/superbrigade.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #f4f4f4;
+    height: 100vh; 
+    background-image: url(../images/Externalmade/keyboard_backlight_purple_212155_2560x1440.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+.navbar .nav-links {
+    font-family: 'horizon' !important;
+}
+
+.navbar .icon-container {
+    padding-right: 35px;
+}
+
+.profile-container {
+    display: flex;
+    width: 80%;
+    gap: 75px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.sidebar {
+    width: 20%;
+    height: 80vh; 
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    font-family: 'superbrigade';
+}
+
+.sidebar button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-bottom: 1px solid #333;
+    font-family: 'superbrigade';
+}
+
+.sidebar button:hover {
+    background-color: #333333;
+}
+
+.sidebar button.active {
+    background-color: #444;
+    font-weight: bold;
+}
+
+.content-box {
+    width: 50%; 
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: auto; 
+    color: white;
+}
+
+.content {
+    display: none; 
+}
+
+.content.active {
+    display: block; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+form input {
+    padding: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    padding: 10px;
+    background-color: rgb(136, 0, 255);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'superbrigade';
+}
+
+form button:hover {
+    background-color: rgb(87, 0, 163);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.order-details {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.no-orders {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+.content-box .content.active {
+    font-family: 'horizon';
+}
+
+.content-box .content.active h2 {
+    font-family: 'superbrigade';
+}
+
+.content-box .content.active input {
+    font-family: 'horizon';
+}
+
+.content-box .content.active button {
+    background-color: rgb(136, 0, 255);
+    font-family: 'superbrigade';
+    border: 0px;
+    padding: 10px;
+    color: white;
+}

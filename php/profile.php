@@ -1,21 +1,20 @@
 <?php
-##########################################################################
-# Collects Variables from the database to be displayed on the profile page
-##########################################################################
-# - Eamon Mooney - 230075926
-##########################################################################
+// Collects Variables from the database to be displayed on the profile page
+// Created by Eamon Mooney - 230075926
 session_start();
+
+// Error testing - prints all values in session
+// print_r($_SESSION); 
+// print_r($_COOKIE); 
 
 //Database connection
 require_once('connectdb.php');
 
 // If the user isn't logged in, redirect to the signin page
-if (!isset($_SESSION['userId'])) {	
-    // Return a redirect response
-    echo "redirect";
-    //Leaving the php file to ensure nothing else is performed
+if ($_SESSION['signedIn'] == False) {    
+    header("Location: ../signin.html");
     exit();
-} 
+}
 try {
     //Collecting information about the currently logged in user
     $userId = $_SESSION['userId'];
