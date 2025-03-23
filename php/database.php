@@ -46,6 +46,8 @@ try {
             Returnable BOOLEAN NOT NULL,
             Stock INT NOT NULL,
             Price FLOAT NOT NULL,
+            ImageURL VARCHAR(50) NOT NULL,
+            Description VARCHAR(100) NOT NULL,
             FOREIGN KEY (ProductTypeID) REFERENCES ProductType(ProductTypeID)
         );
 
@@ -192,40 +194,40 @@ try {
     //If doesn't populate
     if ($checkProducts == 0) {
         $db->exec("
-            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price) VALUES
-            (1, 'SUGARGLIDE SPARK', 1, 100, 34.99),
-            (1, 'COSMIC CURSOR', 1, 100, 49.99),
-            (1, 'WOODLAND WANDERER', 1, 100, 42.99),
-            (1, 'PIXELWAVE MOUSE', 1, 100, 49.99),
-            (1, 'KITTYCLICKS', 1, 100, 49.99),
+            INSERT INTO Products (ProductTypeID, ProductName, Returnable, Stock, Price, ImageURL, Description) VALUES
+            (1, 'SUGARGLIDE SPARK', 1, 100, 34.99, 'images/Ai/sugarglide0001.png', 'Candy-inspired mouse'),
+            (1, 'COSMIC CURSOR', 1, 100, 49.99, 'images/Ai/cosmic0001.png', 'Galaxy-inspired mouse'),
+            (1, 'WOODLAND WANDERER', 1, 100, 42.99, 'images/Ai/woodland_wanderer0001.png', 'Nature-inspired mouse'),
+            (1, 'PIXELWAVE MOUSE', 1, 100, 49.99, 'images/Ai/pixelwave0001.png', 'Neon-inspired mouse'),
+            (1, 'KITTYCLICKS', 1, 100, 49.99, 'images/Ai/kittyclicks0001.png', 'Cat-inspired mouse'),
             
-            (2, 'SUGARSCREEN MONITOR', 1, 100, 179.99),
-            (2, 'COSMO VIEW CURVED MONITOR', 1, 100, 299.99),
-            (2, 'ECO VIEW MONITOR', 1, 100, 189.99),
-            (2, 'RETROVIEW LED MONITOR', 1, 100, 169.99),
-            (2, 'KITTYVIEW MONITOR', 1, 100, 199.99),
+            (2, 'SUGARSCREEN MONITOR', 1, 100, 179.99, 'images/Ai/sugarscreen0001.png', 'Candy-inspired monitor'),
+            (2, 'COSMO VIEW CURVED MONITOR', 1, 100, 299.99, 'images/Ai/cosmo0001.png', 'Galaxy-inspired monitor'),
+            (2, 'ECO VIEW MONITOR', 1, 100, 189.99, 'images/Ai/eco0001.png', 'Nature-inspired monitor'),
+            (2, 'RETROVIEW LED MONITOR', 1, 100, 169.99, 'images/Ai/retro0001.png', 'Neon-inspired monitor'),
+            (2, 'KITTYVIEW MONITOR', 1, 100, 199.99, 'images/Ai/kittyview0001.png', 'Cat-inspired monitor'),
             
-            (3, 'BUBBLEGUM BLASTER', 1, 100, 49.99),
-            (3, 'STELLAR SOUNDWAVES', 1, 100, 59.99),
-            (3, 'WOODLAND HARMONY', 1, 100, 49.99),
-            (3, 'RETRO RAINBOW WAVE', 1, 100, 34.99),
-            (3, 'WHISKERTUNES', 1, 100, 39.99),
+            (3, 'BUBBLEGUM BLASTER', 1, 100, 49.99, 'images/Ai/bubblegum0001.png', 'Candy-inspired headphones'),
+            (3, 'STELLAR SOUNDWAVES', 1, 100, 59.99, 'images/Ai/stellar0001.png', 'Galaxy-inspired headphones'),
+            (3, 'WOODLAND HARMONY', 1, 100, 49.99, 'images/Ai/woodland0001.png', 'Nature-inspired headphones'),
+            (3, 'RETRO RAINBOW WAVE', 1, 100, 34.99, 'images/Ai/retro0001.png', 'Neon-inspired headphones'),
+            (3, 'WHISKERTUNES', 1, 100, 39.99, 'images/Ai/whiskertunes0001.png', 'Cat-inspired headphones'),
             
-            (4, 'CANDYKEYS KEYBOARD', 1, 100, 34.99),
-            (4, 'GALAXYTYPE KEYBOARD', 1, 100, 49.99),
-            (4, 'FORESTFLOW KEYBOARD', 1, 100, 42.99),
-            (4, 'PIXELPULSE KEYBOARD', 1, 100, 49.99),
-            (4, 'PURRKEYS KEYBOARD', 1, 100, 49.99),
+            (4, 'CANDYKEYS KEYBOARD', 1, 100, 34.99, 'images/Ai/candykeys0001.png', 'Candy-inspired keyboard'),
+            (4, 'GALAXYTYPE KEYBOARD', 1, 100, 49.99, 'images/Ai/galaxytype0001.png', 'Galaxy-inspired keyboard'),
+            (4, 'FORESTFLOW KEYBOARD', 1, 100, 42.99, 'images/Ai/forestflow0001.png', 'Nature-inspired keyboard'),
+            (4, 'PIXELPULSE KEYBOARD', 1, 100, 49.99, 'images/Ai/pixelpulse0001.png', 'Neon-inspired keyboard'),
+            (4, 'PURRKEYS KEYBOARD', 1, 100, 49.99, 'images/Ai/purrkeys0001.png', 'Cat-inspired keyboard'),
             
-            (5, 'CANDYPOP MAT', 1, 100, 14.99),
-            (5, 'NEBULAGLIDE MAT', 1, 100, 18.99),
-            (5, 'EVERGREEN MAT', 1, 100, 16.99),
-            (5, 'NEONVIBES PAD', 1, 100, 19.99),
-            (5, 'PAWSOFT MAT', 1, 100, 15.99),
+            (5, 'CANDYPOP MAT', 1, 100, 14.99, 'images/Ai/candypop0001.png', 'Candy-inspired mousemat'),
+            (5, 'NEBULAGLIDE MAT', 1, 100, 18.99, 'images/Ai/nebulaglide0001.png', 'Galaxy-inspired mousemat'),
+            (5, 'EVERGREEN MAT', 1, 100, 16.99, 'images/Ai/evergreen0001.png', 'Nature-inspired mousemat'),
+            (5, 'NEONVIBES PAD', 1, 100, 19.99, 'images/Ai/neonvibes0001.png', 'Neon-inspired mousemat'),
+            (5, 'PAWSOFT MAT', 1, 100, 15.99, 'images/Ai/pawsoft0001.png', 'Cat-inspired mousemat'),
             
-            (4, 'OMEGA KEYBOARD', 1, 100, 99.99),    
-            (2, 'OMEGA MONITOR', 1, 100, 329.99),    
-            (1, 'OMEGA MOUSE', 1, 100, 64.99);       
+            (4, 'OMEGA KEYBOARD', 1, 100, 99.99, 'images/Ai/omegakeyboard.png', 'G-Tech50+ special keyboard'),    
+            (2, 'OMEGA MONITOR', 1, 100, 329.99, 'images/Ai/omegamonitor.png', 'G-Tech50+ special monitor'),    
+            (1, 'OMEGA MOUSE', 1, 100, 64.99, 'images/Ai/omegamouse.png', 'G-Tech50+ special mouse');       
         ");
     }
 
@@ -286,6 +288,10 @@ try {
             ('4', '$Hash3') 
         ");
     }
+
+    // Return JSON response
+    // header('Content-Type: application/json');
+    // echo json_encode(["success" => "successful creation of db"]);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }

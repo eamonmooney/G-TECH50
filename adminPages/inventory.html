@@ -147,13 +147,28 @@
     <div class="container">
         <h2>Inventory Management System</h2>
         <div class="filter-bar">
+            <!-- Buttons -->
             <div class="top-buttons">
-                <button type="button">Show Low Stock</button>
-                <button type="button">View Orders</button>
+                <button type="button">Stock Reports</button>
+                <button type="button">New Product</button>
             </div>
+
+            <!-- Dropdowns -->
+            <!--Status -->
             <div class="top-filters">
-                <label for="category-filter">Show: </label>
-                <select name="category-filter" id="category-filter">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" onchange="filterTable()">
+                    <option value="All">All</option>
+                    <option value="Out">Out of Stock</option>
+                    <option value="Low">Low Stock</option>
+                    <option value="In">In Stock</option>
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="top-filters">
+                <label for="category-filter">Category: </label>
+                <select id="category-filter" onchange="filterTable()">
                     <option value="All">All</option>
                     <option value="Mice">Mice</option>
                     <option value="Monitors">Monitors</option>
@@ -163,7 +178,12 @@
                 </select>
                 &nbsp;
                 &nbsp;
-                <input type="text" id="admin-searchBar" placeholder="Search...">
+
+                <!-- Searchbar -->
+                <div class="productSearch">
+                    <input type="text" id="productSearch" onkeyup="filterTable()"
+                        placeholder="Search by product name...">
+                </div>
             </div>
         </div>
 
@@ -173,10 +193,12 @@
                 <tr>
                     <th>Select</th>
                     <th>Product ID</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Stock Level</th>
                     <th>Category</th>
+                    <th>Description</th>
                 </tr>
             </thead>
 
@@ -186,12 +208,6 @@
 
         </table>
 
-        <div class="button-bar">
-            <button type="button">Add Item</button>
-            <button type="button">Remove Iem</button>
-            <button type="button">Update Stock</button>
-            <button type="button">lookup item</button>
-        </div>
     </div>
 
 
@@ -249,20 +265,96 @@
 
                         // Each column for the row
                         row.innerHTML = `
-                    <td><input type="checkbox"></td>
-                    <td>${product.ProductID}</td>
-                    <td>${product.ProductName}</td>
-                    <td>${product.Status}</td>
-                    <td>${product.Stock}</td>
-                    <td>${product.Category}</td>
-                `;
+                        <!-- Checkbox -->
+                        <td><input type="checkbox"></td>
+                        <!-- ProductID -->
+                        <td>${product.ProductID}</td>
+                        <!-- Image -->
+                        <td>
+                        <img src="../${product.ImageURL}" alt="${product.ProductName}" width="80" 
+                        onerror="this.onerror=null;this.src='../images/default.png';">
+                        </td>
+                        <!-- ProductName -->
+                        <td>${product.ProductName}</td>
+                        <!-- Status -->
+                        <td>${product.Status}</td>
+                        <!-- Stock -->
+                        <td>${product.Stock}</td>
+                        <!-- Category -->
+                        <td>${product.Category}</td>
+                        <!-- Description -->
+                        <td>${product.Description}</td>
+                        `;
 
-                // Append this to the table
+                        // Append this to the table
                         tableBody.appendChild(row);
                     });
                 })
                 // Errors
                 .catch(error => console.error("Error fetching products:", error));
+        }
+
+
+        // JS TO FILTER THE TABLE
+        function filterTable() {
+            // Get table
+            const tableBody = document.getElementById("productTableBody");
+            // Get all rows
+            var tr = document.querySelectorAll("#productTableBody tr");
+
+            // Get the inputs
+            // Status dropdown 
+            var statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+            // Category dropdown
+            var categoryFilter = document.getElementById("category-filter").value.toLowerCase();
+            // Product name searchbar
+            var productNameFilter = document.getElementById("productSearch").value.toLowerCase();
+
+            // Loop through all table rows (but not the header)
+            tr.forEach(row => {
+
+                // Get the table cell element for that row
+                var tdSelect = row.getElementsByTagName("td")[0];
+                var tdProductID = row.getElementsByTagName("td")[1];
+                var tdImageURL = row.getElementsByTagName("td")[2];
+                var tdProductName = row.getElementsByTagName("td")[3];
+                var tdStatus = row.getElementsByTagName("td")[4];
+                var tdStock = row.getElementsByTagName("td")[5];;
+                var tdCategory = row.getElementsByTagName("td")[6];
+                var tdDescription = row.getElementsByTagName("td")[7];
+
+                // Check if cells exist to avoid errors on empty rows
+                if (tdProductName && tdStatus && tdCategory) {
+                    // Get user values by using these table cell elements
+                    // Status value
+                    var statusText = tdStatus.textContent.toLowerCase();
+
+                    // Category value
+                    var categoryText = tdCategory.textContent.toLowerCase();
+
+                    // Filtering this row
+                    // Check if the orderID matches if it was searched for
+                    var matchesProductName = tdProductName.textContent.toLowerCase().includes(productNameFilter);
+
+                    // Check if status matches
+                    var matchesStatus = (statusFilter === "all") || (statusText.includes(statusFilter));
+
+                    // Check if category matches
+                    var matchesCategory = (categoryFilter === "all") || (categoryText.includes(categoryFilter));
+
+
+                    // End checks
+                    // If it goes through all the filters
+                    if (matchesProductName && matchesStatus && matchesCategory) {
+                        // Show the row
+                        row.style.display = "";
+                        // Otherwise hide the row
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            })
+
         }
 
 
