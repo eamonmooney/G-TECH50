@@ -138,7 +138,7 @@ try {
 
         CREATE TABLE IF NOT EXISTS AccessKeys (
             RoleID INT NOT NULL PRIMARY KEY,
-            AccessKey VARCHAR(5) NOT NULL UNIQUE,
+            AccessKey VARCHAR(100) NOT NULL UNIQUE,
             FOREIGN KEY (RoleID) REFERENCES Role(RoleID)
         );
 
@@ -276,12 +276,16 @@ try {
     $checkAccessKeys = $db->query("SELECT COUNT(*) FROM AccessKeys")->fetchColumn();
     //If doesn't populate
     if ($checkAccessKeys == 0) {
+        // hash the accesskeys - Ned Goodman 230019355
+        $Hash1 = password_hash('PLACE', PASSWORD_BCRYPT);
+        $Hash2 = password_hash('MIGHT', PASSWORD_BCRYPT);
+        $Hash3 = password_hash('BRUNT', PASSWORD_BCRYPT);
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
-            ('3', 'PLACE'), 
-            ('4', 'MIGHT'), 
-            ('5', 'BRUNT') 
+            ('2', '$Hash1'), 
+            ('3', '$Hash2'), 
+            ('4', '$Hash3') 
         ");
     }
 

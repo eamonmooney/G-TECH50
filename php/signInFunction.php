@@ -25,7 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $uData = $stmt0->fetch(PDO::FETCH_ASSOC);
 
         // checkes in user data was found
-        if ($uData) {
+        if (!$uData) {
+            echo "<p>Incorrect username</p>";
+            die;
+        }else {
             // verifies password input with hash in database
             if(password_verify($Password, $uData['Password']))
             {
@@ -74,14 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
               
             // change page to index page
-            header("Location: /G-TECH50/index.html");
+            header("Location: ../index.html");
             die;
         } else {
             // output error message as password or username doesnt match
-            echo "Incorrect password";
+            echo "<p>Incorrect password</p>";
             die;
         }
-        echo "Incorrect username";
     }
 }
 }
