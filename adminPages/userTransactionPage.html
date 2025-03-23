@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Transaction Page</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Load Sweet alert 2 -> for the pop ups when changing status  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
@@ -274,6 +276,7 @@
                 <th>Order Amount</th>
                 <th>Order Cost</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -303,6 +306,9 @@
                     // Get the table
                     var tableBody = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
 
+                    // Clear existing table rows before adding new ones
+                    tableBody.innerHTML = "";
+
                     // For every column in the data we recieved from the php
                     data.forEach(order => {
                         // Create a new row
@@ -319,6 +325,19 @@
                         newRow.insertCell(4).innerHTML = order.OrderAmount;
                         newRow.insertCell(5).innerHTML = order.OrderCost;
                         newRow.insertCell(6).innerHTML = order.Status;
+
+                        // Create a new cell
+                        var actionCell = newRow.insertCell(7);
+                        // Create the button
+                        var btn = document.createElement("button");
+                        // Make the button say edit status
+                        btn.textContent = "Edit Status";
+                        // Add a class to this button for styling if needed
+                        btn.classList.add("statusButton");
+                        // When we click it, open a pop up with the order ID and the order Status arguments
+                        btn.onclick = () => openStatusPopup(order.OrderID, order.Status);
+                        // Append button to the action cell
+                        actionCell.appendChild(btn);
                     });
                 })
                 // Catch errors
@@ -328,7 +347,64 @@
         // Call function when the page loads
         window.onload = loadOrders;
 
+        // Function to open the popup for the status
+        function openStatusPopup(orderID, currentStatus) {
+            // Check if Swal (sweet alert 2) has been loaded
+            if (typeof Swal === "undefined") {
+                console.error("SweetAlert2 is not loaded.");
+                return;
+            }
 
+            // Create and display custom alert box
+            Swal.fire({
+                // Title
+                title: "Change Order Status",
+                // Create dropdown menu
+                input: "select",
+                // Options for dropdown
+                inputOptions: {
+                    processing: "Processing",
+                    delivering: "Delivering",
+                    sent: "Sent"
+                },
+                //default value
+                inputValue: currentStatus,
+                // Cancel button
+                showCancelButton: true,
+                // Confirm button says update
+                confirmButtonText: "Update",
+                // After confirming or cancelling
+            }).then((result) => {
+                // If confirmed, call update order status JS function with those arguments
+                if (result.isConfirmed) {
+                    updateOrderStatus(orderID, result.value);
+                }
+            });
+        }
+
+        // Funciton to updatye order status with those arguments
+        function updateOrderStatus(orderID, newStatus) {
+            // Fetch the update status php page
+            fetch('../php/updateStatus.php', {
+                // Use post method to send data
+                method: 'POST',
+                // Tells server the data is being sent as key-value pairs - fetch() request
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                // The data being sent - orderID and newStatus
+                body: `orderID=${orderID}&status=${newStatus}`
+            })
+                // processes response from the fetch request - converts to text
+                .then(response => response.text())
+                // Then
+                .then(() => {
+                    // displays a popup with sweetalert2
+                    Swal.fire("Success", "Order status updated!", "success");
+                    // Reload orders to reflect changes
+                    loadOrders();
+                })
+                // Error handling
+                .catch(error => console.error('Error updating status:', error));
+        }
 
         // Filter table rows based on input (search?)
         function filterTable() {
@@ -417,7 +493,7 @@
                         // extract as a float
                         let min = parseFloat(range);
                         // Return if this is in the range
-                        return orderAmount >= min;  
+                        return orderAmount >= min;
                     }
                     // Split the range into numbers (e.g. 1-10)
                     var [min, max] = range.split("-").map(Number);
@@ -433,7 +509,7 @@
                         // extract as a float
                         let min = parseFloat(range);
                         // Return if this is in the range
-                        return orderCost >= min;  
+                        return orderCost >= min;
                     }
                     // Split the range into numbers (e.g. 1-10)
                     var [min, max] = range.split("-").map(Number);
