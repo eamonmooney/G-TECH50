@@ -151,6 +151,8 @@
             <div class="top-buttons">
                 <button type="button">Stock Reports</button>
                 <button type="button">New Product</button>
+                <!-- Delete button -->
+                <button type="button" id="deleteButton" onclick="deleteSelectedProducts()">Delete</button>
             </div>
 
             <!-- Dropdowns -->
@@ -355,6 +357,67 @@
                 }
             })
 
+        }
+
+        // DELETE PRODUCTS THAT ARE SELECTED
+        function deleteSelectedProducts() {
+            // Grab all rows
+            const rows = document.querySelectorAll("#productTableBody tr");
+
+            // Array to store selected product IDs
+            let selectedProducts = [];
+
+            // Loop through rows to find checked boxes
+            rows.forEach(row => {
+                // Get checkbox
+                const checkbox = row.querySelector("input[type='checkbox']");
+                // Get productID
+                const productID = row.getElementsByTagName("td")[1].textContent;
+
+                // If checked, add the product ID to the array
+                if (checkbox && checkbox.checked) {
+                    selectedProducts.push(productID);
+                }
+            });
+
+            // ALERTS
+            // Check if anything is selected
+            if (selectedProducts.length === 0) {
+                alert("Please select at least one product to delete.");
+                return;
+            }
+
+            // Confirm before deletion
+            if (!confirm(`Are you sure you want to delete ${selectedProducts.length} product(s)?`)) {
+                return;
+            }
+
+            // Send request to deleteProducts.php
+            fetch("../php/deleteProduct.php", {
+                // POST method
+                method: "POST",
+                // As JSON
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                // Send product ID and selected products
+                body: JSON.stringify({ productIDs: selectedProducts })
+            })
+            // Response as JSON
+                .then(response => response.json())
+                .then(data => {
+                    // Success output
+                    if (data.success) {
+                        alert("Product(s) deleted successfully!");
+                        // Refresh product list after deletion
+                        fetchProducts();
+                    // Error with this
+                    } else {
+                        alert("Error deleting product(s): " + data.error);
+                    }
+                // Error handling
+                })
+                .catch(error => console.error("Error deleting products:", error));
         }
 
 
