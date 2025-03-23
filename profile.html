@@ -95,6 +95,7 @@
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
+      <button class="tab-button" onclick="window.location.href = 'adminHomepage.html';">Admin</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
 
@@ -180,6 +181,13 @@
             button.innerText.includes(contentId.charAt(0).toUpperCase() + contentId.slice(1).toLowerCase())
           );
           if (activeButton) activeButton.classList.add('active');
+        }
+
+        //Function to review a product from the previous orders list. Eamon Mooney - 230075926
+        function reviewProduct(productName, productID) {
+          // Redirect to reviews.html with product and productID in query params
+          const url = `reviews.html?product=${encodeURIComponent(productName)}&productID=${productID}`;
+          window.location.href = url;
         }
       </script>
 </body>

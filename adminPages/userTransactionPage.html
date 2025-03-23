@@ -14,6 +14,117 @@
     <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
 
     <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #000000;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0 10px;
+            height: 55px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .logo-image {
+            width: 100px;
+            height: auto;
+            object-fit: contain;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex: 1;
+            margin-left: 275px;
+            margin-right: 50px;
+        }
+
+        .navbar a {
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #201c1c;
+        }
+
+        .material-icons {
+            color: white;
+            font-size: 24px;
+        }
+
+        .icon-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 30px;
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+            padding-right: 10px;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
+        .mobile-nav-links {
+            display: none;
+            flex-direction: column;
+            background-color: #000000;
+            position: fixed;
+            top: 55px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .mobile-nav-links a {
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links a:hover {
+            background-color: #201c1c;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .mobile-nav-links.active {
+                display: flex;
+            }
+        }
+
         body {
             margin-top: 80px;
         }
@@ -174,6 +285,37 @@
 
 <body>
 
+    <div class="navbar">
+        <div class="logo">
+            <img src="file:///C:/Users/tobia/Downloads/g-tech50%20logo.png" alt="Logo" class="logo-image">
+        </div>
+
+        <div class="nav-links">
+            <a href="Transactions.html">Transactions</a>
+            <a href="Users.html">Users</a>
+            <a href="Inventory.html">Inventory</a>
+            <a href="Reviews.html">Reviews</a>
+            <a href="Tickets.html">Tickets</a>
+        </div>
+
+        <div class="icon-container">
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+        </div>
+
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-links" id="mobileNavLinks">
+        <a href="Transactions.html">Transactions</a>
+        <a href="Users.html">Users</a>
+        <a href="Inventory.html">Inventory</a>
+        <a href="Reviews.html">Reviews</a>
+        <a href="Tickets.html">Tickets</a>
+    </div>
 
     <div class="filter-container">
         <!-- Filter Button -->
@@ -264,8 +406,7 @@
 
         </div>
     </div>
-
-
+    <!-- Transaction Table -->
     <table class="transaction-table" id="transactionTable">
         <thead>
             <tr>
@@ -406,6 +547,7 @@
                 .catch(error => console.error('Error updating status:', error));
         }
 
+        // Function to filter the table based on search input
         // Filter table rows based on input (search?)
         function filterTable() {
 
@@ -551,8 +693,13 @@
             newRow.insertCell(5).innerHTML = orderCost;
             newRow.insertCell(6).innerHTML = status;
         }
+        // Hamburger menu functionality
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+        const mobileNavLinks = document.getElementById("mobileNavLinks");
 
-
+        hamburgerMenu.addEventListener("click", () => {
+            mobileNavLinks.classList.toggle("active");
+        });
     </script>
 
 </body>
