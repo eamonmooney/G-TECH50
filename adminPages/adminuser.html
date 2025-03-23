@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin User Details</title>
 
-    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="../css/fonts.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <script src="js/searchBar.js"></script>
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/adminNavbar.css">
 
     <!-- Page Styling for Table -->
     <style>
@@ -106,73 +105,37 @@
 </head>
 <body>
 
- <!-- Navigation Bar -->
- <div class="navbar">
-    <div class="logo">
-        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
-    </div>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-          <a href=#>Categories</a>
-          <div class="dropdown-content">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-          </div>
+    <div class="navbar">
+        <div class="logo">
+            <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
         </div>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="membershipSignUp.html">G-TECH50+</a>
-    </div>
 
-    <!-- Search & User Icons -->
-    <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
+        <div class="nav-links">
+            <a href="userTransactionPage.html">Transactions</a>
+            <a href="adminuser.html">Users</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="customer-review.html">Reviews</a>
+            <a href="ticket.html">Tickets</a>
         </div>
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <!-- Basket Section in navbar -->
-        <a href="basket.html" id="basket-container">
-            <!-- Basket Icon -->
-            <i class="material-icons">shopping_basket</i>
-            <!-- Basket Number - changes to that with the javascript calling php -->
-            <span id="basketNum"></span>
-        </a>
+
+        <div class="icon-container">
+            <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+        </div>
+
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </div>
 
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+    <div class="mobile-nav-links" id="mobileNavLinks">
+        <a href="Transactions.html">Transactions</a>
+        <a href="Users.html">Users</a>
+        <a href="Inventory.html">Inventory</a>
+        <a href="Reviews.html">Reviews</a>
+        <a href="Tickets.html">Tickets</a>
     </div>
-</div>
-
-<!-- Mobile Navigation Bar -->
-<div class="mobile-nav-links" id="mobileNavLinks">
-    <a href="Home.html">Home</a>
-    <a href=# id="mobileCategories">Categories</a>
-    <div class="mobile-dropdown-content" id="mobileDropdownContent">
-        <a href="categories/Mice.html">Mice</a>
-        <a href="categories/Monitors.html">Monitors</a>
-        <a href="categories/Headphones.html">Headphones</a>
-        <a href="categories/Keyboards.html">Keyboards</a>
-        <a href="categories/Mousepads.html">Mousepads</a>
-    </div>
-    <a href="AboutUs.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
-</div>
-
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
-
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
 
     <!-- Table Section -->
     <div class="container">
@@ -180,36 +143,22 @@
         <table>
             <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>UserID</th>
+                    <th>Permissions</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Email verified</th>
-                    <th>Admin</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Mary Johnson</td>
-                    <td>MaryJohnson12@gmail.com</td>
-                    <td>True</td>
-                    <td>True</td>
-                </tr>
-                <tr>
-                    <td>Kenedy Moore</td>
-                    <td>kennedymorre2@yahoo.co.uk</td>
-                    <td>True</td>
-                    <td>True</td>
-                <tr>
-                    <td>Ben Smith</td>
-                    <td>bensmith@yahoo.com</td>
-                    <td>True</td>
-                    <td>True</td>
-                </tr>
-                <td>Sam Sharp</td>
-                <td>itzsamsharp@gmail.com</td>
-                <td>True</td>
-                <td>True</td>
-                
-            </tbody>
+            <tbody id="userRows"></tbody>
+            <script>
+                // Above table and below script by Ned Goodman 230019355
+                fetch('/G-TECH50/php/adminViewUserDetails.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('userRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+            </script>
         </table>
     </div>
 

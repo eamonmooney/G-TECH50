@@ -13,6 +13,33 @@ h1 {
     margin-bottom: 0;
 }
 
+.container {
+    display: flex;
+    gap: 20px;
+    margin-left: 10px;
+}
+
+.filters form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.filters label {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.filters input[type="text"],
+.filters select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 .products {
     display: flex;
     margin-top: 0px;
@@ -92,7 +119,7 @@ h1 {
 }
 
 .item-spec h3 {
-    font-family: 'superbrigade';
+    font-family: 'horizon';
 }
 
 .item-spec h4 {

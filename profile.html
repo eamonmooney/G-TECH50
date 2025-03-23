@@ -104,6 +104,7 @@
         <h2>Account Information</h2>
         <p><strong>Username:</strong></p>
         <p><strong>Email:</strong></p>
+        <p><strong>Budget:</strong></p>
       </div>
 
       <div id="orders" class="content">
@@ -146,13 +147,16 @@
 
         <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
           <label for="username">Name: </label>
-          <input type="text" id="username" name="username" placeholder="Enter your new username">
+          <input type="text" id="username" name="username" placeholder="Enter your new username" required>
 
           <label for="email">Email: </label>
-          <input type="email" id="email" name="email" placeholder="Enter your new Email">
+          <input type="email" id="email" name="email" placeholder="Enter your new Email" required>
 
           <label for="password">Password: </label>
-          <input type="password" id="password" name="password" placeholder="Enter your new Password">
+          <input type="password" id="password" name="password" placeholder="Enter your new Password" required>
+
+          <label for="budget">Budget: </label>
+          <input type="number" id="budget" name="budget" placeholder="Set your budget">
 
           <button type="submit">Update Information</button>
         </form>

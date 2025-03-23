@@ -95,7 +95,7 @@
         <input type="hidden" name="prodPrice" value="99.99">
         <input type="number" name="prodQuant" value="1" min="1" max="10">
         <button type="submit" name="basketAdd" class="button">Add To Basket</button>
-        <a href="../reviews.html?product=OMEGA%20KEYBOARD" class="button1">Write a Review</a>
+        <a href="../reviews.html?product=OMEGA%20KEYBOARD&productID=26" class="button1">Write a Review</a>
       </form>
     </div>
   </div>
@@ -204,7 +204,7 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ productId: 0 }) // <-- Product ID
+        body: JSON.stringify({ productId: 26 }) // <-- Product ID
     })
         .then(response => response.json())
         .then(data => {

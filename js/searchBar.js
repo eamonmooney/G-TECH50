@@ -9,31 +9,31 @@ const data = [
 	{ name: "Headphones", url: "categories/Headphones.html" },
 	{ name: "Keyboards", url: "categories/Keyboards.html" },
 	{ name: "Mousepads", url: "categories/Mousepads.html" },
-	{ name: "Bubblegum", url: "bubblegum.html" },
-	{ name: "Candykeys", url: "candykeys.html" },
-	{ name: "Candypop", url: "candypop.html" },
-	{ name: "Cosmic", url: "cosmic.html" },
-	{ name: "Cosmo", url: "cosmo.html" },
-	{ name: "Eco", url: "eco.html" },
-	{ name: "Evergreen", url: "evergreen.html" },
-	{ name: "Forestflow", url: "forestflow.html" },
-	{ name: "Galaxytype", url: "galaxytype.html" },
-	{ name: "Kittyclicks", url: "kittyclicks.html" },
-	{ name: "Kittyview", url: "kittyview.html" },
-	{ name: "Nebulaglide", url: "nebulaglide.html" },
-	{ name: "Neonvibes", url: "neonvibes.html" },
-	{ name: "Pawsoft", url: "pawsoft.html" },
-	{ name: "Pixelpulse", url: "pixelpulse.html" },
-	{ name: "Pixelwave", url: "pixelwave.html" },
-	{ name: "Purrkeys", url: "purrkeys.html" },
-	{ name: "Retro", url: "retro.html" },
-	{ name: "Retroview", url: "retroview.html" },
-	{ name: "Stellar", url: "stellar.html" },
-	{ name: "Sugarglide", url: "sugarglide.html" },
-	{ name: "Sugarscreen", url: "sugarscreen.html" },
-	{ name: "Whiskertunes", url: "whiskertunes.html" },
-	{ name: "Woodland", url: "woodland.html" },
-	{ name: "Woodland Wanderer", url: "woodland_wanderer.html" },
+	{ name: "Bubblegum", url: "products/bubblegum.html" },
+	{ name: "Candykeys", url: "products/candykeys.html" },
+	{ name: "Candypop", url: "products/candypop.html" },
+	{ name: "Cosmic", url: "products/cosmic.html" },
+	{ name: "Cosmo", url: "products/cosmo.html" },
+	{ name: "Eco", url: "products/eco.html" },
+	{ name: "Evergreen", url: "products/evergreen.html" },
+	{ name: "Forestflow", url: "products/forestflow.html" },
+	{ name: "Galaxytype", url: "products/galaxytype.html" },
+	{ name: "Kittyclicks", url: "products/kittyclicks.html" },
+	{ name: "Kittyview", url: "products/kittyview.html" },
+	{ name: "Nebulaglide", url: "products/nebulaglide.html" },
+	{ name: "Neonvibes", url: "products/neonvibes.html" },
+	{ name: "Pawsoft", url: "products/pawsoft.html" },
+	{ name: "Pixelpulse", url: "products/pixelpulse.html" },
+	{ name: "Pixelwave", url: "products/pixelwave.html" },
+	{ name: "Purrkeys", url: "products/purrkeys.html" },
+	{ name: "Retro", url: "products/retro.html" },
+	{ name: "Retroview", url: "products/retroview.html" },
+	{ name: "Stellar", url: "products/stellar.html" },
+	{ name: "Sugarglide", url: "products/sugarglide.html" },
+	{ name: "Sugarscreen", url: "products/sugarscreen.html" },
+	{ name: "Whiskertunes", url: "products/whiskertunes.html" },
+	{ name: "Woodland", url: "products/woodland.html" },
+	{ name: "Woodland Wanderer", url: "products/woodland_wanderer.html" },
 ];
 
 // Function to adjust paths based on current folder depth
@@ -41,9 +41,9 @@ function adjustPaths(data) {
 	// Get the current path of the page
 	const currentPath = window.location.pathname;
 	// Calculate the number of folders deep the current page is
-	const depth = currentPath.split('/').length - 3; 
+	const depth = (currentPath.match(/\//g) || []).length - 1;
 	// Generate the relative prefix (e.g., "../" for one level up)
-	const prefix = '../'.repeat(depth);
+	const prefix = depth > 0 ? '../'.repeat(depth) : '';
 	// Adjust URLs
 	return data.map(item => ({
 		name: item.name,
