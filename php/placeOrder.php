@@ -3,6 +3,7 @@
 // Changes made to support guest Orders by Safa (230078145).
 session_start();
 require_once('connectdb.php');
+// $_SESSION['orderDetails'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'place_order') {
     $userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : 0;
@@ -14,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $fullName = isset($_SESSION['orderDetails']['fullName']) ? $_SESSION['orderDetails']['fullName'] : Null;
     $email = isset($_SESSION['orderDetails']['email']) ? $_SESSION['orderDetails']['email'] : Null;
     $address = isset($_SESSION['orderDetails']['address']) ? $_SESSION['orderDetails']['address'] : Null;
-
-
+    
     if (empty($basket)) {
         echo "Your basket is empty.";
         exit;
