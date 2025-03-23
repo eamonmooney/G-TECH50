@@ -36,7 +36,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	flex: 1;
 	gap: 20px;
 	justify-content: center;
-	margin-left: 260px;
+	margin-left: 255px;
 	white-space: nowrap;
 	
   }
@@ -153,7 +153,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 
   .dropdown-content a {
 	color: white;
-	width: auto;
+	width: 100px;
 	height: 40px;
 	display: flex;
 	align-items: center;
