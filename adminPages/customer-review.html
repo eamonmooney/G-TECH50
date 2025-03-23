@@ -1,0 +1,275 @@
+<!-- Page made by Elisha Kolade - 220383798 -->
+<!-- SearchTable, FilterTable, SortTable JS by Elisha Kolade - 220383798 -->
+<!-- Backend by Eamon Mooney - 230075926 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Customer Review - G-TECH50</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #000000;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        input,
+        select {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        th {
+            background: #444;
+            color: white;
+            position: relative;
+        }
+
+        th span {
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .review-details {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .admin-actions div {
+            width: 48%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .admin-actions div:hover {
+            background: #f1f1f1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="index.html">Logo</a>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+
+            <div class="dropdown">
+                <a href=#>Categories</a>
+
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
+
+            </div>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="icon-container">
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <i class="material-icons">search</i>
+            </div>
+
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <!-- Basket Section in navbar -->
+            <a href="basket.html" id="basket-container">
+                <!-- Basket Icon -->
+                <i class="material-icons">shopping_basket</i>
+                <!-- Basket Number - changes to that with the javascript calling php -->
+                <span id="basketNum"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div>Customer Reviews</div>
+
+        <!-- Search & Filter -->
+        <div class="search-filter">
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search reviews...">
+            <select id="filterSelect" onchange="filterTable()">
+                <script>
+                    // Script for changing html attributes of the filter options. Eamon - 230075926
+                    fetch('../php/reviewFilter.php')
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('filterSelect').innerHTML = data;
+                        })
+                        .catch(error => console.error('Error:', error));
+                </script>
+            </select>
+        </div>
+
+        <!-- Customer Reviews Table -->
+        <table id="reviewsTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">Review ID <span>🔽</span></th>
+                    <th onclick="sortTable(1)">User ID <span>🔽</span></th>
+                    <th onclick="sortTable(2)">Product ID <span>🔽</span></th>
+                    <th onclick="sortTable(3)">Rating <span>🔽</span></th>
+                </tr>
+            </thead>
+            <tbody id="reviewRows">
+                <script>
+                    // Script for changing html attributes of the review table. Eamon - 230075926
+                    fetch('../php/reviewsTable.php')
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('reviewRows').innerHTML = data;
+                        })
+                        .catch(error => console.error('Error:', error));
+                </script>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com"
+                        style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank"
+                        style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Sort Table Function
+        function sortTable(columnIndex) {
+                let table = document.getElementById("reviewsTable");
+                let rows = Array.from(table.rows).slice(1);
+                let isAscending = table.getAttribute("data-sort") !== "asc";
+
+                rows.sort((rowA, rowB) => {
+                    let cellA = rowA.cells[columnIndex].innerText;
+                    let cellB = rowB.cells[columnIndex].innerText;
+
+                    if (!isNaN(cellA) && !isNaN(cellB)) {
+                        return isAscending ? cellA - cellB : cellB - cellA;
+                    }
+                    return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                });
+
+                table.setAttribute("data-sort", isAscending ? "asc" : "desc");
+                rows.forEach(row => table.appendChild(row));
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Search Table Function
+            function searchTable() {
+                let input = document.getElementById("searchInput").value.toLowerCase();
+                let rows = document.querySelectorAll("#reviewsTable tbody tr");
+
+                rows.forEach(row => {
+                    let text = row.innerText.toLowerCase();
+                    row.style.display = text.includes(input) ? "" : "none";
+                });
+            }
+
+            // Filter Table Function
+            function filterTable() {
+                let filter = document.getElementById("filterSelect").value;
+                let rows = document.querySelectorAll("#reviewsTable tbody tr");
+
+                rows.forEach(row => {
+                    let productID = row.cells[2].innerText;
+                    row.style.display = filter === "" || productID === filter ? "" : "none";
+                });
+            }
+
+            // Fetch the review data and populate the table
+            fetch('../php/reviewsTable.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('reviewRows').innerHTML = data;
+
+                    // Reattach the search and filter functions after the data is loaded
+                    document.getElementById("searchInput").addEventListener("keyup", searchTable);
+                    document.getElementById("filterSelect").addEventListener("change", filterTable);
+                })
+                .catch(error => console.error('Error:', error));
+
+            // Fetch filter options
+            fetch('../php/reviewFilter.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('filterSelect').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+
+</html>

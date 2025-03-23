@@ -1,5 +1,7 @@
+<!-- Page by Rayyan Akhlaq - 230074804-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +10,22 @@
   <link rel="stylesheet" href="../css/products.css">
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/navbarfix.css">
+  <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="../js/basketNumber.js"></script>
 </head>
+
 <body>
-    <!-- Navigation Bar -->
+  <!-- Navigation Bar -->
   <div class="navbar">
     <div class="logo">
-        <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
     </div>
     <div class="nav-links">
       <a href="../index.html">Home</a>
       <div class="dropdown">
-        <a href=#>Categories</a>
+        <a href="products.html">Categories</a>
         <div class="dropdown-content">
           <a href="Mice.html">Mice</a>
           <a href="Monitors.html">Monitors</a>
@@ -29,28 +36,35 @@
       </div>
       <a href="../aboutus.html">About Us</a>
       <a href="../contact.html">Contact Us</a>
-  </div>
+      <a href="../membershipSignUp.html">G-TECH50+</a>
+    </div>
 
     <!-- Search & User Icons -->
     <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-        <a href="../profile.html"><i class="material-icons">account_circle</i></a>
-        <a href="../basket.html"><i class="material-icons">shopping_basket</i></a>
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="../basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
     </div>
 
     <!-- Hamburger Menu -->
     <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
-</div>
+  </div>
 
-<!-- Mobile Navigation Bar -->
-<div class="mobile-nav-links" id="mobileNavLinks">
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav-links" id="mobileNavLinks">
     <a href="Home.html">Home</a>
     <a href=# id="mobileCategories">Categories</a>
     <div class="mobile-dropdown-content" id="mobileDropdownContent">
@@ -62,67 +76,75 @@
     </div>
     <a href="AboutUs.html">About Us</a>
     <a href="contact.html">Contact Us</a>
-</div>
+  </div>
 
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
+  <!-- Search Results -->
+  <div id="searchResults" class="search-results" style="display: none;"></div>
 
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
-  <!-- Commented out the main image for now, re add when implementing into the page - Eamon
+  <!-- Linking to Search bar JS -->
+  <script src="../js/searchBar.js"></script>
+  <script src="../js/mobileNavbar.js"></script>
+
   <section class="hero">
-    <img src="" alt="monitors picture" class="monitors-picture">
+    <img src="../images/Externalmade/11.png" alt="Monitors picture" class="hero-picture">
   </section>
-  -->
 
-  <h1>Monitors</h1>
 
-    <div class="products">
+  <div class="products">
 
-      <div class="items">
-        <a href="../products/sugarscreen.html">
+    <div class="items">
+      <a href="../products/sugarscreen.html">
         <img src="../images/Ai/sugarscreen0001.png">
         <h3>SUGARSCREEN <br> MONITOR</h3>
       </a>
-      <button class="button">Buy</button>
-      </div>
+      <a href="../products/sugarscreen.html">
+        <button class="button">Buy</button>
+      </a>
+    </div>
 
-      <div class="items">
-        <a href="../products/cosmo.html">
+    <div class="items">
+      <a href="../products/cosmo.html">
         <img src="../images/Ai/cosmo0001.png">
         <h3>COSMO VIEW CURVED MONITOR</h3>
-        </a>
+      </a>
+      <a href="../products/cosmo.html">
         <button class="button">Buy</button>
-      </div>
+      </a>
+    </div>
 
-      <div class="items">
-        <a href="../products/eco.html">
+    <div class="items">
+      <a href="../products/eco.html">
         <img src="../images/Ai/eco0001.png">
         <h3>ECO VIEW <br> MONITOR</h3>
-        </a>
+      </a>
+      <a href="../products/eco.html">
         <button class="button">Buy</button>
-      </div>
+      </a>
+    </div>
 
-      <div class="items">
-        <a href="../products/retroview.html">
+    <div class="items">
+      <a href="../products/retroview.html">
         <img src="../images/Ai/retroview0001.png">
         <h3>RETROVIEW LED MONITOR</h3>
-        </a>
+      </a>
+      <a href="../products/retroview.html">
         <button class="button">Buy</button>
-      </div>
+      </a>
+    </div>
 
-      <div class="items">
-        <a href="../products/kittyview.html">
+    <div class="items">
+      <a href="../products/kittyview.html">
         <img src="../images/Ai/kittyview0001.png">
         <h3>KITTYVIEW <br> MONITOR</h3>
-        </a>
+      </a>
+      <a href="../products/kittyview.html">
         <button class="button">Buy</button>
-      </div>
-
-
-
+      </a>
     </div>
+
+
+
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -148,6 +170,7 @@
         <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
       </div>
     </div>
-  </footer>  
-  </body>
-  </html>
+  </footer>
+</body>
+
+</html>

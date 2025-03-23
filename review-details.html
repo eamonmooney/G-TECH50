@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Review Details - G-TECH50</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            margin-top: 80px;
+        }
+        .review-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .admin-actions div {
+            width: 48%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+        }
+        .admin-actions div:hover {
+            background: #f1f1f1;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background: #333;
+            color: white;
+        }
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>    
+  
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+              <a href=#>Categories</a>
+              <div class="dropdown-content">
+                <a href="categories/Mice.html">Mice</a>
+                <a href="categories/Monitors.html">Monitors</a>
+                <a href="categories/Headphones.html">Headphones</a>
+                <a href="categories/Keyboards.html">Keyboards</a>
+                <a href="categories/Mousepads.html">Mousepads</a>
+              </div>
+            </div>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="membershipSignUp.html">G-TECH50+</a>
+        </div>
+
+        <!-- Search & User Icons -->
+        <div class="icon-container">
+            <div class="search-bar">
+              <input type="text" id="searchBar" placeholder="Search...">
+              <i class="material-icons" id="searchButton">search</i>
+            </div>
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html"><i class="material-icons">shopping_basket</i></a>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav-links" id="mobileNavLinks">
+        <a href="Home.html">Home</a>
+        <a href=# id="mobileCategories">Categories</a>
+        <div class="mobile-dropdown-content" id="mobileDropdownContent">
+            <a href="categories/Mice.html">Mice</a>
+            <a href="categories/Monitors.html">Monitors</a>
+            <a href="categories/Headphones.html">Headphones</a>
+            <a href="categories/Keyboards.html">Keyboards</a>
+            <a href="categories/Mousepads.html">Mousepads</a>
+        </div>
+        <a href="AboutUs.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <!-- Search Results -->
+    <div id="searchResults" class="search-results" style="display: none;"></div>
+
+    <!-- Linking to Search bar JS -->
+    <script src="js/searchBar.js"></script>
+    <script src="js/mobileNavbar.js"></script>
+
+    <div class="container">
+        <div>Review Details</div>
+
+        <div class="review-box">
+            <h2>Review ID: 101</h2>
+        <p><strong>Order ID:</strong> 5001</p>
+        <p><strong>Date:</strong> 2025-03-10</p>
+        <p><strong>Time:</strong> 14:30</p>
+        <h3>Customer Review</h3>
+        <p>"Great service! The product arrived on time and was exactly as described."</p>
+        </div>
+
+        <div class="admin-actions">
+            <div>Admin Comments</div>
+            <div><button>Add</button>
+                <button>Delete</button>
+                <button>Pin</button>
+                <button>Hide</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            <div class="contact-details">
+                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
+                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
+                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

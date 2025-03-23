@@ -1,4 +1,4 @@
-/* Membership Sign-up Page CSS. Designed by Sahil. */
+/* Membership Sign-up Page CSS. Designed by Sahil Awan - 230073302. */
 
 @font-face {
     font-family: 'horizon';
@@ -72,7 +72,8 @@ body {
     font-family: 'superbrigade';
 }
 
-.membershipSignUp input[type="submit"] {
+.membershipSignUp button[type="submit"] {
+    width: 100%;               
     background: #0099ff;
     color: black;
     border: none;
@@ -83,9 +84,10 @@ body {
     transition: 0.3s;
     font-family: 'superbrigade';
     box-sizing: content-box;
-  }
+    border-radius: 5px;
+}
 
-  .membershipSignUp input[type="submit"]:hover {
+  .membershipSignUp button[type="submit"]:hover {
     background: rgba(0, 153, 255, 0.637);
   }
 

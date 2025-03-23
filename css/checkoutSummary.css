@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url(../images/Externalmade/20.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
+
+.navbar .icon-container {
+    padding-right: 35px;
+}
+
+.title .checkout-title {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.heading {
+    color: white;
+    text-align: center;
+    font-family: 'superbrigade';
+    padding-top: 30px;
+}
+
+ul {
+    color: white;
+}
+
+.summary-section {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    padding-top: 20px;
+    width: 60%;
+    max-width: 600px;
+    margin: 20px auto;
+    
+}
+  
+#checkout-summary {
+    list-style: none;
+    padding: 0;
+  }
+
+  .order-details {
+    display: flex;
+    flex-direction: column;
+}
+  
+  #checkout-summary li {
+    background: black;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 20px rgb(174, 0, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'horizon';
+  }
+  
+  #checkout-summary li strong {
+    color: rgb(174, 0, 255);
+  }
+  
+  #checkout-summary li span {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Empty Basket Message */
+  #checkout-summary p {
+    color: #777;
+    font-style: italic;
+  }
+  
+  /* Confirm Order Button */
+  button {
+    background-color: rgb(174, 0, 255);
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'superbrigade';
+  }
+  
+  button:hover {
+    background-color: rgb(105, 0, 153);;
+  }
+  
+

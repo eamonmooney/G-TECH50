@@ -5,7 +5,7 @@
 // If the user isn't loaded in, they should have been redirected to the login page from basketStart.php
 // If the user has no items in the basket, they should not have anything displayed on screen and are told of this
 // User should be able to increase/decrease the quantity of products from basket
-// Created by Safa Riasat
+// Created by Safa Riasat - 230078145
 
 
 
@@ -14,6 +14,8 @@
 
 	//Resume the session to allow us to use the session variables
 	session_start();
+
+	
 
 	//Set the userID 
 	$userID = $_SESSION['userId'];

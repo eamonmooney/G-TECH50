@@ -1,0 +1,258 @@
+<!-- Page and JS made by Hanna Appiah - 230089015 -->
+<!-- Backend by Eamon Mooney - 230075926 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews Page</title>
+
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/searchBar.js"></script>
+    <style>
+        .star {
+            font-size: 24px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .star.highlighted {
+            color: gold;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .review-container {
+            max-width: 800px;
+            max-height: 800px;
+            margin: 50px auto;
+            background: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin-top: 10px;
+            resize: none;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #484747;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        span {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Categories</a>
+                <div class="dropdown-content">
+                    <a href="categories/Mice.html">Mice</a>
+                    <a href="categories/Monitors.html">Monitors</a>
+                    <a href="categories/Headphones.html">Headphones</a>
+                    <a href="categories/Keyboards.html">Keyboards</a>
+                    <a href="categories/Mousepads.html">Mousepads</a>
+                </div>
+            </div>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="membershipSignUp.html">G-TECH50+</a>
+        </div>
+        <div class="icon-container">
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Search...">
+                <i class="material-icons" id="searchButton">search</i>
+            </div>
+            <a href="profile.html"><i class="material-icons">account_circle</i></a>
+            <a href="basket.html" id="basket-container">
+                <i class="material-icons">shopping_basket</i>
+                <span id="basketNum"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="review-container">
+        <h2>WRITE A REVIEW FOR <span id="product-name">Product Name</span></h2>
+        <form id="review-form">
+            <label for="rating">Rating:</label>
+            <div class="stars" id="star-rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="rating" name="rating" value="0">
+            <p id="rating-message" style="color: red; display: none;">Select a rating.</p>
+            <label for="review-text">Your Review:</label>
+            <textarea id="review-text" name="review" placeholder="Leave a review" required></textarea>
+            <button type="button" id="submit-review">Submit Review</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get("product");
+            const productID = urlParams.get("productID");
+            if (productName) {
+                document.getElementById("product-name").textContent = decodeURIComponent(productName);
+            }
+
+            // Star functionality
+            const stars = document.querySelectorAll(".star");
+            const ratingInput = document.getElementById("rating");
+            const ratingMessage = document.getElementById("rating-message");
+
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    let value = this.getAttribute("data-value");
+                    ratingInput.value = value;
+                    ratingMessage.style.display = "none";
+                    highlightStars(value);
+                });
+            });
+
+            function highlightStars(value) {
+                stars.forEach(star => {
+                    if (parseInt(star.getAttribute("data-value")) <= value) {
+                        star.classList.add("highlighted");
+                    } else {
+                        star.classList.remove("highlighted");
+                    }
+                });
+            }
+
+            document.getElementById("review-form").addEventListener("submit", function (e) {
+                if (ratingInput.value === "0") {
+                    e.preventDefault();
+                    ratingMessage.style.display = "block"; 
+                }
+            });
+
+            document.getElementById("submit-review").addEventListener("click", function () {
+                const ratingValue = document.getElementById("rating").value;
+                const reviewText = document.getElementById("review-text").value.trim();
+                const ratingMessage = document.getElementById("rating-message");
+
+                if (ratingValue === "0") {
+                    ratingMessage.style.display = "block";
+                    return;
+                } else {
+                    ratingMessage.style.display = "none";
+                }
+
+                if (reviewText === "") {
+                    alert("Please enter a review before submitting.");
+                    return;
+                }
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const productID = urlParams.get("productID");
+
+                if (!productID) {
+                    alert("Product ID not found.");
+                    return;
+                }
+
+                // Prepare data for PHP
+                const data = new URLSearchParams();
+                data.append('productID', productID);
+                data.append('rating', ratingValue);
+                data.append('review', reviewText);
+
+                // Send POST request to PHP
+                fetch('php/reviewSubmit.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: data
+                })
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result); // for debugging
+                    if (result.success) {
+                        window.location.href = "reviewconfirm.html";
+                    } else {
+                        alert(result.error || "Failed to submit review.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("An error occurred while submitting the review.");
+                });
+            });
+
+        });
+    </script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>G-TECH50</h3>
+            <p>&copy; 2024 G-TECH50</p>
+            <p>ALL RIGHTS RESERVED.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Phone: +44 7700 900123</p>
+            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+        </div>
+    </div>
+</footer>
+</html>
