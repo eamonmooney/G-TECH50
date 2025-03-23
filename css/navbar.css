@@ -12,16 +12,14 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	top: 0; 
 	left: 0;
 	z-index: 1000;
-	padding: 0 20px;
 	height: 55px;
-	font-size: 13px;
+	font-size: 16px;
 }
 
   .logo {
 	display: flex;
 	align-items: center;
-	justify-content: center; 
-	align-items: center;
+	justify-content: center;
 	padding: 0;
   }
 
@@ -30,22 +28,23 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	height: auto;
 	object-fit: contain;
 	margin-right: 25px;
-    margin-left: 10px;
+        margin-left: 10px;
   }
 
   .nav-links {
 	display: flex;
-	flex: auto;
-	gap: 10px;
-	justify-content: space-between;
-	margin-left: 50px;
-	margin-right: 50px;
+	flex: 1;
+	gap: 20px;
+	justify-content: center;
+	margin-left: 255px;
+	white-space: nowrap;
+	
   }
 
   .navbar a {  
 	color: white;
 	text-align: center;
-	padding: 15px 15px;
+	padding: 14px 10px;
 	text-decoration: none;
 	white-space: nowrap;
 	line-height: normal;
@@ -66,6 +65,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	justify-content: flex-end;
 	align-items: center;
 	gap: 5px; 
+	margin-right: 5px;
   }
 
   .search-bar {
@@ -153,7 +153,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 
   .dropdown-content a {
 	color: white;
-	width: auto;
+	width: 100px;
 	height: 40px;
 	display: flex;
 	align-items: center;
