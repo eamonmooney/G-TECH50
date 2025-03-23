@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         // defines user input as variables
         $Username = $_POST['newUsername'];
         $Email = $_POST['newEmail'];
+        $Password = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
         $sql9 = "SELECT * FROM Users WHERE Email = :newEmail limit 1";
         $stmt9=$db->prepare($sql9);
         $stmt9->execute([':newEmail' => $Email]);
@@ -83,6 +84,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     }
                 }
             }
+        }
+        if ($_POST['newPassword'] != "NULL") {
+            $sql10 = "UPDATE Users SET Password = REPLACE(Password, :oldPassword, :newPassword) WHERE Email = :oldEmail";
+            $replacestmt10 = $db->prepare($sql10);
+            $replacestmt10->execute([':oldEmail'=> $_POST['oldEmail'],
+            ':newPassword' => $Password,
+            ':oldPassword' => $uData['Password']]);
         }
         $sql1 = "UPDATE Users SET Email = REPLACE(Email, :oldEmail, :newEmail) WHERE Email = :oldEmail";
         $replacestmt1 = $db->prepare($sql1);
