@@ -4,12 +4,13 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="../css/fonts.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/adminNavbar.css">
+
   <script src="js/searchBar.js"></script>
-  <title>Admin User Details</title>
+  <title>Admin Change User Details</title>
   <style>
     .title {
      position: relative;
@@ -105,98 +106,87 @@
  
  
   </style>
-   <!-- Navigation Bar -->
-   <div class="navbar">
-    <div class="logo">
-        <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
-    </div>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <div class="dropdown">
-          <a href=#>Categories</a>
-          <div class="dropdown-content">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-          </div>
-        </div>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="membershipSignUp.html">G-TECH50+</a>
-    </div>
 
-    <!-- Search & User Icons -->
-    <div class="icon-container">
-        <div class="search-bar">
-          <input type="text" id="searchBar" placeholder="Search...">
-          <i class="material-icons" id="searchButton">search</i>
-        </div>
-        <a href="profile.html"><i class="material-icons">account_circle</i></a>
-        <!-- Basket Section in navbar -->
-        <a href="basket.html" id="basket-container">
-            <!-- Basket Icon -->
-            <i class="material-icons">shopping_basket</i>
-            <!-- Basket Number - changes to that with the javascript calling php -->
-            <span id="basketNum"></span>
-        </a>
-    </div>
+<div class="navbar">
+  <div class="logo">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+  </div>
 
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" id="hamburgerMenu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+  <div class="nav-links">
+      <a href="userTransactionPage.html">Transactions</a>
+      <a href="adminuser.html">Users</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="customer-review.html">Reviews</a>
+      <a href="ticket.html">Tickets</a>
+
+      
+  </div>
+
+  <div class="icon-container">
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+  </div>
+
+  <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+  </div>
 </div>
 
-<!-- Mobile Navigation Bar -->
 <div class="mobile-nav-links" id="mobileNavLinks">
-    <a href="Home.html">Home</a>
-    <a href=# id="mobileCategories">Categories</a>
-    <div class="mobile-dropdown-content" id="mobileDropdownContent">
-        <a href="categories/Mice.html">Mice</a>
-        <a href="categories/Monitors.html">Monitors</a>
-        <a href="categories/Headphones.html">Headphones</a>
-        <a href="categories/Keyboards.html">Keyboards</a>
-        <a href="categories/Mousepads.html">Mousepads</a>
-    </div>
-    <a href="AboutUs.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
+  <a href="Transactions.html">Transactions</a>
+  <a href="Users.html">Users</a>
+  <a href="Inventory.html">Inventory</a>
+  <a href="Reviews.html">Reviews</a>
+  <a href="Tickets.html">Tickets</a>
 </div>
-
-<!-- Search Results -->
-<div id="searchResults" class="search-results" style="display: none;"></div>
-
-<!-- Linking to Search bar JS -->
-<script src="js/searchBar.js"></script>
-<script src="js/mobileNavbar.js"></script>
 
 </head>
 <body>
- <div class = title> <h2>Admin User Details</h2></div>
+ <div class = title> <h2>Admin Change User Details</h2></div>
     <div class="container">
-   
+      <form id="adminupdateform" action="/G-TECH50/php/adminChangeUserDetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
     <div class="user-box">
-      <label>Username: <input type="text" value="Mary Johnson"></label>
-      <label>Email: <input type="email" value="MaryJohnson12@gmail.com"></label>
-      <label>Email Verified:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
-      <label>Admin:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
+      <label>Current Email: <input type="email" value="" id="oldEmail" name="oldEmail" class="form-control" placeholder="oldEmail" required></label>
+      <label>New Email: <input type="email" value="" id="newEmail" name="newEmail" class="form-control" placeholder="newEmail" required></label>
+      <label>New Username: <input type="text" value="" id="newUsername" name="newUsername" class="form-control" placeholder="newUsername" required></label>
+      <label>New Password: <input type="text" value="NULL" id="newPassword" name="newPassword" class="form-control" placeholder="newPassword" required></label>
+      <label>Set Admin Permissions With Code: <input type="text" value="" id="accessCode" name="accessCode" class="form-control" placeholder="accessCode" required></label>
       <div class="button1">
-        <button>Confirm</button>
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Confirm</button>
       </div>
     </div>
+    <h2 id = "formResponse"></h2>
+    <script>
+      // Above form and below script by Ned Goodman 230019355
+      // Intercept form submission
+      document.getElementById("adminupdateform").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Collect form data
+          const formData = new FormData(this);
+
+          // Submit this form data using fetch
+          fetch("/G-TECH50/php/adminChangeUserDetailsFunction.php", {
+              method: "POST",
+              body: formData,
+          })
+              .then(response => {
+                if (response.redirected) {
+                  // If PHP sent a redirect, follow it
+                  window.location.href = response.url;
+                  exit();
+                }
+                return response.text();
+              })
+              .then(data => {
+                  //Display the response inside the formResponse element
+                  document.getElementById("formResponse").innerHTML = data;
+              })
+              .catch(error => console.error("Error:", error));
+      });
+  </script>
+    </form>
   </div>
 </body>
   <!-- Footer -->

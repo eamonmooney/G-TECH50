@@ -19,7 +19,7 @@ if ($_SESSION['signedIn'] == False) {
     // Get the data from the form
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
-    $surname = isset($_POST['surename']) ? $_POST['surname'] : ''; 
+    $surname = isset($_POST['surname']) ? $_POST['surname'] : ''; 
     $fullName = $firstName . $surname;
     // Store all details in session variable
     $_SESSION['orderDetails'] = [
@@ -27,6 +27,8 @@ if ($_SESSION['signedIn'] == False) {
         "fullName" => $fullName,
     ];
 } 
+
+$address = isset($_POST['address']) ? trim($_POST['address']) : null;
 
 // Both needs an address
 $address = isset($_POST['address']) ? $_POST['address'] : '';
@@ -52,3 +54,5 @@ foreach ($basket as $itemName => $details) {
 
 ob_end_clean(); // Preventing comments from being added to the output.
 echo json_encode(["status" => "success", "order" => $orderSummary]);
+
+?>
