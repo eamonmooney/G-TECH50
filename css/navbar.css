@@ -124,9 +124,9 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	background-color: #333333;
   }
 
-  .search-results a:last-child {
+  /*.search-results a:last-child {
 	border-bottom: none;
-  }
+  }*/
   .dropdown {
 	position: relative;
 	margin-top: 15px; 
