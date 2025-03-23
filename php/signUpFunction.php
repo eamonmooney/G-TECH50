@@ -50,9 +50,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $stmt0 = $db->prepare($sql0);
     // execute sql statement replacing placeholder with user email
     $stmt0->execute([':email' => $Email]);
-    // 
     $res0 = $stmt0->fetchColumn();
-    // checks if email is in use, outputting error message if it is
+    // checks if inputted access key matches any in the database
         $sql1 = "SELECT * FROM AccessKeys WHERE RoleID = 2";
         $stmt1=$db->prepare($sql1);
         $stmt1->execute();
