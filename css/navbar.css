@@ -34,9 +34,9 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
   .nav-links {
 	display: flex;
 	flex: 1;
-	gap: 30px;
+	gap: 20px;
 	justify-content: center;
-	margin-left: 280px;
+	margin-left: 260px;
 	white-space: nowrap;
 	
   }
