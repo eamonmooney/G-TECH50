@@ -38,18 +38,26 @@ const data = [
 
 // Function to adjust paths based on current folder depth
 function adjustPaths(data) {
-	// Get the current path of the page
-	const currentPath = window.location.pathname;
-	// Calculate the number of folders deep the current page is
-	const depth = (currentPath.match(/\//g) || []).length - 1;
-	// Generate the relative prefix (e.g., "../" for one level up)
-	const prefix = depth > 0 ? '../'.repeat(depth) : '';
-	// Adjust URLs
-	return data.map(item => ({
-		name: item.name,
-		url: prefix + item.url,
-	}));
+    const currentPath = window.location.pathname;
+    
+    
+    const depth = Math.max((currentPath.match(/\//g) || []).length - 1, 0);
+    
+    return data.map(item => {
+        let adjustedUrl = item.url;
+
+        
+        if (!adjustedUrl.startsWith("/")) {
+            adjustedUrl = (depth > 0 ? '../'.repeat(depth) : '') + adjustedUrl;
+        }
+
+        return {
+            name: item.name,
+            url: adjustedUrl,
+        };
+    });
 }
+
 
 // Adjusted data with correct URLs
 const adjustedData = adjustPaths(data);
@@ -65,10 +73,18 @@ function searchItems(query) {
 	const results = adjustedData.filter(item => item.name.toLowerCase().includes(lowerQuery));
 
 	searchResults.innerHTML = results.length
-		? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-		: '<div>No results found</div>';
-	searchResults.style.display = query ? 'block' : 'none';
+            ? results.map(item => `<div class="search-result-item" data-url="${item.url}">${item.name}</div>`).join('')
+            : '<div>No results found</div>';
+
 }
+
+document.addEventListener("click", function (event) {
+    const target = event.target.closest(".search-result-item");
+    if (target && target.dataset.url) {
+        window.location.href = target.dataset.url;
+    }
+});
+
 
 //Listeners incase the search bar is clicked
 searchBar.addEventListener("input", () => searchItems(searchBar.value));
