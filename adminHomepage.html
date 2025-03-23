@@ -58,7 +58,16 @@
               })
               .catch(error => console.error('Error:', error));
       </script> </div>
-      <div class="card"><h3>Active Users</h3><p id="activeUsers"></p></div>
+      <div class="card"><h3>Total Users</h3><p id="totalUsers"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePageTotalUsers.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('totalUsers').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script></div>
       <div class="card"><h3>Pending Tickets</h3><p id="pendingTickets"></p></div>
       <div class="card"><h3>Stock Items</h3><p id="stockItems"></p></div>
       
