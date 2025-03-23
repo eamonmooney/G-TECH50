@@ -145,16 +145,47 @@
 <body>
  <div class = title> <h2>Admin Change User Details</h2></div>
     <div class="container">
-      <form id="adminupdateform" action="/G-TECH50/php/adminChageUserdetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
+      <form id="adminupdateform" action="/G-TECH50/php/adminChangeUserDetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
     <div class="user-box">
       <label>Current Email: <input type="email" value="MaryJohnson12@gmail.com" id="oldEmail" name="oldEmail" class="form-control" placeholder="oldEmail" required></label>
       <label>New Email: <input type="email" value="" id="newEmail" name="newEmail" class="form-control" placeholder="newEmail" required></label>
       <label>New Username: <input type="text" value="" id="newUsername" name="newUsername" class="form-control" placeholder="newUsername" required></label>
-      <label>Admin Access Code: <input type="text" value="NULL" id="accessCode" name="accessCode" class="form-control" placeholder="accessCode" required></label>
+      <label>Admin Access Code: <input type="text" value="" id="accessCode" name="accessCode" class="form-control" placeholder="accessCode" required></label>
       <div class="button1">
         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Confirm</button>
       </div>
     </div>
+    <h2 id = "formResponse"></h2>
+    <script>
+      //Script used to add php response to the bottom of the form. - Ned Goodman 230019355
+      // Intercept form submission
+      document.getElementById("adminupdateform").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Collect form data
+          const formData = new FormData(this);
+
+          // Submit this form data using fetch
+          fetch("/G-TECH50/php/adminChangeUserDetailsFunction.php", {
+              method: "POST",
+              body: formData,
+          })
+              .then(response => {
+                if (response.redirected) {
+                  // If PHP sent a redirect, follow it
+                  window.location.href = response.url;
+                  exit();
+                }
+                return response.text();
+              })
+              .then(data => {
+                  //Display the response inside the formResponse element
+                  document.getElementById("formResponse").innerHTML = data;
+              })
+              .catch(error => console.error("Error:", error));
+      });
+  </script>
+    </form>
   </div>
 </body>
   <!-- Footer -->
