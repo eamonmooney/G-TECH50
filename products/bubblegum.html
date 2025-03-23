@@ -105,9 +105,25 @@
     </div>
   </div>
 
-  <div id="pinnedReview"></div>
+  <div id="pinnedReview">
+    <div class="pinned-review" style="border: 2px solid gold; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+        <h3 style="color: gold;">⭐ Pinned Review ⭐</h3>
+        <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+        <p>" This is a pinned review "</p>
+    </div>
+  </div>
 
-  <div id="reviews"></div>
+  <div id="reviews">
+    <div class="review">
+      <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></p>
+      <p>" This is an unverified review "</p>
+    </div>
+    <div class="review">
+      <p><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></p>
+      <p>" This is a verified review "</p>
+    <span class="verified-badge">Verified</span>
+    </div>
+  </div>
 
   <script>
     function calculateAverageRating(reviews) {
