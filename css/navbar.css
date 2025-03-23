@@ -13,7 +13,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	left: 0;
 	z-index: 1000;
 	height: 55px;
-	font-size: 13px;
+	font-size: 16px;
 }
 
   .logo {
@@ -34,9 +34,9 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
   .nav-links {
 	display: flex;
 	flex: 1;
-	gap: 20px;
+	gap: 30px;
 	justify-content: center;
-	margin-left: 290px;
+	margin-left: 280px;
 	white-space: nowrap;
 	
   }
