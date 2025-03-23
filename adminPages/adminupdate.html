@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../css/adminNavbar.css">
 
   <script src="js/searchBar.js"></script>
-  <title>Admin User Details</title>
+  <title>Admin Change User Details</title>
   <style>
     .title {
      position: relative;
@@ -143,26 +143,16 @@
 
 </head>
 <body>
- <div class = title> <h2>Admin User Details</h2></div>
+ <div class = title> <h2>Admin Change User Details</h2></div>
     <div class="container">
-   
+      <form id="adminupdateform" action="/G-TECH50/php/adminChageUserdetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
     <div class="user-box">
-      <label>Username: <input type="text" value="Mary Johnson"></label>
-      <label>Email: <input type="email" value="MaryJohnson12@gmail.com"></label>
-      <label>Email Verified:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
-      <label>Admin:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
+      <label>Current Email: <input type="email" value="MaryJohnson12@gmail.com" id="oldEmail" name="oldEmail" class="form-control" placeholder="oldEmail" required></label>
+      <label>New Email: <input type="email" value="" id="newEmail" name="newEmail" class="form-control" placeholder="newEmail" required></label>
+      <label>New Username: <input type="text" value="" id="newUsername" name="newUsername" class="form-control" placeholder="newUsername" required></label>
+      <label>Admin Access Code: <input type="text" value="NULL" id="accessCode" name="accessCode" class="form-control" placeholder="accessCode" required></label>
       <div class="button1">
-        <button>Confirm</button>
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Confirm</button>
       </div>
     </div>
   </div>
