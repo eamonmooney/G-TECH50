@@ -53,7 +53,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     // 
     $res0 = $stmt0->fetchColumn();
     // checks if email is in use, outputting error message if it is
-        echo("Test correct");
         $sql1 = "SELECT * FROM AccessKeys WHERE RoleID = 2";
         $stmt1=$db->prepare($sql1);
         $stmt1->execute();

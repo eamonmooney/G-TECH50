@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         // defines user input as variables
         $Username = $_POST['newUsername'];
         $Email = $_POST['newEmail'];
+        $Password = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
         $sql9 = "SELECT * FROM Users WHERE Email = :newEmail limit 1";
         $stmt9=$db->prepare($sql9);
         $stmt9->execute([':newEmail' => $Email]);
@@ -37,47 +38,59 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         $stmt4=$db->prepare($sql4);
         $stmt4->execute();
         $codeData1 = $stmt4->fetch(PDO::FETCH_ASSOC);
-        if (password_verify($_POST['accessCode'], $codeData1['AccessKey'])) {
-            $sql5 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
-            $replacestmt5 = $db->prepare($sql5);
-            $replacestmt5->execute([':oldRoleID'=> $uData['RoleID'],
-                ':newRoleID' => 2,
-                ':oldEmail' => $_POST['oldEmail']]);
-        }else{
-            $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
-            $stmt2=$db->prepare($sql2);
-            $stmt2->execute();
-            $codeData2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($_POST['accessCode'], $codeData2['AccessKey'])) {
-                $sql6 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
-                $replacestmt6 = $db->prepare($sql6);
-                $replacestmt6->execute([':oldRoleID'=> $uData['RoleID'],
-                    ':newRoleID' => 3,
+        if ($uData['RoleID'] > $_SESSION['roleId']) {
+            echo "<p>You don't have sufficient permissions";
+            die;
+        } else {
+            if (password_verify($_POST['accessCode'], $codeData1['AccessKey'])) {
+                $sql5 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
+                $replacestmt5 = $db->prepare($sql5);
+                $replacestmt5->execute([':oldRoleID'=> $uData['RoleID'],
+                    ':newRoleID' => 2,
                     ':oldEmail' => $_POST['oldEmail']]);
             }else{
-                $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
-                $stmt3=$db->prepare($sql3);
-                $stmt3->execute();
-                $codeData3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                if (password_verify($_POST['accessCode'], $codeData3['AccessKey'])) {
-                    $sql7 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
-                    $replacestmt7 = $db->prepare($sql7);
-                    $replacestmt7->execute([':oldRoleID'=> $uData['RoleID'],
-                        ':newRoleID' => 4,
+                $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
+                $stmt2=$db->prepare($sql2);
+                $stmt2->execute();
+                $codeData2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($_POST['accessCode'], $codeData2['AccessKey'])) {
+                    $sql6 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
+                    $replacestmt6 = $db->prepare($sql6);
+                    $replacestmt6->execute([':oldRoleID'=> $uData['RoleID'],
+                        ':newRoleID' => 3,
                         ':oldEmail' => $_POST['oldEmail']]);
-                } else {
-                    if ($_POST['accessCode'] == "NULL"){
-                        $sql8 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
-                        $replacestmt8 = $db->prepare($sql8);
-                        $replacestmt8->execute([':oldRoleID'=> $uData['RoleID'],
-                            ':newRoleID' => 1,
+                }else{
+                    $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
+                    $stmt3=$db->prepare($sql3);
+                    $stmt3->execute();
+                    $codeData3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                    if (password_verify($_POST['accessCode'], $codeData3['AccessKey'])) {
+                        $sql7 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
+                        $replacestmt7 = $db->prepare($sql7);
+                        $replacestmt7->execute([':oldRoleID'=> $uData['RoleID'],
+                            ':newRoleID' => 4,
                             ':oldEmail' => $_POST['oldEmail']]);
                     } else {
-                        echo "Invalid access key";
-                        die;
+                        if ($_POST['accessCode'] == "NULL"){
+                            $sql8 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
+                            $replacestmt8 = $db->prepare($sql8);
+                            $replacestmt8->execute([':oldRoleID'=> $uData['RoleID'],
+                                ':newRoleID' => 1,
+                                ':oldEmail' => $_POST['oldEmail']]);
+                        } else {
+                            echo "Invalid access key";
+                            die;
+                        }
                     }
                 }
             }
+        }
+        if ($_POST['newPassword'] != "NULL") {
+            $sql10 = "UPDATE Users SET Password = REPLACE(Password, :oldPassword, :newPassword) WHERE Email = :oldEmail";
+            $replacestmt10 = $db->prepare($sql10);
+            $replacestmt10->execute([':oldEmail'=> $_POST['oldEmail'],
+            ':newPassword' => $Password,
+            ':oldPassword' => $uData['Password']]);
         }
         $sql1 = "UPDATE Users SET Email = REPLACE(Email, :oldEmail, :newEmail) WHERE Email = :oldEmail";
         $replacestmt1 = $db->prepare($sql1);
