@@ -30,17 +30,37 @@
             /* Increased width */
             width: 40vw;
             /* Increased height */
-            height: 40vh;
+            height: 60vh;
             /* Aesthetics */
             background: white;
             padding: 20px;
             box-shadow: 0px 0px 10px gray;
+            border-radius: 8px;
+            z-index: 1000;
+            /* Ensure it's above the footer */
+
         }
 
         /* Make popup content in the middle */
         .popup-content {
             text-align: center;
+            position: relative;
             color: black;
+            z-index: 1000;
+            /* Ensure it's above the footer */
+
+        }
+
+
+        /* Aesthetics of popup inputs */
+        .popup-content input,
+        .popup-content select,
+        .popup-content textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         /* Close button */
@@ -59,6 +79,44 @@
             /* Make it bolder */
             font-weight: bold;
 
+        }
+
+        /* Popup buttons */
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        /* Confirm buttons */
+        .confirm-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* When hovering over confirm */
+        .confirm-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* cANCEL buttons */
+        .cancel-btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* When hovering over cancel */
+
+        .cancel-btn:hover {
+            background-color: #c9302c;
         }
 
         html,
@@ -196,7 +254,8 @@
             <!-- Buttons -->
             <div class="top-buttons">
                 <button type="button">Stock Reports</button>
-                <button type="button">New Product</button>
+                <!-- Add Product Button -->
+                <button onclick="addNewPopup()" id="addButton">New Product</button>
                 <!-- Delete button -->
                 <button type="button" id="deleteButton" onclick="deleteSelectedProducts()">Delete</button>
             </div>
@@ -261,7 +320,7 @@
     <div id="editPopup" class="popup">
         <div class="popup-content">
             <!-- Close it -->
-            <span class="close" onclick="closePopup()">&times;</span>
+            <span class="close" onclick="closeEditPopup()">&times;</span>
             <!-- Heading -->
             <h2>Edit Product</h2>
             <!-- Form to edit -->
@@ -291,48 +350,93 @@
                 </div>
                 <div>
                     <!-- Can edit category manually -->
+                    <div>
+                        <label>Category:</label>
+                        <select id="editProductCategory">
+                            <option value="Mice">Mice</option>
+                            <option value="Monitors">Monitors</option>
+                            <option value="Headphones">Headphones</option>
+                            <option value="Keyboards">Keyboards</option>
+                            <option value="Mousepads">Mousepads</option>
+                        </select>
+                    </div>
+                    <div>
+                        <!-- Can edit description manually -->
+                        <label>Description:</label>
+                        <textarea id="editProductDescription"></textarea>
+                    </div>
+                    <div>
+                        <!-- Submit -->
+                        <button type="button" onclick="saveProductChanges()">Save</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Product Popup  -->
+    <div id="addPopup" class="popup">
+        <div class="popup-content">
+            <!-- Close it -->
+            <span class="close" onclick="closeAddPopup()">&times;</span>
+            <!-- Heading -->
+            <h2>Add New Product</h2>
+            <!-- Form -->
+            <form id="addProductForm">
+                <!-- Name -->
+                <div>
+                    <label>Name:</label>
+                    <input type="text" id="addProductName" required>
+                </div>
+
+                <!-- Status -->
+                <div>
+                    <label>Status:</label>
+                    <select id="addProductStatus">
+                        <option value="In Stock">In Stock</option>
+                        <option value="Low Stock">Low Stock</option>
+                        <option value="Out of Stock">Out of Stock</option>
+                    </select>
+                </div>
+
+                <!-- Stock level -->
+                <div>
+                    <label>Stock Level:</label>
+                    <input type="number" id="addProductStock" required>
+                </div>
+
+                <!-- Category -->
+                <div>
                     <label>Category:</label>
-                    <input type="text" id="editProductCategory">
+                    <select id="addProductCategory">
+                        <option value="Mice">Mice</option>
+                        <option value="Monitors">Monitors</option>
+                        <option value="Headphones">Headphones</option>
+                        <option value="Keyboards">Keyboards</option>
+                        <option value="Mousepads">Mousepads</option>
+                    </select>
                 </div>
+
+                <!-- Description -->
                 <div>
-                    <!-- Can edit description manually -->
                     <label>Description:</label>
-                    <textarea id="editProductDescription"></textarea>
+                    <textarea id="addProductDescription" required></textarea>
                 </div>
+
+                <!-- Image URL -->
                 <div>
-                    <!-- Submit -->
-                    <button type="button" onclick="saveProductChanges()">Save</button>
+                    <label>Image URL:</label>
+                    <input type="text" id="addProductImage" placeholder="Enter image path">
+                </div>
+
+                <!-- Confirm and cancel -->
+                <div class="popup-buttons">
+                    <button type="button" class="confirm-btn" onclick="addNewProduct()">Add</button>
+                    <button type="button" class="cancel-btn" onclick="closeAddPopup()">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>G-TECH50</h3>
-                <p>&copy; 2024 G-TECH50</p>
-                <p>ALL RIGHTS RESERVED.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Phone: +44 7700 900123</p>
-                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-            </div>
-        </div>
-    </footer>
 
     <script>
 
@@ -529,7 +633,7 @@
         }
 
         // Close Popup
-        function closePopup() {
+        function closeEditPopup() {
             // Make hidden
             document.getElementById("editPopup").style.display = "none";
         }
@@ -566,7 +670,7 @@
                         // Success message 
                         alert("Product updated successfully!");
                         // Close popup
-                        closePopup();
+                        closeEditPopup();
                         // Fetch products
                         fetchProducts();
                         // Error message
@@ -576,6 +680,60 @@
                 })
                 // Error message
                 .catch(error => console.error("Error updating product:", error));
+        }
+
+        // ADD NEW PRODUCT
+        function addNewPopup() {
+            document.getElementById("addPopup").style.display = "block";
+            console.log("Opening Add New Product Popup"); // Debugging
+            document.getElementById("addPopup").style.display = "block";
+        }
+        
+        document.getElementById("addButton").addEventListener("click", function () {
+            document.querySelector(".addPopup").style.display = "block";
+        });
+
+        // Close Add Product Popup
+        function closeAddPopup() {
+            document.getElementById("addPopup").style.display = "none";
+        }
+
+        // Add New Product
+        function addNewProduct() {
+            // gET Values
+            const name = document.getElementById("addProductName").value;
+            const status = document.getElementById("addProductStatus").value;
+            const stock = document.getElementById("addProductStock").value;
+            const category = document.getElementById("addProductCategory").value;
+            const description = document.getElementById("addProductDescription").value;
+            const image = document.getElementById("addProductImage").value || "images/default.png"; // Default image
+
+            // Fetch php
+            fetch("../php/addProduct.php", {
+                // Post method
+                method: "POST",
+                // JSON METHOD
+                headers: { "Content-Type": "application/json" },
+                // PASS VALUES
+                body: JSON.stringify({ ProductName: name, Status: status, Stock: stock, Category: category, Description: description, ImageURL: image })
+            })
+                // With JSON RESPONSE
+                .then(response => response.json())
+                .then(data => {
+                    // Success alert
+                    if (data.success) {
+                        alert("Product added successfully!");
+                        // Close
+                        closeAddPopup();
+                        // Refresh table
+                        fetchProducts();
+                        // Error alert
+                    } else {
+                        alert("Error adding product: " + data.error);
+                    }
+                })
+                // Error alert
+                .catch(error => console.error("Error adding product:", error));
         }
 
 
