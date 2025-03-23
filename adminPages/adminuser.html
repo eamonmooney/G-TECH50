@@ -145,36 +145,22 @@
         <table>
             <thead>
                 <tr>
-                    <th>Username</th>
+                    <th>UserID</th>
+                    <th>Permissions</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Email verified</th>
-                    <th>Admin</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Mary Johnson</td>
-                    <td>MaryJohnson12@gmail.com</td>
-                    <td>True</td>
-                    <td>True</td>
-                </tr>
-                <tr>
-                    <td>Kenedy Moore</td>
-                    <td>kennedymorre2@yahoo.co.uk</td>
-                    <td>True</td>
-                    <td>True</td>
-                <tr>
-                    <td>Ben Smith</td>
-                    <td>bensmith@yahoo.com</td>
-                    <td>True</td>
-                    <td>True</td>
-                </tr>
-                <td>Sam Sharp</td>
-                <td>itzsamsharp@gmail.com</td>
-                <td>True</td>
-                <td>True</td>
-                
-            </tbody>
+            <tbody id="userRows"></tbody>
+            <script>
+                // Script for changing html attributes of the user table. Ned 230019355
+                fetch('/G-TECH50/php/adminViewUserDetails.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('userRows').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error:', error));
+            </script>
         </table>
     </div>
 
