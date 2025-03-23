@@ -172,7 +172,7 @@
             <tbody id="ticketRows"></tbody>
             <script>
                 // Script for changing html attributes of the ticket table. Eamon - 230075926
-                fetch('php/ticketInfo.php')
+                fetch('../php/ticketInfo.php')
                     .then(response => response.text())
                     .then(data => {
                         document.getElementById('ticketRows').innerHTML = data;
