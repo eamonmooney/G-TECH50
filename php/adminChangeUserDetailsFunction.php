@@ -1,5 +1,5 @@
 <?php
-// Created by Ned Goodman - 230019355
+// Ned Goodman 230019355
 session_start();
 //establishes database connection
 require_once('connectdb.php');
