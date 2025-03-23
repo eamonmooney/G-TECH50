@@ -10,7 +10,7 @@
 
 5.4 ✅Search filter
 
-5.5 add, edit, ✅ remove products
+5.5 add, ✅edit, ✅ remove products
 */
 
 // Start the session
