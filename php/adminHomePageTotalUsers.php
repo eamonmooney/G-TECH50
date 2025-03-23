@@ -14,12 +14,12 @@ try {
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $numUsers = 0;
     if (count($users) > 0) {
-        // define sales as total number of orders
+        // define number of users by iterating over each user
         foreach($users as $user) {
             $numUsers += 1;
         }
     };
-    // output total sales to javascript
+    // output total number of users to javascript
     echo $numUsers;
 
 } catch (PDOException $e) {

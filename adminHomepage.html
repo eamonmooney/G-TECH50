@@ -78,7 +78,16 @@
               })
               .catch(error => console.error('Error:', error));
       </script></div>
-      <div class="card"><h3>Stock Items</h3><p id="stockItems"></p></div>
+      <div class="card"><h3>Stock Items</h3><p id="stockItems"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePageStockCount.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('stockItems').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script></div>
       
     </div>
 
