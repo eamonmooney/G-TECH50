@@ -334,6 +334,7 @@
                     <option value="processing">Processing</option>
                     <option value="delivering">Delivering</option>
                     <option value="sent">Sent</option>
+                    <option value="cancelled">Cancelled</option>
                 </select>
             </div>
 
@@ -504,9 +505,10 @@
                 input: "select",
                 // Options for dropdown
                 inputOptions: {
-                    processing: "Processing",
-                    delivering: "Delivering",
-                    sent: "Sent"
+                    Processing: "Processing",
+                    Delivering: "Delivering",
+                    Sent: "Sent",
+                    Cancelled: "Cancelled"
                 },
                 //default value
                 inputValue: currentStatus,
@@ -529,13 +531,13 @@
             fetch('../php/updateStatus.php', {
                 // Use post method to send data
                 method: 'POST',
-                // Tells server the data is being sent as key-value pairs - fetch() request
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                // The data being sent - orderID and newStatus
-                body: `orderID=${orderID}&status=${newStatus}`
+                // SEND AS JSON
+                headers: { 'Content-Type': 'application/json' },
+                // The data being sent - orderID and newStatus as JSON
+                body: JSON.stringify({ orderID: orderID, status: newStatus })
             })
                 // processes response from the fetch request - converts to text
-                .then(response => response.text())
+                .then(response => response.json())
                 // Then
                 .then(() => {
                     // displays a popup with sweetalert2
