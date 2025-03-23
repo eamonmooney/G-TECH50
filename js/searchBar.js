@@ -36,43 +36,33 @@ const data = [
 	{ name: "Woodland Wanderer", url: "products/woodland_wanderer.html" },
 ];
 
-// Function to adjust paths based on current folder depth
-function adjustPaths(data) {
-	// Get the current path of the page
-	const currentPath = window.location.pathname;
-	// Calculate the number of folders deep the current page is
-	const depth = (currentPath.match(/\//g) || []).length - 1;
-	// Generate the relative prefix (e.g., "../" for one level up)
-	const prefix = depth > 0 ? '../'.repeat(depth) : '';
-	// Adjust URLs
-	return data.map(item => ({
-		name: item.name,
-		url: prefix + item.url,
-	}));
-}
-
-// Adjusted data with correct URLs
-const adjustedData = adjustPaths(data);
-
-//Constants for the search bar
 const searchBar = document.getElementById("searchBar");
 const searchButton = document.getElementById("searchButton");
 const searchResults = document.getElementById("searchResults");
 
-//Search bar functionality
 function searchItems(query) {
-	const lowerQuery = query.toLowerCase();
-	const results = adjustedData.filter(item => item.name.toLowerCase().includes(lowerQuery));
-
-	searchResults.innerHTML = results.length
-		? results.map(item => `<a href="${item.url}">${item.name}</a>`).join('')
-		: '<div>No results found</div>';
-	searchResults.style.display = query ? 'block' : 'none';
+  const lowerQuery = query.toLowerCase();
+  const results = data.filter(item => item.name.toLowerCase().includes(lowerQuery));
+  searchResults.innerHTML = results.length
+    ? results.map(item => `
+        <div class="search-result-item" data-url="${item.url}">
+          <a href="${item.url}" class="search-result-link">${item.name}</a>
+        </div>
+      `).join('')
+    : '<div>No results found</div>';
+  searchResults.style.display = query ? 'block' : 'none';
 }
 
-//Listeners incase the search bar is clicked
 searchBar.addEventListener("input", () => searchItems(searchBar.value));
 searchButton.addEventListener("click", () => searchItems(searchBar.value));
+
+document.addEventListener("click", function (event) {
+  const target = event.target.closest(".search-result-item");
+  if (target && target.dataset.url) {
+    window.location.href = target.dataset.url;
+  }
+});
+
 
 // Test console message to make sure this page is linked
 console.log("searchBar.js is linked!");
