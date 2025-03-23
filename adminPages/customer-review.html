@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../css/signin.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/adminNavbar.css">
+
 
     <style>
         body {
@@ -108,44 +110,34 @@
 <body>
     <div class="navbar">
         <div class="logo">
-            <a href="index.html">Logo</a>
+            <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
         </div>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
-
-            <div class="dropdown">
-                <a href=#>Categories</a>
-
-                <div class="dropdown-content">
-                    <a href="categories/Mice.html">Mice</a>
-                    <a href="categories/Monitors.html">Monitors</a>
-                    <a href="categories/Headphones.html">Headphones</a>
-                    <a href="categories/Keyboards.html">Keyboards</a>
-                    <a href="categories/Mousepads.html">Mousepads</a>
-                </div>
-
-            </div>
-            <a href="aboutus.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="userTransactionPage.html">Transactions</a>
+            <a href="adminuser.html">Users</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="customer-review.html">Reviews</a>
+            <a href="ticket.html">Tickets</a>
         </div>
 
         <div class="icon-container">
-
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <i class="material-icons">search</i>
-            </div>
-
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <!-- Basket Section in navbar -->
-            <a href="basket.html" id="basket-container">
-                <!-- Basket Icon -->
-                <i class="material-icons">shopping_basket</i>
-                <!-- Basket Number - changes to that with the javascript calling php -->
-                <span id="basketNum"></span>
-            </a>
+            <a href="../profile.html"><i class="material-icons">account_circle</i></a>
         </div>
+
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div class="mobile-nav-links" id="mobileNavLinks">
+        <a href="Transactions.html">Transactions</a>
+        <a href="Users.html">Users</a>
+        <a href="Inventory.html">Inventory</a>
+        <a href="Reviews.html">Reviews</a>
+        <a href="Tickets.html">Tickets</a>
     </div>
 
     <div class="container">
@@ -206,22 +198,22 @@
     <script>
         // Sort Table Function
         function sortTable(columnIndex) {
-                let table = document.getElementById("reviewsTable");
-                let rows = Array.from(table.rows).slice(1);
-                let isAscending = table.getAttribute("data-sort") !== "asc";
+            let table = document.getElementById("reviewsTable");
+            let rows = Array.from(table.rows).slice(1);
+            let isAscending = table.getAttribute("data-sort") !== "asc";
 
-                rows.sort((rowA, rowB) => {
-                    let cellA = rowA.cells[columnIndex].innerText;
-                    let cellB = rowB.cells[columnIndex].innerText;
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.cells[columnIndex].innerText;
+                let cellB = rowB.cells[columnIndex].innerText;
 
-                    if (!isNaN(cellA) && !isNaN(cellB)) {
-                        return isAscending ? cellA - cellB : cellB - cellA;
-                    }
-                    return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-                });
+                if (!isNaN(cellA) && !isNaN(cellB)) {
+                    return isAscending ? cellA - cellB : cellB - cellA;
+                }
+                return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+            });
 
-                table.setAttribute("data-sort", isAscending ? "asc" : "desc");
-                rows.forEach(row => table.appendChild(row));
+            table.setAttribute("data-sort", isAscending ? "asc" : "desc");
+            rows.forEach(row => table.appendChild(row));
         }
 
 
