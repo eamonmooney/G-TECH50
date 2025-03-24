@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="/G-TECH50/css/adminHomepage.css">
+  <link rel="stylesheet" href="../css/adminHomepage.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/adminHomepage.js" defer></script>
 </head>
@@ -64,7 +64,7 @@
         <p id="totalSales"></p>
         <script>
           // Ned Goodman  230019355
-          fetch('/G-TECH50/php/adminHomePageSales.php')
+          fetch('../php/adminHomePageSales.php')
             .then(response => response.text())
             .then(data => {
               document.getElementById('totalSales').innerHTML = data;
@@ -77,7 +77,7 @@
         <p id="totalUsers"></p>
         <script>
           // Ned Goodman  230019355
-          fetch('/G-TECH50/php/adminHomePageTotalUsers.php')
+          fetch('../php/adminHomePageTotalUsers.php')
             .then(response => response.text())
             .then(data => {
               document.getElementById('totalUsers').innerHTML = data;
@@ -91,7 +91,7 @@
         <p id="pendingTickets"></p>
         <script>
           // Ned Goodman  230019355
-          fetch('/G-TECH50/php/adminHomePagePendingTickets.php')
+          fetch('../php/adminHomePagePendingTickets.php')
             .then(response => response.text())
             .then(data => {
               document.getElementById('pendingTickets').innerHTML = data;
@@ -105,7 +105,7 @@
         <p id="stockItems"></p>
         <script>
           // Ned Goodman  230019355
-          fetch('/G-TECH50/php/adminHomePageStockCount.php')
+          fetch('../php/adminHomePageStockCount.php')
             .then(response => response.text())
             .then(data => {
               document.getElementById('stockItems').innerHTML = data;
@@ -121,7 +121,7 @@
 
         <script>
           // Get php return
-          fetch('/G-TECH50/php/adminHomePageLowStock.php')
+          fetch('../php/adminHomePageLowStock.php')
             .then(response => response.json())
             .then(data => {
               // List from website
