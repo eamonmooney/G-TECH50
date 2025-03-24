@@ -61,6 +61,7 @@
       </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
+        <a href="aboutus.html">About Us</a>
         <div class="dropdown">
           <a href=#>Categories</a>
           <div class="dropdown-content">
@@ -71,7 +72,7 @@
             <a href="categories/Mousepads.html">Mousepads</a>
           </div>
         </div>
-        <a href="aboutus.html">About Us</a>
+        
         <a href="contact.html">Contact Us</a>
         <a href="membershipSignUp.html">G-TECH50+</a>
       </div>
@@ -211,7 +212,7 @@
                   const productInfo = document.createElement('div');
                   //Populate div with product info and price
                   productInfo.className = 'product-info';
-                  productInfo.textContent = `${name} - $${price}`;
+                  productInfo.textContent = `${name} - £${price}`;
 
                   //Creating a div to control the quanity
                   const quantityControls = document.createElement('div');
@@ -391,7 +392,7 @@
           });
 
           //Update the total price
-          totalPriceElement.textContent = `$${total.toFixed(2)}`;
+          totalPriceElement.textContent = `£${total.toFixed(2)}`;
           if (productList.children.length === 0) {
             //Make the empty message visible
             emptyMessage.style.display = 'block';

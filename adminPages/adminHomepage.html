@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - G-Tech 50</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="../css/adminHomepage.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/adminHomepage.js" defer></script>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">
+      <img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+
+    </div>
+
+    <div class="nav-links">
+      <a href="adminHomepage.html">Home</a>
+      <a href="userTransactionPage.html">Transactions</a>
+      <a href="adminuser.html">Users</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="review-details.html">Reviews</a>
+      <a href="ticket.html">Tickets</a>
+    </div>
+
+    <div class="icon-container">
+      <a href="../profile.html"><i class="material-icons">account_circle</i></a>
+    </div>
+
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+  
+  <div class="mobile-nav-links" id="mobileNavLinks">
+    <a href="adminHomepage.html">Home</a>
+    <a href="userTransactionPage.html">Transactions</a>
+    <a href="adminuser.html">Users</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="review-details.html">Reviews</a>
+    <a href="ticket.html">Tickets</a>
+  </div>
+
+  <div class="container">
+    <h1>Welcome, Admin!</h1>
+
+    <div class="cards">
+      <div class="card"><h3>Total Sales</h3><p id="totalSales"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePageSales.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('totalSales').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script> </div>
+      <div class="card"><h3>Total Users</h3><p id="totalUsers"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePageTotalUsers.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('totalUsers').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script></div>
+      <div class="card"><h3>Pending Tickets</h3><p id="pendingTickets"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePagePendingTickets.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('pendingTickets').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script></div>
+      <div class="card"><h3>Stock Items</h3><p id="stockItems"></p>
+        <script>
+          // Ned Goodman  230019355
+          fetch('/G-TECH50/php/adminHomePageStockCount.php')
+              .then(response => response.text())
+              .then(data => {
+                  document.getElementById('stockItems').innerHTML = data;
+              })
+              .catch(error => console.error('Error:', error));
+      </script></div>
+      
+    </div>
+
+  </div>
+
+</body>
+</html>

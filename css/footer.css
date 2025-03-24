@@ -16,6 +16,7 @@ footer {
     text-align: center;
     margin-top: 35px;
     margin-bottom: 35px;
+    background-color: black;
 }
 
 .footer-container {
@@ -28,6 +29,10 @@ footer {
     gap: 20px;
     background-color: black;
     text-align: center; /* Adjusted the footer - Sahil. */
+}
+
+.footer-container h3 {
+    color: white;
 }
 
 .footer-section {

@@ -10,9 +10,9 @@ body {
     background-color: black;
   }
 
-  .navbar .icon-container {
+  /*.navbar .icon-container {
     padding-right: 35px;
-  }
+  }*/
   
   .container {
     display: flex;
