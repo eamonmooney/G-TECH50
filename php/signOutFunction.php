@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     session_destroy();
 
     // change user to index page
-    header("Location: /G-TECH50/index.html");
+    header("Location: ../index.html");
 
     exit();
 }
