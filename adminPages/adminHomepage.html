@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+<!-- Frontend - Tobias
+ Total users, tickets, stock - Ned
+ Product Alerts - Safa -->
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - G-Tech 50</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../css/adminHomepage.css">
+  <link rel="stylesheet" href="/G-TECH50/css/adminHomepage.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/adminHomepage.js" defer></script>
 </head>
+
 <body>
 
   <div class="navbar">
@@ -24,6 +29,8 @@
       <a href="inventory.html">Inventory</a>
       <a href="review-details.html">Reviews</a>
       <a href="ticket.html">Tickets</a>
+      <a href="reports.html">Reports</a>
+
     </div>
 
     <div class="icon-container">
@@ -36,7 +43,7 @@
       <div class="bar"></div>
     </div>
   </div>
-  
+
   <div class="mobile-nav-links" id="mobileNavLinks">
     <a href="adminHomepage.html">Home</a>
     <a href="userTransactionPage.html">Transactions</a>
@@ -44,56 +51,124 @@
     <a href="inventory.html">Inventory</a>
     <a href="review-details.html">Reviews</a>
     <a href="ticket.html">Tickets</a>
+    <a href="reports.html">Reports</a>
+
   </div>
 
   <div class="container">
     <h1>Welcome, Admin!</h1>
 
     <div class="cards">
-      <div class="card"><h3>Total Sales</h3><p id="totalSales"></p>
+      <div class="card clickable" onclick="window.location.href='reports.html'" >
+        <h3>Total Sales</h3>
+        <p id="totalSales"></p>
         <script>
           // Ned Goodman  230019355
           fetch('/G-TECH50/php/adminHomePageSales.php')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('totalSales').innerHTML = data;
-              })
-              .catch(error => console.error('Error:', error));
-      </script> </div>
-      <div class="card"><h3>Total Users</h3><p id="totalUsers"></p>
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('totalSales').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        </script>
+      </div>
+      <div class="card clickable" onclick="window.location.href='adminuser.html'" >
+        <h3>Total Users</h3>
+        <p id="totalUsers"></p>
         <script>
           // Ned Goodman  230019355
           fetch('/G-TECH50/php/adminHomePageTotalUsers.php')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('totalUsers').innerHTML = data;
-              })
-              .catch(error => console.error('Error:', error));
-      </script></div>
-      <div class="card"><h3>Pending Tickets</h3><p id="pendingTickets"></p>
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('totalUsers').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        </script>
+      </div>
+
+      <div class="card clickable" onclick="window.location.href='ticket.html'" >
+        <h3>Pending Tickets</h3>
+        <p id="pendingTickets"></p>
         <script>
           // Ned Goodman  230019355
           fetch('/G-TECH50/php/adminHomePagePendingTickets.php')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('pendingTickets').innerHTML = data;
-              })
-              .catch(error => console.error('Error:', error));
-      </script></div>
-      <div class="card"><h3>Stock Items</h3><p id="stockItems"></p>
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('pendingTickets').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        </script>
+      </div>
+
+      <div class="card clickable" onclick="window.location.href='inventory.html'" >
+        <h3>Stock Items</h3>
+        <p id="stockItems"></p>
         <script>
           // Ned Goodman  230019355
           fetch('/G-TECH50/php/adminHomePageStockCount.php')
-              .then(response => response.text())
-              .then(data => {
-                  document.getElementById('stockItems').innerHTML = data;
-              })
-              .catch(error => console.error('Error:', error));
-      </script></div>
-      
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('stockItems').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        </script>
+      </div>
+
+      <!-- Safa -->
+      <div class="card clickable" onclick="window.location.href='inventory.html'" >
+        <h3>Low Stock Alerts</h3>
+        <ul id="lowStockList" class="no-bullets"></ul>
+
+        <script>
+          // Get php return
+          fetch('/G-TECH50/php/adminHomePageLowStock.php')
+            .then(response => response.json())
+            .then(data => {
+              // List from website
+              const list = document.getElementById('lowStockList');
+
+              // If return is empty, say its good
+              if (data.length === 0) {
+                const item = document.createElement("li");
+                item.textContent = "All stocks are healthy ✅";
+                list.appendChild(item);
+                // Else if error, print error
+              } else if (data.error) {
+                const item = document.createElement("li");
+                item.textContent = `Error: ${data.error}`;
+                list.appendChild(item);
+                // Else,
+              } else {
+                data.forEach(product => {
+                  // List
+                  const item = document.createElement("li");
+
+                  // Icon
+                  let icon = "❗";
+                  if (product.Stock < 0) icon = "⚠️";
+                  else if (product.Stock < 5) icon = "🔴";
+                  else icon = "🟠";
+                  // List content
+                  item.textContent = `${icon} ${product.ProductName} - ${product.Stock} left`;
+
+                  // Append list
+                  list.appendChild(item);
+                });
+              }
+            })
+            // Errors
+            .catch(error => {
+              document.getElementById('lowStockList').innerHTML = "<li>Error loading products.</li>";
+              console.error('Error:', error);
+            });
+        </script>
+      </div>
+
+
     </div>
 
   </div>
 
 </body>
+
 </html>
