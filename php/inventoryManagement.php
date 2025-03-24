@@ -4,9 +4,9 @@
 /* 
 5.1 ✅ Product Listing: image, price, description, stock level, additional info 
 
-5.2 Alert System - out of stock/under threshold
+5.2 ✅Alert System - out of stock/under threshold
 
-5.3 Reports on stock: current and incoming/outgoing orders
+5.3 ✅Reports on stock: current and incoming/outgoing orders
 
 5.4 ✅Search filter
 
