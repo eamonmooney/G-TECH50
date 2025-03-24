@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 setcookie("rememberMe", $token, $expiry, "/", "", true, true); 
             }
             if ($uData['RoleID'] > 2){
-                header("Location: ../adminHomepage.html");
+                header("Location: /G-TECH50/adminPages/adminHomepage.html");
                 die;
             }
             // change page to index page
