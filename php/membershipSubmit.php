@@ -25,6 +25,11 @@ if ($email !== $confirmEmail) {
     exit();
 }
 
+// Hash the card number, expiry, and CVV before storing them
+$hashedCardNumber = hash('sha256', $cardNumber);
+$hashedExpiry = hash('sha256', $expiry);
+$hashedCVV = hash('sha256', $cvv);
+
 // Get the UserID from the session
 $userID = $_SESSION['userId'];
 
@@ -44,7 +49,7 @@ $query = "INSERT INTO Members (UserID, CardName, CardNumber, ExpiryDate, CVV, Po
           VALUES (?, ?, ?, ?, ?, 100, 'G-TECH50 BEGINNER')";
 
 $stmt = $db->prepare($query);
-$stmt->execute([$userID, $cardName, $cardNumber, $expiry, $cvv]);
+$stmt->execute([$userID, $cardName, $hashedCardNumber, $hashedExpiry, $hashedCVV]);
 
 // Check if the insertion was successful
 if ($stmt->rowCount() > 0) {
