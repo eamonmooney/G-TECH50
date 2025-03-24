@@ -17,7 +17,7 @@
     <script src="js/basketNumber.js"></script>
 
     <script>
-        function validateForm(event) {
+        function validateForm() {
             let name = document.getElementById("name").value.trim();
             let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value;
@@ -33,8 +33,8 @@
             if (password.length < 8) {
                 errorMessage += "Password must be at least 8 characters.\n";
             }
-            if (!/[a-zA-Z]/.test(password)) {
-                errorMessage += "Password must contain at least one letter.\n";
+            if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+                errorMessage += "Password must contain at least one uppercase letter.\n";
             }
             if (!/[0-9]/.test(password)) {
                 errorMessage += "Password must contain at least one number.\n";
@@ -45,8 +45,9 @@
 
             if (errorMessage !== "") {
                 alert(errorMessage);
-                event.preventDefault(); // Stop form submission
+                return false; // Stop form submission
             }
+            return true;
         }
     </script>
 
@@ -140,7 +141,7 @@
                                     </div>
                                 </div>
                                 <form id = "adminSignUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
-                                    onsubmit="validateForm(event)">
+                                    onsubmit="return validateForm()">
                                     <div class="form-group mb-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="name">
