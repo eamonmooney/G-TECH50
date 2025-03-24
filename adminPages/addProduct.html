@@ -1,0 +1,352 @@
+<!-- Frontend by Rayyan Akhlaq - 230074804, Backend and functionality by Safa-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Inventory Management System</title>
+
+	<link rel="stylesheet" href="../css/fonts.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="../css/homepage.css">
+	<link rel="stylesheet" href="../css/footer.css">
+	<link rel="stylesheet" href="../css/adminNavbar.css">
+
+
+	<!-- Page Styling for Table and popup -->
+	<style>
+		/* Popup */
+		.popup {
+			/* Initially invisible */
+			display: none;
+			/* Fixed position so doesnt move with page */
+			position: fixed;
+			/* Positioning */
+			top: 50%;
+			left: 50%;
+			/* Center the popup */
+			transform: translate(-50%, -50%);
+			/* Increased width */
+			width: 50vw;
+			/* Increased height */
+			height: 90vh;
+			/* Aesthetics */
+			background: white;
+			padding: 20px;
+			box-shadow: 0px 0px 10px gray;
+			border-radius: 8px;
+			z-index: 1000;
+
+		}
+
+
+		/* Make popup content in the middle */
+		.popup-content {
+			text-align: center;
+			position: relative;
+			color: black;
+			z-index: 1000;
+
+		}
+
+
+		/* Aesthetics of popup inputs */
+		.popup-content input,
+		.popup-content select,
+		.popup-content textarea {
+			width: 100%;
+			margin: 8px 0;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		/* Close button */
+		.close {
+			/* Position stays */
+			position: absolute;
+			/* Position  */
+			top: 10px;
+			right: 10px;
+			/* Turns clickable */
+			cursor: pointer;
+			background-color: whitesmoke;
+			color: black;
+			/* Increase size */
+			font-size: 24px;
+			/* Make it bolder */
+			font-weight: bold;
+
+		}
+
+		/* Popup buttons */
+		.popup-buttons {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 15px;
+		}
+
+		/* Confirm buttons */
+		.confirm-btn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		/* When hovering over confirm */
+		.confirm-btn:hover {
+			background-color: #45a049;
+		}
+
+		/* cANCEL buttons */
+		.cancel-btn {
+			background-color: #d9534f;
+			color: white;
+			padding: 10px 15px;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		/* When hovering over cancel */
+
+		.cancel-btn:hover {
+			background-color: #c9302c;
+		}
+
+		html,
+		body {
+			height: 100%;
+			background-color: black;
+			color: white;
+			font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+		}
+
+
+		h2 {
+			text-align: center;
+			margin-bottom: 20px;
+			font-size: 50px;
+		}
+
+		.close-button {
+			background-color: transparent;
+			color: white;
+			border-color: rgb(255, 255, 255);
+			padding: 8px 12px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.close-button:hover {
+			background-color: #ff0000;
+		}
+
+		button-bar {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<div class="logo">
+			<img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+		</div>
+
+		<div class="nav-links">
+			<a href="userTransactionPage.html">Transactions</a>
+			<a href="adminuser.html">Users</a>
+			<a href="inventory.html">Inventory</a>
+			<a href="customer-review.html">Reviews</a>
+			<a href="ticket.html">Tickets</a>
+
+		</div>
+
+		<div class="icon-container">
+			<a href="../profile.html"><i class="material-icons">account_circle</i></a>
+		</div>
+
+		<div class="hamburger-menu" id="hamburgerMenu">
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+		</div>
+	</div>
+
+	<div class="mobile-nav-links" id="mobileNavLinks">
+		<a href="userTransactionPage.html">Transactions</a>
+		<a href="adminuser.html">Users</a>
+		<a href="inventory.html">Inventory</a>
+		<a href="review-details.html">Reviews</a>
+		<a href="ticket.html">Tickets</a>
+
+	</div>
+
+
+
+	<!-- Add Product Popup -->
+	<div id="addProduct" class="popup">
+		<div class="popup-content">
+			<!-- Close it -->
+			<span class="close" onclick="closeAddProduct()">&times;</span>
+			<!-- Heading -->
+			<h2>Add New Product</h2>
+			<!-- Form -->
+			<form id="addProductForm">
+				<!-- Name -->
+				<div>
+					<label>Name:</label>
+					<input type="text" id="addProductName" required>
+				</div>
+
+				<!-- Price -->
+				<div>
+					<label>Price:</label>
+					<input type="number" id="addProductPrice" required>
+				</div>
+
+				<!-- Stock level -->
+				<div>
+					<label>Stock Level:</label>
+					<input type="number" id="addProductStock" required>
+				</div>
+
+				<!-- Category -->
+				<div>
+					<label>Category:</label>
+					<select id="addProductCategory">
+						<option value="Mice">Mice</option>
+						<option value="Monitors">Monitors</option>
+						<option value="Headphones">Headphones</option>
+						<option value="Keyboards">Keyboards</option>
+						<option value="Mousepads">Mousepads</option>
+					</select>
+				</div>
+
+				<!-- Description -->
+				<div>
+					<label>Description:</label>
+					<textarea id="addProductDescription" required></textarea>
+				</div>
+
+				<!-- Image URL -->
+				<div>
+					<label>Image URL:</label>
+					<input type="text" id="addProductImage" placeholder="Enter image path">
+				</div>
+
+				<!-- Confirm and cancel -->
+				<div class="popup-buttons">
+					<button type="button" class="confirm-btn" onclick="addNewProduct()">Add</button>
+					<button type="button" class="cancel-btn" onclick="closeAddProduct()">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<script>
+		// Open the popup automatically when the page loads
+		document.addEventListener("DOMContentLoaded", function () {
+			// Show the popup
+			const popup = document.getElementById("addProduct");
+			popup.style.display = "block";
+		});
+
+
+		// Close Popup
+		function closeAddProduct() {
+			// Go back
+			console.log("Clicked! Redirecting to inventory...");
+			window.location.href = "inventory.html";
+		}
+
+		// Add new product to DB
+		function addNewProduct() {
+			// Get values
+			// Product ID will be created when added
+			// Product name
+			const name = document.getElementById("addProductName").value.trim();
+			// Price
+			const price = document.getElementById("addProductPrice").value.trim();
+			// Stock
+			const stock = document.getElementById("addProductStock").value.trim();
+			// Category
+			const category = document.getElementById("addProductCategory").value.trim();
+			// Descrioption
+			const description = document.getElementById("addProductDescription").value.trim();
+			// ImageURL
+			const imageURL = document.getElementById("addProductImage").value.trim();
+
+			// Validation: check for empty fields
+			if (!name || !price || !stock || !category || !description || !imageURL) {
+				alert("Please fill in all fields before submitting.");
+				return;
+			}
+
+			// Build the object
+			const productData = {
+				ProductName: name,
+				Price: price,
+				Stock: stock,
+				Category: category,
+				Description: description,
+				ImageURL: imageURL
+			};
+
+			// Fetch to open updateProdyct.php
+			fetch("../php/addProduct.php", {
+				// Post method
+				method: "POST",
+				// JSON method
+				headers: { "Content-Type": "application/json" },
+				// Send all values to that php
+				body: JSON.stringify({productData})
+			})
+				// JSON response
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						// Success
+						console.log("Clicked! Redirecting to inventory...");
+						window.location.href = "inventory.html";
+						// Error message
+					} else {
+						alert("Error updating product: " + data.error);
+					}
+				})
+				// Error message
+				.catch(error => console.error("Error updating product:", error));
+		}
+
+
+
+		// when you click add new product, it takes you to the inventory
+		document.addEventListener("DOMContentLoaded", function () {
+			const element = document.getElementById("confirm-btn");
+
+			if (element) {
+				element.addEventListener("click", function () {
+					console.log("Clicked! Redirecting to inventory...");
+					window.location.href = "inventory.html";
+				});
+			} else {
+				console.error("Button not found!");
+			}
+		});
+
+
+
+	</script>
+
+
+</body>
+
+</html>

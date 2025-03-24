@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 
   <script>
-    function validateForm(event) {
+    function validateForm() {
       let name = document.getElementById("name").value.trim();
       let email = document.getElementById("email").value.trim();
       let password = document.getElementById("password").value;
@@ -34,8 +34,8 @@
       if (password.length < 8) {
         errorMessage += "Password must be at least 8 characters.\n";
       }
-      if (!/[a-zA-Z]/.test(password)) {
-        errorMessage += "Password must contain at least one letter.\n";
+      if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+        errorMessage += "Password must contain at least one uppercase letter.\n"; // Combined check for letters and uppercase
       }
       if (!/[0-9]/.test(password)) {
         errorMessage += "Password must contain at least one number.\n";
@@ -46,8 +46,9 @@
 
       if (errorMessage !== "") {
         alert(errorMessage);
-        event.preventDefault(); // Stop form submission
+        return false; // Stop form submission
       }
+      return true;
     }
   </script>
 
@@ -141,8 +142,8 @@
                     <h3 class="mb-4">Signup</h3>
                   </div>
                 </div>
-                <form action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
-                  onsubmit="validateForm(event)">
+                <form id = "signUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
+                  onsubmit="return validateForm()">
                   <div class="form-group mb-3">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -162,6 +163,35 @@
                   <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                   </div>
+                  <h2 id = "formResponse"></h2>
+                  <script>
+                    //Script used to add php response to the bottom of the form. Ned Goodman 230019355
+                    // Intercept form submission
+                    document.getElementById("signUpForm").addEventListener("submit", function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                        // Collect form data
+                        const formData = new FormData(this);
+    
+                        // Submit this form data using fetch
+                        fetch("/G-TECH50/php/signUpFunction.php", {
+                            method: "POST",
+                            body: formData,
+                        })
+                            .then(response => {
+                              if (response.redirected) {
+                                // If PHP sent a redirect, follow it
+                                window.location.href = response.url;
+                                exit();
+                              }
+                              return response.text();
+                            })
+                            .then(data => {
+                                //Display the response inside the formResponse element
+                                document.getElementById("formResponse").innerHTML = data;
+                            })
+                            .catch(error => console.error("Error:", error));
+                    });
+                </script>
                 </form>
                 <p class="text-center">Admin <a href="adminSignup.html">Sign Up</a></p>
               </div>
