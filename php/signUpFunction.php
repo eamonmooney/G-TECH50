@@ -28,11 +28,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         die("Password must be at least 8 characters.");
     }
 
-    if (!preg_match("/[a-z]/i", $_POST["password"])) {
-        die("Password must contain at least one letter.");
+    if (!preg_match('/[A-Z]/', $_POST["password"])) {
+        die("Password must contain at least one uppercase letter.");
     }
 
-    if (!preg_match("/[0-9]/", $_POST["password"])) {
+    if (!preg_match('/[0-9]/', $_POST["password"])) {
         die("Password must contain at least one number.");
     }
 
