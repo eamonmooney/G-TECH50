@@ -1,3 +1,5 @@
+<!-- CSS Redesign by Sahil Awan - 230073302. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +19,7 @@
             padding: 0;
             text-align: center;
         }
+
         .navbar {
             position: fixed;
             top: 0;
@@ -24,54 +27,65 @@
             background: #000000;
             z-index: 1000;
         }
+
         .container {
             width: 60%;
             margin: auto;
             padding: 20px;
             margin-top: 80px;
         }
+
         .search-filter {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
+
         input, select {
             padding: 8px;
             font-size: 14px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
+
         th, td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
             cursor: pointer;
         }
+
         th {
-            background: #444;
+            background: #0f6d00;
             color: white;
             position: relative;
         }
+
         th span {
             cursor: pointer;
             margin-left: 5px;
         }
+
         tr:hover {
             background: #f1f1f1;
         }
+
         .review-details {
             margin-top: 30px;
             padding: 20px;
             border: 1px solid #ccc;
         }
+
         .admin-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
+
         .admin-actions div {
             width: 48%;
             padding: 15px;
@@ -79,8 +93,34 @@
             text-align: center;
             cursor: pointer;
         }
+
         .admin-actions div:hover {
             background: #f1f1f1;
+        }
+
+        .container {
+            font-family: 'horizon';
+        }
+
+        .container h1 {
+            color: white;
+            font-family: 'superbrigade';
+            margin-bottom: 40px;
+            font-size: 30px;
+        }
+
+        .footer {
+            background-color: black;
+        }
+
+        .hero .reviews {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            margin-bottom: 40px;
         }
     </style>
     
@@ -149,8 +189,11 @@
     <script src="js/searchBar.js"></script>
     <script src="js/mobileNavbar.js"></script>
 
+    <section class="hero">
+        <img src="images/Externalmade/customerReviews.png" alt="reviews" class="reviews">
+    </section>
+
     <div class="container">
-    <div>Customer Reviews</div>
 
         <!-- Search & Filter -->
         <div class="search-filter">
@@ -189,6 +232,7 @@
         </table>
     </div>
 </div>
+</body>
      <!-- Footer -->
      <footer>
         <div class="footer-container">
@@ -253,6 +297,4 @@
             rows.forEach(row => table.appendChild(row));
         }
     </script>
-
-</body>
 </html>
