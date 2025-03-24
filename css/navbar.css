@@ -2,6 +2,13 @@
 CSS WORKED ON BY TOBIAS SINGH - 230073379
 INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 8px;
+}
 .navbar {
 	display: flex;
 	justify-content: space-between; 
