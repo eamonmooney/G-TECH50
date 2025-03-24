@@ -141,7 +141,7 @@
                     <h3 class="mb-4">Signup</h3>
                   </div>
                 </div>
-                <form action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
+                <form id = "signUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
                   onsubmit="validateForm(event)">
                   <div class="form-group mb-3">
                     <label for="name">Name</label>
@@ -162,6 +162,35 @@
                   <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                   </div>
+                  <h2 id = "formResponse"></h2>
+                  <script>
+                    //Script used to add php response to the bottom of the form. Ned Goodman 230019355
+                    // Intercept form submission
+                    document.getElementById("signUpForm").addEventListener("submit", function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                        // Collect form data
+                        const formData = new FormData(this);
+    
+                        // Submit this form data using fetch
+                        fetch("/G-TECH50/php/signUpFunction.php", {
+                            method: "POST",
+                            body: formData,
+                        })
+                            .then(response => {
+                              if (response.redirected) {
+                                // If PHP sent a redirect, follow it
+                                window.location.href = response.url;
+                                exit();
+                              }
+                              return response.text();
+                            })
+                            .then(data => {
+                                //Display the response inside the formResponse element
+                                document.getElementById("formResponse").innerHTML = data;
+                            })
+                            .catch(error => console.error("Error:", error));
+                    });
+                </script>
                 </form>
                 <p class="text-center">Admin <a href="adminSignup.html">Sign Up</a></p>
               </div>
