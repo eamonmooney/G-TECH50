@@ -1,6 +1,7 @@
 <?php
 
-// Checkout functionality. By Sahil Awan (230073302). 
+// Checkout functionality. By Sahil Awan (230073302).
+// Checkout differentiation between guest and signed in by Safa 
 session_start();
 ob_start(); // Preventing comments from the database file to be added in the output.
 require_once('connectdb.php');

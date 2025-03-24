@@ -1,5 +1,24 @@
 /* CSS Redesign by Sahil Awan - 230073302. */
 
+/* No bullet points in admin homepage alerts - Safa */
+.no-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#lowStockList,
+#lowStockList li {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Clickable */
+.clickable {
+  cursor: pointer;
+}
+
 @font-face {
   font-family: 'horizon';
   src: url('/fonts/horizon.otf') format('opentype');
