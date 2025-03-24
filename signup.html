@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
 
   <script>
-    function validateForm(event) {
+    function validateForm() {
       let name = document.getElementById("name").value.trim();
       let email = document.getElementById("email").value.trim();
       let password = document.getElementById("password").value;
@@ -34,9 +34,9 @@
       if (password.length < 8) {
         errorMessage += "Password must be at least 8 characters.\n";
       }
-     if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
-      errorMessage += "Password must contain at least one letter (including one uppercase letter).\n"; // Combined check for letters and uppercase
-    }
+      if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+        errorMessage += "Password must contain at least one uppercase letter.\n"; // Combined check for letters and uppercase
+      }
       if (!/[0-9]/.test(password)) {
         errorMessage += "Password must contain at least one number.\n";
       }
@@ -46,8 +46,9 @@
 
       if (errorMessage !== "") {
         alert(errorMessage);
-        event.preventDefault(); // Stop form submission
+        return false; // Stop form submission
       }
+      return true;
     }
   </script>
 
@@ -142,7 +143,7 @@
                   </div>
                 </div>
                 <form id = "signUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
-                  onsubmit="validateForm(event)">
+                  onsubmit="return validateForm()">
                   <div class="form-group mb-3">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name">
