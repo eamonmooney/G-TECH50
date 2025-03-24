@@ -142,7 +142,7 @@
                     <h3 class="mb-4">Signup</h3>
                   </div>
                 </div>
-                <form id = "signUpForm" action="../php/signUpFunction.php" class="signup-form" method="post"
+                <form id = "signUpForm" action="/php/signUpFunction.php" class="signup-form" method="post"
                   onsubmit="return validateForm()">
                   <div class="form-group mb-3">
                     <label for="name">Name</label>
@@ -173,7 +173,7 @@
                         const formData = new FormData(this);
     
                         // Submit this form data using fetch
-                        fetch("../php/signUpFunction.php", {
+                        fetch("/php/signUpFunction.php", {
                             method: "POST",
                             body: formData,
                         })
