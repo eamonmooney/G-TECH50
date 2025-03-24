@@ -211,7 +211,7 @@
                   const productInfo = document.createElement('div');
                   //Populate div with product info and price
                   productInfo.className = 'product-info';
-                  productInfo.textContent = `${name} - $${price}`;
+                  productInfo.textContent = `${name} - £${price}`;
 
                   //Creating a div to control the quanity
                   const quantityControls = document.createElement('div');
@@ -391,7 +391,7 @@
           });
 
           //Update the total price
-          totalPriceElement.textContent = `$${total.toFixed(2)}`;
+          totalPriceElement.textContent = `£${total.toFixed(2)}`;
           if (productList.children.length === 0) {
             //Make the empty message visible
             emptyMessage.style.display = 'block';
