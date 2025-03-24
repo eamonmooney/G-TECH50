@@ -110,7 +110,7 @@
                     <h3 class="mb-4">Sign In</h3>
                   </div>
                 </div>
-                <form id="signinform" action="/php/signInFunction.php" method="post" class="signin-form" method="post" nonvalidate>
+                <form id="signinform" action="php/signInFunction.php" method="post" class="signin-form" method="post" nonvalidate>
                   <div class="form-group mb-3">
                     <label class="label" for="Username">Username</label>
                     <input type="Username" id="Username" name="Username" class="form-control" placeholder="Username" required>
@@ -133,7 +133,7 @@
                         const formData = new FormData(this);
     
                         // Submit this form data using fetch
-                        fetch("/php/signInFunction.php", {
+                        fetch("php/signInFunction.php", {
                             method: "POST",
                             body: formData,
                         })
