@@ -10,7 +10,7 @@
     <!-- Load Sweet alert 2 -> for the pop ups when changing status  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="/G-TECH50/css/fonts.css">
-    <link rel="stylesheet" href="../css/adminNavbar.css">
+    <link rel="stylesheet" href="/G-TECH50/css/adminNavbar.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
@@ -439,21 +439,21 @@
             }).then((result) => {
                 // If confirmed, call update order status JS function with those arguments
                 if (result.isConfirmed) {
-                    updateOrderStatus(orderID, result.value);
+                    updateOrderStatus(orderID, result.value, currentStatus);
                 }
             });
         }
 
         // Funciton to updatye order status with those arguments
-        function updateOrderStatus(orderID, newStatus) {
+        function updateOrderStatus(orderID, newStatus, currentStatus) {
             // Fetch the update status php page
             fetch('../php/updateStatus.php', {
                 // Use post method to send data
                 method: 'POST',
                 // SEND AS JSON
                 headers: { 'Content-Type': 'application/json' },
-                // The data being sent - orderID and newStatus as JSON
-                body: JSON.stringify({ orderID: orderID, status: newStatus })
+                // The data being sent - orderID and newStatus and currentstatus as JSON
+                body: JSON.stringify({ orderID: orderID, status: newStatus, currentStatus: currentStatus })
             })
                 // processes response from the fetch request - converts to text
                 .then(response => response.json())
