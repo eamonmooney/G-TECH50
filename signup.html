@@ -34,9 +34,9 @@
       if (password.length < 8) {
         errorMessage += "Password must be at least 8 characters.\n";
       }
-      if (!/[a-zA-Z]/.test(password)) {
-        errorMessage += "Password must contain at least one letter.\n";
-      }
+     if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+      errorMessage += "Password must contain at least one letter (including one uppercase letter).\n"; // Combined check for letters and uppercase
+    }
       if (!/[0-9]/.test(password)) {
         errorMessage += "Password must contain at least one number.\n";
       }
@@ -61,6 +61,7 @@
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
       <div class="dropdown">
         <a href=#>Categories</a>
         <div class="dropdown-content">
@@ -71,7 +72,7 @@
           <a href="categories/Mousepads.html">Mousepads</a>
         </div>
       </div>
-      <a href="aboutus.html">About Us</a>
+      
       <a href="contact.html">Contact Us</a>
       <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
