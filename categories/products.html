@@ -14,6 +14,9 @@
   <link rel="icon" type="image/png" href="../images/Externalmade/favicon.png">
   <!-- Link to basketnumber JavaScript file -->
   <script src="../js/basketNumber.js"></script>
+  <!-- Link to Products Filter JavaScript file -->
+   <script src="../js/productsFilter.js"></script>
+
 </head>
 
 <body>
@@ -99,7 +102,7 @@
         <input type="text" class="search" name="class">
               
         <label for="sort">Sort By: </label>
-        <select class="sort" name="sort">
+        <select class="sort" id="sort">
           <option value="sortNameAsc">Name A - Z</option>
           <option value="sortNameDes">Name Z - A</option>
           <option value="sortPriceAsc">Price Low - High</option>
@@ -107,7 +110,7 @@
         </select>
                     
         <label for="category">View: </label>
-        <select class="sort" name="sort">
+        <select class="category-filter" id="category-filter">
           <option value="All">All</option>
           <option value="Mice">Mice</option>
           <option value="Monitors">Monitors</option>
@@ -115,17 +118,21 @@
           <option value="Keyboards">Keyboards</option>
           <option value="Mousepads">Mousepads</option>
         </select>
-        <br>
-        <input type="submit">
         
-  
+        <label for="minPrice">Minimum Price: </label>
+        <input type="number" id="minPrice" name="minPrice" value="0" min="0" max="1000">
+        <label for="maxPrice">Maximum Price: </label>
+        <input type="number" placeholder="Maximum Price" id="maxPrice" name="price" value="500" min="0" max="1000">
+        
+              
+          
       </form>
     </div>
 
     <div class="products">
   
       <div class="items">
-        <a href="../products/sugarglide.html">
+        <a href="../products/sugarglide.html" data-category="Mice" data-price="34.99">
           <img src="../images/Ai/sugarglide0001.png" alt="Sugarglide Spark">
           <h3>SUGARGLIDE SPARK</h3>
           <h3>£34.99</h3>
@@ -135,7 +142,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mice" data-price="49.99">
         <a href="../products/cosmic.html">
           <img src="../images/Ai/cosmic0001.png" alt="Cosmic Cursor">
           <h3>COSMIC CURSOR</h3>
@@ -147,7 +154,7 @@
       </div>
   
       <div class="items">
-        <a href="../products/woodland_wanderer.html">
+        <a href="../products/woodland_wanderer.html" data-category="Mice" data-price="42.99">
           <img src="../images/Ai/woodland_wanderer0001.png" alt="Woodland Wanderer">
           <h3>WOODLAND WANDERER</h3>
           <h3>£42.99</h3>
@@ -157,7 +164,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mice" data-price="49.99">
         <a href="../products/pixelwave.html">
           <img src="../images/Ai/pixelwave0001.png" alt="Pixelwave Mouse">
           <h3>PIXELWAVE MOUSE</h3>
@@ -169,7 +176,7 @@
       </div>
   
       <div class="items">
-        <a href="../products/kittyclicks.html">
+        <a href="../products/kittyclicks.html" data-category="Mice" data-price="49.99">
           <img src="../images/Ai/kittyclicks0001.png" alt="Kittyclicks">
           <h3>KITTYCLICKS</h3>
           <h3>£49.99</h3>
@@ -179,10 +186,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Monitors" data-price="179.99">
         <a href="../products/sugarscreen.html">
           <img src="../images/Ai/sugarscreen0001.png">
-          <h3>SUGARSCREEN <br> MONITOR</h3>
+          <h3>SUGARSCREEN MONITOR</h3>
           <h3>£179.99</h3>
         </a>
         <a href="../products/sugarscreen.html">
@@ -190,7 +197,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Monitors" data-price="299.99">
         <a href="../products/cosmo.html">
           <img src="../images/Ai/cosmo0001.png">
           <h3>COSMO VIEW CURVED MONITOR</h3>
@@ -201,10 +208,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Monitors" data-price="189.99">
         <a href="../products/eco.html">
           <img src="../images/Ai/eco0001.png">
-          <h3>ECO VIEW <br> MONITOR</h3>
+          <h3>ECO VIEW MONITOR</h3>
           <h3>£189.99</h3>
         </a>
         <a href="../products/eco.html">
@@ -212,7 +219,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Monitors" data-price="169.99">
         <a href="../products/retroview.html">
           <img src="../images/Ai/retroview0001.png">
           <h3>RETROVIEW LED MONITOR</h3>
@@ -223,10 +230,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Monitors" data-price="199.99">
         <a href="../products/kittyview.html">
           <img src="../images/Ai/kittyview0001.png">
-          <h3>KITTYVIEW <br> MONITOR</h3>
+          <h3>KITTYVIEW MONITOR</h3>
           <h3>£199.99</h3>
         </a>
         <a href="../products/kittyview.html">
@@ -234,7 +241,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Headphones" data-price="49.99">
         <a href="../products/bubblegum.html">
           <img src="../images/Ai/bubblegum0001.png">
           <h3>BUBBLEGUM BASS BLASTER</h3>
@@ -245,10 +252,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Headphones" data-price="59.99">
         <a href="../products/stellar.html">
           <img src="../images/Ai/stellar0001.png">
-          <h3>STELLAR <br> SOUNDWAVES</h3>
+          <h3>STELLAR SOUNDWAVES</h3>
           <h3>£59.99</h3>
         </a>
         <a href="../products/stellar.html">
@@ -256,10 +263,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Headphones" data-price="49.99">
         <a href="../products/woodland.html">
           <img src="../images/Ai/woodland0001.png">
-          <h3>WOODLAND <br> HARMONY</h3>
+          <h3>WOODLAND HARMONY</h3>
           <h3>£49.99</h3>
         </a>
         <a href="../products/woodland.html">
@@ -267,10 +274,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Headphones" data-price="34.99">
         <a href="../products/retro.html">
           <img src="../images/Ai/retro0001.png">
-          <h3>RETRO <br> RAINBOW WAVE</h3>
+          <h3>RETRO RAINBOW WAVE</h3>
           <h3>£34.99</h3>
         </a>
         <a href="../products/retro.html">
@@ -278,10 +285,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Headphones" data-price="39.99">
         <a href="../products/whiskertunes.html">
           <img src="../images/Ai/whiskertunes0001.png">
-          <h3>WHISKER <br> TUNES</h3>
+          <h3>WHISKER TUNES</h3>
           <h3>£39.99</h3>
         </a>
         <a href="../products/whiskertunes.html">
@@ -289,10 +296,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Keyboards" data-price="34.99">
         <a href="../products/candykeys.html">
           <img src="../images/Ai/candykeys0001.png">
-          <h3>CANDYKEYS <br> KEYBOARD</h3>
+          <h3>CANDYKEYS KEYBOARD</h3>
           <h3>£34.99</h3>
         </a>
         <a href="../products/candykeys.html">
@@ -300,7 +307,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Keyboards" data-price="49.99">
         <a href="../products/galaxytype.html">
           <img src="../images/Ai/galaxytype0001.png">
           <h3>GALAXYTYPE KEYBOARD</h3>
@@ -311,7 +318,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Keyboards" data-price="42.99">
         <a href="../products/forestflow.html">
           <img src="../images/Ai/forestflow0001.png">
           <h3>FORESTFLOW KEYBOARD</h3>
@@ -322,10 +329,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Keyboards" data-price="49.99">
         <a href="../products/pixelpulse.html">
           <img src="../images/Ai/pixelpulse0001.png">
-          <h3>PIXELPULSE <br> KEYBOARD</h3>
+          <h3>PIXELPULSE KEYBOARD</h3>
           <h3>£49.99</h3>
         </a>
         <a href="../products/pixelpulse.html">
@@ -333,10 +340,10 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Keyboards" data-price="49.99">
         <a href="../products/purrkeys.html">
           <img src="../images/Ai/purrkeys0001.png">
-          <h3>PURRKEYS <br> KEYBOARD</h3>
+          <h3>PURRKEYS KEYBOARD</h3>
           <h3>£49.99</h3>
         </a>
         <a href="../products/purrkeys.html">
@@ -344,7 +351,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mousepads" data-price="14.99">
         <a href="../products/candypop.html">
           <img src="../images/Ai/candypop0001.png">
           <h3>CANDYPOP MAT</h3>
@@ -355,7 +362,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mousepads" data-price="18.99">
         <a href="../products/nebulaglide.html">
           <img src="../images/Ai/nebulaglide0001.png">
           <h3>NEBULAGLIDE MAT</h3>
@@ -366,7 +373,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mousepads" data-price="16.99">
         <a href="../products/evergreen.html">
           <img src="../images/Ai/evergreen0001.png">
           <h3>EVERGREEN MAT</h3>
@@ -377,7 +384,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mousepads" data-price="19.99">
         <a href="../products/neonvibes.html">
           <img src="../images/Ai/neonvibes0001.png">
           <h3>NEONVIBES PAD</h3>
@@ -388,7 +395,7 @@
         </a>
       </div>
   
-      <div class="items">
+      <div class="items" data-category="Mousepads" data-price="15.99">
         <a href="../products/pawsoft.html">
           <img src="../images/Ai/pawsoft0001.png">
           <h3>PAWSOFT MAT</h3>
@@ -405,27 +412,28 @@
   <!-- Footer -->
   <footer>
     <div class="footer-container">
-        <div class="footer-section">
-            <h3>G-TECH50</h3>
-            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-        </div>
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="products.html">Shop</a></li>
-                <li><a href="../aboutus.html">About Us</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Phone: +44 7700 900123</p>
-            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-        </div>
+      <div class="footer-section">
+        <h3>G-TECH50</h3>
+        <p>&copy; 2024 G-TECH50</p>
+        <p>ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Phone: +44 7700 900123</p>
+        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+      </div>
     </div>
-</footer>
+  </footer>
 </body>
 
 </html>
