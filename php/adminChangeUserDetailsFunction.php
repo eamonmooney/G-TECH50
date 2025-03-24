@@ -55,20 +55,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             echo "<p>You don't have sufficient permissions";
             die;
         } else {
-            $sql4 = "SELECT * FROM AccessKeys WHERE RoleID = 2";
+            $sql4 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
             $stmt4=$db->prepare($sql4);
             $stmt4->execute();
             $codeData1 = $stmt4->fetch(PDO::FETCH_ASSOC);
-            // sets permissions lvl to 2 if the accesskey is corrcet
+            // sets permissions lvl to 3 if the accesskey is corrcet
             if (password_verify($_POST['accessCode'], $codeData1['AccessKey'])) {
                 $sql5 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
                 $replacestmt5 = $db->prepare($sql5);
                 $replacestmt5->execute([':oldRoleID'=> $uData['RoleID'],
-                    ':newRoleID' => 2,
+                    ':newRoleID' => 3,
                     ':oldEmail' => $_POST['oldEmail']]);
             }else{
-                // sets permissions lvl to 3 if the accesskey is corrcet
-                $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
+                // sets permissions lvl to 4 if the accesskey is corrcet
+                $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
                 $stmt2=$db->prepare($sql2);
                 $stmt2->execute();
                 $codeData2 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -76,11 +76,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                     $sql6 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
                     $replacestmt6 = $db->prepare($sql6);
                     $replacestmt6->execute([':oldRoleID'=> $uData['RoleID'],
-                        ':newRoleID' => 3,
+                        ':newRoleID' => 4,
                         ':oldEmail' => $_POST['oldEmail']]);
                 }else{
-                    // sets permissions lvl to 4 if the accesskey is corrcet
-                    $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
+                    // sets permissions lvl to 5 if the accesskey is corrcet
+                    $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 5";
                     $stmt3=$db->prepare($sql3);
                     $stmt3->execute();
                     $codeData3 = $stmt3->fetch(PDO::FETCH_ASSOC);
@@ -88,15 +88,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
                         $sql7 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
                         $replacestmt7 = $db->prepare($sql7);
                         $replacestmt7->execute([':oldRoleID'=> $uData['RoleID'],
-                            ':newRoleID' => 4,
+                            ':newRoleID' => 5,
                             ':oldEmail' => $_POST['oldEmail']]);
                     } else {
-                        // sets permissions lvl to 1 if accesskey is left as null
+                        // sets permissions lvl to 2 if accesskey is left as null
                         if ($_POST['accessCode'] == "NULL"){
                             $sql8 = "UPDATE Users SET RoleID = REPLACE(RoleID, :oldRoleID, :newRoleID) WHERE Email = :oldEmail";
                             $replacestmt8 = $db->prepare($sql8);
                             $replacestmt8->execute([':oldRoleID'=> $uData['RoleID'],
-                                ':newRoleID' => 1,
+                                ':newRoleID' => 2,
                                 ':oldEmail' => $_POST['oldEmail']]);
                         } else {
                             // output error if accesskey is neither NULL nor correct
