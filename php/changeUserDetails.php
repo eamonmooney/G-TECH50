@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             $_SESSION['username'] = $newUData['Name'];
             $_SESSION['email'] = $newUData['Email'];
             // relocate to home
-            header("Location: /G-TECH50/index.html");
+            header("Location: ../index.html");
             die;
         }
     }
