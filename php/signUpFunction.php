@@ -52,6 +52,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $stmt0->execute([':email' => $Email]);
     $res0 = $stmt0->fetchColumn();
     // checks if inputted access key matches any in the database
+    if ($res0){
+        echo "<p>Email is already in use</p>";
+        die;
+    } else{
         $sql1 = "SELECT * FROM AccessKeys WHERE RoleID = 2";
         $stmt1=$db->prepare($sql1);
         $stmt1->execute();
@@ -73,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         if (password_verify($_POST['accesscode'], $codeData3['AccessKey'])) {
             $RoleID = 4;
         }
-    
+    }
     // prepare sql statement to insert inputted user data to database
     $sql4 = "INSERT INTO Users (RoleID, Name, Email, Password) VALUES (:RoleID, :Name, :Email, :Password)";
     $insertstmt4=$db->prepare($sql4);
@@ -85,8 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         ':Password' => password_hash($Password, PASSWORD_BCRYPT)
     ]);
     // send user to sign in page
-    echo "You have successfully created an account";
-    header("Location: /G-TECH50/signin.html");
+    header("Location: ../signin.html");
     die;
 }
 ?>
