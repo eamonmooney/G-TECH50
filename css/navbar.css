@@ -7,7 +7,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
     src: url('fonts/horizon.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-    font-size: 8px;
+    
 }
 .navbar {
 	display: flex;
@@ -20,7 +20,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	left: 0;
 	z-index: 1000;
 	height: 55px;
-	font-size: 16px;
+	font-size: 12px;
 }
 
   .logo {
@@ -41,9 +41,9 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
   .nav-links {
 	display: flex;
 	flex: 1;
-	gap: 20px;
+	gap: 15px;
 	justify-content: center;
-	margin-left: 240px;
+	margin-left: 200px;
 	white-space: nowrap;
 	
   }
@@ -51,10 +51,11 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
   .navbar a {  
 	color: white;
 	text-align: center;
-	padding: 14px 10px;
+	padding: 14px 8px;
 	text-decoration: none;
 	white-space: nowrap;
 	line-height: normal;
+	font-size: 12px;
   }
 
   .navbar a:hover {
@@ -169,7 +170,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	text-align: center;
 	background-color: #201c1c;
 	border-radius: 5px;
-	font-family: 'horizon';
+	font-size: 10px;
   }
 
   .dropdown-content a:hover {
