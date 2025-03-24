@@ -7,6 +7,6 @@ basket icon to be fully visible.
 This fix has been applied to only a few pages, including all html pages in the categories section,
 contact, aboutus, checkout and basket pages. */
 
-.navbar .icon-container {
+/*.navbar .icon-container {
 	padding-right: 15px;
-  }
+  }*/
