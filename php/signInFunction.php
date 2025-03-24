@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // true - HttpOnly flag, so not accessible via JS to prevbent XSS attacks
                 setcookie("rememberMe", $token, $expiry, "/", "", true, true); 
             }
-            if ($uData['RoleID'] > 1){
+            if ($uData['RoleID'] > 2){
                 header("Location: /G-TECH50/adminPages/adminHomepage.html");
                 die;
             }
