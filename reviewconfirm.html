@@ -1,170 +1,100 @@
-<!-- Page made by Hanna Appiah - 230089015 -->
+<!-- CSS Redesign by Sahil Awan - 230073302 -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/homepage.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews Confirmation</title>
-    <!-- Link to basketnumber JavaScript file -->
-    <script src="js/basketNumber.js"></script>
-    <style>
-        /* Ensure body takes full height and flexbox is used */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        h2 {
-            font-size: 60px;
-            text-align: center;
-            margin-top: 150px;
-            padding: 20px;
-            border: 2px solid #fff;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
-        .button-link {
-            margin-top: 70px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: none;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-            border: 2px solid white;
-        }
-
-        .button-link:hover {
-            background-color: #333;
-        }
-
-        /* Push footer to the bottom */
-        footer {
-            width: 100%;
-            margin-top: auto;
-            /* Moves footer to the bottom */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTECH50 | CONFIRMATION</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/orderConfirmation.css">
+  <link rel="icon" type="image/png" href="images/Externalmade/favicon.png">
+  <!-- Link to basketnumber JavaScript file -->
+  <script src="js/basketNumber.js"></script>
 </head>
 
 <body>
 
-    <!-- Linking PHP as an invisible image -->
-    <img src="php/guestAccount.php" style="display: none;">
+  <!-- Checking if signed in. -->
+  <div id="checkoutStart"></div>
 
-    <!-- Navigation Bar (UNCHANGED) -->
-    <div class="navbar">
-        <div class="logo">
-            <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <a href=#>Categories</a>
+        <div class="dropdown-content">
+          <a href="categories/Mice.html">Mice</a>
+          <a href="categories/Monitors.html">Monitors</a>
+          <a href="categories/Headphones.html">Headphones</a>
+          <a href="categories/Keyboards.html">Keyboards</a>
+          <a href="categories/Mousepads.html">Mousepads</a>
         </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <div class="dropdown">
-                <a href="#">Categories</a>
-                <div class="dropdown-content">
-                    <a href="categories/Mice.html">Mice</a>
-                    <a href="categories/Monitors.html">Monitors</a>
-                    <a href="categories/Headphones.html">Headphones</a>
-                    <a href="categories/Keyboards.html">Keyboards</a>
-                    <a href="categories/Mousepads.html">Mousepads</a>
-                </div>
-            </div>
-            <a href="aboutus.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-            <a href="membershipSignUp.html">G-TECH50+</a>
-        </div>
-
-        <!-- Search & User Icons -->
-        <div class="icon-container">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
-                <i class="material-icons" id="searchButton">search</i>
-            </div>
-            <a href="profile.html"><i class="material-icons">account_circle</i></a>
-            <!-- Basket Section in navbar -->
-            <a href="basket.html" id="basket-container">
-                <!-- Basket Icon -->
-                <i class="material-icons">shopping_basket</i>
-                <!-- Basket Number - changes to that with the javascript calling php -->
-                <span id="basketNum"></span>
-            </a>
-        </div>
-
-        <!-- Hamburger Menu -->
-        <div class="hamburger-menu" id="hamburgerMenu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+      </div>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
 
-    <!-- Mobile Navigation Bar (UNCHANGED) -->
-    <div class="mobile-nav-links" id="mobileNavLinks">
-        <a href="index.html">Home</a>
-        <a href="#" id="mobileCategories">Categories</a>
-        <div class="mobile-dropdown-content" id="mobileDropdownContent">
-            <a href="categories/Mice.html">Mice</a>
-            <a href="categories/Monitors.html">Monitors</a>
-            <a href="categories/Headphones.html">Headphones</a>
-            <a href="categories/Keyboards.html">Keyboards</a>
-            <a href="categories/Mousepads.html">Mousepads</a>
-        </div>
-        <a href="aboutus.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
+    <!-- Search & User Icons -->
+    <div class="icon-container">
+      <div class="search-bar">
+        <input type="text" id="searchBar" placeholder="Search...">
+        <i class="material-icons" id="searchButton">search</i>
+      </div>
+      <a href="profile.html"><i class="material-icons">account_circle</i></a>
+      <!-- Basket Section in navbar -->
+      <a href="basket.html" id="basket-container">
+        <!-- Basket Icon -->
+        <i class="material-icons">shopping_basket</i>
+        <!-- Basket Number - changes to that with the javascript calling php -->
+        <span id="basketNum"></span>
+      </a>
     </div>
 
-    <!-- Confirmation Message -->
-    <h2>Thank you for your feedback!</h2>
-    <a href="categories/products.html" class="button-link">Continue Shopping</a>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
 
-    <!-- Footer (Unchanged, now at the bottom) -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>G-TECH50</h3>
-                <p>&copy; 2024 G-TECH50</p>
-                <p>ALL RIGHTS RESERVED.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Phone: +44 7700 900123</p>
-                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-            </div>
-        </div>
-    </footer>
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav-links" id="mobileNavLinks">
+    <a href="Home.html">Home</a>
+    <a href=# id="mobileCategories">Categories</a>
+    <div class="mobile-dropdown-content" id="mobileDropdownContent">
+      <a href="categories/Mice.html">Mice</a>
+      <a href="categories/Monitors.html">Monitors</a>
+      <a href="categories/Headphones.html">Headphones</a>
+      <a href="categories/Keyboards.html">Keyboards</a>
+      <a href="categories/Mousepads.html">Mousepads</a>
+    </div>
+    <a href="AboutUs.html">About Us</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
 
+  <!-- Search Results -->
+  <div id="searchResults" class="search-results" style="display: none;"></div>
+
+  <!-- Linking to Search bar JS -->
+  <script src="js/searchBar.js"></script>
+  <script src="js/mobileNavbar.js"></script>
+
+  <div class="container">
+    <h1>Thanks for your feedback!</h1>
+    <p>Your review has been sent successfully. <br> Thanks for helping G-TECH50 be even better.<br><br> Once again,
+      thank you. <br><br>
+      The g-tech50 team.
+    </p>
+    <a href="index.html" class="button"><br>Return to Home</a>
+  </div>
 </body>
-
-</html>

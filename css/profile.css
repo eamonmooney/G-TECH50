@@ -6,12 +6,12 @@
     font-style: normal;
 }
 
-@font-face {
+/*@font-face {
     font-family: 'superbrigade';
     src: url('fonts/superbrigade.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 
 body {
     margin: 0;
@@ -33,7 +33,7 @@ body {
 }
 
 .navbar .icon-container {
-    padding-right: 35px;
+    padding-right: 5px;
 }
 
 .profile-container {

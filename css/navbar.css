@@ -2,6 +2,13 @@
 CSS WORKED ON BY TOBIAS SINGH - 230073379
 INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 
+@font-face {
+    font-family: 'horizon';
+    src: url('fonts/horizon.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    
+}
 .navbar {
 	display: flex;
 	justify-content: space-between; 
@@ -12,16 +19,14 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	top: 0; 
 	left: 0;
 	z-index: 1000;
-	padding: 0 20px;
 	height: 55px;
-	font-size: 13px;
+	font-size: 12px;
 }
 
   .logo {
 	display: flex;
 	align-items: center;
-	justify-content: center; 
-	align-items: center;
+	justify-content: center;
 	padding: 0;
   }
 
@@ -30,25 +35,27 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	height: auto;
 	object-fit: contain;
 	margin-right: 25px;
-    margin-left: 10px;
+        margin-left: 10px;
   }
 
   .nav-links {
 	display: flex;
-	flex: auto;
-	gap: 10px;
-	justify-content: space-between;
-	margin-left: 50px;
-	margin-right: 50px;
+	flex: 1;
+	gap: 15px;
+	justify-content: center;
+	margin-left: 180px;
+	white-space: nowrap;
+	
   }
 
   .navbar a {  
 	color: white;
 	text-align: center;
-	padding: 15px 15px;
+	padding: 14px 8px;
 	text-decoration: none;
 	white-space: nowrap;
 	line-height: normal;
+	font-size: 12px;
   }
 
   .navbar a:hover {
@@ -66,6 +73,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	justify-content: flex-end;
 	align-items: center;
 	gap: 5px; 
+	margin-right: 5px;
   }
 
   .search-bar {
@@ -124,9 +132,9 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	background-color: #333333;
   }
 
-  .search-results a:last-child {
+  /*.search-results a:last-child {
 	border-bottom: none;
-  }
+  }*/
   .dropdown {
 	position: relative;
 	margin-top: 15px; 
@@ -153,7 +161,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 
   .dropdown-content a {
 	color: white;
-	width: auto;
+	width: 120px;
 	height: 40px;
 	display: flex;
 	align-items: center;
@@ -162,7 +170,7 @@ INCORPORATED ON EVERY PAGE BY SAFA - 230078145*/
 	text-align: center;
 	background-color: #201c1c;
 	border-radius: 5px;
-	font-family: 'horizon';
+	font-size: 10px;
   }
 
   .dropdown-content a:hover {

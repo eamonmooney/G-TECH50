@@ -34,9 +34,9 @@
       if (password.length < 8) {
         errorMessage += "Password must be at least 8 characters.\n";
       }
-      if (!/[a-zA-Z]/.test(password)) {
-        errorMessage += "Password must contain at least one letter.\n";
-      }
+     if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+      errorMessage += "Password must contain at least one letter (including one uppercase letter).\n"; // Combined check for letters and uppercase
+    }
       if (!/[0-9]/.test(password)) {
         errorMessage += "Password must contain at least one number.\n";
       }
@@ -61,6 +61,7 @@
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
       <div class="dropdown">
         <a href=#>Categories</a>
         <div class="dropdown-content">
@@ -71,7 +72,7 @@
           <a href="categories/Mousepads.html">Mousepads</a>
         </div>
       </div>
-      <a href="aboutus.html">About Us</a>
+      
       <a href="contact.html">Contact Us</a>
       <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
@@ -140,7 +141,7 @@
                     <h3 class="mb-4">Signup</h3>
                   </div>
                 </div>
-                <form action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
+                <form id = "signUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
                   onsubmit="validateForm(event)">
                   <div class="form-group mb-3">
                     <label for="name">Name</label>
@@ -161,6 +162,35 @@
                   <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                   </div>
+                  <h2 id = "formResponse"></h2>
+                  <script>
+                    //Script used to add php response to the bottom of the form. Ned Goodman 230019355
+                    // Intercept form submission
+                    document.getElementById("signUpForm").addEventListener("submit", function (event) {
+                        event.preventDefault(); // Prevent default form submission
+                        // Collect form data
+                        const formData = new FormData(this);
+    
+                        // Submit this form data using fetch
+                        fetch("/G-TECH50/php/signUpFunction.php", {
+                            method: "POST",
+                            body: formData,
+                        })
+                            .then(response => {
+                              if (response.redirected) {
+                                // If PHP sent a redirect, follow it
+                                window.location.href = response.url;
+                                exit();
+                              }
+                              return response.text();
+                            })
+                            .then(data => {
+                                //Display the response inside the formResponse element
+                                document.getElementById("formResponse").innerHTML = data;
+                            })
+                            .catch(error => console.error("Error:", error));
+                    });
+                </script>
                 </form>
                 <p class="text-center">Admin <a href="adminSignup.html">Sign Up</a></p>
               </div>
@@ -173,28 +203,27 @@
   <!-- Footer -->
   <footer>
     <div class="footer-container">
-      <div class="footer-section">
-        <h3>G-TECH50</h3>
-        <p>&copy; 2024 G-TECH50</p>
-        <p>ALL RIGHTS RESERVED.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p>Phone: +44 7700 900123</p>
-        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-      </div>
+        <div class="footer-section">
+            <h3>G-TECH50</h3>
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categories/products.html">Shop</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Phone: +44 7700 900123</p>
+            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+        </div>
     </div>
-  </footer>
+</footer>
 </body>
 
 </html>
