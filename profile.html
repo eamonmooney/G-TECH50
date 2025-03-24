@@ -96,7 +96,7 @@
       <button class="tab-button" onclick="showContent('account')">Account Info</button>
       <button class="tab-button" onclick="showContent('orders')">Orders</button>
       <button class="tab-button" onclick="showContent('settings')">Settings</button>
-      <button class="tab-button" onclick="window.location.href = 'adminPages/adminHomepage.html';">Admin</button>
+      <button class="tab-button" onclick="window.location.href = '/adminPages/adminHomepage.html';">Admin</button>
       <button class="tab-button" onclick="showContent('logout')">Logout</button>
     </div>
 
@@ -146,7 +146,7 @@
 
         <p>Change your personal details here </p>
 
-        <form action="/G-TECH50/php/changeUserDetails.php" method="POST">
+        <form action="/php/changeUserDetails.php" method="POST">
           <label for="username">Name: </label>
           <input type="text" id="username" name="username" placeholder="Enter your new username" required>
 

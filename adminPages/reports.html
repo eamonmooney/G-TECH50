@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Frontend and backend safa - page for reports -->
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Reports - G-Tech 50</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" href="../css/adminHomepage.css">
+	<link rel="stylesheet" href="../css/reports.css">
+	<script src="../js/reports.js" defer></script>
+
+
+</head>
+
+<body>
+
+	<div class="navbar">
+		<div class="logo">
+			<img src="../images/gtechlogonew.png" alt="G-Tech 50 Logo" class="logo-image">
+
+		</div>
+
+		<div class="nav-links">
+			<a href="adminHomepage.html">Home</a>
+			<a href="userTransactionPage.html">Transactions</a>
+			<a href="adminuser.html">Users</a>
+			<a href="inventory.html">Inventory</a>
+			<a href="review-details.html">Reviews</a>
+			<a href="ticket.html">Tickets</a>
+			<a href="reports.html">Reports</a>
+
+		</div>
+
+		<div class="icon-container">
+			<a href="../profile.html"><i class="material-icons">account_circle</i></a>
+		</div>
+
+		<div class="hamburger-menu" id="hamburgerMenu">
+			<div class="bar"></div>
+			<div class="bar"></div>
+			<div class="bar"></div>
+		</div>
+	</div>
+
+	<div class="mobile-nav-links" id="mobileNavLinks">
+		<a href="adminHomepage.html">Home</a>
+		<a href="userTransactionPage.html">Transactions</a>
+		<a href="adminuser.html">Users</a>
+		<a href="inventory.html">Inventory</a>
+		<a href="review-details.html">Reviews</a>
+		<a href="ticket.html">Tickets</a>
+		<a href="reports.html">Reports</a>
+
+	</div>
+
+	<div class="container">
+		<h1>Product Reports</h1>
+
+		<!-- Stock Chart -->
+		<div class="chart-container">
+			<h3>📦 Current Stock Levels</h3>
+			<canvas id="stockChart"></canvas>
+		</div>
+
+		<!-- Incoming orders chart ( processing status) -->
+		<div class="chart-container">
+			<h3>🟢 Incoming Orders</h3>
+			<canvas id="incomingChart"></canvas>
+		</div>
+
+		<!-- Outgoing orders chart (delivering state)-->
+		<div class="chart-container">
+			<h3>🔴 Outgoing Orders</h3>
+			<canvas id="outgoingChart"></canvas>
+		</div>
+
+		<!-- Orders over time-->
+		<div class="chart-container">
+			<h3>📊 Total Orders Over Time</h3>
+			<canvas id="totalOrdersChart"></canvas>
+		  </div>
+
+	</div>
+</body>
+
+</html>

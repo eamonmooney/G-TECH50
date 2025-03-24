@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         die("Passwords do not match.");
     }
     //Defines user input as variables
-    $RoleID = 1;
+    $RoleID = 2;
     $Name = $_POST['name'];
     $Password = $_POST['password'];
     $Email = $_POST['email'];
@@ -56,28 +56,43 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         echo "<p>Email is already in use</p>";
         die;
     } else{
-        $sql1 = "SELECT * FROM AccessKeys WHERE RoleID = 2";
+        // SQl query to find if username is in use
+        $sql5 = "SELECT COUNT(*) FROM Users WHERE Name = :username";
+        // prepare sql statement in database to prevent sql injection
+        $stmt5 = $db->prepare($sql5);
+        // execute sql statement replacing placeholder with user name
+        $stmt5->execute([':username' => $Name]);
+        $res1 = $stmt5->fetchColumn();
+        // checks if inputted access key matches any in the database
+        if ($res1){
+            echo "<p>Username is already in use</p>";
+            die;
+        } else{
+
+        
+        $sql1 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
         $stmt1=$db->prepare($sql1);
         $stmt1->execute();
         $codeData1 = $stmt1->fetch(PDO::FETCH_ASSOC);
         if (password_verify($_POST['accesscode'], $codeData1['AccessKey'])) {
-            $RoleID = 2;
+            $RoleID = 3;
         }
-        $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 3";
+        $sql2 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
         $stmt2=$db->prepare($sql2);
         $stmt2->execute();
         $codeData2 = $stmt2->fetch(PDO::FETCH_ASSOC);
         if (password_verify($_POST['accesscode'], $codeData2['AccessKey'])) {
-            $RoleID = 3;
+            $RoleID = 4;
         }
-        $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 4";
+        $sql3 = "SELECT * FROM AccessKeys WHERE RoleID = 5";
         $stmt3=$db->prepare($sql3);
         $stmt3->execute();
         $codeData3 = $stmt3->fetch(PDO::FETCH_ASSOC);
         if (password_verify($_POST['accesscode'], $codeData3['AccessKey'])) {
-            $RoleID = 4;
+            $RoleID = 5;
         }
     }
+}
     // prepare sql statement to insert inputted user data to database
     $sql4 = "INSERT INTO Users (RoleID, Name, Email, Password) VALUES (:RoleID, :Name, :Email, :Password)";
     $insertstmt4=$db->prepare($sql4);

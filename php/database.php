@@ -283,9 +283,9 @@ try {
         //Using a direct executive statement rather than prepared statement because it's not user data - will have to use prepared when admins adding new products
         $db->exec("
             INSERT INTO AccessKeys (RoleID, AccessKey) VALUES 
-            ('2', '$Hash1'), 
-            ('3', '$Hash2'), 
-            ('4', '$Hash3') 
+            ('3', '$Hash1'), 
+            ('4', '$Hash2'), 
+            ('5', '$Hash3') 
         ");
     }
 
