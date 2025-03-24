@@ -146,7 +146,7 @@
 <body>
  <div class = title> <h2>Admin Change User Details</h2></div>
     <div class="container">
-      <form id="adminupdateform" action="/G-TECH50/php/adminChangeUserDetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
+      <form id="adminupdateform" action="../php/adminChangeUserDetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
     <div class="user-box">
       <label>Current Email: <input type="email" value="" id="oldEmail" name="oldEmail" class="form-control" placeholder="oldEmail" required></label>
       <label>New Email: <input type="email" value="" id="newEmail" name="newEmail" class="form-control" placeholder="newEmail" required></label>
@@ -168,7 +168,7 @@
           const formData = new FormData(this);
 
           // Submit this form data using fetch
-          fetch("/G-TECH50/php/adminChangeUserDetailsFunction.php", {
+          fetch("../php/adminChangeUserDetailsFunction.php", {
               method: "POST",
               body: formData,
           })
