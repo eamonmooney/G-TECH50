@@ -1331,6 +1331,127 @@
     .offset-xl-11 {
       margin-left: 91.66667%; } }
   
+      body {
+        background-color: black;
+        color: white;
+        text-align: center;
+    }
+    
+    h1, h2, p {
+        margin: 0;
+    }
+    
+    h1 { 
+        padding: 50px;
+        font-size: 60px;
+    }
+    
+    img {
+        max-width: 35%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 15px;
+        filter: brightness(80%);
+    }
+    section {
+        margin-bottom: 40px;
+    }
+    .contact {
+        margin-top: 20px;
+        padding: 12px 15px;
+        font-size: 18px;
+        color: #fff;
+        background: linear-gradient(45deg, rgb(0, 0, 0), gray); 
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact:hover {
+        background: linear-gradient(45deg, rgb(7, 22, 35), rgb(117, 84, 187));
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+    }
+    footer {
+        background-color: #1a1a1a;
+        color: #ccc;
+        padding: 20px 0;
+        margin-top: 40px;
+        font-size: 14px;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .footer-links {
+        margin: 10px 0;
+    }
+    .footer-links a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.2s;
+    }
+    .footer-links a:hover {
+        color: #6366f1;
+    }
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+            text-align: center;
+        }
+    
+        h1 {
+            font-size: 40px;
+            padding: 20px;
+        }
+    
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            font-size: 16px;
+        }
+        .contact {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            width: auto;
+            color: #fff;
+            background: linear-gradient(45deg, rgb(0, 0, 0), gray);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+    
+        .contact:hover {
+            background: linear-gradient(45deg, rgb(7, 22, 35), rgb(117, 84, 187));
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+        }
+    
+    
+        footer {
+            font-size: 12px;
+        }
+    
+        .footer-content {
+            text-align: center;
+            padding: 10px;
+        }
+        .navbar {
+            max-width: 60%; 
+        }
+    }
+    
+
   .table {
     width: 100%;
     margin-bottom: 1rem;
@@ -3352,78 +3473,6 @@
         -webkit-transition: none;
         -o-transition: none;
         transition: none; } }
-  
-  .nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none; }
-  
-  .nav-link {
-    display: block;
-    padding: 0.5rem 1rem; }
-    .nav-link:hover, .nav-link:focus {
-      text-decoration: none; }
-    .nav-link.disabled {
-      color: #6c757d;
-      pointer-events: none;
-      cursor: default; }
-  
-  .nav-tabs {
-    border-bottom: 1px solid #dee2e6; }
-    .nav-tabs .nav-item {
-      margin-bottom: -1px; }
-    .nav-tabs .nav-link {
-      border: 1px solid transparent;
-      border-top-left-radius: 0.25rem;
-      border-top-right-radius: 0.25rem; }
-      .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-        border-color: #e9ecef #e9ecef #dee2e6; }
-      .nav-tabs .nav-link.disabled {
-        color: #6c757d;
-        background-color: transparent;
-        border-color: transparent; }
-    .nav-tabs .nav-link.active,
-    .nav-tabs .nav-item.show .nav-link {
-      color: #495057;
-      background-color: #fff;
-      border-color: #dee2e6 #dee2e6 #fff; }
-    .nav-tabs .dropdown-menu {
-      margin-top: -1px;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0; }
-  
-  .nav-pills .nav-link {
-    border-radius: 0.25rem; }
-  
-  .nav-pills .nav-link.active,
-  .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #007bff; }
-  
-  .nav-fill .nav-item {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    text-align: center; }
-  
-  .nav-justified .nav-item {
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    text-align: center; }
-  
-  .tab-content > .tab-pane {
-    display: none; }
-  
-  .tab-content > .active {
-    display: block; }
   
     .navbar {
       display: flex;
@@ -8121,63 +8170,3 @@
           border: 1px solid transparent;
           background: #201c1c;
           color: #fff; }
-  /*--------------------------------------------------------------
-  # Footer
-  --------------------------------------------------------------*/
-  #footer {
-    background: #f7f8f9;
-    color: #45505b;
-    font-size: 14px;
-    text-align: center;
-    padding: 30px 0;
-  }
-
-  #footer h3 {
-    font-size: 36px;
-    font-weight: 700;
-    position: relative;
-    font-family: "Poppins", sans-serif;
-    padding: 0;
-    margin: 0 0 15px 0;
-  }
-
-  #footer p {
-    font-size: 15;
-    font-style: italic;
-    padding: 0;
-    margin: 0 0 40px 0;
-  }
-
-  #footer .social-links {
-    margin: 0 0 40px 0;
-  }
-
-  #footer .social-links a {
-    font-size: 18px;
-    display: inline-block;
-    background: #0563bb;
-    color: #fff;
-    line-height: 1;
-    padding: 8px 0;
-    margin-right: 4px;
-    border-radius: 50%;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    transition: 0.3s;
-  }
-
-  #footer .social-links a:hover {
-    background: #0678e3;
-    color: #fff;
-    text-decoration: none;
-  }
-
-  #footer .copyright {
-    margin: 0 0 5px 0;
-  }
-
-  #footer .credits {
-    font-size: 13px;
-  }
-  
