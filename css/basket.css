@@ -179,6 +179,14 @@ body {
     background-color: rgb(140, 0, 204);
 }
 
+#basketNum {
+  font-family: 'horizon';
+}
+
+.empty-basket {
+  font-family: 'horizon';
+}
+
 #discount-message {
     font-size: 14px;
     color: white;
