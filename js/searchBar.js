@@ -15,7 +15,7 @@ const data = [
 	{ name: "Cosmic", url: "../products/cosmic.html" },
 	{ name: "Cosmo", url: "../products/cosmo.html" },
 	{ name: "Eco", url: "../products/eco.html" },
-	{ name: "Evergreen", url: "../roducts/evergreen.html" },
+	{ name: "Evergreen", url: "../products/evergreen.html" },
 	{ name: "Forestflow", url: "../products/forestflow.html" },
 	{ name: "Galaxytype", url: "../products/galaxytype.html" },
 	{ name: "Kittyclicks", url: "../products/kittyclicks.html" },
