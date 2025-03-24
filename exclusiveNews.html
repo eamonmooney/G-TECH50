@@ -27,7 +27,8 @@
             <a href="index.html">Home</a>
             <a href="aboutus.html">About Us</a>
             <div class="dropdown">
-                <a href=#>Categories</a>
+                <a href="categories/products.html" class="products-link">Products</a>
+                <span class="dropdown-trigger"></span>
                 <div class="dropdown-content">
                     <a href="categories/Mice.html">Mice</a>
                     <a href="categories/Monitors.html">Monitors</a>
@@ -127,6 +128,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check membership status by making an AJAX request
+            checkMembership();
+        });
+
+        function checkMembership() {
+            fetch('php/exclusiveNews.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        // Redirect the user if not a member or not signed in
+                        window.location.href = data.redirect;
+                    } else if (data.status === "success") {
+                        // Show the exclusive content if the user is a member
+                        document.getElementById('container').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking membership:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>
