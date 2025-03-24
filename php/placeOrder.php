@@ -38,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $total = 0;
         foreach ($basket as $itemName => $details) {
             $total += $details['price'] * $details['quantity'];
+            if ($details['quantity'] <= 0) {
+                throw new Exception("Error: Quantity low, cannot place order.");
+            } 
         }
 
         // OrderTypeID: 2 Is customer, 3 is guest 

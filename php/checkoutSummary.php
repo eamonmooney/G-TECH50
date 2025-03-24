@@ -8,33 +8,24 @@ require_once('connectdb.php');
 
 header('Content-Type: application/json');
 
-$basket = isset($_SESSION['basket']) ? $_SESSION['basket'] : [];
-$userID = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
-// Initialise
+$basket = $_SESSION['basket'] ?? [];
+$userID = $_SESSION['userId'] ?? null;
 $_SESSION['orderDetails'] = [];
 
 // Get user details for storage in the database as session variables
-//Check if user is logged in - if logged in, don't need additional qns
-// So if not signed in
-if ($_SESSION['signedIn'] == False) {
-    // Get the data from the form
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $firstName = isset($_POST['firstName']) ? $_POST['firstName'] : '';
-    $surname = isset($_POST['surname']) ? $_POST['surname'] : ''; 
-    $fullName = $firstName . $surname;
-    // Store all details in session variable
+if ($_SESSION['signedIn'] == false) {
+    $email = $_POST['email'] ?? '';
+    $firstName = $_POST['firstName'] ?? '';
+    $surname = $_POST['surname'] ?? '';
+    $fullName = $firstName . ' ' . $surname;
+
     $_SESSION['orderDetails'] = [
         "email" => $email,
         "fullName" => $fullName,
     ];
-} 
+}
 
-$address = isset($_POST['address']) ? trim($_POST['address']) : null;
-
-// Both needs an address
-$address = isset($_POST['address']) ? $_POST['address'] : '';
-
-// Store address in session variable
+$address = trim($_POST['address'] ?? '');
 $_SESSION['orderDetails']['address'] = $address;
 
 if (empty($basket)) {
@@ -45,6 +36,11 @@ if (empty($basket)) {
 $orderSummary = [];
 
 foreach ($basket as $itemName => $details) {
+    if ($details['quantity'] <= 0) {
+        echo json_encode(["status" => "failure", "message" => "Not enough stock to complete the order."]);
+        exit();
+    }
+
     $orderSummary[] = [
         "item" => htmlspecialchars($itemName),
         "price" => number_format($details['price'], 2),
@@ -53,7 +49,6 @@ foreach ($basket as $itemName => $details) {
     ];
 }
 
-ob_end_clean(); // Preventing comments from being added to the output.
+ob_end_clean();  // Clear buffer to avoid unintended output
 echo json_encode(["status" => "success", "order" => $orderSummary]);
-
 ?>

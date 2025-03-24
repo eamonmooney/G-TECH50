@@ -155,23 +155,58 @@ body {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Responsive Design */
+/* Mobile Layout Adjustments */
 @media (max-width: 768px) {
 
-  .contact {
-      width: 50%;
+  .formtitle h1 {
+    font-size: 20px;
   }
+  
+  
+  .contactform {
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+  }
+  
 
   .formtitle {
-    font-size: 12px;
+    font-size: 20px;
+    padding-top: 20px;
   }
 
-  .contactform {
-    width: fit-content;
+  
+  .contactform input, .contactform textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .contactform input[type="submit"] {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  #contactMethodTitle {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .prefcontact input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+
+  .prefcontact label {
+    font-size: 14px;
+  }
+
+  .hero .contact-us-main {
+    padding: 10px;
   }
 
   .hero img {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 }

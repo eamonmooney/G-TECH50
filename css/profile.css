@@ -6,12 +6,12 @@
     font-style: normal;
 }
 
-/*@font-face {
+@font-face {
     font-family: 'superbrigade';
     src: url('fonts/superbrigade.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}*/
+}
 
 body {
     margin: 0;
@@ -181,4 +181,8 @@ li {
     border: 0px;
     padding: 10px;
     color: white;
+}
+
+#basketNum {
+    font-family: 'horizon';
 }
