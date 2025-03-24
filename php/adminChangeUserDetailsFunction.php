@@ -31,6 +31,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             echo "<p>New email is already in use</p>";
             die;
         }
+        // SQl query to find if username is in use
+        $sql11 = "SELECT COUNT(*) FROM Users WHERE Name = :username";
+        // prepare sql statement in database to prevent sql injection
+        $stmt11 = $db->prepare($sql11);
+        // execute sql statement replacing placeholder with user name
+        $stmt11->execute([':username' => $Username]);
+        $res2 = $stmt11->fetchColumn();
+        // checks if inputted access key matches any in the database
+        if ($res2){
+            echo "<p>Username is already in use</p>";
+            die;
+        }
         // sql statement for replacing username
         $sql0 = "UPDATE Users SET Name = REPLACE(Name, :oldUsername, :newUsername) WHERE Email = :oldEmail";
         $replacestmt0 = $db->prepare($sql0);
