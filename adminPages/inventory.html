@@ -1,6 +1,7 @@
-<!-- Page by Rayyan Akhlaq - 230074804-->
+<!-- Frontend by Rayyan Akhlaq - 230074804, Backend and functionality by Safa-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,115 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/adminNavbar.css">
 
-    <script src="js/searchBar.js"></script>
 
-    <!-- Page Styling for Table -->
+    <!-- Page Styling for Table and popup -->
     <style>
-        html, body {
+        /* Popup */
+        .popup {
+            /* Initially invisible */
+            display: none;
+            /* Fixed position so doesnt move with page */
+            position: fixed;
+            /* Positioning */
+            top: 50%;
+            left: 50%;
+            /* Center the popup */
+            transform: translate(-50%, -50%);
+            /* Increased width */
+            width: 40vw;
+            /* Increased height */
+            height: 60vh;
+            /* Aesthetics */
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px gray;
+            border-radius: 8px;
+            z-index: 1000;
+            /* Ensure it's above the footer */
+
+        }
+
+
+        /* Make popup content in the middle */
+        .popup-content {
+            text-align: center;
+            position: relative;
+            color: black;
+            z-index: 1000;
+            /* Ensure it's above the footer */
+
+        }
+
+
+        /* Aesthetics of popup inputs */
+        .popup-content input,
+        .popup-content select,
+        .popup-content textarea {
+            width: 100%;
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Close button */
+        .close {
+            /* Position stays */
+            position: absolute;
+            /* Position  */
+            top: 10px;
+            right: 10px;
+            /* Turns clickable */
+            cursor: pointer;
+            background-color: whitesmoke;
+            color: black;
+            /* Increase size */
+            font-size: 24px;
+            /* Make it bolder */
+            font-weight: bold;
+
+        }
+
+        /* Popup buttons */
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        /* Confirm buttons */
+        .confirm-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* When hovering over confirm */
+        .confirm-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* cANCEL buttons */
+        .cancel-btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* When hovering over cancel */
+
+        .cancel-btn:hover {
+            background-color: #c9302c;
+        }
+
+        html,
+        body {
             height: 100%;
             background-color: black;
             color: white;
@@ -25,7 +130,8 @@
             flex-direction: column;
         }
 
-       
+
+
         .container {
             flex: 1;
             display: flex;
@@ -54,7 +160,8 @@
             overflow: hidden;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             border: 1px solid #555;
             text-align: left;
@@ -77,7 +184,7 @@
         }
 
         .close-button {
-            background-color:transparent;
+            background-color: transparent;
             color: white;
             border-color: rgb(255, 255, 255);
             padding: 8px 12px;
@@ -90,22 +197,23 @@
         }
 
         .filter-bar {
-      display: flex;
-      justify-content: space-between;
-      /* Align items on the same line */
-      align-items: center;
-      /* Vertically center align */
-      width: 50%;
-      /* Adjust width as needed */
-      margin-bottom: 20px;
-      /* Add some space below */
-    }
+            display: flex;
+            justify-content: space-between;
+            /* Align items on the same line */
+            align-items: center;
+            /* Vertically center align */
+            width: 50%;
+            /* Adjust width as needed */
+            margin-bottom: 20px;
+            /* Add some space below */
+        }
 
-    button-bar {
-        margin-top: 20px;
-    }
+        button-bar {
+            margin-top: 20px;
+        }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <div class="logo">
@@ -118,6 +226,7 @@
             <a href="inventory.html">Inventory</a>
             <a href="customer-review.html">Reviews</a>
             <a href="ticket.html">Tickets</a>
+
         </div>
 
         <div class="icon-container">
@@ -137,20 +246,41 @@
         <a href="Inventory.html">Inventory</a>
         <a href="Reviews.html">Reviews</a>
         <a href="Tickets.html">Tickets</a>
+
     </div>
+
 
 
     <!-- Table Section -->
     <div class="container">
+
         <h2>Inventory Management System</h2>
         <div class="filter-bar">
+            <!-- Buttons -->
             <div class="top-buttons">
-                <button type="button">Show Low Stock</button>
-                <button type="button">View Orders</button>
+                <button type="button">Stock Reports</button>
+                <!-- Add Product Button -->
+                <button type="button" id="addButton" onclick="addNewPopup()">New Product</button>
+                <!-- Delete button -->
+                <button type="button" id="deleteButton" onclick="deleteSelectedProducts()">Delete</button>
             </div>
+
+            <!-- Dropdowns -->
+            <!--Status -->
             <div class="top-filters">
-                <label for="category-filter">Show: </label>
-                <select name="category-filter" id="category-filter">
+                <label for="statusFilter">Status:</label>
+                <select id="statusFilter" onchange="filterTable()">
+                    <option value="All">All</option>
+                    <option value="Out">Out of Stock</option>
+                    <option value="Low">Low Stock</option>
+                    <option value="In">In Stock</option>
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="top-filters">
+                <label for="category-filter">Category: </label>
+                <select id="category-filter" onchange="filterTable()">
                     <option value="All">All</option>
                     <option value="Mice">Mice</option>
                     <option value="Monitors">Monitors</option>
@@ -160,86 +290,477 @@
                 </select>
                 &nbsp;
                 &nbsp;
-                <input type="text" id="admin-searchBar" placeholder="Search...">
-                
-                
+
+                <!-- Searchbar -->
+                <div class="productSearch">
+                    <input type="text" id="productSearch" onkeyup="filterTable()"
+                        placeholder="Search by product name...">
+                </div>
             </div>
         </div>
+
+        <!-- Table -->
         <table>
             <thead>
                 <tr>
                     <th>Select</th>
                     <th>Product ID</th>
+                    <th>Image</th>
                     <th>Name</th>
+                    <th>Price</th>
                     <th>Status</th>
                     <th>Stock Level</th>
                     <th>Category</th>
+                    <th>Description</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+
+            <!-- Dynamically insert products hgere-->
+            <tbody id="productTableBody">
             </tbody>
         </table>
+    </div>
 
-        <div class="button-bar">
-            <button type="button">Add Item</button>
-            <button type="button">Remove Iem</button>
-            <button type="button">Update Stock</button>
-            <button type="button">lookup item</button>
+    <!-- Edit Product Popup -->
+    <div id="editPopup" class="popup">
+        <div class="popup-content">
+            <!-- Close it -->
+            <span class="close" onclick="closeEditPopup()">&times;</span>
+            <!-- Heading -->
+            <h2>Edit Product</h2>
+            <!-- Form to edit -->
+            <form id="editProductForm">
+                <!-- Can't edit product ID -->
+                <div>
+                    <input type="hidden" id="editProductID">
+                </div>
+                <div>
+                    <!-- Can edit name -->
+                    <label>Name:</label>
+                    <input type="text" id="editProductName">
+                </div>
+                <div>
+                    <!-- Can edit price manually -->
+                    <label>Price:</label>
+                    <input type="number" id="editPrice">
+                </div>
+                <div>
+                    <!-- Can edit stock manually -->
+                    <label>Stock Level:</label>
+                    <input type="number" id="editProductStock">
+                </div>
+                <div>
+                    <!-- Can edit category manually -->
+                    <div>
+                        <label>Category:</label>
+                        <select id="editProductCategory">
+                            <option value="Mice">Mice</option>
+                            <option value="Monitors">Monitors</option>
+                            <option value="Headphones">Headphones</option>
+                            <option value="Keyboards">Keyboards</option>
+                            <option value="Mousepads">Mousepads</option>
+                        </select>
+                    </div>
+                    <div>
+                        <!-- Can edit description manually -->
+                        <label>Description:</label>
+                        <textarea id="editProductDescription"></textarea>
+                    </div>
+                    <div>
+                        <!-- Can edit image URL -->
+                        <label>Image URL:</label>
+                        <input type="text" id="editProductImage">
+                    </div>
+                    <div>
+                        <!-- Submit -->
+                        <button type="button" onclick="saveProductChanges()">Save</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Product Popup  -->
+    <div id="addPopup" class="popup">
+        <div class="popup-content">
+            <!-- Close it -->
+            <span class="close" onclick="closeAddPopup()">&times;</span>
+            <!-- Heading -->
+            <h2>Add New Product</h2>
+            <!-- Form -->
+            <form id="addProductForm">
+                <!-- Name -->
+                <div>
+                    <label>Name:</label>
+                    <input type="text" id="addProductName" required>
+                </div>
+
+                <!-- Stock level -->
+                <div>
+                    <label>Stock Level:</label>
+                    <input type="number" id="addProductStock" required>
+                </div>
+
+                <!-- Category -->
+                <div>
+                    <label>Category:</label>
+                    <select id="addProductCategory">
+                        <option value="Mice">Mice</option>
+                        <option value="Monitors">Monitors</option>
+                        <option value="Headphones">Headphones</option>
+                        <option value="Keyboards">Keyboards</option>
+                        <option value="Mousepads">Mousepads</option>
+                    </select>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label>Description:</label>
+                    <textarea id="addProductDescription" required></textarea>
+                </div>
+
+                <!-- Image URL -->
+                <div>
+                    <label>Image URL:</label>
+                    <input type="text" id="addProductImage" placeholder="Enter image path">
+                </div>
+
+                <!-- Confirm and cancel -->
+                <div class="popup-buttons">
+                    <button type="button" class="confirm-btn" onclick="addNewProduct()">Add</button>
+                    <button type="button" class="cancel-btn" onclick="closeAddPopup()">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 
 
-    
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>G-TECH50</h3>
-            <p>&copy; 2024 G-TECH50</p>
-            <p>ALL RIGHTS RESERVED.</p>
-          </div>
-          <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Shop</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Contact</h3>
-            <p>Phone: +44 7700 900123</p>
-            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-          </div>
-        </div>
-      </footer>
+    <script>
+
+        // When loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Call fetch products JS
+            fetchProducts();
+        });
+
+        // JS to fetch products
+        function fetchProducts() {
+            // Fetch php file
+            fetch("../php/inventoryManagement.php")
+                // Convert response to JSON
+                .then(response => response.json())
+                .then(products => {
+                    // Grab the table
+                    const tableBody = document.getElementById("productTableBody");
+                    // Clear existing rows before adding new ones - avoid duplicates
+                    tableBody.innerHTML = "";
+
+                    // For every product
+                    products.forEach(product => {
+                        // Create new row
+                        const row = document.createElement("tr");
+
+                        // Each column for the row using dynamic row rendering
+                        row.innerHTML = `
+                        <!-- Checkbox -->
+                        <td><input type="checkbox"></td>
+                        <!-- ProductID -->
+                        <td>${product.ProductID}</td>
+                        <!-- Image -->
+                        <td>
+                        <img src="../${product.ImageURL}" alt="${product.ProductName}" width="80" 
+                        onerror="this.onerror=null;this.src='../images/default.png';">
+                        </td>
+                        <!-- ProductName -->
+                        <td>${product.ProductName}</td>
+                        <!-- Price -->
+                        <td>£${parseFloat(product.Price).toFixed(2)}</td>
+                        <!-- Status -->
+                        <td>${product.Status}</td>
+                        <!-- Stock -->
+                        <td>${product.Stock}</td>
+                        <!-- Category -->
+                        <td>${product.Category}</td>
+                        <!-- Description -->
+                        <td>${product.Description}</td>
+                        <!-- Edit button -->
+                        <td><button onclick="openEditPopup(
+                            ${product.ProductID}, '${product.ProductName.replace(/'/g, "\\'")}',${product.Price}, ${product.Stock}, '${product.Category}', '${product.Description.replace(/'/g, "\\'")}',
+                            '${product.ImageURL.replace(/'/g, "\\'")}' 
+                        )">Edit</button></td>
+                        
+                        `;
+
+                        // Append this to the table
+                        tableBody.appendChild(row);
+                    });
+                })
+                // Errors
+                .catch(error => console.error("Error fetching products:", error));
+        }
+
+
+        // JS TO FILTER THE TABLE
+        function filterTable() {
+            // Get table
+            const tableBody = document.getElementById("productTableBody");
+            // Get all rows
+            var tr = document.querySelectorAll("#productTableBody tr");
+
+            // Get the inputs
+            // Status dropdown 
+            var statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+            // Category dropdown
+            var categoryFilter = document.getElementById("category-filter").value.toLowerCase();
+            // Product name searchbar
+            var productNameFilter = document.getElementById("productSearch").value.toLowerCase();
+
+            // Loop through all table rows (but not the header)
+            tr.forEach(row => {
+
+                // Get the table cell element for that row
+                var tdSelect = row.getElementsByTagName("td")[0];
+                var tdProductID = row.getElementsByTagName("td")[1];
+                var tdImageURL = row.getElementsByTagName("td")[2];
+                var tdProductName = row.getElementsByTagName("td")[3];
+                var tdPrice = row.getElementsByTagName("td")[4];
+                var tdStatus = row.getElementsByTagName("td")[5];
+                var tdStock = row.getElementsByTagName("td")[6];;
+                var tdCategory = row.getElementsByTagName("td")[7];
+                var tdDescription = row.getElementsByTagName("td")[8];
+
+                // Check if cells exist to avoid errors on empty rows
+                if (tdProductName && tdStatus && tdCategory) {
+                    // Get user values by using these table cell elements
+                    // Status value
+                    var statusText = tdStatus.textContent.toLowerCase();
+
+                    // Category value
+                    var categoryText = tdCategory.textContent.toLowerCase();
+
+                    // Filtering this row
+                    // Check if the orderID matches if it was searched for
+                    var matchesProductName = tdProductName.textContent.toLowerCase().includes(productNameFilter);
+
+                    // Check if status matches
+                    var matchesStatus = (statusFilter === "all") || (statusText.includes(statusFilter));
+
+                    // Check if category matches
+                    var matchesCategory = (categoryFilter === "all") || (categoryText.includes(categoryFilter));
+
+
+                    // End checks
+                    // If it goes through all the filters
+                    if (matchesProductName && matchesStatus && matchesCategory) {
+                        // Show the row
+                        row.style.display = "";
+                        // Otherwise hide the row
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            })
+
+        }
+
+        // DELETE PRODUCTS THAT ARE SELECTED
+        function deleteSelectedProducts() {
+            // Grab all rows
+            const rows = document.querySelectorAll("#productTableBody tr");
+
+            // Array to store selected product IDs
+            let selectedProducts = [];
+
+            // Loop through rows to find checked boxes
+            rows.forEach(row => {
+                // Get checkbox
+                const checkbox = row.querySelector("input[type='checkbox']");
+                // Get productID
+                const productID = row.getElementsByTagName("td")[1].textContent;
+
+                // If checked, add the product ID to the array
+                if (checkbox && checkbox.checked) {
+                    selectedProducts.push(productID);
+                }
+            });
+
+            // ALERTS
+            // Check if anything is selected
+            if (selectedProducts.length === 0) {
+                alert("Please select at least one product to delete.");
+                return;
+            }
+
+            // Confirm before deletion
+            if (!confirm(`Are you sure you want to delete ${selectedProducts.length} product(s)?`)) {
+                return;
+            }
+
+            // Send request to deleteProducts.php
+            fetch("../php/deleteProduct.php", {
+                // POST method
+                method: "POST",
+                // As JSON
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                // Send product ID and selected products
+                body: JSON.stringify({ productIDs: selectedProducts })
+            })
+                // Response as JSON
+                .then(response => response.json())
+                .then(data => {
+                    // Success output
+                    if (data.success) {
+                        alert("Product(s) deleted successfully!");
+                        // Refresh product list after deletion
+                        fetchProducts();
+                        // Error with this
+                    } else {
+                        alert("Error deleting product(s): " + data.error);
+                    }
+                    // Error handling
+                })
+                .catch(error => console.error("Error deleting products:", error));
+        }
+
+        // Open Edit Popup
+        function openEditPopup(id, name, price, stock, category, description, imageURL) {
+            // Get the edited values
+            document.getElementById("editProductID").value = id;
+            document.getElementById("editProductName").value = name;
+            document.getElementById("editPrice").value = price;
+            document.getElementById("editProductStock").value = stock;
+            document.getElementById("editProductCategory").value = category;
+            document.getElementById("editProductDescription").value = description;
+            document.getElementById("editProductImage").value = imageURL;
+            document.getElementById("editPopup").style.display = "block";
+        }
+
+        // Close Popup
+        function closeEditPopup() {
+            // Make hidden
+            document.getElementById("editPopup").style.display = "none";
+        }
+
+        // Save Changes
+        function saveProductChanges() {
+            // Get values
+            // Product ID
+            const id = document.getElementById("editProductID").value;
+            // Product name
+            const name = document.getElementById("editProductName").value;
+            // Price
+            const price = document.getElementById("editPrice").value;
+            // Stock
+            const stock = document.getElementById("editProductStock").value;
+            // Category
+            const category = document.getElementById("editProductCategory").value;
+            // Descrioption
+            const description = document.getElementById("editProductDescription").value;
+            // ImageRL
+            const imageURL = document.getElementById("editProductImage").value;
+
+
+            // Build the object
+            const productData = {
+                ProductID: id,
+                ProductName: name,
+                Price: price,
+                Stock: stock,
+                Category: category,
+                Description: description,
+                ImageURL: imageURL
+            };
+
+            // Fetch to open updateProdyct.php
+            fetch("../php/updateProduct.php", {
+                // Post method
+                method: "POST",
+                // JSON method
+                headers: { "Content-Type": "application/json" },
+                // Send all values to that php
+                body: JSON.stringify(productData)
+            })
+                // JSON response
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Success message 
+                        alert("Product updated successfully!");
+                        // Close popup
+                        closeEditPopup();
+                        // Fetch products
+                        fetchProducts();
+                        // Error message
+                    } else {
+                        alert("Error updating product: " + data.error);
+                    }
+                })
+                // Error message
+                .catch(error => console.error("Error updating product:", error));
+        }
+
+
+
+        // when you click add new product, it takes you to the add new product page
+        document.addEventListener("DOMContentLoaded", function () {
+            const element = document.getElementById("addButton");
+
+            if (element) {
+                element.addEventListener("click", function () {
+                    console.log("Clicked! Redirecting to add product page...");
+                    window.location.href = "addProduct.html";
+                });
+            } else {
+                console.error("Button not found!");
+            }
+        });
+
+
+
+        // Add New Product
+        function addNewProduct() {
+            // gET Values
+            const name = document.getElementById("addProductName").value;
+            const status = document.getElementById("addProductStatus").value;
+            const stock = document.getElementById("addProductStock").value;
+            const category = document.getElementById("addProductCategory").value;
+            const description = document.getElementById("addProductDescription").value;
+            const image = document.getElementById("addProductImage").value || "images/default.png"; // Default image
+
+            // Fetch php
+            fetch("../php/addProduct.php", {
+                // Post method
+                method: "POST",
+                // JSON METHOD
+                headers: { "Content-Type": "application/json" },
+                // PASS VALUES
+                body: JSON.stringify({ ProductName: name, Status: status, Stock: stock, Category: category, Description: description, ImageURL: image })
+            })
+                // With JSON RESPONSE
+                .then(response => response.json())
+                .then(data => {
+                    // Success alert
+                    if (data.success) {
+                        alert("Product added successfully!");
+                        // Close
+                        closeAddPopup();
+                        // Refresh table
+                        fetchProducts();
+                        // Error alert
+                    } else {
+                        alert("Error adding product: " + data.error);
+                    }
+                })
+                // Error alert
+                .catch(error => console.error("Error adding product:", error));
+        }
+
+
+    </script>
+
 
 </body>
+
 </html>

@@ -74,6 +74,7 @@
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
       <div class="dropdown">
         <a href="#">Categories</a>
         <div class="dropdown-content">
@@ -84,7 +85,7 @@
           <a href="categories/Mousepads.html">Mousepads</a>
         </div>
       </div>
-      <a href="aboutus.html">About Us</a>
+      
       <a href="contact.html">Contact Us</a>
       <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
@@ -125,7 +126,7 @@
       <a href="categories/Mousepads.html">Mousepads</a>
     </div>
     <a href="AboutUs.html">About Us</a>
-    <a href="contact.html">Contact Us</a>
+    <a href="contact.html">Contact Us</a>  
   </div>
 
   <!-- Search Results -->
@@ -142,16 +143,16 @@
       <div id="email">
         <div class="email">
           <label for="email">Email:</label>
-          <input type="text" class="form-control" id="email" name="email" required>
+          <input type="email" class="form-control" id="email" name="email">
         </div>
       </div>
       <div class="firstName" id="firstName">
         <label for="firstName">First Name: </label>
-        <input type="text" class="form-control" id="first-Name" name="firstName" required>
+        <input type="text" class="form-control" id="first-Name" name="firstName">
       </div>
       <div class="surname" id="surname">
         <label for="surname">Last Name: </label>
-        <input type="text" class="form-control" id="surname" name="surename" required>
+        <input type="text" class="form-control" id="surname" name="surename">
       </div>
       <div class="address">
         <label for="address">Address: </label>
@@ -174,7 +175,7 @@
         <input type="text" class="form-control" id="cvv" name="cvv" maxlength="3">
       </div>
       <div class="button-container">
-        <button type="submit" class="button" onclick="window.location='checkoutSummary.html';">Checkout</button>
+        <button type="submit" class="button">Checkout</button> <!--onclick="window.location='checkoutSummary.html';"-->
       </div>
     </div>
   </form>
@@ -186,19 +187,24 @@
 
       const formData = new FormData(this);
 
-      fetch('php/checkoutSummary.php', {
-        method: 'POST',
-        body: formData
-      })
-        .then(response => response.text())
-        .then(data => {
-          alert(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while processing your order.');
-        });
-    });
+        if (this.checkValidity()) {  // Check if the form is valid
+          fetch('php/checkoutSummary.php', {
+            method: 'POST',
+            body: formData
+          })
+            .then(response => response.text())
+            .then(data => {
+              alert(data);
+              window.location.href = 'checkoutSummary.html'; // Redirect after form submission
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred while processing your order.');
+            });
+        } else {
+          this.reportValidity();  // Show validation errors
+        }
+          });
 
     // Function to validate card expiry
 

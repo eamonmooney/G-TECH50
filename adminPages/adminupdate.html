@@ -1,3 +1,4 @@
+<!-- fronted made by Hanna Appiah - 230089015 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
   <link rel="stylesheet" href="../css/adminNavbar.css">
 
   <script src="js/searchBar.js"></script>
-  <title>Admin User Details</title>
+  <title>Admin Change User Details</title>
   <style>
     .title {
      position: relative;
@@ -113,11 +114,11 @@
   </div>
 
   <div class="nav-links">
-      <a href="userTransactionPage.html">Transactions</a>
-      <a href="adminuser.html">Users</a>
-      <a href="inventory.html">Inventory</a>
-      <a href="customer-review.html">Reviews</a>
-      <a href="ticket.html">Tickets</a>
+    <a href="userTransactionPage.html">Transactions</a>
+    <a href="adminuser.html">Users</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="review-details.html">Reviews</a>
+    <a href="ticket.html">Tickets</a>
 
       
   </div>
@@ -143,28 +144,50 @@
 
 </head>
 <body>
- <div class = title> <h2>Admin User Details</h2></div>
+ <div class = title> <h2>Admin Change User Details</h2></div>
     <div class="container">
-   
+      <form id="adminupdateform" action="/G-TECH50/php/adminChangeUserDetailsFunction.php" method="post" class="admin-update-form" method="post" nonvalidate>
     <div class="user-box">
-      <label>Username: <input type="text" value="Mary Johnson"></label>
-      <label>Email: <input type="email" value="MaryJohnson12@gmail.com"></label>
-      <label>Email Verified:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
-      <label>Admin:
-        <select>
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
+      <label>Current Email: <input type="email" value="" id="oldEmail" name="oldEmail" class="form-control" placeholder="oldEmail" required></label>
+      <label>New Email: <input type="email" value="" id="newEmail" name="newEmail" class="form-control" placeholder="newEmail" required></label>
+      <label>New Username: <input type="text" value="" id="newUsername" name="newUsername" class="form-control" placeholder="newUsername" required></label>
+      <label>New Password: <input type="text" value="NULL" id="newPassword" name="newPassword" class="form-control" placeholder="newPassword" required></label>
+      <label>Set Admin Permissions With Code: <input type="text" value="" id="accessCode" name="accessCode" class="form-control" placeholder="accessCode" required></label>
       <div class="button1">
-        <button>Confirm</button>
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Confirm</button>
       </div>
     </div>
+    <h2 id = "formResponse"></h2>
+    <script>
+      // Above form and below script by Ned Goodman 230019355
+      // Intercept form submission
+      document.getElementById("adminupdateform").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Collect form data
+          const formData = new FormData(this);
+
+          // Submit this form data using fetch
+          fetch("/G-TECH50/php/adminChangeUserDetailsFunction.php", {
+              method: "POST",
+              body: formData,
+          })
+              .then(response => {
+                if (response.redirected) {
+                  // If PHP sent a redirect, follow it
+                  window.location.href = response.url;
+                  exit();
+                }
+                return response.text();
+              })
+              .then(data => {
+                  //Display the response inside the formResponse element
+                  document.getElementById("formResponse").innerHTML = data;
+              })
+              .catch(error => console.error("Error:", error));
+      });
+  </script>
+    </form>
   </div>
 </body>
   <!-- Footer -->

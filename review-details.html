@@ -1,3 +1,5 @@
+<!-- CSS Redesign by Sahil Awan - 230073302. -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,44 +13,64 @@
     <link rel="stylesheet" href="css/navbar.css">
     
     <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
+            min-height: 100vh;  /* Ensures body covers the full viewport height */
+            background-image: url(images/Externalmade/keyboard_backlight_purple_212155_2560x1440.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-sizing: border-box;  /* Includes padding in the height calculation */
         }
+
         .container {
             width: 60%;
             margin: auto;
             padding: 20px;
-            margin-top: 80px;
+            margin-top: 40px;
+            margin-bottom: 0;
         }
+
         .review-box {
-            border: 1px solid #ccc;
             padding: 20px;
-            margin-top: 20px;
             text-align: left;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
+
         .admin-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
+
         .admin-actions div {
             width: 48%;
             padding: 15px;
             border: 1px solid #ccc;
             text-align: center;
             cursor: pointer;
+            border-radius: 5px;
         }
+
         .admin-actions div:hover {
             background: #f1f1f1;
         }
+
         .actions {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
         }
+
         button {
             padding: 10px;
             border: none;
@@ -56,8 +78,40 @@
             background: #333;
             color: white;
         }
+
         button:hover {
             background: #555;
+        }
+
+        footer {
+            background: #000000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Ensure it doesn't overlap with the body */
+            z-index: 1;         /* Keeps it above the background */
+        }
+
+        .container h1 {
+            color: white;
+            font-family: 'superbrigade';
+            font-size: 40px;
+        }
+
+        .review-box h2, h3 {
+            color: white;
+            font-family: 'superbrigade';
+        }
+
+        .review-box p {
+            color: white;
+            font-family: 'horizon';
+        }
+
+        .admin-actions {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-family: 'horizon';
         }
     </style>
 </head>
@@ -70,6 +124,7 @@
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
             <div class="dropdown">
               <a href=#>Categories</a>
               <div class="dropdown-content">
@@ -80,7 +135,7 @@
                 <a href="categories/Mousepads.html">Mousepads</a>
               </div>
             </div>
-            <a href="aboutus.html">About Us</a>
+            
             <a href="contact.html">Contact Us</a>
             <a href="membershipSignUp.html">G-TECH50+</a>
         </div>
@@ -126,7 +181,7 @@
     <script src="js/mobileNavbar.js"></script>
 
     <div class="container">
-        <div>Review Details</div>
+        <div><h1>Review Details</h1></div>
 
         <div class="review-box">
             <h2>Review ID: 101</h2>
@@ -146,16 +201,28 @@
             </div>
         </div>
     </div>
-
-    <footer id="footer">
-        <div class="container">
-            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-            <div class="contact-details">
-                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com" style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank" style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+</body>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>G-TECH50</h3>
+                <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories/products.html">Shop</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Phone: +44 7700 900123</p>
+                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
             </div>
         </div>
     </footer>
-</body>
 </html>

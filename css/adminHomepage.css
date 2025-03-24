@@ -1,11 +1,33 @@
+/* CSS Redesign by Sahil Awan - 230073302. */
+
+@font-face {
+  font-family: 'horizon';
+  src: url('/fonts/horizon.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'superbrigade';
+  src: url('fonts/superbrigade.ttf') format('truetype');
+}
+
 * {
     font-family: Arial, sans-serif;
   }
   
   body {
-    background-color: #f4f4f4;
+    background-color: black;
     margin: 0;
     padding: 0;
+    background-image: url(../images/Externalmade/keyboard_backlight_purple_212155_2560x1440.jpg);
+  }
+
+  .card {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .container h1 {
+    color: white;
+    font-family: 'superbrigade';
+    text-align: center;
   }
   
   .navbar {
@@ -131,27 +153,35 @@
   }
   
   .card {
-    background: white;
+    background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    color: white;
   }
   
   .card h3 {
     font-size: 20px;
     margin-bottom: 10px;
+    font-family: 'superbrigade';
   }
   
   .card p {
     font-size: 24px;
     font-weight: bold;
+    font-family: 'horizon';
   }
   
   .chart-container {
-    background: white;
+    background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+    color: white;
+  }
+
+  .chart-container h2 {
+    font-family: 'superbrigade';
   }

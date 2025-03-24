@@ -11,13 +11,10 @@
   <link rel="stylesheet" href="css/signin.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/navbar.css">
-<<<<<<< HEAD
   <!-- <link rel="stylesheet" href="css/navbarfix.css"> -->
-=======
   <link rel="stylesheet" href="css/navbarfix.css">
   <!-- Link to basketnumber JavaScript file -->
   <script src="js/basketNumber.js"></script>
->>>>>>> 65849e9fc1eda7787590ebcc5d745c40520e128c
 </head>
 
 <!-- Favicon -->
@@ -32,6 +29,7 @@
     </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
       <div class="dropdown">
         <a href=#>Categories</a>
         <div class="dropdown-content">
@@ -42,7 +40,7 @@
           <a href="categories/Mousepads.html">Mousepads</a>
         </div>
       </div>
-      <a href="aboutus.html">About Us</a>
+      
       <a href="contact.html">Contact Us</a>
       <a href="membershipSignUp.html">G-TECH50+</a>
     </div>
@@ -89,10 +87,10 @@
   <!-- Search Results -->
   <div id="searchResults" class="search-results" style="display: none;"></div>
 
-  <!-- Linking to Search bar JS -->
-  <script src="js/searchBar.js"></script>
-  <script src="js/mobileNavbar.js"></script>
-
+<!-- Linking to Search bar JS -->
+<script src="js/searchBar.js"></script>
+<script src="js/mobileNavbar.js"></script>
+  
   <main id="main">
     <section class="ftco-section">
       <div class="container">
@@ -112,24 +110,48 @@
                     <h3 class="mb-4">Sign In</h3>
                   </div>
                 </div>
-                <form action="/G-TECH50/php/signInFunction.php" method="post" class="signin-form" method="post"
-                  nonvalidate>
+                <form id="signinform" action="/G-TECH50/php/signInFunction.php" method="post" class="signin-form" method="post" nonvalidate>
                   <div class="form-group mb-3">
                     <label class="label" for="Username">Username</label>
-                    <input type="Username" id="Username" name="Username" class="form-control" placeholder="Username"
-                      required>
+                    <input type="Username" id="Username" name="Username" class="form-control" placeholder="Username" required>
                   </div>
                   <div class="form-group mb-3">
                     <label class="label" for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                      required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
                   </div>
-                  <label>
-                    <input type="checkbox" name="rememberMe"> Remember Me
-                  </label>
                   <div class="form-group">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
                   </div>
+                  <h2 id = "formResponse"></h2>
+                  <script>
+                    //Script used to add php response to the bottom of the form. - Ned Goodman 230019355
+                    // Intercept form submission
+                    document.getElementById("signinform").addEventListener("submit", function (event) {
+                        event.preventDefault(); // Prevent default form submission
+    
+                        // Collect form data
+                        const formData = new FormData(this);
+    
+                        // Submit this form data using fetch
+                        fetch("/G-TECH50/php/signInFunction.php", {
+                            method: "POST",
+                            body: formData,
+                        })
+                            .then(response => {
+                              if (response.redirected) {
+                                // If PHP sent a redirect, follow it
+                                window.location.href = response.url;
+                                exit();
+                              }
+                              return response.text();
+                            })
+                            .then(data => {
+                                //Display the response inside the formResponse element
+                                document.getElementById("formResponse").innerHTML = data;
+                            })
+                            .catch(error => console.error("Error:", error));
+                    });
+                </script>
                 </form>
                 <p class="text-center">Not a member? <a href="signup.html">Sign Up</a></p>
               </div>
@@ -142,28 +164,27 @@
   <!-- Footer -->
   <footer>
     <div class="footer-container">
-      <div class="footer-section">
-        <h3>G-TECH50</h3>
-        <p>&copy; 2024 G-TECH50</p>
-        <p>ALL RIGHTS RESERVED.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p>Phone: +44 7700 900123</p>
-        <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
-        <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
-      </div>
+        <div class="footer-section">
+            <h3>G-TECH50</h3>
+            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="categories/products.html">Shop</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Phone: +44 7700 900123</p>
+            <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
+        </div>
     </div>
-  </footer>
+</footer>
 </body>
 
 </html>

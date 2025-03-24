@@ -17,7 +17,7 @@
     <script src="js/basketNumber.js"></script>
 
     <script>
-        function validateForm(event) {
+        function validateForm() {
             let name = document.getElementById("name").value.trim();
             let email = document.getElementById("email").value.trim();
             let password = document.getElementById("password").value;
@@ -33,8 +33,8 @@
             if (password.length < 8) {
                 errorMessage += "Password must be at least 8 characters.\n";
             }
-            if (!/[a-zA-Z]/.test(password)) {
-                errorMessage += "Password must contain at least one letter.\n";
+            if (!/[a-zA-Z]/.test(password) || !/[A-Z]/.test(password)) {
+                errorMessage += "Password must contain at least one uppercase letter.\n";
             }
             if (!/[0-9]/.test(password)) {
                 errorMessage += "Password must contain at least one number.\n";
@@ -45,13 +45,13 @@
 
             if (errorMessage !== "") {
                 alert(errorMessage);
-                event.preventDefault(); // Stop form submission
+                return false; // Stop form submission
             }
+            return true;
         }
     </script>
 
 </head>
-<<<<<<< HEAD
 <body>    
     <!-- Navigation Bar -->
     <div class="navbar">
@@ -81,41 +81,6 @@
               <input type="text" id="searchBar" placeholder="Search...">
               <i class="material-icons" id="searchButton">search</i>
             </div>
-=======
-
-<body>
-    <div class="navbar">
-        <div class="logo">
-            <a href="index.html">Logo</a>
-        </div>
-
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-
-            <div class="dropdown">
-                <a href=#>Categories</a>
-
-                <div class="dropdown-content">
-                    <a href="categories/Mice.html">Mice</a>
-                    <a href="categories/Monitors.html">Monitors</a>
-                    <a href="categories/Headphones.html">Headphones</a>
-                    <a href="categories/Keyboards.html">Keyboards</a>
-                    <a href="categories/Mousepads.html">Mousepads</a>
-                </div>
-
-            </div>
-            <a href="aboutus.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </div>
-
-        <div class="icon-container">
-
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <i class="material-icons">search</i>
-            </div>
-
->>>>>>> 65849e9fc1eda7787590ebcc5d745c40520e128c
             <a href="profile.html"><i class="material-icons">account_circle</i></a>
             <!-- Basket Section in navbar -->
             <a href="basket.html" id="basket-container">
@@ -175,8 +140,8 @@
                                         <h3 class="mb-4">Signup</h3>
                                     </div>
                                 </div>
-                                <form action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
-                                    onsubmit="validateForm(event)">
+                                <form id = "adminSignUpForm" action="/G-TECH50/php/signUpFunction.php" class="signup-form" method="post"
+                                    onsubmit="return validateForm()">
                                     <div class="form-group mb-3">
                                         <label for="name">Name</label>
                                         <input type="text" class="form-control" id="name" name="name">
@@ -196,29 +161,69 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="accesscode">Access Code</label>
-                                        <input type="number" id="accesscode" class="form-control" name="accesscode">
+                                        <input type="text" id="accesscode" class="form-control" name="accesscode">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit"
                                             class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
                                     </div>
+                                    <h2 id = "formResponse"></h2>
+                                    <script>
+                                        //Script used to add php response to the bottom of the form. Ned Goodman 230019355
+                                        // Intercept form submission
+                                        document.getElementById("adminSignUpForm").addEventListener("submit", function (event) {
+                                            event.preventDefault(); // Prevent default form submission
+                                            // Collect form data
+                                            const formData = new FormData(this);
+                        
+                                            // Submit this form data using fetch
+                                            fetch("/G-TECH50/php/signUpFunction.php", {
+                                                method: "POST",
+                                                body: formData,
+                                            })
+                                                .then(response => {
+                                                if (response.redirected) {
+                                                    // If PHP sent a redirect, follow it
+                                                    window.location.href = response.url;
+                                                    exit();
+                                                }
+                                                return response.text();
+                                                })
+                                                .then(data => {
+                                                    //Display the response inside the formResponse element
+                                                    document.getElementById("formResponse").innerHTML = data;
+                                                })
+                                                .catch(error => console.error("Error:", error));
+                                        });
+                                    </script>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                       </div>
+                  </div>
                 </div>
-            </div>
         </section>
     </main>
-    <footer id="footer">
-        <div class="container">
-            <p>&copy; 2024 G-TECH50. All rights reserved.</p>
-            <div class="contact-details">
-                <p>📞 Phone: +1 (+44) 0723-4732-938</p>
-                <p>✉️ Email: <a href="mailto:g-tech50@yahoo.com"
-                        style="color: #bbb; text-decoration: none;">contact@g-tech50.com</a></p>
-                <p>📸 Instagram: <a href="https://instagram.com/g-tech50" target="_blank"
-                        style="color: #bbb; text-decoration: none;">@g-tech50</a></p>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>G-TECH50</h3>
+                <p>&copy; 2024 G-TECH50. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="categories/products.html">Shop</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Phone: +44 7700 900123</p>
+                <p>Email: <a href="mailto:contact@g-tech50.com">contact@g-tech50.com</a></p>
+                <p>Instagram: <a href="https://instagram.com/g-tech50" target="_blank">@g-tech50</a></p>
             </div>
         </div>
     </footer>
