@@ -127,6 +127,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check membership status by making an AJAX request
+            checkMembership();
+        });
+
+        function checkMembership() {
+            fetch('php/exclusiveNews.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        // Redirect the user if not a member or not signed in
+                        window.location.href = data.redirect;
+                    } else if (data.status === "success") {
+                        // Show the exclusive content if the user is a member
+                        document.getElementById('container').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking membership:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>
