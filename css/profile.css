@@ -32,9 +32,9 @@ body {
     font-family: 'horizon' !important;
 }
 
-/*.navbar .icon-container {
-    padding-right: 35px;
-}*/
+.navbar .icon-container {
+    padding-right: 5px;
+}
 
 .profile-container {
     display: flex;
